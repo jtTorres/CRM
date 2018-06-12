@@ -1,0 +1,25 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="et.closeEditTitheModal()">&times;</button>
+    <h4 class="modal-title text-center" id="modal-title">Edit Tithe</h4>
+</div>
+<div class="modal-body">
+    <!--Error Message Banner-->
+    <div ng-show="et.processFlow.error">
+        <div class="alert alert-danger alert-dismissible fade in">
+            <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{et.processFlow.errorMessage}}
+        </div>
+    </div>
+    
+    <div class="row">
+        <add-tithe action="Update" tithe="etc.Tithe" on-save="etc.updateTithe(etc.Tithe)"></add-tithe>
+
+    </div>
+</div>
+<div class="modal-footer">
+    <!--Submit and Clear Form Buttons-->
+    <div class="col-xs-12">
+        @*<button id="editSubmitBtn" name="editSubmitBtn" class="btn btn-primary" type="button" ng-click="et.updateTithe(et.edit.Tithe, tc.grid)">Save</button>*@
+        @*<button id="editClearFormBtn" name="editClearFormBtn" class="btn btn-info" type="button" ng-click="et.clearForm()">Clear Form</button>*@
+    </div>
+</div>

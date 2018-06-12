@@ -1,0 +1,65 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,*/
+select,
+textarea {
+    max-width: 280px;
+}
+
+/***************custom styles*****************/
+.clickable {
+    cursor: pointer;
+}
+/*This will prevent the text in the table columns from wrapping and it will put an ellipsis when it reaches the end of the column*/
+.table {
+    table-layout: fixed;
+}
+
+    .table td {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+/*This will make sure the icon on the date picker input doesn't go all the way to the right in forms*/
+#datePickerIcon {
+    width: 268px;
+}
+
+/*.grid-scrollable {
+    max-height: 380px;
+    overflow-y: auto;
+    width: 100%;
+}*/
+
+/*.table-fixed thead {
+    width: 97%;
+}
+.table-fixed tbody {
+    height: 230px;
+    overflow-y: auto;
+    width: 100%;
+}
+.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+    display: block;
+}
+.table-fixed tbody td, .table-fixed thead > tr> th {
+    float: left;
+    border-bottom-width: 0;
+}*/

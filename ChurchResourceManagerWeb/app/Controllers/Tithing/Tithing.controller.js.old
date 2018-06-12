@@ -1,0 +1,166 @@
+﻿(function () {
+
+    "use strict";
+
+    angular.module("app")
+        .controller("tithingController", tithingController);
+
+    tithingController.$inject = ["tithingDataService", "utilityService", "membershipDataService", "titheVars"];
+
+    function tithingController(tithingDataService, utilityService, membershipDataService, titheVars) {
+        var vm = this;
+
+        // setup bindable members
+        vm.addTithe = addTithe;
+        vm.allMembership = {};
+        vm.clearForm = clearForm;
+
+        vm.getTithesRunningTotal = getTithesRunningTotal;
+        vm.MemberTithes = {};
+        vm.onMemberSelected = onMemberSelected;
+        vm.openDeleteTitheModal = openDeleteTitheModal;
+        vm.openEditTitheModal = openEditTitheModal;
+        vm.panelSettings = {
+            panelHeading: "Member's Recent Activity",
+            isOpen: false
+        };
+        vm.selectedMember = "";
+        vm.Tithe = {};
+        vm.tithesRunningTotal = 0;
+        vm.grid = {};
+
+        //////////////////////
+
+        //init
+        activate();
+
+        function activate() {
+            setupDefaults();
+            return getAllMembership()
+                .then(function () {
+                    console.log("Activated Tithing Controller");
+                    tithingDataService.getTodaysTithingActivity()
+                        .then(function (response) {
+                            vm.tithingActivity = response.data;
+                            titheVars.todaysTithingActivity = vm.tithingActivity;
+                        });
+                });
+        }
+
+
+        function addTithe(titheRecord) {
+            setupDefaults();
+            tithingDataService.addTithe(titheRecord)
+                .then(onAddTitheSuccess)
+                .catch(onAddTitheError);
+        }
+
+        function onAddTitheSuccess(response) {
+            vm.processFlow = utilityService.processCompletion(vm.processFlow, "Tithe Added Successfully!", true);
+            getTithesRunningTotal(vm.Tithe.TITHE_DATE);
+            vm.onMemberSelected(vm.Tithe.MEMBER_ID); //just reusing logic
+
+            vm.Tithe = utilityService.clearObject(vm.Tithe);
+            vm.MemberTithes = utilityService.clearObject(vm.MemberTithes);
+            vm.selectedMember = "";
+
+            tithingDataService.getTodaysTithingActivity()
+                .then(function (response) {
+                    vm.tithingActivity = response.data;
+                    titheVars.todaysTithingActivity = vm.tithingActivity;
+                });
+        }
+
+        function onAddTitheError(reason) {
+            vm.processFlow = utilityService.processCompletion(vm.processFlow, reason.message, false);
+        }
+
+        function getAllMembership() {
+            return membershipDataService.getAllMembership()
+                .then(function (response) {
+                    membershipDataService.allMembership = response.data;
+                    vm.allMembership = membershipDataService.allMembership;
+                    return vm.allMembership;
+                });
+        }
+
+        function onMemberSelected(item, model, label) {
+            if (utilityService.isUndefinedOrNull(vm.Tithe.MEMBER_ID) ||
+                (!(utilityService.isUndefinedOrNull(item.MemberId)) && vm.Tithe.MEMBER_ID !== item.MemberId))
+                vm.Tithe.MEMBER_ID = item.MemberId;
+
+            tithingDataService.getMemberTithes(vm.Tithe.MEMBER_ID, new Date())
+                .then(function (response) {
+                    vm.MemberTithes = response.data;
+                    titheVars.tithingActivity = vm.MemberTithes;
+                    utilityService.isUndefinedOrNull(vm.selectedMember.FullName)
+                        ? configurePanelSettings("Member's Recent Activity", true)
+                        : configurePanelSettings("Tithing Activity for: " + vm.selectedMember.FullName, true);
+                })
+                .catch(function (reason) {
+                    console.log("Error retrieving Member Tithes");
+                });
+        }
+
+        function getTithesRunningTotal(date) {
+            tithingDataService.getTithesRunningTotal(date)
+                .then(function (response) {
+                    vm.tithesRunningTotal = response.data;
+                    titheVars.tithesRunningTotal = vm.tithesRunningTotal;
+                })
+                .catch(function (reason) {
+                    console.log("Error getting Tithes Running Total");
+                });
+        }
+
+        // #region modals
+        function openEditTitheModal(tithe, index, grid) {
+            vm.grid = grid;
+            titheVars.titheToEdit = angular.copy(tithe);
+            titheVars.titheToEdit.editIndex = index;
+            utilityService.openModal("editTitheModal");
+        }
+
+        function openDeleteTitheModal(titheId, titheIndex, grid) {
+            vm.grid = grid;
+            titheVars.titheToDelete = {
+                TitheId: titheId,
+                titheIndex: titheIndex
+            };
+            utilityService.openModal("deleteTithesModal");
+        }
+
+        // #endregion
+
+        function setupDefaults() {
+            vm.processError = undefined;
+            vm.processSuccess = undefined;
+            vm.errorMessage = {};
+            vm.successMessage = {};
+            vm.infoMessage = {};
+
+
+            vm.processFlow = {
+                error: undefined,
+                success: undefined,
+                errorMessage: {},
+                successMessage: {},
+                infoMessage: {}
+            };
+        }
+
+        function configurePanelSettings(headingText, isOpen) {
+            vm.panelSettings = {
+                panelHeading: headingText,
+                isOpen: isOpen
+            };
+        }
+
+        function clearForm() {
+            vm.Tithe = utilityService.clearObject(vm.Tithe);
+            vm.selectedMember = "";
+        }
+
+    }
+
+})();

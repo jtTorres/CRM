@@ -1,0 +1,179 @@
+﻿
+@{
+    ViewBag.Title = "AddTithes";
+}
+<div ng-controller="tithingController as tc">
+    <div class="container">
+        <div class="row">
+            <!--Success Message Banner-->
+            <div ng-show="tc.processFlow.success">
+                <div class="alert alert-success alert-dismissable fade in">
+                    <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    {{tc.processFlow.successMessage}}
+                </div>
+            </div>
+            <!--Error Message Banner-->
+            <div ng-show="tc.processFlow.error">
+                <div class="alert alert-danger alert-dismissible fade in">
+                    <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    {{tc.processFlow.errorMessage}}
+                </div>
+            </div>
+            <div class="col-xs-5">
+                <div class="panel panel-primary">
+                    <div class="panel-heading text-center">
+                        Add Tithes
+                    </div>
+                    <div class="panel-body">
+                        <add-tithe on-save="tc.doSaveTithe(tithe)" get-member-tithes="tc.getMemberTithes(memberId)"></add-tithe>
+                    </div>
+                </div>
+            </div>
+            <tithes-running-totals></tithes-running-totals>
+            <tithing-activity-by-member-grid panel-settings="tc.activityByMemberPanelSettings" open-edit-modal="tc.openEditTitheModal(tithe, index, grid)"></tithing-activity-by-member-grid>
+        </div>
+    </div>
+
+    <!--Tithing Activity-->
+    <div style="padding-top: 10px;">
+        <tithing-activity></tithing-activity>
+    </div>
+
+</div>
+
+@*<div ng-controller="tithingController as tc">
+    <div class="container">
+
+        <div class="row">
+            <!--Success Message Banner-->
+            <div ng-show="tc.processFlow.success">
+                <div class="alert alert-success alert-dismissable fade in">
+                    <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    {{tc.processFlow.successMessage}}
+                </div>
+            </div>
+            <!--Error Message Banner-->
+            <div ng-show="tc.processFlow.error">
+                <div class="alert alert-danger alert-dismissible fade in">
+                    <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    {{tc.processFlow.errorMessage}}
+                </div>
+            </div>
+
+
+            <form id="addTithesForm" name="addTithesForm" novalidate ng-submit="tc.addTithe(tc.Tithe)" autocomplete="off">
+
+                <!--Member Id-->
+                <div class="col-xs-5">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading text-center">
+                            Add Tithes
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-10">
+                                <div class="form-group">
+                                    <input id="memberIdTextBx"
+                                           name="memberIdTextBx"
+                                           class="form-control"
+                                           type="text"
+                                           placeholder="Name or Member Id"
+                                           ng-model="tc.Tithe.selectedMember"
+                                           uib-typeahead="member as member.MemberKey for member in tc.allMembership | filter: {MemberKey:$viewValue} | limitTo: 8"
+                                           typeahead-on-select="tc.onMemberSelected($item, $model, $label)"
+                                           required />
+                                </div>
+                            </div>
+
+                            <!--Date-->
+                            <div class="col-xs-10">
+                                <div class="form-group">
+                                    <input id="dateTxtBx"
+                                           name="dateTxtBx"
+                                           class="form-control"
+                                           type="text"
+                                           placeholder="Date (mm/dd/yyyy)"
+                                           ng-model="tc.Tithe.TITHE_DATE"
+                                           ui-mask="99/99/9999"
+                                           ui-mask-placeholder
+                                           model-view-value="true"
+                                           required />
+                                </div>
+                            </div>
+
+                            <!--Check Number-->
+                            <div class="col-xs-10">
+                                <div class="form-group">
+                                    <input id="checkNumberCkBx" name="checkNumberCkBx" type="checkbox" ng-model="tc.Tithe.IS_CHECK" />
+                                    <label for="checkNumberTxtBx">Check Number</label>
+                                    <input id="checkNumberTxtBx" name="checkNumberTxtBx" class="form-control" type="text" placeholder="Check Number" ng-model="tc.Tithe.CHECK_NUMBER"
+                                           ng-show="tc.Tithe.IS_CHECK" />
+                                </div>
+                            </div>
+
+                            <!--Amount-->
+                            <div class="col-xs-9">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">$</span>
+                                        <input id="amountTxtBx" name="amountTxtBx" class="form-control" type="text" placeholder="Tithe Amount (Ex. $0.00)" ng-model="tc.Tithe.TITHE_AMOUNT" required />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Comments-->
+                            <div class="col-xs-10">
+                                <div class="form-group">
+                                    <input id="commentsTxtBx" name="commentsTxtBx" class="form-control" type="text" placeholder="Notes or Comments" ng-model="tc.Tithe.COMMENTS" />
+                                </div>
+                            </div>
+
+                            <!--Submit and Clear Form Buttons-->
+                            <div class="col-xs-10">
+                                <button id="submitBtn" name="submitBtn" class="btn btn-primary" type="submit">Save</button>
+                                <button id="clearFormBtn" name="clearFormBtn" class="btn btn-info" type="button" ng-click="tc.clearForm()">Clear Form</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <!--Running Total-->
+            @{Html.RenderPartial("_tithesRunningTotals");}
+
+            <!--Member's Tithing Activity-->
+            @{Html.RenderPartial("_tithingActivityByMemberGrid");}
+
+        </div>
+        </div>
+
+    <div ng-controller="editTitheController as et">
+        <div style="padding-top: 10px;">
+            <!--Today's Tithing Activity-->
+            <div>
+
+                @{Html.RenderPartial("_tithingActivity");}
+            </div>
+        </div>
+
+        <div class="modal fade" id="editTitheModal" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div>
+                        @Html.Partial("_editTitheModal")
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="deleteTithesModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div>
+                        @Html.Partial("_deleteTithesModal")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>*@

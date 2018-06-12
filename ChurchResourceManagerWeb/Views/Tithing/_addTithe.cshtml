@@ -1,0 +1,66 @@
+﻿<form id="addTithesForm" name="addTithesForm" novalidate ng-submit="atc.addTithe(atc.Tithe)" autocomplete="off">
+
+    <!--Member Id-->
+    <div class="col-xs-10">
+        <div class="form-group">
+            <input id="memberIdTextBx"
+                   name="memberIdTextBx"
+                   class="form-control"
+                   type="text"
+                   placeholder="Name or Member Id"
+                   ng-model="atc.Tithe.selectedMember"
+                   uib-typeahead="member as member.MemberKey for member in atc.allMembership.data | filter: {MemberKey:$viewValue} | limitTo: 8"
+                   typeahead-on-select="atc.onMemberSelected($item, $model, $label)"
+                   required />
+        </div>
+    </div>
+
+    <!--Date-->
+    <div class="col-xs-10">
+        <div class="form-group">
+            <input id="dateTxtBx"
+                   name="dateTxtBx"
+                   class="form-control"
+                   type="text"
+                   placeholder="Date (mm/dd/yyyy)"
+                   ng-model="atc.Tithe.TitheDate"
+                   ui-mask="99/99/9999"
+                   ui-mask-placeholder
+                   model-view-value="true"
+                   required />
+        </div>
+    </div>
+
+    <!--Check Number-->
+    <div class="col-xs-10">
+        <div class="form-group">
+            <input id="checkNumberCkBx" name="checkNumberCkBx" type="checkbox" ng-model="atc.Tithe.IsCheck" />
+            <label for="checkNumberTxtBx">Check Number</label>
+            <input id="checkNumberTxtBx" name="checkNumberTxtBx" class="form-control" type="text" placeholder="Check Number" ng-model="atc.Tithe.CheckNumber"
+                   ng-show="atc.Tithe.IsCheck" />
+        </div>
+    </div>
+
+    <!--Amount-->
+    <div class="col-xs-10">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon">$</span>
+                <input id="amountTxtBx" name="amountTxtBx" class="form-control" type="text" placeholder="Tithe Amount (Ex. $0.00)" ng-model="atc.Tithe.TitheAmount" required />
+            </div>
+        </div>
+    </div>
+
+    <!--Comments-->
+    <div class="col-xs-10">
+        <div class="form-group">
+            <input id="commentsTxtBx" name="commentsTxtBx" class="form-control" type="text" placeholder="Notes or Comments" ng-model="atc.Tithe.Comments" />
+        </div>
+    </div>
+
+    <!--Submit and Clear Form Buttons-->
+    <div class="col-xs-10">
+        <button id="submitBtn" name="submitBtn" class="btn btn-primary" type="submit">Save</button>
+        <button id="clearFormBtn" name="clearFormBtn" class="btn btn-info" type="button" ng-click="atc.clearForm()">Clear Form</button>
+    </div>
+</form>

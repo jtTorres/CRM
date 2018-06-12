@@ -1,0 +1,1 @@
+﻿angular.module("app", ["ngMessages", "ui.bootstrap", "ngSanitize", "ui.mask"]);

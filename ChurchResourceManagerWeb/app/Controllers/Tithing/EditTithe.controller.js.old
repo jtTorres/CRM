@@ -1,0 +1,117 @@
+﻿(function () {
+
+    "use strict";
+    angular.module("app")
+        .controller("editTitheController", editTitheController);
+
+    editTitheController.$inject = ["tithingDataService", "utilityService", "membershipDataService", "titheVars", "$filter"];
+
+    function editTitheController(tithingDataService, utilityService, membershipDataService, titheVars, $filter) {
+        var vm = this;
+
+        // setup bindable members
+        vm.edit = {};
+        vm.closeDeleteTitheModal = closeDeleteTitheModal;
+        vm.closeEditTitheModal = closeEditTitheModal;
+        vm.deleteTithe = deleteTithe;
+        vm.onMemberSelected = onMemberSelected;
+        vm.updateTithe = updateTithe;
+        //////////////////////////
+
+
+        activate();
+
+        function activate() {
+            setupDefaults();
+        }
+
+        function getAllMembership() {
+            membershipDataService.getAllMembership()
+                .then(function (response) {
+                    membershipDataService.allMembership = response.data;
+                    vm.allMembership = membershipDataService.allMembership;
+                });
+        }
+
+        function onMemberSelected(item, model, label) {
+            if (utilityService.isUndefinedOrNull(vm.edit.Tithe.MEMBER_ID) ||
+                !utilityService.isUndefinedOrNull(item.MemberId) && vm.edit.Tithe.MEMBER_ID !== item.MemberId)
+                vm.edit.Tithe.MEMBER_ID = item.MemberId;
+        }
+
+        function updateTithe(tithe, grid) {
+            tithingDataService.updateTithe(tithe)
+                .then(function (response) {
+
+                    tithingDataService.updateTitheGrids(grid, 1, tithe);
+
+                    closeEditTitheModal();
+                    getTithesRunningTotal(new Date());
+                    vm.processFlow = utilityService.processCompletion(vm.processFlow, "Tithe Updated Successfully!", true);
+                })
+                .catch(function (reason) {
+                    vm.processFlow = utilityService.processCompletion(vm.processFlow, reason.message, false);
+                });
+        }
+
+        function deleteTithe(grid) {
+            tithingDataService.deleteTithe(titheVars.titheToDelete.TitheId)
+                .then(function (response) {
+                    vm.closeDeleteTitheModal();
+
+                    tithingDataService.updateTitheGrids(grid, 2);
+
+                    getTithesRunningTotal(new Date());
+                    vm.processFlow = utilityService.processCompletion(vm.processFlow, "Tithe Deleted Successfully", true);
+                })
+                .catch(function (reason) {
+                    vm.processFlow = utilityService.processCompletion(vm.processFlow, reason.message, false);
+                });
+        }
+
+        function getTithesRunningTotal(date) {
+            tithingDataService.getTithesRunningTotal(date)
+                .then(function (response) {
+                    titheVars.tithesRunningTotal = response.data;
+                })
+                .catch(function (reason) {
+                    console.log("Error getting Tithes Running Total");
+                });
+        }
+
+        function setupDefaults() {
+            vm.processError = undefined;
+            vm.processSuccess = undefined;
+            vm.errorMessage = {};
+            vm.successMessage = {};
+            vm.infoMessage = {};
+
+
+            vm.processFlow = {
+                error: undefined,
+                success: undefined,
+                errorMessage: {},
+                successMessage: {},
+                infoMessage: {}
+            };
+        }
+
+        // #region modals stuff
+        $("#editTitheModal").on("show.bs.modal", function () {
+            vm.edit.Tithe = angular.copy(titheVars.titheToEdit);
+            vm.edit.selectedMember = angular.copy(vm.edit.Tithe.MemberKey);
+            getAllMembership();
+        });
+
+        function closeEditTitheModal() {
+            utilityService.closeModal("editTitheModal");
+        }
+
+        function closeDeleteTitheModal() {
+            utilityService.closeModal("deleteTithesModal");
+        }
+        // #endregion
+
+    }
+
+})();

@@ -1,0 +1,53 @@
+﻿<!--Today's tithing Activity-->
+
+<div class="col-xs-12">
+    <div uib-accordion>
+        <div uib-accordion-group class="panel panel-primary text-center" heading="Today's Tithing Activity" is-open="true">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Member ID</th>
+                            <th>Name</th>
+                            <th>Amount</th>
+                            <th>Check Number</th>
+                            <th>Comments</th>
+                            <th width="6%"></th> <!--empty space for edit/delete-->
+                        </tr>
+                        <tr class="list-group" id="searchRow" name="searchRow">
+                            <td>
+                                <input type="text" id="txtMemberId" name="txtMemberId" class="form-control" ng-model="search.MemberId" />
+                            </td>
+                            <td>
+                                <input type="text" id="txtName" name="txtName" class="form-control" ng-model="search.MemberName" />
+                            </td>
+                            <td>
+                                <input type="text" id="txtAmount" name="txtAmount" class="form-control" ng-model="search.TitheAmountString" />
+                            </td>
+                            <td>
+                                <input type="text" id="txtCheckNumber" name="txtCheckNumber" class="form-control" ng-model="search.CheckNumber" />
+                            </td>
+                            <td>
+                                <input type="text" id="txtComments" name="txtComments" class="form-control" ng-model="search.Comments" />
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-left" ng-repeat="tithe in tc.tithingActivity | filter: search">
+                            <td>{{tithe.MemberId}}</td>
+                            <td>{{tithe.MemberName}}</td>
+                            <td>{{tithe.TitheAmount | currency}}</td>
+                            <td>{{tithe.CheckNumber}}</td>
+                            <td>{{tithe.Comments}}</td>
+                            <td>
+                                <span ng-click="tc.openEditTitheModal(tithe, $index, 2)" uib-tooltip="Click to Edit" class="glyphicon glyphicon-pencil clickable"></span>
+                                |
+                                <span ng-click="tc.openDeleteTitheModal(tithe.TitheId, $index, 2)" uib-tooltip="Click to Edit" class="glyphicon glyphicon-remove clickable"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

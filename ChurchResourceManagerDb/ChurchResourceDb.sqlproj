@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>ChurchResourceDb</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{a374ee59-348b-4140-8b8f-232f218dc4b0}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>ChurchResourceManager</RootNamespace>
+    <AssemblyName>ChurchResourceManager</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <GenerateCreateScript>False</GenerateCreateScript>
+    <IncludeSchemaNameInFileName>True</IncludeSchemaNameInFileName>
+    <DacApplicationName>ChurchResourceDb</DacApplicationName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo.TITHES.sql" />
+    <Build Include="dbo.MEMBERSHIP.sql" />
+    <Build Include="dbo.FAMILIES.sql" />
+    <Build Include="dbo.MEMBER_GROUPS.sql" />
+    <Build Include="dbo.MARITAL_STATUS.sql" />
+    <Build Include="dbo.LOCATIONS.sql" />
+    <Build Include="dbo.CONTACT_METHODS.sql" />
+    <Build Include="dbo.CONTACT_INFO.sql" />
+    <Build Include="dbo.MEMBERSHIP_TYPES.sql" />
+    <Build Include="dbo.Trigger.UpdateLastModifiedDateIn_MEMBERSHIP.sql" />
+    <Build Include="dbo.TRANSACTION_TYPES.sql" />
+    <Build Include="dbo.TRANSACTIONS.sql" />
+    <Build Include="dbo.UTILITY_BILLS.sql" />
+    <Build Include="dbo.DONATION_TYPES.sql" />
+    <Build Include="dbo.ACTIVITY_TYPES.sql" />
+    <Build Include="dbo.ACTIVITIES.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.PostDeployment.Populate_CONTACT_METHODS.sql" />
+    <None Include="Script.PostDeployment.Populate_MARITAL_STATUS.sql" />
+    <None Include="Script.PostDeployment.Populate_LOCATIONS.sql" />
+    <None Include="Script.PostDeployment.Populate_MEMBER_GROUPS.sql" />
+    <None Include="Script.PostDeployment.Populate_MEMBERSHIP_TYPES.sql" />
+    <None Include="Script.PostDeployment.Poupulate_TRANSACTION_TYPES.sql" />
+    <None Include="Script.PostDeployment.Populate_UTILITY_BILLS.sql" />
+    <None Include="Script.PostDeployment.Populate_DONATION_TYPES.sql" />
+  </ItemGroup>
+</Project>
