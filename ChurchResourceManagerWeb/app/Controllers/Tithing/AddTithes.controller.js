@@ -22,7 +22,6 @@
         activate();
 
         function activate() {
-            //setupDefaults();
             setTitheFromBinding();
             getAllMembership();
             console.log("Activated Add Tithes Controller");
@@ -39,12 +38,9 @@
         }
 
         function onSaveSuccess(response) {
-            // TODO: what this method is doing needs to be changed more in the future. Ideally, this controller would call the parent controller and it will take care of doing all this stuff
-
-            updateTodaysTotal(vm.Tithe.TitheAmount);
-
+            vm.updateTodaysTotals({ titheAmount: vm.Tithe.TitheAmount, titheDate: vm.Tithe.TitheDate }); //from component
             vm.Tithe = utilityService.clearObject(vm.Tithe);
-            titheVars.tithingActivity.data = utilityService.clearObject(titheVars.tithingActivity.data);
+            vm.clearTithingActivity();
         }
 
         function onMemberSelected(item, model, label) {
@@ -54,14 +50,6 @@
 
             vm.getMemberTithes({ memberId: vm.Tithe.MemberId });
 
-        }
-
-        function updateTodaysTotal(titheAmount) {
-
-            titheAmount = parseFloat(titheAmount);
-            titheVars.tithesRunningTotal.data = parseFloat(titheVars.tithesRunningTotal.data);
-
-            titheVars.tithesRunningTotal.data += titheAmount;
         }
 
         function setTitheFromBinding() {

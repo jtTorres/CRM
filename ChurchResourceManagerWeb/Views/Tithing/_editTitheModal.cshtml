@@ -1,13 +1,13 @@
 ﻿<div class="modal-header">
-    <button type="button" class="close" ng-click="et.closeEditTitheModal()">&times;</button>
+    <button type="button" class="close" ng-click="etc.dismiss()">&times;</button>
     <h4 class="modal-title text-center" id="modal-title">Edit Tithe</h4>
 </div>
 <div class="modal-body">
     <!--Error Message Banner-->
-    <div ng-show="et.processFlow.error">
+    <div ng-show="etc.processFlow.error">
         <div class="alert alert-danger alert-dismissible fade in">
             <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            {{et.processFlow.errorMessage}}
+            {{etc.processFlow.errorMessage}}
         </div>
     </div>
     

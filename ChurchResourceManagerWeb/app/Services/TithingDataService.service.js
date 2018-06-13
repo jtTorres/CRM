@@ -18,7 +18,8 @@
             getTithesRunningTotal: getTithesRunningTotal,
             getTodaysTithingActivity: getTodaysTithingActivity,
             getTithingActivity: getTithingActivity,
-            updateTitheGrids: updateTitheGrids
+            updateTitheGrids: updateTitheGrids,
+            addToTotal: addToTotal
         };
 
 
@@ -231,6 +232,20 @@
         function removeTodaysTithingActivity(tithe) {
             if (tithe.TitheDate !== $filter("date")(new Date(), "MM/dd/yyyy"))
                 titheVars.todaysTithingActivity.splice(utilityService.getArrayIndexOf(titheVars.todaysTithingActivity, tithe, "TitheId"), 1);
+        }
+
+        function addToTotal(currentTotal, newTotal, checkDate, date) {
+            currentTotal = parseFloat(currentTotal);
+            newTotal = parseFloat(newTotal);
+
+            if (checkDate) {
+                if ($filter("date")(new Date(), "MM/dd/yyyy") === date)
+                    return currentTotal += newTotal;
+                else
+                    return currentTotal;
+            } else {
+                return currentTotal += newTotal;
+            }
         }
     }
 

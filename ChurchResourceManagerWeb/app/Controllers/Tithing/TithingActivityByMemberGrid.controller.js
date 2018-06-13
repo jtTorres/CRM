@@ -22,11 +22,6 @@
         function editTithe(tithe, index, grid) {
             vm.openEditModal({ tithe: tithe, index: index, grid: grid });
         }
-
-        //vm.panelSettings = {
-        //    panelHeading: "Member Recent Activity",
-        //    isOpen: true
-        //};
     }
 
 })();
