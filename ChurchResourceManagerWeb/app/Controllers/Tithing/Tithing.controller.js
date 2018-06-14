@@ -17,6 +17,7 @@
         vm.doSaveTithe = doSaveTithe;
         vm.getMemberTithes = getMemberTithes;
         vm.openEditTitheModal = openEditTitheModal;
+        vm.setActivityByMemberPanelDefaults = setActivityByMemberPanelDefaults;
         // #endregion
 
         // init logic
@@ -25,6 +26,7 @@
         function activate() {
             return getAllMembership()
                 .then(function () {
+                    setActivityByMemberPanelDefaults();
                     console.log("Activated Tithing Controller");
                 });
         }
@@ -49,7 +51,12 @@
                 animation: true,
                 component: "editTitheModal",
                 resolve: {
-                    titheToEdit: function () { return titheVars.titheToEdit; }
+                    titheToEdit: function () { return titheVars.titheToEdit; },
+                    save: {
+                        saveTithe: function (titheRecord) {
+                            return doSaveTithe(titheRecord);
+                        }
+                    }
                 }
             });
 
@@ -81,24 +88,25 @@
                     .catch(onAddTitheError);
             } else {
                 return tithingDataService.updateTithe(titheRecord)
-                    .then(function (response) {
+                    .then(onAddTitheSuccess)
+                    .catch(onAddTitheError);
+                    //.then(function (response) {
 
                         //tithingDataService.updateTitheGrids(grid, 1, tithe);
 
                         //closeEditTitheModal();
                         //getTithesRunningTotal(new Date());
                         //vm.processFlow = utilityService.processCompletion(vm.processFlow, "Tithe Updated Successfully!", true);
-                    })
-                    .catch(function (reason) {
+                    //})
+                    //.catch(function (reason) {
                         //vm.processFlow = utilityService.processCompletion(vm.processFlow, reason.message, false);
-                    });
+                    //});
             }
 
         }
 
         function onAddTitheSuccess(response) {
             vm.processFlow = operationFlowService.operationCompletion(operationFlowService.operationFlow, "Tithe Added Successfully!", true);
-            vm.activityByMemberPanelSettings.isOpen = false;
         }
 
         function onAddTitheError(reason) {
@@ -112,14 +120,14 @@
 
         function clearActivity() {
             titheVars.tithingActivity.data = utilityService.clearObject(titheVars.tithingActivity.data);
-            //have another method to collapse the panel.  needs to come from the component. I think?
         }
 
-        vm.activityByMemberPanelSettings = {
-            panelHeading: "Member Recent Activity",
-            isOpen: false
-        };
-
+        function setActivityByMemberPanelDefaults() {
+            vm.activityByMemberPanelSettings = {
+                panelHeading: "Member Recent Activity",
+                isOpen: false
+            };
+        }
     }
 
 })();

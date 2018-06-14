@@ -20,21 +20,27 @@
         }
 
         function updateTithe(tithe) {
-            return tithingDataService.updateTithe(tithe)
-                .then(function (response) {
 
-                    //tithingDataService.updateTitheGrids(grid, 1, tithe);
-
-                    //closeEditTitheModal();
-                    //getTithesRunningTotal(new Date());
-                    //vm.processFlow = utilityService.processCompletion(vm.processFlow, "Tithe Updated Successfully!", true);
-
+            return vm.resolve.save.saveTithe(tithe)
+                .then(function() {
                     vm.close({ $value: tithe });
-
-                })
-                .catch(function (reason) {
-                    //vm.processFlow = utilityService.processCompletion(vm.processFlow, reason.message, false);
                 });
+
+            //return tithingDataService.updateTithe(tithe)
+            //    .then(function (response) {
+
+            //        //tithingDataService.updateTitheGrids(grid, 1, tithe);
+
+            //        //closeEditTitheModal();
+            //        //getTithesRunningTotal(new Date());
+            //        //vm.processFlow = utilityService.processCompletion(vm.processFlow, "Tithe Updated Successfully!", true);
+
+            //        vm.close({ $value: tithe });
+
+            //    })
+            //    .catch(function (reason) {
+            //        //vm.processFlow = utilityService.processCompletion(vm.processFlow, reason.message, false);
+            //    });
         }
 
     }
