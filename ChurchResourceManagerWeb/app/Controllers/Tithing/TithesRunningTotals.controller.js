@@ -10,6 +10,18 @@
         var vm = this;
 
         // setup bindable members
+        vm.refreshTotals = refreshTotals;
+
+        ////////////////////////////
+
+
+        function refreshTotals() {
+            vm.getTithesRunningTotal();
+        }
+
+
+        /*
+        // setup bindable members
         vm.getTithesRunningTotal = getTithesRunningTotal;
 
         ////////////////////////////
@@ -32,6 +44,7 @@
                     console.log("Error getting Tithes Running Total");
                 });
         }
+        */
     }
 
 })();

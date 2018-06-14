@@ -38,7 +38,6 @@
         }
 
         function onSaveSuccess(response) {
-            vm.updateTodaysTotals({ titheAmount: vm.Tithe.TitheAmount, titheDate: vm.Tithe.TitheDate }); //from component
             vm.Tithe = utilityService.clearObject(vm.Tithe);
             vm.clearTithingActivity();
             vm.setMemberActivityPanelDefaults();

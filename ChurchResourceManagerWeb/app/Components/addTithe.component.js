@@ -12,7 +12,6 @@
                     onSave: "&",
                     tithe: "<",
                     action: "@",
-                    updateTodaysTotals: "&", //needs to happen from Tithing Controller?
                     clearTithingActivity: "&", //needs to happen from Tithing Controller?
                     setMemberActivityPanelDefaults: "&"
                 }

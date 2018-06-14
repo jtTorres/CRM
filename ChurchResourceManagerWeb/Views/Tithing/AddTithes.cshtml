@@ -25,11 +25,11 @@
                         Add Tithes
                     </div>
                     <div class="panel-body">
-                        <add-tithe on-save="tc.doSaveTithe(tithe)" update-todays-totals="tc.addToTotal(titheAmount, titheDate)" clear-tithing-activity="tc.clearActivity()" get-member-tithes="tc.getMemberTithes(memberId)" set-member-activity-panel-defaults="tc.setActivityByMemberPanelDefaults()"></add-tithe>
+                        <add-tithe on-save="tc.doSaveTithe(tithe)" clear-tithing-activity="tc.clearActivity()" get-member-tithes="tc.getMemberTithes(memberId)" set-member-activity-panel-defaults="tc.setActivityByMemberPanelDefaults()"></add-tithe>
                     </div>
                 </div>
             </div>
-            <tithes-running-totals></tithes-running-totals>
+            <tithes-running-totals tithes-running-total="tc.tithesRunningTotal"></tithes-running-totals>
             <tithing-activity-by-member-grid panel-settings="tc.activityByMemberPanelSettings" open-edit-modal="tc.openEditTitheModal(tithe, index, grid)"></tithing-activity-by-member-grid>
         </div>
     </div>

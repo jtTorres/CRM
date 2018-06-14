@@ -6,7 +6,11 @@
             {
                 templateUrl: "/Tithing/TithesRunningTotals",
                 controller: "tithesRunningTotalController",
-                controllerAs: "trt"
+                controllerAs: "trt",
+                bindings: {
+                    tithesRunningTotal: "<",
+                    getTithesRunningTotal: "&"
+                }
             });
 
 })();

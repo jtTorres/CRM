@@ -12,10 +12,10 @@
         var vm = this;
 
         // #region bindable members
-        vm.addToTotal = addToTotal;
         vm.clearActivity = clearActivity;
         vm.doSaveTithe = doSaveTithe;
         vm.getMemberTithes = getMemberTithes;
+        vm.getTithesRunningTotal = getTithesRunningTotal;
         vm.openEditTitheModal = openEditTitheModal;
         vm.setActivityByMemberPanelDefaults = setActivityByMemberPanelDefaults;
         // #endregion
@@ -27,6 +27,7 @@
             return getAllMembership()
                 .then(function () {
                     setActivityByMemberPanelDefaults();
+                    getTithesRunningTotal();
                     console.log("Activated Tithing Controller");
                 });
         }
@@ -114,15 +115,11 @@
 
         function onAddTitheSuccess(response) {
             vm.processFlow = operationFlowService.operationCompletion(operationFlowService.operationFlow, "Tithe Added Successfully!", true);
+            getTithesRunningTotal();
         }
 
         function onAddTitheError(reason) {
             vm.processFlow = operationFlowService.operationCompletion(operationFlowService.operationFlow, reason.message, false);
-        }
-
-
-        function addToTotal(titheAmount, titheDate) {
-            titheVars.tithesRunningTotal.data = tithingDataService.addToTotal(titheVars.tithesRunningTotal.data, titheAmount, true, titheDate);
         }
 
         function clearActivity() {
@@ -135,6 +132,25 @@
                 isOpen: false
             };
         }
+
+
+
+        // #region Tithes Running Total Component Functions
+
+        function getTithesRunningTotal(date) {
+            tithingDataService.getTithesRunningTotal(date)
+                .then(function (response) {
+                    titheVars.tithesRunningTotal.data = response.data;
+                    vm.tithesRunningTotal = titheVars.tithesRunningTotal;
+                })
+                .catch(function (reason) {
+                    console.log("Error getting Tithes Running Total");
+                });
+        }
+
+        // #endregion
+
+
     }
 
 })();
