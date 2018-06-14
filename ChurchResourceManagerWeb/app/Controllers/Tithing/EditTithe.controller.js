@@ -17,6 +17,7 @@
 
         vm.$onInit = function () {
             vm.Tithe = vm.resolve.titheToEdit;
+            vm.updateTotals = vm.resolve.addToTotal.updateTotals;
         }
 
         function updateTithe(tithe) {

@@ -51,10 +51,17 @@
                 animation: true,
                 component: "editTitheModal",
                 resolve: {
-                    titheToEdit: function () { return titheVars.titheToEdit; },
+                    titheToEdit: function () {
+                        return titheVars.titheToEdit;
+                    },
                     save: {
                         saveTithe: function (titheRecord) {
                             return doSaveTithe(titheRecord);
+                        }
+                    },
+                    addToTotal: {
+                        updateTotals: function (titheAmount, titheDate) {
+                            return addToTotal(titheAmount, titheDate);
                         }
                     }
                 }
@@ -90,17 +97,17 @@
                 return tithingDataService.updateTithe(titheRecord)
                     .then(onAddTitheSuccess)
                     .catch(onAddTitheError);
-                    //.then(function (response) {
+                //.then(function (response) {
 
-                        //tithingDataService.updateTitheGrids(grid, 1, tithe);
+                //tithingDataService.updateTitheGrids(grid, 1, tithe);
 
-                        //closeEditTitheModal();
-                        //getTithesRunningTotal(new Date());
-                        //vm.processFlow = utilityService.processCompletion(vm.processFlow, "Tithe Updated Successfully!", true);
-                    //})
-                    //.catch(function (reason) {
-                        //vm.processFlow = utilityService.processCompletion(vm.processFlow, reason.message, false);
-                    //});
+                //closeEditTitheModal();
+                //getTithesRunningTotal(new Date());
+                //vm.processFlow = utilityService.processCompletion(vm.processFlow, "Tithe Updated Successfully!", true);
+                //})
+                //.catch(function (reason) {
+                //vm.processFlow = utilityService.processCompletion(vm.processFlow, reason.message, false);
+                //});
             }
 
         }
