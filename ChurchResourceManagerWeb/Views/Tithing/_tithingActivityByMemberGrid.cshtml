@@ -13,7 +13,7 @@
                     <tbody>
                         <tr ng-repeat="memberTithe in tbmg.MemberTithes.data">
                             <td>{{memberTithe.TitheDate}}</td>
-                            <td>{{memberTithe.TitheAmount}}</td>
+                            <td>{{memberTithe.TitheAmount | currency}}</td>
                             <td data-toggle="tooltip" title="{{memberTithe.Comments}}">{{memberTithe.Comments}}</td>
                             <td>
                                 <span ng-click="tbmg.editTithe(memberTithe, $index, 1)" uib-tooltip="Click to Edit" class="glyphicon glyphicon-pencil clickable"></span>

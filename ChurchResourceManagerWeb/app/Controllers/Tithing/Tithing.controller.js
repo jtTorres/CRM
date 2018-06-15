@@ -70,8 +70,7 @@
 
             modalInstance.result
                 .then(function (titheToEdit) {
-                    // some function will be called to splice the tithe record
-                    var stuff = titheToEdit;
+                    getMemberTithes(titheToEdit.MemberId);
                 });
         }
 
