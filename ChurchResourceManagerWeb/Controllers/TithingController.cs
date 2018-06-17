@@ -49,6 +49,11 @@ namespace ChurchResourceManagerWeb.Controllers
         {
             return PartialView("_tithingActivity");
         }
+
+        public ActionResult DeleteTitheModal()
+        {
+            return PartialView("_deleteTithesModal");
+        }
         #endregion
 
         public ActionResult ViewTithes()

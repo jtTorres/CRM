@@ -273,6 +273,7 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\Components\addTithe.component.js" />
+    <Content Include="app\Components\deleteTithe.component.js" />
     <Content Include="app\Components\editTitheModal.component.js" />
     <Content Include="app\Components\tithesRunningTotal.component.js" />
     <Content Include="app\Components\tithingActivity.component.js" />
@@ -282,6 +283,7 @@
     <Content Include="app\Controllers\Tithing\AddTithes.controller.js" />
     <Content Include="app\Controllers\Tithing\AddTithes.controller.spec.js" />
     <None Include="app\Controllers\Tithing\EditTithe.controller.js.old" />
+    <Content Include="app\Controllers\Tithing\DeleteTithe.controller.js" />
     <Content Include="app\Controllers\Tithing\EditTithe.controller.js" />
     <Content Include="app\Controllers\Tithing\EditTithe.controller.spec.js" />
     <Content Include="app\Controllers\Tithing\TithesRunningTotals.controller.js" />

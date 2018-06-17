@@ -17,6 +17,7 @@
         vm.getMemberTithes = getMemberTithes;
         vm.getTithesRunningTotal = getTithesRunningTotal;
         vm.openEditTitheModal = openEditTitheModal;
+        vm.openDeleteTitheModal = openDeleteTitheModal;
         vm.setActivityByMemberPanelDefaults = setActivityByMemberPanelDefaults;
         // #endregion
 
@@ -149,7 +150,41 @@
 
         // #endregion
 
+        // #region Delete Tithe Modal Component
+        function openDeleteTitheModal(titheId, memberId) {
 
+            //titheVars.titheToDelete.TitheId = titheId;
+            titheVars.titheToDelete = {
+                TitheId: titheId,
+                MemberId: memberId
+            };
+
+            var modalInstance = $uibModal.open({
+                animation: true,
+                component: "deleteTitheModal",
+                resolve: {
+                }
+            });
+
+            modalInstance.result
+                .then(function () {
+                    deleteTithe();
+                });
+        }
+
+        function deleteTithe() {
+            tithingDataService.deleteTithe(titheVars.titheToDelete.TitheId)
+                .then(function (response) {
+                    getTithesRunningTotal(new Date());
+                    getMemberTithes(titheVars.titheToDelete.MemberId);
+                    vm.processFlow = operationFlowService.operationCompletion(operationFlowService.operationFlow, "Tithe Deleted Successfully", true);
+                })
+                .catch(function (reason) {
+                    vm.processFlow = operationFlowService.operationCompletion(operationFlowService.operationFlow, reason.message, false);
+                });
+        }
+
+        // #endregion
     }
 
 })();

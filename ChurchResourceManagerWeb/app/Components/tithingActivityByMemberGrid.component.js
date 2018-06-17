@@ -10,6 +10,7 @@
                 controllerAs: "tbmg",
                 bindings: {
                     openEditModal: "&",
+                    openDeleteModal: "&",
                     panelSettings: "<"
                 }
             });
