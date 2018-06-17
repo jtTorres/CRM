@@ -33,16 +33,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="text-left" ng-repeat="tithe in tc.tithingActivity | filter: search">
+                        <tr class="text-left" ng-repeat="tithe in tac.tithingActivity | filter: search">
                             <td>{{tithe.MemberId}}</td>
                             <td>{{tithe.MemberName}}</td>
                             <td>{{tithe.TitheAmount | currency}}</td>
                             <td>{{tithe.CheckNumber}}</td>
                             <td>{{tithe.Comments}}</td>
                             <td>
-                                <span ng-click="tc.openEditTitheModal(tithe, $index, 2)" uib-tooltip="Click to Edit" class="glyphicon glyphicon-pencil clickable"></span>
+                                <span ng-click="tac.editTithe(tithe, $index)" uib-tooltip="Click to Edit" class="glyphicon glyphicon-pencil clickable"></span>
                                 |
-                                <span ng-click="tc.openDeleteTitheModal(tithe.TitheId, $index, 2)" uib-tooltip="Click to Edit" class="glyphicon glyphicon-remove clickable"></span>
+                                <span ng-click="tac.deleteTithe(tithe.TitheId, tithe.MemberId)" uib-tooltip="Click to Delete" class="glyphicon glyphicon-remove clickable"></span>
                             </td>
                         </tr>
                     </tbody>

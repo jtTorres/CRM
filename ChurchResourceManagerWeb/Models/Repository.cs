@@ -61,10 +61,10 @@ namespace ChurchResourceManagerWeb.Models
 
         public IEnumerable<TithesViewModel> GetMemberTithes(int memberId, DateTime? date)
         {
-
+            var today = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
             var memberTithes = (from mt in db.TITHES
                                 join m in db.MEMBERSHIP on mt.MEMBER_ID equals m.MEMBER_ID
-                                where (memberId > 0 && mt.MEMBER_ID == memberId) || (memberId == 0 && mt.TITHE_DATE == date) || (memberId == 0 && date == null)
+                                where (memberId > 0 && mt.MEMBER_ID == memberId) || (memberId == 0 && mt.TITHE_DATE == date) || (memberId == 0 && date == null && mt.TITHE_DATE == today)
                                 select new TithesViewModel()
                                 {
                                     TitheId = mt.TITHE_ID,

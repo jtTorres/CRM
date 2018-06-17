@@ -7,7 +7,12 @@
             {
                 templateUrl: "/Tithing/TithingActivity",
                 controller: "tithingActivityController",
-                controllerAs: "tc"
+                controllerAs: "tac",
+                bindings: {
+                    openEditModal: "&",
+                    openDeleteModal: "&",
+                    tithingActivity: "<"
+                }
             });
 
 })();

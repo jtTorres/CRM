@@ -29,6 +29,7 @@
                 .then(function () {
                     setActivityByMemberPanelDefaults();
                     getTithesRunningTotal();
+                    getTithingActivity();
                     console.log("Activated Tithing Controller");
                 });
         }
@@ -72,6 +73,7 @@
             modalInstance.result
                 .then(function (titheToEdit) {
                     getMemberTithes(titheToEdit.MemberId);
+                    getTithingActivity();
                 });
         }
 
@@ -116,6 +118,7 @@
         function onAddTitheSuccess(response) {
             vm.processFlow = operationFlowService.operationCompletion(operationFlowService.operationFlow, "Tithe Added Successfully!", true);
             getTithesRunningTotal();
+            getTithingActivity();
         }
 
         function onAddTitheError(reason) {
@@ -177,6 +180,7 @@
                 .then(function (response) {
                     getTithesRunningTotal(new Date());
                     getMemberTithes(titheVars.titheToDelete.MemberId);
+                    getTithingActivity();
                     vm.processFlow = operationFlowService.operationCompletion(operationFlowService.operationFlow, "Tithe Deleted Successfully", true);
                 })
                 .catch(function (reason) {
@@ -184,6 +188,19 @@
                 });
         }
 
+        // #endregion
+
+
+        // #region TithingActivityController
+        function getTithingActivity() {
+            tithingDataService.getTithingActivity()
+                .then(function (response) {
+                    vm.todaysTithingActivity = response.data;
+                })
+                .catch(function (reason) {
+                    vm.processFlow = utilityService.processCompletion(vm.processFlow, reason.message, false);
+                });
+        }
         // #endregion
     }
 
