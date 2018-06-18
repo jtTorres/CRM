@@ -55,15 +55,4 @@
     it("init - vm.tithingActivity should be set", function () {
         expect(ctrl.tithingActivity).toEqual(jasmine.any(Object));
     });
-
-    it("init - tithingDataService.getTithingActivity should be called", function () {
-        expect(tithingDataService.getTithingActivity).toHaveBeenCalled();
-    });
-
-    it("editTithe - should populate tithingDataService.titheToEdit", function () {
-        doSpy(true, ctrl, "openEditTitheModal", null, null);
-        ctrl.editTithe(titheRecord);
-        expect(tithingDataService.titheToEdit).toEqual(titheRecord);
-    });
-
 });

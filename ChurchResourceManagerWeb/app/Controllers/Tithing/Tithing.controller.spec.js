@@ -39,21 +39,27 @@
         var deferred;
 
         doSpy = function (isSuccess, service, serviceFunction, errorMessage, responseData, spyType) {
-            spyOn(service, serviceFunction).and.callFake(function () {
-                deferred = $q.defer();
-                if (isSuccess) {
-                    deferred.resolve(responseData);
-                } else {
-                    deferred.reject(utilityService.httpError(null, errorMessage));
-                }
+            if (spyType === "doNothing")
+                spyOn(service, serviceFunction).and.callFake(function () {
+                    return;
+                });
+            else
+                spyOn(service, serviceFunction).and.callFake(function () {
+                    deferred = $q.defer();
+                    if (isSuccess) {
+                        deferred.resolve(responseData);
+                    } else {
+                        deferred.reject(utilityService.httpError(null, errorMessage));
+                    }
 
-                return deferred.promise;
-            });
+                    return deferred.promise;
+                });
         }
 
         // setup spy for controller initialization logic
         doSpy(true, membershipDataService, "getAllMembership", null, promiseResponse.members);
-        doSpy(true, tithingDataService, "getTodaysTithingActivity", null, titheRecord);
+        doSpy(true, tithingDataService, "getTithingActivity", null, titheRecord);
+        doSpy(true, tithingDataService, "getTithesRunningTotal", null, { data: "10" });
     });
 
 
@@ -67,6 +73,7 @@
 
 
     it("initialization - vm.allMembership should be set", function () {
+        $rootScope.$apply();
         expect(ctrl.allMembership).toEqual(jasmine.any(Object));
     });
 
@@ -74,102 +81,38 @@
         expect(membershipDataService.getAllMembership).toHaveBeenCalled();
     });
 
-    it("initialization - getTodaysTithingActivity should be called", function () {
+    it("initialization - getTithingActivity should be called", function () {
         $rootScope.$apply();
-        expect(tithingDataService.getTodaysTithingActivity).toHaveBeenCalled();
+        expect(tithingDataService.getTithingActivity).toHaveBeenCalled();
     });
 
-    it("addTithe function should be defined", function () {
-        expect(ctrl.addTithe).toBeDefined();
+    it("doSaveTithe function should be defined", function () {
+        expect(ctrl.doSaveTithe).toBeDefined();
     });
 
-    it("addTithe service should be called successfully", function () {
+    it("doSaveTithe service should be called successfully", function () {
         doSpy(true, tithingDataService, "addTithe");
-        doSpy(true, tithingDataService, "getTithesRunningTotal", null, { data: "10" });
-        doSpy(true, ctrl, "onMemberSelected", null, {});
 
-        ctrl.addTithe(titheRecord);
+        ctrl.doSaveTithe(titheRecord);
         $rootScope.$apply();
 
         expect(tithingDataService.addTithe).toHaveBeenCalled();
     });
 
-    it("addTithe service should be called successfully and processSuccess should be true", function () {
+    it("doSaveTithe - should be called successfully and getTithesRunningTotal should be called", function () {
         doSpy(true, tithingDataService, "addTithe");
-        doSpy(true, tithingDataService, "getTithesRunningTotal", null, { data: "10" });
-        doSpy(true, ctrl, "onMemberSelected", null, {});
 
-        ctrl.addTithe(titheRecord);
-        $rootScope.$apply();
-
-        expect(tithingDataService.addTithe).toHaveBeenCalled();
-        expect(ctrl.processFlow.success).toBe(true);
-
-    });
-
-    it("addTithe service should be called successfully and processError should be true", function () {
-        doSpy(false, tithingDataService, "addTithe", "Error Adding Tithe Record");
-        doSpy(true, tithingDataService, "getTithesRunningTotal", null, { data: "10" });
-
-        ctrl.addTithe(titheRecord);
-        $rootScope.$apply();
-
-        expect(tithingDataService.addTithe).toHaveBeenCalled();
-        expect(ctrl.processFlow.error).toBe(true);
-        expect(ctrl.processFlow.errorMessage).toBe("Error Adding Tithe Record");
-    });
-
-    it("addTithe - should be called successfully and getTithesRunningTotal should be called", function () {
-        doSpy(true, tithingDataService, "addTithe");
-        doSpy(true, tithingDataService, "getTithesRunningTotal", null, { data: "10" });
-        doSpy(true, ctrl, "onMemberSelected", null, {});
-
-        ctrl.addTithe(titheRecord);
+        ctrl.doSaveTithe(titheRecord);
         $rootScope.$apply();
 
         expect(tithingDataService.getTithesRunningTotal).toHaveBeenCalled();
     });
 
-    it("addTithe - should be called successfully and getTodaysTithingActivity should be called twice", function () {
-        doSpy(true, tithingDataService, "addTithe");
-        doSpy(true, tithingDataService, "getTithesRunningTotal", null, { data: "10" });
-        doSpy(true, ctrl, "onMemberSelected", null, {});
-
-        ctrl.addTithe(titheRecord);
-        $rootScope.$apply();
-
-        expect(tithingDataService.getTodaysTithingActivity).toHaveBeenCalled();
-        expect(tithingDataService.getTodaysTithingActivity.calls.count()).toEqual(2);
-    });
-
-    it("onMemberSelected - should call getMemberTithes", function () {
-        doSpy(true, tithingDataService, "getMemberTithes", null, { data: "stuff" });
-
-        ctrl.onMemberSelected(typeAheadSelection);
-        $rootScope.$apply();
-
-        expect(tithingDataService.getMemberTithes).toHaveBeenCalled();
-    });
-
     it("getTithesRunningTotal - should set tithesRunningTotal", function () {
-        doSpy(true, tithingDataService, "getTithesRunningTotal", null, { data: "10" });
-
         ctrl.getTithesRunningTotal(today);
         $rootScope.$apply();
 
-        expect(ctrl.tithesRunningTotal).toBe("10");
-    });
-
-    it("clearForm - should set vm.Tithe to a blank object", function () {
-        ctrl.clearForm();
-
-        expect(ctrl.Tithe).toEqual(jasmine.any(Object));
-    });
-
-    it("clearForm - should set vm.selectedMember to blank", function () {
-        ctrl.clearForm();
-
-        expect(ctrl.selectedMember).toBe("");
+        expect(ctrl.tithesRunningTotal.data).toBe("10");
     });
 
     it("deleteTithe - should call deleteTithe", function () {
@@ -179,16 +122,4 @@
 
         expect(tithingDataService.deleteTithe).toHaveBeenCalled();
     });
-
-    it("deleteTithe - should call closeDeleteTitheModal", function () {
-        doSpy(true, tithingDataService, "deleteTithe");
-        doSpy(true, ctrl, "closeDeleteTitheModal");
-        ctrl.MemberTithes = memberTithes;
-
-        ctrl.deleteTithe();
-        $rootScope.$apply();
-
-        expect(ctrl.closeDeleteTitheModal).toHaveBeenCalled();
-    });
-
 });

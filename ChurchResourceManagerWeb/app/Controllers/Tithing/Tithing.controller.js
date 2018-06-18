@@ -14,7 +14,9 @@
         // #region bindable members
         vm.clearActivity = clearActivity;
         vm.doSaveTithe = doSaveTithe;
+        vm.deleteTithe = deleteTithe;
         vm.getMemberTithes = getMemberTithes;
+        vm.getTithingActivity = getTithingActivity;
         vm.getTithesRunningTotal = getTithesRunningTotal;
         vm.openEditTitheModal = openEditTitheModal;
         vm.openDeleteTitheModal = openDeleteTitheModal;
