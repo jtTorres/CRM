@@ -90,8 +90,6 @@
         }
 
         function doSaveTithe(titheRecord) {
-            operationFlowService.setupDefaults();
-
             if (utilityService.isUndefinedOrNull(titheRecord.TitheId)) {
                 return tithingDataService.addTithe(titheRecord)
                     .then(onAddTitheSuccess)
@@ -100,29 +98,18 @@
                 return tithingDataService.updateTithe(titheRecord)
                     .then(onAddTitheSuccess)
                     .catch(onAddTitheError);
-                //.then(function (response) {
-
-                //tithingDataService.updateTitheGrids(grid, 1, tithe);
-
-                //closeEditTitheModal();
-                //getTithesRunningTotal(new Date());
-                //vm.processFlow = utilityService.processCompletion(vm.processFlow, "Tithe Updated Successfully!", true);
-                //})
-                //.catch(function (reason) {
-                //vm.processFlow = utilityService.processCompletion(vm.processFlow, reason.message, false);
-                //});
             }
 
         }
 
         function onAddTitheSuccess(response) {
-            vm.processFlow = operationFlowService.operationCompletion(operationFlowService.operationFlow, "Tithe Added Successfully!", true);
+            vm.processFlow = operationFlowService.operationCompletion("Tithe Added Successfully!", true);
             getTithesRunningTotal();
             getTithingActivity();
         }
 
         function onAddTitheError(reason) {
-            vm.processFlow = operationFlowService.operationCompletion(operationFlowService.operationFlow, reason.message, false);
+            vm.processFlow = operationFlowService.operationCompletion(reason.message, false);
         }
 
         function clearActivity() {
@@ -156,7 +143,6 @@
         // #region Delete Tithe Modal Component
         function openDeleteTitheModal(titheId, memberId) {
 
-            //titheVars.titheToDelete.TitheId = titheId;
             titheVars.titheToDelete = {
                 TitheId: titheId,
                 MemberId: memberId
@@ -181,10 +167,10 @@
                     getTithesRunningTotal(new Date());
                     getMemberTithes(titheVars.titheToDelete.MemberId);
                     getTithingActivity();
-                    vm.processFlow = operationFlowService.operationCompletion(operationFlowService.operationFlow, "Tithe Deleted Successfully", true);
+                    vm.processFlow = operationFlowService.operationCompletion("Tithe Deleted Successfully", true);
                 })
                 .catch(function (reason) {
-                    vm.processFlow = operationFlowService.operationCompletion(operationFlowService.operationFlow, reason.message, false);
+                    vm.processFlow = operationFlowService.operationCompletion(reason.message, false);
                 });
         }
 

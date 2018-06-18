@@ -5,20 +5,6 @@
 <div ng-controller="tithingController as tc">
     <div class="container">
         <div class="row">
-            <!--Success Message Banner-->
-            <div ng-show="tc.processFlow.success">
-                <div class="alert alert-success alert-dismissable fade in">
-                    <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    {{tc.processFlow.successMessage}}
-                </div>
-            </div>
-            <!--Error Message Banner-->
-            <div ng-show="tc.processFlow.error">
-                <div class="alert alert-danger alert-dismissible fade in">
-                    <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    {{tc.processFlow.errorMessage}}
-                </div>
-            </div>
             <div class="col-xs-5">
                 <div class="panel panel-primary">
                     <div class="panel-heading text-center">

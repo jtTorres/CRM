@@ -9,33 +9,25 @@
 
     function operationFlowService() {
 
-        var operationFlow = {};
+        setupDefaults();
 
         return {
-            operationFlow: operationFlow,
             operationCompletion: operationCompletion,
             setupDefaults: setupDefaults
         };
 
         function setupDefaults() {
-            operationFlow = {
-                error: undefined,
-                success: undefined,
-                errorMessage: {},
-                successMessage: {},
-                infoMessage: {}
-            }
+            // TODO: Try to find a way to make the banner have a padding so it doesn't show all the way at the top
+            toastr.options = { "positionClass": "toast-top-full-width" }
         }
 
-        function operationCompletion(processVar, message, isSuccess) {
+        function operationCompletion(message, isSuccess) {
             if (isSuccess) {
-                processVar.success = true;
-                processVar.successMessage = message;
+                toastr.success(message);
+
             } else {
-                processVar.error = true;
-                processVar.errorMessage = message;
+                toastr.error(message);
             }
-            return processVar;
         }
     }
 

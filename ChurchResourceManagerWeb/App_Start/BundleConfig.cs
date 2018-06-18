@@ -35,7 +35,7 @@ namespace ChurchResourceManagerWeb
             );
 
             bundles.Add(new ScriptBundle("~/bundles/JasmineTests")
-                .IncludeDirectory("~/app/", "*.spec.js",true)
+                .IncludeDirectory("~/app/", "*.spec.js", true)
             );
 
             //add bundle for client side unit testing
@@ -58,7 +58,12 @@ namespace ChurchResourceManagerWeb
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                "~/Content/toastr.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/notifications").Include(
+                "~/Scripts/toastr.js"
+                ));
         }
     }
 }
