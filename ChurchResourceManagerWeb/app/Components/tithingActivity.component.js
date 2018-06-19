@@ -11,7 +11,8 @@
                 bindings: {
                     openEditModal: "&",
                     openDeleteModal: "&",
-                    tithingActivity: "<"
+                    tithingActivity: "<",
+                    panelSettings: "<"
                 }
             });
 

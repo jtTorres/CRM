@@ -21,6 +21,7 @@
         vm.openEditTitheModal = openEditTitheModal;
         vm.openDeleteTitheModal = openDeleteTitheModal;
         vm.setActivityByMemberPanelDefaults = setActivityByMemberPanelDefaults;
+        vm.setTithingActivityPanelDefaults = setTithingActivityPanelDefaults;
         // #endregion
 
         // init logic
@@ -30,6 +31,7 @@
             return getAllMembership()
                 .then(function () {
                     setActivityByMemberPanelDefaults();
+                    setTithingActivityPanelDefaults();
                     getTithesRunningTotal();
                     getTithingActivity();
                     console.log("Activated Tithing Controller");
@@ -125,7 +127,12 @@
             };
         }
 
-
+        function setTithingActivityPanelDefaults() {
+            vm.tithingActivityPanelSettings = {
+                panelHeading: "Today's Tithing Activity",
+                isOpen: false
+            }
+        }
 
         // #region Tithes Running Total Component Functions
 
@@ -179,11 +186,13 @@
         // #endregion
 
 
-        // #region TithingActivityController
+        // #region TithingActivity
         function getTithingActivity() {
             tithingDataService.getTithingActivity()
                 .then(function (response) {
                     vm.todaysTithingActivity = response.data;
+                    if (response.data.length > 0)
+                        vm.tithingActivityPanelSettings.isOpen = true;
                 })
                 .catch(function (reason) {
                     vm.processFlow = utilityService.processCompletion(vm.processFlow, reason.message, false);
