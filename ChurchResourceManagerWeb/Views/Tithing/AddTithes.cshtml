@@ -22,7 +22,14 @@
 
     <!--Tithing Activity-->
     <div style="padding-top: 10px;">
-        <tithing-activity panel-settings="tc.tithingActivityPanelSettings" tithing-activity="tc.todaysTithingActivity" open-edit-modal="tc.openEditTitheModal(tithe, index, grid)" open-delete-modal="tc.openDeleteTitheModal(titheId, memberId)"></tithing-activity>
+        <tithing-activity
+            get-tithing-activity="tc.getTithingActivity(tithingActivityType)"
+            tithing-activity-type="today"
+            panel-settings="tc.tithingActivityPanelSettings"
+            tithing-activity="tc.tithingActivity"
+            open-edit-modal="tc.openEditTitheModal(tithe, index, grid)"
+            open-delete-modal="tc.openDeleteTitheModal(titheId, memberId)">
+        </tithing-activity>
     </div>
 
 </div>

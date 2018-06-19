@@ -33,7 +33,6 @@
                     setActivityByMemberPanelDefaults();
                     setTithingActivityPanelDefaults();
                     getTithesRunningTotal();
-                    getTithingActivity();
                     console.log("Activated Tithing Controller");
                 });
         }
@@ -76,8 +75,8 @@
 
             modalInstance.result
                 .then(function (titheToEdit) {
-                    getMemberTithes(titheToEdit.MemberId);
-                    getTithingActivity();
+                        getMemberTithes(titheToEdit.MemberId);
+                    //getTithingActivity(vm.tithingActivityType);
                 });
         }
 
@@ -109,7 +108,7 @@
         function onAddTitheSuccess(response) {
             vm.processFlow = operationFlowService.operationCompletion("Tithe Added Successfully!", true);
             getTithesRunningTotal();
-            getTithingActivity();
+            getTithingActivity(vm.tithingActivityType);
         }
 
         function onAddTitheError(reason) {
@@ -175,7 +174,7 @@
                 .then(function (response) {
                     getTithesRunningTotal(new Date());
                     getMemberTithes(titheVars.titheToDelete.MemberId);
-                    getTithingActivity();
+                    getTithingActivity(vm.tithingActivityType);
                     vm.processFlow = operationFlowService.operationCompletion("Tithe Deleted Successfully", true);
                 })
                 .catch(function (reason) {
@@ -187,10 +186,11 @@
 
 
         // #region TithingActivity
-        function getTithingActivity() {
-            tithingDataService.getTithingActivity()
+        function getTithingActivity(tithingActivityType) {
+            vm.tithingActivityType = tithingActivityType;
+            getTithingActivityByType(tithingActivityType)
                 .then(function (response) {
-                    vm.todaysTithingActivity = response.data;
+                    vm.tithingActivity = response.data;
                     if (response.data.length > 0)
                         vm.tithingActivityPanelSettings.isOpen = true;
                 })
@@ -198,6 +198,18 @@
                     vm.processFlow = utilityService.processCompletion(vm.processFlow, reason.message, false);
                 });
         }
+
+        function getTithingActivityByType() {
+            switch (vm.tithingActivityType) {
+                case "today":
+                    return tithingDataService.getTodaysTithingActivity();
+                case "all":
+                    return tithingDataService.getTithingActivity();
+                default:
+                    return null;
+            }
+        }
+
         // #endregion
     }
 

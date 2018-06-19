@@ -9,10 +9,12 @@
                 controller: "tithingActivityController",
                 controllerAs: "tac",
                 bindings: {
+                    getTithingActivity: "&",
                     openEditModal: "&",
                     openDeleteModal: "&",
                     tithingActivity: "<",
-                    panelSettings: "<"
+                    panelSettings: "<",
+                    tithingActivityType: "@"
                 }
             });
 
