@@ -193,8 +193,10 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OfferingsController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\TithingController.cs" />
+    <Compile Include="Controllers\TreasuryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1149,6 +1151,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Views\Offerings\Home.cshtml" />
     <None Include="Views\Test\SpecRunner.cshtml" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
@@ -1198,6 +1201,7 @@
     <Content Include="Views\Tithing\TithesSearch.cshtml" />
     <Content Include="Views\Tithing\EditTithes.cshtml" />
     <Content Include="Views\Tithing\_addTithe.cshtml" />
+    <Content Include="Views\Treasury\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\Directives\" />
