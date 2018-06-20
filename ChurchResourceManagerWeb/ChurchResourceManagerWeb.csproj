@@ -1195,7 +1195,7 @@
     <Content Include="Views\Tithing\_editTitheModal.cshtml" />
     <None Include="Views\Tithing\_editTitheModal.cshtml.old" />
     <Content Include="Views\Tithing\Home.cshtml" />
-    <Content Include="Views\Tithing\ViewTithes.cshtml" />
+    <Content Include="Views\Tithing\TithesSearch.cshtml" />
     <Content Include="Views\Tithing\EditTithes.cshtml" />
     <Content Include="Views\Tithing\_addTithe.cshtml" />
   </ItemGroup>

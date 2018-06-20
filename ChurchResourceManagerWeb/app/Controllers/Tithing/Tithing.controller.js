@@ -106,7 +106,7 @@
         }
 
         function onAddTitheSuccess(response) {
-            vm.processFlow = operationFlowService.operationCompletion("Tithe Added Successfully!", true);
+            vm.processFlow = operationFlowService.operationCompletion("Tithe Saved Successfully!", true);
             getTithesRunningTotal();
             getTithingActivity(vm.tithingActivityType);
         }

@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Tithes Search";
+}
+
+<h2 style="padding-bottom: 40px;">@ViewBag.Title</h2>
+
+<div ng-controller="tithingController as tc">
+    <tithing-activity get-tithing-activity="tc.getTithingActivity(tithingActivityType)"
+                      tithing-activity-type="all"
+                      panel-settings="tc.tithingActivityPanelSettings"
+                      tithing-activity="tc.tithingActivity"
+                      open-edit-modal="tc.openEditTitheModal(tithe, index, grid)"
+                      open-delete-modal="tc.openDeleteTitheModal(titheId, memberId)"
+                      include-date-column="true">
+    </tithing-activity>
+</div>

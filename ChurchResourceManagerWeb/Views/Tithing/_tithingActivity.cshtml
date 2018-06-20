@@ -9,6 +9,7 @@
                         <tr>
                             <th>Member ID</th>
                             <th>Name</th>
+                            <th ng-if="tac.includeDateColumn === 'true'">Date</th>
                             <th>Amount</th>
                             <th>Check Number</th>
                             <th>Comments</th>
@@ -20,6 +21,9 @@
                             </td>
                             <td>
                                 <input type="text" id="txtName" name="txtName" class="form-control" ng-model="search.MemberName" />
+                            </td>
+                            <td ng-if="tac.includeDateColumn === 'true'">
+                                <input type="text" id="txtDate" name="txtDate" class="form-control" ng-model="search.TitheDate" />
                             </td>
                             <td>
                                 <input type="text" id="txtAmount" name="txtAmount" class="form-control" ng-model="search.TitheAmountString" />
@@ -36,6 +40,7 @@
                         <tr class="text-left" ng-repeat="tithe in tac.tithingActivity | filter: search">
                             <td>{{tithe.MemberId}}</td>
                             <td>{{tithe.MemberName}}</td>
+                            <td ng-if="tac.includeDateColumn === 'true'">{{tithe.TitheDate}}</td>
                             <td>{{tithe.TitheAmount | currency}}</td>
                             <td>{{tithe.CheckNumber}}</td>
                             <td>{{tithe.Comments}}</td>

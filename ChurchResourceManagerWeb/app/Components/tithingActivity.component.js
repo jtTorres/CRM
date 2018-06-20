@@ -14,7 +14,8 @@
                     openDeleteModal: "&",
                     tithingActivity: "<",
                     panelSettings: "<",
-                    tithingActivityType: "@"
+                    tithingActivityType: "@",
+                    includeDateColumn: "@"
                 }
             });
 

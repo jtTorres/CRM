@@ -56,7 +56,7 @@ namespace ChurchResourceManagerWeb.Controllers
         }
         #endregion
 
-        public ActionResult ViewTithes()
+        public ActionResult TithesSearch()
         {
             return View();
         }
