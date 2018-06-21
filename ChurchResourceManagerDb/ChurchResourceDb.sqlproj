@@ -78,6 +78,7 @@
     <Build Include="dbo.DONATION_TYPES.sql" />
     <Build Include="dbo.ACTIVITY_TYPES.sql" />
     <Build Include="dbo.ACTIVITIES.sql" />
+    <Build Include="dbo.OFFERINGS.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.Populate_CONTACT_METHODS.sql" />

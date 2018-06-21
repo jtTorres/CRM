@@ -1,1 +1,21 @@
-﻿
+﻿<form id="addOfferingsForm" name="addOfferingsForm" novalidate ng-submit="aoc.addOffering(offering, addOfferingsForm)" autocomplete="off">
+    <!--Date-->
+    <div class="col-xs-10">
+        <div class="form-group">
+            <input id="dateTxtBx"
+                   name="dateTxtBx"
+                   class="form-control"
+                   type="text"
+                   placeholder="Date (mm/dd/yyyy)"
+                   ng-model="aoc.Offering.OfferingDate"
+                   ui-mask="99/99/9999"
+                   ui-mask-placeholder
+                   model-view-value="true"
+                   required />
+            <div class="help-block-error" ng-messages="addTithesForm.dateTxtBx.$error" ng-if="addTithesForm.dateTxtBx.$touched || addTithesForm.$submitted">
+                <div ng-messages-include="message-template"></div>
+            </div>
+        </div>
+    </div>
+
+</form>
