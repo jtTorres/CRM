@@ -194,6 +194,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OfferingsController.cs" />
+    <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\TithingController.cs" />
     <Compile Include="Controllers\TreasuryController.cs" />
@@ -277,11 +278,13 @@
     <Content Include="app\Components\addTithe.component.js" />
     <Content Include="app\Components\deleteTithe.component.js" />
     <Content Include="app\Components\editTitheModal.component.js" />
+    <Content Include="app\Components\Shared\runningTotal.component.js" />
     <Content Include="app\Components\tithesRunningTotal.component.js" />
     <Content Include="app\Components\tithingActivity.component.js" />
     <Content Include="app\Components\tithingActivityByMemberGrid.component.js" />
     <Content Include="app\Controllers\Home\Home.controller.js" />
     <Content Include="app\Controllers\Home\Home.controller.spec.js" />
+    <Content Include="app\Controllers\Shared\runningTotalsController.js" />
     <Content Include="app\Controllers\Tithing\AddTithes.controller.js" />
     <Content Include="app\Controllers\Tithing\AddTithes.controller.spec.js" />
     <None Include="app\Controllers\Tithing\EditTithe.controller.js.old" />
@@ -1154,6 +1157,7 @@
     <Content Include="Views\Offerings\Home.cshtml" />
     <Content Include="Views\Offerings\AddOfferings.cshtml" />
     <Content Include="Views\Offerings\_addOffering.cshtml" />
+    <Content Include="Views\Shared\_runningTotals.cshtml" />
     <None Include="Views\Test\SpecRunner.cshtml" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />

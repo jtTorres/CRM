@@ -12,10 +12,36 @@
                    ui-mask-placeholder
                    model-view-value="true"
                    required />
-            <div class="help-block-error" ng-messages="addTithesForm.dateTxtBx.$error" ng-if="addTithesForm.dateTxtBx.$touched || addTithesForm.$submitted">
+            <div class="help-block-error" ng-messages="addOfferingsForm.dateTxtBx.$error" ng-if="addOfferingsForm.dateTxtBx.$touched || addOfferingsForm.$submitted">
                 <div ng-messages-include="message-template"></div>
             </div>
         </div>
+    </div>
+
+    <!--Amount-->
+    <div class="col-xs-10">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon">$</span>
+                <input id="amountTxtBx" name="amountTxtBx" class="form-control" type="text" placeholder="Offering Amount (Ex. $0.00)" ng-model="oac.Offering.OfferingAmount" required />
+            </div>
+            <div class="help-block-error" ng-messages="addOfferingsForm.amountTxtBx.$error" ng-if="addOfferingsForm.amountTxtBx.$touched || addOfferingsForm.$submitted">
+                <div ng-messages-include="message-template"></div>
+            </div>
+        </div>
+    </div>
+
+    <!--Comments-->
+    <div class="col-xs-10">
+        <div class="form-group">
+            <input id="commentsTxtBx" name="commentsTxtBx" class="form-control" type="text" placeholder="Notes or Comments" ng-model="aoc.Offering.Comments" />
+        </div>
+    </div>
+
+    <!--Submit and Clear Form Buttons-->
+    <div class="col-xs-10">
+        <button id="submitBtn" name="submitBtn" class="btn btn-primary" type="submit">Save</button>
+        <button id="clearFormBtn" name="clearFormBtn" class="btn btn-info" type="button" ng-click="aoc.clearForm()">Clear Form</button>
     </div>
 
 </form>
