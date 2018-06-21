@@ -13,7 +13,8 @@
 
         return {
             operationCompletion: operationCompletion,
-            setupDefaults: setupDefaults
+            setupDefaults: setupDefaults,
+            isFormValid: isFormValid
         };
 
         function setupDefaults() {
@@ -28,6 +29,15 @@
             } else {
                 toastr.error(message);
             }
+        }
+
+        function isFormValid(form) {
+            if (form.$invalid) {
+                operationCompletion("Please correct the errors highlighted below", false);
+                return false;
+            }
+            return true;
+
         }
     }
 

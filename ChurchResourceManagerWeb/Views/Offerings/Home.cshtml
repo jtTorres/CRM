@@ -1,7 +1,29 @@
 ﻿
 @{
-    ViewBag.Title = "Home";
+    ViewBag.Title = "Offerings";
 }
 
-<h2>Home</h2>
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-xs-4">
+        <h2>Add Offerings</h2>
+        <p>
+            Something About Adding Offerings
+        </p>
+        <p>
+            <a class="btn btn-default" ng-href="/Offerings/AddOfferings">Add Offerings &raquo;</a>
+        </p>
+    </div>
+
+    <div class="col-xs-4">
+        <h2>Offerings</h2>
+        <p>
+            Something About Offerings
+        </p>
+        <p>
+            <a class="btn btn-default" ng-href="/Offerings/ViewOfferings">View Offerings &raquo;</a>
+        </p>
+    </div>
+</div>
 

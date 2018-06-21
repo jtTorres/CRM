@@ -4,9 +4,9 @@
     angular.module("app")
         .controller("addTithesController", addTithesController);
 
-    addTithesController.$inject = ["tithingDataService", "utilityService", "membershipDataService", "titheVars"];
+    addTithesController.$inject = ["tithingDataService", "utilityService", "membershipDataService", "operationFlowService"];
 
-    function addTithesController(tithingDataService, utilityService, membershipDataService, titheVars) {
+    function addTithesController(tithingDataService, utilityService, membershipDataService, operationFlowService) {
 
         var vm = this;
 
@@ -31,7 +31,8 @@
             vm.allMembership = membershipDataService.allMembership;
         }
 
-        function addTithe(titheRecord) {
+        function addTithe(titheRecord, form) {
+            if(!operationFlowService.isFormValid(form)) return;
 
             vm.onSave({ tithe: titheRecord })
                 .then(onSaveSuccess);
