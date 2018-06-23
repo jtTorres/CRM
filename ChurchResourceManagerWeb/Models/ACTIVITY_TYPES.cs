@@ -17,13 +17,13 @@ namespace ChurchResourceManagerWeb.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ACTIVITY_TYPES()
         {
-            this.ACTIVITIES = new HashSet<ACTIVITIES>();
+            this.ACTIVITIES = new HashSet<ACTIVITy>();
         }
     
         public byte ACTIVITY_TYPE_ID { get; set; }
         public string DESCRIPTION { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ACTIVITIES> ACTIVITIES { get; set; }
+        public virtual ICollection<ACTIVITy> ACTIVITIES { get; set; }
     }
 }

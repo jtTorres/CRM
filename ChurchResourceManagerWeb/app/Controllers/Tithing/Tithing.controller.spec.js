@@ -13,7 +13,7 @@
         }
     }
     var titheRecord = {
-        MEMBER_ID: 9
+        MemberId: 9
     }
     var typeAheadSelection = {
         MemberId: 9
@@ -81,18 +81,15 @@
         expect(membershipDataService.getAllMembership).toHaveBeenCalled();
     });
 
-    it("initialization - getTithingActivity should be called", function () {
-        $rootScope.$apply();
-        expect(tithingDataService.getTithingActivity).toHaveBeenCalled();
-    });
-
     it("doSaveTithe function should be defined", function () {
         expect(ctrl.doSaveTithe).toBeDefined();
     });
 
     it("doSaveTithe service should be called successfully", function () {
         doSpy(true, tithingDataService, "addTithe");
+        doSpy(true, tithingDataService, "getTodaysTithingActivity", null, { data: "10" });
 
+        ctrl.tithingActivityType = "today";
         ctrl.doSaveTithe(titheRecord);
         $rootScope.$apply();
 
@@ -101,7 +98,9 @@
 
     it("doSaveTithe - should be called successfully and getTithesRunningTotal should be called", function () {
         doSpy(true, tithingDataService, "addTithe");
+        doSpy(true, tithingDataService, "getTodaysTithingActivity", null, { data: "10" });
 
+        ctrl.tithingActivityType = "today";
         ctrl.doSaveTithe(titheRecord);
         $rootScope.$apply();
 

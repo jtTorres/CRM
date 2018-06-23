@@ -40,13 +40,6 @@
           <Property Name="CONTACT_METHOD_ID" Type="tinyint" Nullable="false" />
           <Property Name="DESCRIPTION" Type="varchar" MaxLength="80" Nullable="false" />
         </EntityType>
-        <EntityType Name="DONATION_TYPES">
-          <Key>
-            <PropertyRef Name="DONATION_TYPE_ID" />
-          </Key>
-          <Property Name="DONATION_TYPE_ID" Type="tinyint" Nullable="false" />
-          <Property Name="DESCRIPTION" Type="varchar" MaxLength="80" Nullable="false" />
-        </EntityType>
         <EntityType Name="FAMILIES">
           <Key>
             <PropertyRef Name="FAMILY_ID" />
@@ -105,45 +98,6 @@
           <Property Name="MEMBERSHIP_TYPE_ID" Type="tinyint" Nullable="false" />
           <Property Name="DESCRIPTION" Type="varchar" MaxLength="80" Nullable="false" />
         </EntityType>
-        <EntityType Name="TITHES">
-          <Key>
-            <PropertyRef Name="TITHE_ID" />
-          </Key>
-          <Property Name="TITHE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MEMBER_ID" Type="int" Nullable="false" />
-          <Property Name="DONATION_TYPE_ID" Type="tinyint" Nullable="false" />
-          <Property Name="TITHE_DATE" Type="date" Nullable="false" />
-          <Property Name="IS_CHECK" Type="bit" Nullable="false" />
-          <Property Name="CHECK_NUMBER" Type="smallint" />
-          <Property Name="TITHE_AMOUNT" Type="smallmoney" Nullable="false" />
-          <Property Name="COMMENTS" Type="varchar" MaxLength="80" />
-        </EntityType>
-        <EntityType Name="TRANSACTION_TYPES">
-          <Key>
-            <PropertyRef Name="TRANSACTION_TYPE_ID" />
-          </Key>
-          <Property Name="TRANSACTION_TYPE_ID" Type="tinyint" Nullable="false" />
-          <Property Name="DESCRIPTION" Type="varchar" MaxLength="80" Nullable="false" />
-        </EntityType>
-        <EntityType Name="TRANSACTIONS">
-          <Key>
-            <PropertyRef Name="TRANSACTION_ID" />
-          </Key>
-          <Property Name="TRANSACTION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TRANSACTION_TYPE_ID" Type="tinyint" Nullable="false" />
-          <Property Name="TRANSACTION_DATE" Type="date" Nullable="false" />
-          <Property Name="CHECK_NUMBER" Type="smallint" />
-          <Property Name="BANK_POSTED_DATE" Type="date" />
-          <Property Name="IS_DEBIT" Type="bit" Nullable="false" />
-          <Property Name="COMMENTS" Type="varchar" MaxLength="255" Nullable="false" />
-        </EntityType>
-        <EntityType Name="UTILITY_BILLS">
-          <Key>
-            <PropertyRef Name="UTILITY_BILL_ID" />
-          </Key>
-          <Property Name="UTILITY_BILL_ID" Type="tinyint" Nullable="false" />
-          <Property Name="DESCRIPTION" Type="varchar" MaxLength="80" Nullable="false" />
-        </EntityType>
         <Association Name="fk_ACTIVITIES_to_ACTIVITY_TYPES_ACTIVITY_TYPE_ID">
           <End Role="ACTIVITY_TYPES" Type="Self.ACTIVITY_TYPES" Multiplicity="1" />
           <End Role="ACTIVITIES" Type="Self.ACTIVITIES" Multiplicity="*" />
@@ -252,58 +206,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_TITHES_to_DONATION_TYPES_DONATION_TYPE_ID">
-          <End Role="DONATION_TYPES" Type="Self.DONATION_TYPES" Multiplicity="1" />
-          <End Role="TITHES" Type="Self.TITHES" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DONATION_TYPES">
-              <PropertyRef Name="DONATION_TYPE_ID" />
-            </Principal>
-            <Dependent Role="TITHES">
-              <PropertyRef Name="DONATION_TYPE_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_TITHES_to_MEMBERSHIP_MEMBER_ID">
-          <End Role="MEMBERSHIP" Type="Self.MEMBERSHIP" Multiplicity="1" />
-          <End Role="TITHES" Type="Self.TITHES" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MEMBERSHIP">
-              <PropertyRef Name="MEMBER_ID" />
-            </Principal>
-            <Dependent Role="TITHES">
-              <PropertyRef Name="MEMBER_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_TRANSACTIONS_to_TRANSACTION_TYPES_TRANSACTION_TYPE_ID">
-          <End Role="TRANSACTION_TYPES" Type="Self.TRANSACTION_TYPES" Multiplicity="1" />
-          <End Role="TRANSACTIONS" Type="Self.TRANSACTIONS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TRANSACTION_TYPES">
-              <PropertyRef Name="TRANSACTION_TYPE_ID" />
-            </Principal>
-            <Dependent Role="TRANSACTIONS">
-              <PropertyRef Name="TRANSACTION_TYPE_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="ChurchResourceDbModelStoreContainer">
           <EntitySet Name="ACTIVITIES" EntityType="Self.ACTIVITIES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ACTIVITY_TYPES" EntityType="Self.ACTIVITY_TYPES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CONTACT_INFO" EntityType="Self.CONTACT_INFO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CONTACT_METHODS" EntityType="Self.CONTACT_METHODS" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DONATION_TYPES" EntityType="Self.DONATION_TYPES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FAMILIES" EntityType="Self.FAMILIES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LOCATIONS" EntityType="Self.LOCATIONS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MARITAL_STATUS" EntityType="Self.MARITAL_STATUS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MEMBER_GROUPS" EntityType="Self.MEMBER_GROUPS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MEMBERSHIP" EntityType="Self.MEMBERSHIP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MEMBERSHIP_TYPES" EntityType="Self.MEMBERSHIP_TYPES" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TITHES" EntityType="Self.TITHES" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TRANSACTION_TYPES" EntityType="Self.TRANSACTION_TYPES" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TRANSACTIONS" EntityType="Self.TRANSACTIONS" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UTILITY_BILLS" EntityType="Self.UTILITY_BILLS" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="fk_ACTIVITIES_to_ACTIVITY_TYPES_ACTIVITY_TYPE_ID" Association="Self.fk_ACTIVITIES_to_ACTIVITY_TYPES_ACTIVITY_TYPE_ID">
             <End Role="ACTIVITY_TYPES" EntitySet="ACTIVITY_TYPES" />
             <End Role="ACTIVITIES" EntitySet="ACTIVITIES" />
@@ -340,25 +253,13 @@
             <End Role="MEMBERSHIP_TYPES" EntitySet="MEMBERSHIP_TYPES" />
             <End Role="MEMBERSHIP" EntitySet="MEMBERSHIP" />
           </AssociationSet>
-          <AssociationSet Name="fk_TITHES_to_DONATION_TYPES_DONATION_TYPE_ID" Association="Self.fk_TITHES_to_DONATION_TYPES_DONATION_TYPE_ID">
-            <End Role="DONATION_TYPES" EntitySet="DONATION_TYPES" />
-            <End Role="TITHES" EntitySet="TITHES" />
-          </AssociationSet>
-          <AssociationSet Name="fk_TITHES_to_MEMBERSHIP_MEMBER_ID" Association="Self.fk_TITHES_to_MEMBERSHIP_MEMBER_ID">
-            <End Role="MEMBERSHIP" EntitySet="MEMBERSHIP" />
-            <End Role="TITHES" EntitySet="TITHES" />
-          </AssociationSet>
-          <AssociationSet Name="fk_TRANSACTIONS_to_TRANSACTION_TYPES_TRANSACTION_TYPE_ID" Association="Self.fk_TRANSACTIONS_to_TRANSACTION_TYPES_TRANSACTION_TYPE_ID">
-            <End Role="TRANSACTION_TYPES" EntitySet="TRANSACTION_TYPES" />
-            <End Role="TRANSACTIONS" EntitySet="TRANSACTIONS" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ChurchResourceDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="ACTIVITIES">
+        <EntityType Name="ACTIVITy">
           <Key>
             <PropertyRef Name="ACTIVITY_ID" />
           </Key>
@@ -399,23 +300,15 @@
           <Property Name="DESCRIPTION" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="CONTACT_INFO" Relationship="Self.fk_CONTACT_INFO_to_CONTACT_METHODS_CONTACT_METHOD_ID" FromRole="CONTACT_METHODS" ToRole="CONTACT_INFO" />
         </EntityType>
-        <EntityType Name="DONATION_TYPES">
-          <Key>
-            <PropertyRef Name="DONATION_TYPE_ID" />
-          </Key>
-          <Property Name="DONATION_TYPE_ID" Type="Byte" Nullable="false" />
-          <Property Name="DESCRIPTION" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="TITHES" Relationship="Self.fk_TITHES_to_DONATION_TYPES_DONATION_TYPE_ID" FromRole="DONATION_TYPES" ToRole="TITHES" />
-        </EntityType>
-        <EntityType Name="FAMILIES">
+        <EntityType Name="FAMILy">
           <Key>
             <PropertyRef Name="FAMILY_ID" />
           </Key>
           <Property Name="FAMILY_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NAME" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="MEMBERSHIP" Relationship="Self.fk_MEMBERSHIP_to_FAMILIES_FAMILY_ID" FromRole="FAMILIES" ToRole="MEMBERSHIP" />
+          <NavigationProperty Name="MEMBERSHIPs" Relationship="Self.fk_MEMBERSHIP_to_FAMILIES_FAMILY_ID" FromRole="FAMILIES" ToRole="MEMBERSHIP" />
         </EntityType>
-        <EntityType Name="LOCATIONS">
+        <EntityType Name="LOCATION">
           <Key>
             <PropertyRef Name="LOCATION_ID" />
           </Key>
@@ -425,7 +318,7 @@
           <Property Name="CITY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="STATE" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="ZIP_CODE" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="MEMBERSHIP" Relationship="Self.fk_MEMBERSHIP_to_LOCATIONS_LOCATION_ID" FromRole="LOCATIONS" ToRole="MEMBERSHIP" />
+          <NavigationProperty Name="MEMBERSHIPs" Relationship="Self.fk_MEMBERSHIP_to_LOCATIONS_LOCATION_ID" FromRole="LOCATIONS" ToRole="MEMBERSHIP" />
         </EntityType>
         <EntityType Name="MARITAL_STATUS">
           <Key>
@@ -433,7 +326,7 @@
           </Key>
           <Property Name="MARITAL_STATUS_ID" Type="Byte" Nullable="false" />
           <Property Name="DESCRIPTION" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="MEMBERSHIP" Relationship="Self.fk_MEMBERSHIP_to_MARITAL_STATUS_MARITAL_STATUS_ID" FromRole="MARITAL_STATUS" ToRole="MEMBERSHIP" />
+          <NavigationProperty Name="MEMBERSHIPs" Relationship="Self.fk_MEMBERSHIP_to_MARITAL_STATUS_MARITAL_STATUS_ID" FromRole="MARITAL_STATUS" ToRole="MEMBERSHIP" />
         </EntityType>
         <EntityType Name="MEMBER_GROUPS">
           <Key>
@@ -441,7 +334,7 @@
           </Key>
           <Property Name="GROUP_ID" Type="Byte" Nullable="false" />
           <Property Name="DESCRIPTION" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="MEMBERSHIP" Relationship="Self.fk_MEMBERSHIP_to_MEMBER_GROUPS_GROUP_ID" FromRole="MEMBER_GROUPS" ToRole="MEMBERSHIP" />
+          <NavigationProperty Name="MEMBERSHIPs" Relationship="Self.fk_MEMBERSHIP_to_MEMBER_GROUPS_GROUP_ID" FromRole="MEMBER_GROUPS" ToRole="MEMBERSHIP" />
         </EntityType>
         <EntityType Name="MEMBERSHIP">
           <Key>
@@ -463,12 +356,11 @@
           <Property Name="LAST_MODIFIED_DATE" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="ACTIVITIES" Relationship="Self.fk_ACTIVITIES_to_MEMBERSHSIP" FromRole="MEMBERSHIP" ToRole="ACTIVITIES" />
           <NavigationProperty Name="CONTACT_INFO" Relationship="Self.fk_CONTACT_INFO_to_MEMBERSHIP_MEMBER_ID" FromRole="MEMBERSHIP" ToRole="CONTACT_INFO" />
-          <NavigationProperty Name="FAMILIES" Relationship="Self.fk_MEMBERSHIP_to_FAMILIES_FAMILY_ID" FromRole="MEMBERSHIP" ToRole="FAMILIES" />
-          <NavigationProperty Name="LOCATIONS" Relationship="Self.fk_MEMBERSHIP_to_LOCATIONS_LOCATION_ID" FromRole="MEMBERSHIP" ToRole="LOCATIONS" />
+          <NavigationProperty Name="FAMILy" Relationship="Self.fk_MEMBERSHIP_to_FAMILIES_FAMILY_ID" FromRole="MEMBERSHIP" ToRole="FAMILIES" />
+          <NavigationProperty Name="LOCATION" Relationship="Self.fk_MEMBERSHIP_to_LOCATIONS_LOCATION_ID" FromRole="MEMBERSHIP" ToRole="LOCATIONS" />
           <NavigationProperty Name="MARITAL_STATUS" Relationship="Self.fk_MEMBERSHIP_to_MARITAL_STATUS_MARITAL_STATUS_ID" FromRole="MEMBERSHIP" ToRole="MARITAL_STATUS" />
           <NavigationProperty Name="MEMBER_GROUPS" Relationship="Self.fk_MEMBERSHIP_to_MEMBER_GROUPS_GROUP_ID" FromRole="MEMBERSHIP" ToRole="MEMBER_GROUPS" />
           <NavigationProperty Name="MEMBERSHIP_TYPES" Relationship="Self.fk_MEMBERSHIP_to_MEMBERSHIP_TYPES_MEMBERSHIP_TYPE_ID" FromRole="MEMBERSHIP" ToRole="MEMBERSHIP_TYPES" />
-          <NavigationProperty Name="TITHES" Relationship="Self.fk_TITHES_to_MEMBERSHIP_MEMBER_ID" FromRole="MEMBERSHIP" ToRole="TITHES" />
         </EntityType>
         <EntityType Name="MEMBERSHIP_TYPES">
           <Key>
@@ -476,54 +368,11 @@
           </Key>
           <Property Name="MEMBERSHIP_TYPE_ID" Type="Byte" Nullable="false" />
           <Property Name="DESCRIPTION" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="MEMBERSHIP" Relationship="Self.fk_MEMBERSHIP_to_MEMBERSHIP_TYPES_MEMBERSHIP_TYPE_ID" FromRole="MEMBERSHIP_TYPES" ToRole="MEMBERSHIP" />
-        </EntityType>
-        <EntityType Name="TITHES">
-          <Key>
-            <PropertyRef Name="TITHE_ID" />
-          </Key>
-          <Property Name="TITHE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MEMBER_ID" Type="Int32" Nullable="false" />
-          <Property Name="DONATION_TYPE_ID" Type="Byte" Nullable="false" />
-          <Property Name="TITHE_DATE" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="IS_CHECK" Type="Boolean" Nullable="false" />
-          <Property Name="CHECK_NUMBER" Type="Int16" />
-          <Property Name="TITHE_AMOUNT" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
-          <Property Name="COMMENTS" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="DONATION_TYPES" Relationship="Self.fk_TITHES_to_DONATION_TYPES_DONATION_TYPE_ID" FromRole="TITHES" ToRole="DONATION_TYPES" />
-          <NavigationProperty Name="MEMBERSHIP" Relationship="Self.fk_TITHES_to_MEMBERSHIP_MEMBER_ID" FromRole="TITHES" ToRole="MEMBERSHIP" />
-        </EntityType>
-        <EntityType Name="TRANSACTION_TYPES">
-          <Key>
-            <PropertyRef Name="TRANSACTION_TYPE_ID" />
-          </Key>
-          <Property Name="TRANSACTION_TYPE_ID" Type="Byte" Nullable="false" />
-          <Property Name="DESCRIPTION" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="TRANSACTIONS" Relationship="Self.fk_TRANSACTIONS_to_TRANSACTION_TYPES_TRANSACTION_TYPE_ID" FromRole="TRANSACTION_TYPES" ToRole="TRANSACTIONS" />
-        </EntityType>
-        <EntityType Name="TRANSACTIONS">
-          <Key>
-            <PropertyRef Name="TRANSACTION_ID" />
-          </Key>
-          <Property Name="TRANSACTION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TRANSACTION_TYPE_ID" Type="Byte" Nullable="false" />
-          <Property Name="TRANSACTION_DATE" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="CHECK_NUMBER" Type="Int16" />
-          <Property Name="BANK_POSTED_DATE" Type="DateTime" Precision="0" />
-          <Property Name="IS_DEBIT" Type="Boolean" Nullable="false" />
-          <Property Name="COMMENTS" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="TRANSACTION_TYPES" Relationship="Self.fk_TRANSACTIONS_to_TRANSACTION_TYPES_TRANSACTION_TYPE_ID" FromRole="TRANSACTIONS" ToRole="TRANSACTION_TYPES" />
-        </EntityType>
-        <EntityType Name="UTILITY_BILLS">
-          <Key>
-            <PropertyRef Name="UTILITY_BILL_ID" />
-          </Key>
-          <Property Name="UTILITY_BILL_ID" Type="Byte" Nullable="false" />
-          <Property Name="DESCRIPTION" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="MEMBERSHIPs" Relationship="Self.fk_MEMBERSHIP_to_MEMBERSHIP_TYPES_MEMBERSHIP_TYPE_ID" FromRole="MEMBERSHIP_TYPES" ToRole="MEMBERSHIP" />
         </EntityType>
         <Association Name="fk_ACTIVITIES_to_ACTIVITY_TYPES_ACTIVITY_TYPE_ID">
           <End Role="ACTIVITY_TYPES" Type="Self.ACTIVITY_TYPES" Multiplicity="1" />
-          <End Role="ACTIVITIES" Type="Self.ACTIVITIES" Multiplicity="*" />
+          <End Role="ACTIVITIES" Type="Self.ACTIVITy" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ACTIVITY_TYPES">
               <PropertyRef Name="ACTIVITY_TYPE_ID" />
@@ -535,7 +384,7 @@
         </Association>
         <Association Name="fk_ACTIVITIES_to_MEMBERSHSIP">
           <End Role="MEMBERSHIP" Type="Self.MEMBERSHIP" Multiplicity="1" />
-          <End Role="ACTIVITIES" Type="Self.ACTIVITIES" Multiplicity="*" />
+          <End Role="ACTIVITIES" Type="Self.ACTIVITy" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MEMBERSHIP">
               <PropertyRef Name="MEMBER_ID" />
@@ -569,20 +418,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_TITHES_to_DONATION_TYPES_DONATION_TYPE_ID">
-          <End Role="DONATION_TYPES" Type="Self.DONATION_TYPES" Multiplicity="1" />
-          <End Role="TITHES" Type="Self.TITHES" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DONATION_TYPES">
-              <PropertyRef Name="DONATION_TYPE_ID" />
-            </Principal>
-            <Dependent Role="TITHES">
-              <PropertyRef Name="DONATION_TYPE_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_MEMBERSHIP_to_FAMILIES_FAMILY_ID">
-          <End Role="FAMILIES" Type="Self.FAMILIES" Multiplicity="1" />
+          <End Role="FAMILIES" Type="Self.FAMILy" Multiplicity="1" />
           <End Role="MEMBERSHIP" Type="Self.MEMBERSHIP" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FAMILIES">
@@ -594,7 +431,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_MEMBERSHIP_to_LOCATIONS_LOCATION_ID">
-          <End Role="LOCATIONS" Type="Self.LOCATIONS" Multiplicity="1" />
+          <End Role="LOCATIONS" Type="Self.LOCATION" Multiplicity="1" />
           <End Role="MEMBERSHIP" Type="Self.MEMBERSHIP" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LOCATIONS">
@@ -641,52 +478,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_TITHES_to_MEMBERSHIP_MEMBER_ID">
-          <End Role="MEMBERSHIP" Type="Self.MEMBERSHIP" Multiplicity="1" />
-          <End Role="TITHES" Type="Self.TITHES" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MEMBERSHIP">
-              <PropertyRef Name="MEMBER_ID" />
-            </Principal>
-            <Dependent Role="TITHES">
-              <PropertyRef Name="MEMBER_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_TRANSACTIONS_to_TRANSACTION_TYPES_TRANSACTION_TYPE_ID">
-          <End Role="TRANSACTION_TYPES" Type="Self.TRANSACTION_TYPES" Multiplicity="1" />
-          <End Role="TRANSACTIONS" Type="Self.TRANSACTIONS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TRANSACTION_TYPES">
-              <PropertyRef Name="TRANSACTION_TYPE_ID" />
-            </Principal>
-            <Dependent Role="TRANSACTIONS">
-              <PropertyRef Name="TRANSACTION_TYPE_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="ChurchResourceDbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="ACTIVITIES" EntityType="Self.ACTIVITIES" />
+          <EntitySet Name="ACTIVITIES" EntityType="Self.ACTIVITy" />
           <EntitySet Name="ACTIVITY_TYPES" EntityType="Self.ACTIVITY_TYPES" />
           <EntitySet Name="CONTACT_INFO" EntityType="Self.CONTACT_INFO" />
           <EntitySet Name="CONTACT_METHODS" EntityType="Self.CONTACT_METHODS" />
-          <EntitySet Name="DONATION_TYPES" EntityType="Self.DONATION_TYPES" />
-          <EntitySet Name="FAMILIES" EntityType="Self.FAMILIES" />
-          <EntitySet Name="LOCATIONS" EntityType="Self.LOCATIONS" />
+          <EntitySet Name="FAMILIES" EntityType="Self.FAMILy" />
+          <EntitySet Name="LOCATIONS" EntityType="Self.LOCATION" />
           <EntitySet Name="MARITAL_STATUS" EntityType="Self.MARITAL_STATUS" />
           <EntitySet Name="MEMBER_GROUPS" EntityType="Self.MEMBER_GROUPS" />
-          <EntitySet Name="MEMBERSHIP" EntityType="Self.MEMBERSHIP" />
+          <EntitySet Name="MEMBERSHIPs" EntityType="Self.MEMBERSHIP" />
           <EntitySet Name="MEMBERSHIP_TYPES" EntityType="Self.MEMBERSHIP_TYPES" />
-          <EntitySet Name="TITHES" EntityType="Self.TITHES" />
-          <EntitySet Name="TRANSACTION_TYPES" EntityType="Self.TRANSACTION_TYPES" />
-          <EntitySet Name="TRANSACTIONS" EntityType="Self.TRANSACTIONS" />
-          <EntitySet Name="UTILITY_BILLS" EntityType="Self.UTILITY_BILLS" />
           <AssociationSet Name="fk_ACTIVITIES_to_ACTIVITY_TYPES_ACTIVITY_TYPE_ID" Association="Self.fk_ACTIVITIES_to_ACTIVITY_TYPES_ACTIVITY_TYPE_ID">
             <End Role="ACTIVITY_TYPES" EntitySet="ACTIVITY_TYPES" />
             <End Role="ACTIVITIES" EntitySet="ACTIVITIES" />
           </AssociationSet>
           <AssociationSet Name="fk_ACTIVITIES_to_MEMBERSHSIP" Association="Self.fk_ACTIVITIES_to_MEMBERSHSIP">
-            <End Role="MEMBERSHIP" EntitySet="MEMBERSHIP" />
+            <End Role="MEMBERSHIP" EntitySet="MEMBERSHIPs" />
             <End Role="ACTIVITIES" EntitySet="ACTIVITIES" />
           </AssociationSet>
           <AssociationSet Name="fk_CONTACT_INFO_to_CONTACT_METHODS_CONTACT_METHOD_ID" Association="Self.fk_CONTACT_INFO_to_CONTACT_METHODS_CONTACT_METHOD_ID">
@@ -694,40 +502,28 @@
             <End Role="CONTACT_INFO" EntitySet="CONTACT_INFO" />
           </AssociationSet>
           <AssociationSet Name="fk_CONTACT_INFO_to_MEMBERSHIP_MEMBER_ID" Association="Self.fk_CONTACT_INFO_to_MEMBERSHIP_MEMBER_ID">
-            <End Role="MEMBERSHIP" EntitySet="MEMBERSHIP" />
+            <End Role="MEMBERSHIP" EntitySet="MEMBERSHIPs" />
             <End Role="CONTACT_INFO" EntitySet="CONTACT_INFO" />
-          </AssociationSet>
-          <AssociationSet Name="fk_TITHES_to_DONATION_TYPES_DONATION_TYPE_ID" Association="Self.fk_TITHES_to_DONATION_TYPES_DONATION_TYPE_ID">
-            <End Role="DONATION_TYPES" EntitySet="DONATION_TYPES" />
-            <End Role="TITHES" EntitySet="TITHES" />
           </AssociationSet>
           <AssociationSet Name="fk_MEMBERSHIP_to_FAMILIES_FAMILY_ID" Association="Self.fk_MEMBERSHIP_to_FAMILIES_FAMILY_ID">
             <End Role="FAMILIES" EntitySet="FAMILIES" />
-            <End Role="MEMBERSHIP" EntitySet="MEMBERSHIP" />
+            <End Role="MEMBERSHIP" EntitySet="MEMBERSHIPs" />
           </AssociationSet>
           <AssociationSet Name="fk_MEMBERSHIP_to_LOCATIONS_LOCATION_ID" Association="Self.fk_MEMBERSHIP_to_LOCATIONS_LOCATION_ID">
             <End Role="LOCATIONS" EntitySet="LOCATIONS" />
-            <End Role="MEMBERSHIP" EntitySet="MEMBERSHIP" />
+            <End Role="MEMBERSHIP" EntitySet="MEMBERSHIPs" />
           </AssociationSet>
           <AssociationSet Name="fk_MEMBERSHIP_to_MARITAL_STATUS_MARITAL_STATUS_ID" Association="Self.fk_MEMBERSHIP_to_MARITAL_STATUS_MARITAL_STATUS_ID">
             <End Role="MARITAL_STATUS" EntitySet="MARITAL_STATUS" />
-            <End Role="MEMBERSHIP" EntitySet="MEMBERSHIP" />
+            <End Role="MEMBERSHIP" EntitySet="MEMBERSHIPs" />
           </AssociationSet>
           <AssociationSet Name="fk_MEMBERSHIP_to_MEMBER_GROUPS_GROUP_ID" Association="Self.fk_MEMBERSHIP_to_MEMBER_GROUPS_GROUP_ID">
             <End Role="MEMBER_GROUPS" EntitySet="MEMBER_GROUPS" />
-            <End Role="MEMBERSHIP" EntitySet="MEMBERSHIP" />
+            <End Role="MEMBERSHIP" EntitySet="MEMBERSHIPs" />
           </AssociationSet>
           <AssociationSet Name="fk_MEMBERSHIP_to_MEMBERSHIP_TYPES_MEMBERSHIP_TYPE_ID" Association="Self.fk_MEMBERSHIP_to_MEMBERSHIP_TYPES_MEMBERSHIP_TYPE_ID">
             <End Role="MEMBERSHIP_TYPES" EntitySet="MEMBERSHIP_TYPES" />
-            <End Role="MEMBERSHIP" EntitySet="MEMBERSHIP" />
-          </AssociationSet>
-          <AssociationSet Name="fk_TITHES_to_MEMBERSHIP_MEMBER_ID" Association="Self.fk_TITHES_to_MEMBERSHIP_MEMBER_ID">
-            <End Role="MEMBERSHIP" EntitySet="MEMBERSHIP" />
-            <End Role="TITHES" EntitySet="TITHES" />
-          </AssociationSet>
-          <AssociationSet Name="fk_TRANSACTIONS_to_TRANSACTION_TYPES_TRANSACTION_TYPE_ID" Association="Self.fk_TRANSACTIONS_to_TRANSACTION_TYPES_TRANSACTION_TYPE_ID">
-            <End Role="TRANSACTION_TYPES" EntitySet="TRANSACTION_TYPES" />
-            <End Role="TRANSACTIONS" EntitySet="TRANSACTIONS" />
+            <End Role="MEMBERSHIP" EntitySet="MEMBERSHIPs" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -737,7 +533,7 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ChurchResourceDbModelStoreContainer" CdmEntityContainer="ChurchResourceDbEntities">
           <EntitySetMapping Name="ACTIVITIES">
-            <EntityTypeMapping TypeName="ChurchResourceDbModel.ACTIVITIES">
+            <EntityTypeMapping TypeName="ChurchResourceDbModel.ACTIVITy">
               <MappingFragment StoreEntitySet="ACTIVITIES">
                 <ScalarProperty Name="ACTIVITY_ID" ColumnName="ACTIVITY_ID" />
                 <ScalarProperty Name="ACTIVITY_TYPE_ID" ColumnName="ACTIVITY_TYPE_ID" />
@@ -774,16 +570,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DONATION_TYPES">
-            <EntityTypeMapping TypeName="ChurchResourceDbModel.DONATION_TYPES">
-              <MappingFragment StoreEntitySet="DONATION_TYPES">
-                <ScalarProperty Name="DONATION_TYPE_ID" ColumnName="DONATION_TYPE_ID" />
-                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="FAMILIES">
-            <EntityTypeMapping TypeName="ChurchResourceDbModel.FAMILIES">
+            <EntityTypeMapping TypeName="ChurchResourceDbModel.FAMILy">
               <MappingFragment StoreEntitySet="FAMILIES">
                 <ScalarProperty Name="FAMILY_ID" ColumnName="FAMILY_ID" />
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
@@ -791,7 +579,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LOCATIONS">
-            <EntityTypeMapping TypeName="ChurchResourceDbModel.LOCATIONS">
+            <EntityTypeMapping TypeName="ChurchResourceDbModel.LOCATION">
               <MappingFragment StoreEntitySet="LOCATIONS">
                 <ScalarProperty Name="LOCATION_ID" ColumnName="LOCATION_ID" />
                 <ScalarProperty Name="ADDRESS1" ColumnName="ADDRESS1" />
@@ -818,7 +606,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MEMBERSHIP">
+          <EntitySetMapping Name="MEMBERSHIPs">
             <EntityTypeMapping TypeName="ChurchResourceDbModel.MEMBERSHIP">
               <MappingFragment StoreEntitySet="MEMBERSHIP">
                 <ScalarProperty Name="FAMILY_ID" ColumnName="FAMILY_ID" />
@@ -846,49 +634,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TITHES">
-            <EntityTypeMapping TypeName="ChurchResourceDbModel.TITHES">
-              <MappingFragment StoreEntitySet="TITHES">
-                <ScalarProperty Name="TITHE_ID" ColumnName="TITHE_ID" />
-                <ScalarProperty Name="MEMBER_ID" ColumnName="MEMBER_ID" />
-                <ScalarProperty Name="DONATION_TYPE_ID" ColumnName="DONATION_TYPE_ID" />
-                <ScalarProperty Name="TITHE_DATE" ColumnName="TITHE_DATE" />
-                <ScalarProperty Name="IS_CHECK" ColumnName="IS_CHECK" />
-                <ScalarProperty Name="CHECK_NUMBER" ColumnName="CHECK_NUMBER" />
-                <ScalarProperty Name="TITHE_AMOUNT" ColumnName="TITHE_AMOUNT" />
-                <ScalarProperty Name="COMMENTS" ColumnName="COMMENTS" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TRANSACTION_TYPES">
-            <EntityTypeMapping TypeName="ChurchResourceDbModel.TRANSACTION_TYPES">
-              <MappingFragment StoreEntitySet="TRANSACTION_TYPES">
-                <ScalarProperty Name="TRANSACTION_TYPE_ID" ColumnName="TRANSACTION_TYPE_ID" />
-                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TRANSACTIONS">
-            <EntityTypeMapping TypeName="ChurchResourceDbModel.TRANSACTIONS">
-              <MappingFragment StoreEntitySet="TRANSACTIONS">
-                <ScalarProperty Name="TRANSACTION_ID" ColumnName="TRANSACTION_ID" />
-                <ScalarProperty Name="TRANSACTION_TYPE_ID" ColumnName="TRANSACTION_TYPE_ID" />
-                <ScalarProperty Name="TRANSACTION_DATE" ColumnName="TRANSACTION_DATE" />
-                <ScalarProperty Name="CHECK_NUMBER" ColumnName="CHECK_NUMBER" />
-                <ScalarProperty Name="BANK_POSTED_DATE" ColumnName="BANK_POSTED_DATE" />
-                <ScalarProperty Name="IS_DEBIT" ColumnName="IS_DEBIT" />
-                <ScalarProperty Name="COMMENTS" ColumnName="COMMENTS" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UTILITY_BILLS">
-            <EntityTypeMapping TypeName="ChurchResourceDbModel.UTILITY_BILLS">
-              <MappingFragment StoreEntitySet="UTILITY_BILLS">
-                <ScalarProperty Name="UTILITY_BILL_ID" ColumnName="UTILITY_BILL_ID" />
-                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -903,7 +648,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

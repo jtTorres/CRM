@@ -12,7 +12,7 @@ namespace ChurchResourceManagerWeb.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ACTIVITIES
+    public partial class ACTIVITy
     {
         public int ACTIVITY_ID { get; set; }
         public byte ACTIVITY_TYPE_ID { get; set; }

@@ -17,13 +17,13 @@ namespace ChurchResourceManagerWeb.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MEMBERSHIP_TYPES()
         {
-            this.MEMBERSHIP = new HashSet<MEMBERSHIP>();
+            this.MEMBERSHIPs = new HashSet<MEMBERSHIP>();
         }
     
         public byte MEMBERSHIP_TYPE_ID { get; set; }
         public string DESCRIPTION { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MEMBERSHIP> MEMBERSHIP { get; set; }
+        public virtual ICollection<MEMBERSHIP> MEMBERSHIPs { get; set; }
     }
 }
