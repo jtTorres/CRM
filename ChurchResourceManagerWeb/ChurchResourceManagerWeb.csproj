@@ -255,6 +255,7 @@
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ModelFactory.cs" />
+    <Compile Include="Models\OfferingsViewModel.cs" />
     <Compile Include="Models\Repository.cs" />
     <Compile Include="Models\TITHES.cs">
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
@@ -294,6 +295,8 @@
     <Content Include="app\Controllers\Tithing\TithesRunningTotals.controller.js" />
     <Content Include="app\Controllers\Tithing\TithingActivityByMemberGrid.controller.js" />
     <Content Include="app\Filters\Search.filter.js" />
+    <Content Include="app\Services\OfferingDataService.service.js" />
+    <Content Include="app\Services\OfferingDataService.service.spec.js" />
     <Content Include="app\Services\TitheVars.service.js" />
     <Content Include="app\Controllers\Tithing\Tithing.controller.js" />
     <Content Include="app\Controllers\Tithing\Tithing.controller.spec.js" />
