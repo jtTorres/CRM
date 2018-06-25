@@ -25,15 +25,21 @@ namespace ChurchResourceManagerWeb.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<ACTIVITy> ACTIVITIES { get; set; }
+        public virtual DbSet<ACTIVITIES> ACTIVITIES { get; set; }
         public virtual DbSet<ACTIVITY_TYPES> ACTIVITY_TYPES { get; set; }
         public virtual DbSet<CONTACT_INFO> CONTACT_INFO { get; set; }
         public virtual DbSet<CONTACT_METHODS> CONTACT_METHODS { get; set; }
-        public virtual DbSet<FAMILy> FAMILIES { get; set; }
-        public virtual DbSet<LOCATION> LOCATIONS { get; set; }
+        public virtual DbSet<DONATION_TYPES> DONATION_TYPES { get; set; }
+        public virtual DbSet<FAMILIES> FAMILIES { get; set; }
+        public virtual DbSet<LOCATIONS> LOCATIONS { get; set; }
         public virtual DbSet<MARITAL_STATUS> MARITAL_STATUS { get; set; }
         public virtual DbSet<MEMBER_GROUPS> MEMBER_GROUPS { get; set; }
-        public virtual DbSet<MEMBERSHIP> MEMBERSHIPs { get; set; }
+        public virtual DbSet<MEMBERSHIP> MEMBERSHIP { get; set; }
         public virtual DbSet<MEMBERSHIP_TYPES> MEMBERSHIP_TYPES { get; set; }
+        public virtual DbSet<OFFERINGS> OFFERINGS { get; set; }
+        public virtual DbSet<TITHES> TITHES { get; set; }
+        public virtual DbSet<TRANSACTION_TYPES> TRANSACTION_TYPES { get; set; }
+        public virtual DbSet<TRANSACTIONS> TRANSACTIONS { get; set; }
+        public virtual DbSet<UTILITY_BILLS> UTILITY_BILLS { get; set; }
     }
 }

@@ -12,22 +12,18 @@ namespace ChurchResourceManagerWeb.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class LOCATION
+    public partial class TRANSACTION_TYPES
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public LOCATION()
+        public TRANSACTION_TYPES()
         {
-            this.MEMBERSHIPs = new HashSet<MEMBERSHIP>();
+            this.TRANSACTIONS = new HashSet<TRANSACTIONS>();
         }
     
-        public short LOCATION_ID { get; set; }
-        public string ADDRESS1 { get; set; }
-        public string ADDRESS2 { get; set; }
-        public string CITY { get; set; }
-        public string STATE { get; set; }
-        public string ZIP_CODE { get; set; }
+        public byte TRANSACTION_TYPE_ID { get; set; }
+        public string DESCRIPTION { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MEMBERSHIP> MEMBERSHIPs { get; set; }
+        public virtual ICollection<TRANSACTIONS> TRANSACTIONS { get; set; }
     }
 }

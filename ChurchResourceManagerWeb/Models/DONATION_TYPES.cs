@@ -12,18 +12,18 @@ namespace ChurchResourceManagerWeb.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ACTIVITY_TYPES
+    public partial class DONATION_TYPES
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ACTIVITY_TYPES()
+        public DONATION_TYPES()
         {
-            this.ACTIVITIES = new HashSet<ACTIVITIES>();
+            this.TITHES = new HashSet<TITHES>();
         }
     
-        public byte ACTIVITY_TYPE_ID { get; set; }
+        public byte DONATION_TYPE_ID { get; set; }
         public string DESCRIPTION { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ACTIVITIES> ACTIVITIES { get; set; }
+        public virtual ICollection<TITHES> TITHES { get; set; }
     }
 }

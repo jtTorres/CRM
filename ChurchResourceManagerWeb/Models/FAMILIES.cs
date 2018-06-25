@@ -12,18 +12,18 @@ namespace ChurchResourceManagerWeb.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ACTIVITY_TYPES
+    public partial class FAMILIES
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ACTIVITY_TYPES()
+        public FAMILIES()
         {
-            this.ACTIVITIES = new HashSet<ACTIVITIES>();
+            this.MEMBERSHIP = new HashSet<MEMBERSHIP>();
         }
     
-        public byte ACTIVITY_TYPE_ID { get; set; }
-        public string DESCRIPTION { get; set; }
+        public int FAMILY_ID { get; set; }
+        public string NAME { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ACTIVITIES> ACTIVITIES { get; set; }
+        public virtual ICollection<MEMBERSHIP> MEMBERSHIP { get; set; }
     }
 }

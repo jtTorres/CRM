@@ -32,7 +32,7 @@
         }
 
         function addTithe(titheRecord, form) {
-            if(!operationFlowService.isFormValid(form)) return;
+            if (!operationFlowService.isFormValid(form)) return;
 
             vm.onSave({ tithe: titheRecord })
                 .then(onSaveSuccess);

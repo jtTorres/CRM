@@ -17,8 +17,9 @@ namespace ChurchResourceManagerWeb.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MEMBERSHIP()
         {
-            this.ACTIVITIES = new HashSet<ACTIVITy>();
+            this.ACTIVITIES = new HashSet<ACTIVITIES>();
             this.CONTACT_INFO = new HashSet<CONTACT_INFO>();
+            this.TITHES = new HashSet<TITHES>();
         }
     
         public int FAMILY_ID { get; set; }
@@ -37,13 +38,15 @@ namespace ChurchResourceManagerWeb.Models
         public System.DateTime LAST_MODIFIED_DATE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ACTIVITy> ACTIVITIES { get; set; }
+        public virtual ICollection<ACTIVITIES> ACTIVITIES { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CONTACT_INFO> CONTACT_INFO { get; set; }
-        public virtual FAMILy FAMILy { get; set; }
-        public virtual LOCATION LOCATION { get; set; }
+        public virtual FAMILIES FAMILIES { get; set; }
+        public virtual LOCATIONS LOCATIONS { get; set; }
         public virtual MARITAL_STATUS MARITAL_STATUS { get; set; }
         public virtual MEMBER_GROUPS MEMBER_GROUPS { get; set; }
         public virtual MEMBERSHIP_TYPES MEMBERSHIP_TYPES { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TITHES> TITHES { get; set; }
     }
 }
