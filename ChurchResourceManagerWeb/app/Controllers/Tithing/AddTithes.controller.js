@@ -34,12 +34,14 @@
         function addTithe(titheRecord, form) {
             if (!operationFlowService.isFormValid(form)) return;
 
+            //form.$setPristine();
+
             vm.onSave({ tithe: titheRecord })
                 .then(onSaveSuccess);
         }
 
         function onSaveSuccess(response) {
-            vm.Tithe = utilityService.clearObject(vm.Tithe);
+            clearForm();
             vm.clearTithingActivity();
             vm.setMemberActivityPanelDefaults();
         }
@@ -60,6 +62,8 @@
 
         function clearForm() {
             vm.Tithe = utilityService.clearObject(vm.Tithe);
+            vm.addTithesForm.$setPristine();
+            vm.addTithesForm.$setUntouched();
         }
 
     }
