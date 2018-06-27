@@ -57,7 +57,7 @@
         <div class="form-group">
             <div class="input-group">
                 <span class="input-group-addon">$</span>
-                <input id="amountTxtBx" name="amountTxtBx" class="form-control" type="text" placeholder="Tithe Amount (Ex. $0.00)" ng-model="atc.Tithe.TitheAmount" required />
+                <input id="amountTxtBx" name="amountTxtBx" class="form-control" type="number" placeholder="Tithe Amount (Ex. $0.00)" ng-model="atc.Tithe.TitheAmount" required />
             </div>
             <div class="help-block-error" ng-messages="atc.addTithesForm.amountTxtBx.$error" ng-if="atc.addTithesForm.amountTxtBx.$touched">
                 <div ng-messages-include="message-template"></div>

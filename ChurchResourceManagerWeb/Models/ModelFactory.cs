@@ -21,5 +21,49 @@ namespace ChurchResourceManagerWeb.Models
                 COMMENTS = tithe.Comments
             };
         }
+
+        public OFFERINGS CreateOffering(OfferingsViewModel offering)
+        {
+            return new OFFERINGS
+            {
+                OFFERING_ID = offering.OfferingId,
+                OFFERING_DATE = Convert.ToDateTime(offering.OfferingDate),
+                DONATION_TYPE_ID = offering.DonationType,
+                OFFERING_AMOUNT = offering.OfferingAmount,
+                COMMENTS = offering.Comments
+            };
+        }
+
+        public IEnumerable<TithesViewModel> CreateTithesViewModelList(IQueryable<TITHES> tithe, IQueryable<MEMBERSHIP> member)
+        {
+            return (from t in tithe
+                    join m in member on t.MEMBER_ID equals m.MEMBER_ID
+                    select new TithesViewModel
+                    {
+                        TitheId = t.TITHE_ID,
+                        MemberId = m.MEMBER_ID,
+                        FirstName = m.FIRST_NAME,
+                        LastName = m.LAST_NAME,
+                        DonationType = t.DONATION_TYPE_ID,
+                        TitheDateDateTime = t.TITHE_DATE,
+                        IsCheck = t.IS_CHECK,
+                        CheckNumber = t.CHECK_NUMBER ?? 0,
+                        TitheAmount = t.TITHE_AMOUNT,
+                        Comments = t.COMMENTS
+                    }).ToList();
+        }
+
+        public IEnumerable<OfferingsViewModel> CreateOfferingsViewModelList(IQueryable<OFFERINGS> offering)
+        {
+
+            return offering.Select(o => new OfferingsViewModel
+            {
+                OfferingId = o.OFFERING_ID,
+                OfferingDateTime = o.OFFERING_DATE,
+                OfferingAmount = o.OFFERING_AMOUNT,
+                Comments = o.COMMENTS
+            }).ToList();
+        }
+
     }
 }

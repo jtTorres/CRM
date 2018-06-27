@@ -18,7 +18,7 @@ namespace ChurchResourceManagerWeb.Models
             ModelFactory = new ModelFactory();
         }
 
-        //public bool AddTithe(TITHES tithe)
+        #region Add Methods
         public bool AddTithe(TithesViewModel tithe)
         {
             try
@@ -36,6 +36,70 @@ namespace ChurchResourceManagerWeb.Models
 
         }
 
+        public bool AddOffering(OfferingsViewModel offering)
+        {
+            try
+            {
+                db.OFFERINGS.Add(ModelFactory.CreateOffering(offering));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                //throw;
+                return false;
+            }
+        }
+
+
+        #endregion
+
+        #region Update Methods
+        public bool UpdateTithe(TithesViewModel tithe)
+        {
+            db.Entry(GetTitheById(tithe.TitheId)).CurrentValues.SetValues(ModelFactory.CreateTithe(tithe));
+
+            return SaveAll();
+        }
+
+        public bool UpdateOffering(OfferingsViewModel offering)
+        {
+            db.Entry(GetOfferingById(offering.OfferingId)).CurrentValues.SetValues(ModelFactory.CreateOffering(offering));
+            return SaveAll();
+        }
+        #endregion
+
+        #region Delete Methods
+        public bool DeleteTithe(int titheId)
+        {
+            //var titheRecord = db.TITHES.FirstOrDefault(t => t.TITHE_ID == titheId);
+            var titheRecord = GetTitheById(titheId);
+
+            db.Entry(titheRecord).State = EntityState.Deleted;
+            return SaveAll();
+        }
+
+        public bool DeleteOffering(int offeringId)
+        {
+            var offeringRecord = GetOfferingById(offeringId);
+
+            db.Entry(offeringRecord).State = EntityState.Deleted;
+            return SaveAll();
+        }
+
+
+        #endregion
+
+        #region GetMethods
+        public TITHES GetTitheById(int titheId)
+        {
+            return db.TITHES.FirstOrDefault(t => t.TITHE_ID == titheId);
+        }
+
+        public OFFERINGS GetOfferingById(int offeringId)
+        {
+            return db.OFFERINGS.FirstOrDefault(o => o.OFFERING_ID == offeringId);
+        }
         public IEnumerable<MembershipViewModel> GetAllMembership()
         {
             var membership = (from m in db.MEMBERSHIP
@@ -61,50 +125,15 @@ namespace ChurchResourceManagerWeb.Models
 
         public IEnumerable<TithesViewModel> GetMemberTithes(int memberId, DateTime? date)
         {
-            //var today = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-            var memberTithes = (from mt in db.TITHES
-                                join m in db.MEMBERSHIP on mt.MEMBER_ID equals m.MEMBER_ID
-                                where (memberId > 0 && mt.MEMBER_ID == memberId) || (memberId == 0 && mt.TITHE_DATE == date) || (memberId == 0 && date == null /*&& mt.TITHE_DATE == today*/)
-                                select new TithesViewModel()
-                                {
-                                    TitheId = mt.TITHE_ID,
-                                    MemberId = mt.MEMBER_ID,
-                                    FirstName = m.FIRST_NAME,
-                                    LastName = m.LAST_NAME,
-                                    DonationType = mt.DONATION_TYPE_ID,
-                                    TitheDateDateTime = mt.TITHE_DATE,
-                                    IsCheck = mt.IS_CHECK,
-                                    CheckNumber = mt.CHECK_NUMBER ?? 0,
-                                    TitheAmount = mt.TITHE_AMOUNT,
-                                    Comments = mt.COMMENTS
-                                }).ToList();
 
-            return memberTithes;
+            var tithe = db.TITHES.Where(t => (t.TITHE_DATE == date && memberId == 0) || (t.MEMBER_ID == memberId && memberId > 0) || (memberId == 0 && date == null));
+            return ModelFactory.CreateTithesViewModelList(tithe, db.MEMBERSHIP);
         }
 
-        public TITHES GetTitheById(int titheId)
+        public IEnumerable<OfferingsViewModel> GetOfferings(DateTime? date)
         {
-            return db.TITHES.FirstOrDefault(t => t.TITHE_ID == titheId);
-        }
-
-        public bool UpdateTithe(TithesViewModel tithe)
-        {
-            db.Entry(GetTitheById(tithe.TitheId)).CurrentValues.SetValues(ModelFactory.CreateTithe(tithe));
-
-            return SaveAll();
-        }
-
-        public bool DeleteTithe(int titheId)
-        {
-            var titheRecord = db.TITHES.FirstOrDefault(t => t.TITHE_ID == titheId);
-
-            db.Entry(titheRecord).State = EntityState.Deleted;
-            return SaveAll();
-        }
-
-        public bool SaveAll()
-        {
-            return db.SaveChanges() > 0;
+            var offering = db.OFFERINGS.Where(o => date != null ? o.OFFERING_DATE == date : date == null);
+            return ModelFactory.CreateOfferingsViewModelList(offering);
         }
 
         public string GetTithesRunningTotal(DateTime date)
@@ -112,5 +141,20 @@ namespace ChurchResourceManagerWeb.Models
             var amount = db.TITHES.Where(t => t.TITHE_DATE == date);
             return amount.Any() ? amount.Sum(a => a.TITHE_AMOUNT).ToString(CultureInfo.CurrentCulture) : "0";
         }
+
+        public string GetOfferingsRunningTotal(DateTime date)
+        {
+            var amount = db.OFFERINGS.Where(o => o.OFFERING_DATE == date);
+            return amount.Any() ? amount.Sum(a => a.OFFERING_AMOUNT).ToString(CultureInfo.CurrentCulture) : "0";
+        }
+
+        #endregion
+
+        public bool SaveAll()
+        {
+            return db.SaveChanges() > 0;
+        }
+
+
     }
 }
