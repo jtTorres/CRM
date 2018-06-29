@@ -5,10 +5,10 @@
         .component("runningTotals",
             {
                 templateUrl: "/Shared/RunningTotals",
-                controller: "tithesRunningTotalController",
-                controllerAs: "trt",
+                controller: "runningTotalController",
+                controllerAs: "rtc",
                 bindings: {
-                    tithesRunningTotal: "<",
+                    runningTotal: "<",
                     getTithesRunningTotal: "&"
                 }
             });

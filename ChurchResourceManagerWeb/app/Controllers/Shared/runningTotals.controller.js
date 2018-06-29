@@ -2,11 +2,11 @@
 
     "use strict";
     angular.module("app")
-        .controller("tithesRunningTotalController", tithesRunningTotalController);
+        .controller("runningTotalController", runningTotalController);
 
-    tithesRunningTotalController.$inject = [];
+    runningTotalController.$inject = [];
 
-    function tithesRunningTotalController() {
+    function runningTotalController() {
         var vm = this;
 
         // setup bindable members

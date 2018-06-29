@@ -17,6 +17,24 @@ namespace ChurchResourceManagerWeb.Controllers
             return View();
         }
 
+        public ActionResult AddOfferings()
+        {
+            return View();
+        }
+
+        #region PartialViews for Components
+
+        public ActionResult AddOffering()
+        {
+            return PartialView("_addOffering");
+        }
+
+        public ActionResult OfferingActivity()
+        {
+            return PartialView("_offeringActivity");
+        }
+        #endregion
+
         [HttpPost]
         public JsonResult AddOfferingRecord(OfferingsViewModel offeringRecord)
         {
