@@ -150,6 +150,22 @@ namespace ChurchResourceManagerWeb.Models
 
         #endregion
 
+        #region switches
+
+        public string GetRunningTotals(DateTime date, EntitySelector.Entity entity)
+        {
+            switch (entity)
+            {
+                case EntitySelector.Entity.Tithe:
+                    return GetTithesRunningTotal(date);
+                case EntitySelector.Entity.Offering:
+                    return GetOfferingsRunningTotal(date);
+                default:
+                    return null;
+            }
+        }
+        #endregion
+
         public bool SaveAll()
         {
             return db.SaveChanges() > 0;

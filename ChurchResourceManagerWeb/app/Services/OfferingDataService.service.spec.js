@@ -5,7 +5,7 @@
     var httpResponses = {};
     var offeringRecord = {};
     var urls = {
-        addOffering: "/Offerings/AddOffering/",
+        addOffering: "/Offerings/AddOfferingRecord/",
         updateOffering: "/Offerings/UpdateOffering/",
         deleteOffering: "/Offerings/DeleteOffering/",
         getRunningTotals: "/Shared/GetRunningTotals/",

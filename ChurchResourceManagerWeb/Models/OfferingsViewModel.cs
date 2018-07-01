@@ -21,6 +21,8 @@ namespace ChurchResourceManagerWeb.Models
 
         public decimal OfferingAmount { get; set; }
 
+        public string OfferingAmountString => OfferingAmount.ToString("C");
+
         public string Comments { get; set; }
     }
 }

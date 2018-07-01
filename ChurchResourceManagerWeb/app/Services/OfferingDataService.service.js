@@ -18,7 +18,7 @@
         function addOffering(offeringRecord) {
             return $http({
                 method: "POST",
-                url: "/Offerings/AddOffering/",
+                url: "/Offerings/AddOfferingRecord/",
                 data: { offeringRecord: offeringRecord }
             })
                 .then(onAddOfferingComplete)
@@ -69,12 +69,15 @@
             return $q.reject(utilityService.httpError(reason, "Error Deleting Offering"));
         }
 
-        function getRunningTotals(date) {
+        function getRunningTotals(date, entity) {
             date = utilityService.isUndefinedOrNull(date) ? new Date() : date;
             return $http({
                 method: "GET",
                 url: "/Shared/GetRunningTotals/",
-                params: { date: date }
+                params: {
+                    date: date,
+                    entity: entity
+                }
             })
                 .then(onGetRunningTotalsComplete)
                 .catch(onRunningTotalsError);

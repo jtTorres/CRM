@@ -233,6 +233,7 @@
     <Compile Include="Models\DONATION_TYPES.cs">
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EntitySelector.cs" />
     <Compile Include="Models\FAMILIES.cs">
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
     </Compile>
@@ -292,9 +293,10 @@
     <Content Include="app\Components\tithingActivityByMemberGrid.component.js" />
     <Content Include="app\Controllers\Home\Home.controller.js" />
     <Content Include="app\Controllers\Home\Home.controller.spec.js" />
-    <Content Include="app\Components\Shared\runningTotals.component.spec.js" />
+    <Content Include="app\Components\Shared\runningTotal.component.spec.js" />
     <Content Include="app\Controllers\Offerings\AddOffering.controller.js" />
     <Content Include="app\Controllers\Offerings\Offering.controller.js" />
+    <Content Include="app\Controllers\Offerings\Offering.controller.spec.js" />
     <Content Include="app\Controllers\Offerings\OfferingActivity.controller.js" />
     <Content Include="app\Controllers\Shared\runningTotals.controller.js" />
     <Content Include="app\Controllers\Tithing\AddTithes.controller.js" />
@@ -305,6 +307,7 @@
     <Content Include="app\Controllers\Tithing\EditTithe.controller.spec.js" />
     <Content Include="app\Controllers\Tithing\TithesRunningTotals.controller.js" />
     <Content Include="app\Controllers\Tithing\TithingActivityByMemberGrid.controller.js" />
+    <Content Include="app\Core\EntitySelector.service.js" />
     <Content Include="app\Filters\Search.filter.js" />
     <Content Include="app\Services\OfferingDataService.service.js" />
     <Content Include="app\Services\OfferingDataService.service.spec.js" />

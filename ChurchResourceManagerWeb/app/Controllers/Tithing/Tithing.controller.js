@@ -75,7 +75,7 @@
 
             modalInstance.result
                 .then(function (titheToEdit) {
-                        getMemberTithes(titheToEdit.MemberId);
+                    getMemberTithes(titheToEdit.MemberId);
                     //getTithingActivity(vm.tithingActivityType);
                 });
         }
@@ -188,11 +188,11 @@
         // #region TithingActivity
         function getTithingActivity(tithingActivityType) {
             vm.tithingActivityType = tithingActivityType;
+
             getTithingActivityByType(tithingActivityType)
                 .then(function (response) {
                     vm.tithingActivity = response.data;
-                    if (response.data.length > 0)
-                        vm.tithingActivityPanelSettings.isOpen = true;
+                    updateTithingActivityPanelHeader(tithingActivityType, response.data.length);
                 })
                 .catch(function (reason) {
                     vm.processFlow = utilityService.processCompletion(vm.processFlow, reason.message, false);
@@ -208,6 +208,20 @@
                 default:
                     return null;
             }
+        }
+
+        function updateTithingActivityPanelHeader(tithingActivityType, recordCount) {
+            switch (tithingActivityType) {
+                case "today":
+                    vm.tithingActivityPanelSettings.panelHeading = "Today's Tithing Activity";
+                    break;
+                case "all":
+                    vm.tithingActivityPanelSettings.panelHeading = "Tithing Activity";
+                    break;
+                default:
+                    break;
+            }
+            vm.tithingActivityPanelSettings.isOpen = recordCount > 0 ? true : false;
         }
 
         // #endregion
