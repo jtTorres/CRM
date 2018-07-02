@@ -1,0 +1,24 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="eoc.dismiss()">&times;</button>
+    <h4 class="modal-title text-center" id="modal-title">Edit Tithe</h4>
+</div>
+<div class="modal-body">
+    <!--Error Message Banner-->
+    <div ng-show="eoc.processFlow.error">
+        <div class="alert alert-danger alert-dismissible fade in">
+            <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{eoc.processFlow.errorMessage}}
+        </div>
+    </div>
+
+    <div class="row">
+        <add-offering action="Update" offering="eoc.Offering" on-save="eoc.updateOffering(eoc.Offering)"></add-offering>
+
+    </div>
+</div>
+<div class="modal-footer">
+    <!--Submit and Clear Form Buttons-->
+    <div class="col-xs-12">
+    </div>
+</div>
+

@@ -33,6 +33,16 @@ namespace ChurchResourceManagerWeb.Controllers
         {
             return PartialView("_offeringActivity");
         }
+
+        public ActionResult EditOffering()
+        {
+            return PartialView("_editOfferingModal");
+        }
+
+        public ActionResult DeleteOfferingModal()
+        {
+            return PartialView("_deleteOfferingModal");
+        }
         #endregion
 
         [HttpPost]

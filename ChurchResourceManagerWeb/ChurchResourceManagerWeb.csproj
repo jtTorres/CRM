@@ -284,7 +284,9 @@
     <Content Include="app\Components\addOffering.component.js" />
     <Content Include="app\Components\addOffering.component.spec.js" />
     <Content Include="app\Components\addTithe.component.js" />
+    <Content Include="app\Components\deleteOffering.component.js" />
     <Content Include="app\Components\deleteTithe.component.js" />
+    <Content Include="app\Components\editOfferingModal.component.js" />
     <Content Include="app\Components\editTitheModal.component.js" />
     <Content Include="app\Components\offeringActivity.component.js" />
     <Content Include="app\Components\offeringActivity.component.spec.js" />
@@ -296,6 +298,8 @@
     <Content Include="app\Controllers\Home\Home.controller.spec.js" />
     <Content Include="app\Components\Shared\runningTotal.component.spec.js" />
     <Content Include="app\Controllers\Offerings\AddOffering.controller.js" />
+    <Content Include="app\Controllers\Offerings\DeleteOffering.controller.js" />
+    <Content Include="app\Controllers\Offerings\EditOffering.controller.js" />
     <Content Include="app\Controllers\Offerings\Offering.controller.js" />
     <Content Include="app\Controllers\Offerings\Offering.controller.spec.js" />
     <Content Include="app\Controllers\Offerings\OfferingActivity.controller.js" />
@@ -1178,6 +1182,8 @@
     <Content Include="Views\Offerings\_addOffering.cshtml" />
     <Content Include="Views\Shared\_runningTotals.cshtml" />
     <Content Include="Views\Offerings\_offeringActivity.cshtml" />
+    <Content Include="Views\Offerings\_editOfferingModal.cshtml" />
+    <Content Include="Views\Offerings\_deleteOfferingModal.cshtml" />
     <None Include="Views\Test\SpecRunner.cshtml" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />

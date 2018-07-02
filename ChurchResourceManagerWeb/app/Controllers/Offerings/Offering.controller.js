@@ -5,17 +5,20 @@
     angular.module("app")
         .controller("offeringController", offeringController);
 
-    offeringController.$inject = ["utilityService", "offeringDataService", "operationFlowService", "entitySelectorService", "activitySelectorService"];
+    offeringController.$inject = ["utilityService", "offeringDataService", "operationFlowService", "entitySelectorService", "activitySelectorService", "$uibModal"];
 
-    function offeringController(utilityService, offeringDataService, operationFlowService, entitySelectorService, activitySelectorService) {
+    function offeringController(utilityService, offeringDataService, operationFlowService, entitySelectorService, activitySelectorService, $uibModal) {
         var vm = this;
 
         vm.activityType = activitySelectorService.activityReportType;
         vm.runningTotal = { data: "0" };
+        vm.offeringId = {};
 
         vm.doSaveOffering = doSaveOffering;
         vm.getOfferingActivity = getOfferingActivity;
         vm.getOfferingRunningTotal = getOfferingRunningTotal;
+        vm.openDeleteOfferingModal = openDeleteOfferingModal;
+        vm.openEditOfferingModal = openEditOfferingModal;
         /////////////////////////////
 
         activate();
@@ -81,7 +84,8 @@
                 });
         }
 
-        // #endregion
+        // #endregion
+
 
 
         // #region Panel Settings
@@ -91,6 +95,70 @@
                 panelHeading: "Today's Offering Activity",
                 isOpen: false
             }
+        }
+
+        // #endregion
+
+        // #region Edit Offering Modal Component
+        function openEditOfferingModal(offering, index) {
+
+            var offeringToEdit = angular.copy(offering);
+
+            var modalInstance = $uibModal.open({
+                animation: true,
+                component: "editOfferingModal",
+                resolve: {
+                    offeringToEdit: function () {
+                        return offeringToEdit;
+                    },
+                    save: {
+                        saveOffering: function (offeringRecord) {
+                            return doSaveOffering(offeringRecord);
+                        }
+                    },
+                    addToTotal: {
+                        updateTotals: function (offeringAmount, offeringDate) {
+                            return addToTotal(offeringAmount, offeringDate);
+                        }
+                    }
+                }
+            });
+
+            modalInstance.result
+                .then(function (offeringToEdit) {
+                    // some function
+                });
+        }
+        // #endregion
+
+        // #region Delete Offering Modal Component
+        function openDeleteOfferingModal(offeringId) {
+
+            vm.offeringId = offeringId;
+            var modalInstance = $uibModal.open({
+                animation: true,
+                component: "deleteOfferingModal",
+                resolve: {
+
+                }
+            });
+
+            modalInstance.result
+                .then(function () {
+                    deleteOffering(vm.offeringId);
+                });
+        }
+
+        function deleteOffering(offeringId) {
+            offeringDataService.deleteOffering(offeringId)
+                .then(function () {
+                    getOfferingRunningTotal();
+                    getOfferingActivity(vm.activityType);
+                    vm.processFlow = operationFlowService.operationCompletion("Offering Deleted Successfully", true);
+                })
+                .catch(function (reason) {
+                    vm.processFlow = operationFlowService.operationCompletion(reason.message, false);
+                });
         }
 
         // #endregion

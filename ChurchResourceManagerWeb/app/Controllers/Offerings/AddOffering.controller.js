@@ -14,6 +14,12 @@
         vm.addOffering = addOffering;
         //////////////////////
 
+        activate();
+        function activate() {
+            setOfferingFromBinding();
+            console.log("Activated Add Offering Controller");
+        }
+
         function addOffering(offering, form) {
             if (!operationFlowService.isFormValid(form)) return;
 
@@ -23,6 +29,11 @@
 
         function onSaveSuccess() {
             clearForm();
+        }
+
+        function setOfferingFromBinding() {
+            if (!utilityService.isUndefinedOrNull(vm.offering))
+                vm.Offering = vm.offering;
         }
 
         function clearForm() {
