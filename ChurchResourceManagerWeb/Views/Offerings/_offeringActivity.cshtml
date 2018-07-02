@@ -26,7 +26,6 @@
                         <tr class="text-left" ng-repeat="offering in oac.offeringActivity | filter: search">
                             <td ng-if="oac.includeDateColumn === 'true'">{{offering.OfferingDate}}</td>
                             <td>{{offering.OfferingAmount | currency}}</td>
-                            <td>{{offering.CheckNumber}}</td>
                             <td>{{offering.Comments}}</td>
                             <td>
                                 <span ng-click="oac.editOffering(offering, $index)" uib-tooltip="Click to Edit" class="glyphicon glyphicon-pencil clickable"></span>

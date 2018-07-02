@@ -5,11 +5,12 @@
     angular.module("app")
         .controller("offeringController", offeringController);
 
-    offeringController.$inject = ["utilityService", "offeringDataService", "operationFlowService", "entitySelectorService"];
+    offeringController.$inject = ["utilityService", "offeringDataService", "operationFlowService", "entitySelectorService", "activitySelectorService"];
 
-    function offeringController(utilityService, offeringDataService, operationFlowService, entitySelectorService) {
+    function offeringController(utilityService, offeringDataService, operationFlowService, entitySelectorService, activitySelectorService) {
         var vm = this;
 
+        vm.activityType = activitySelectorService.activityReportType;
         vm.runningTotal = { data: "0" };
 
         vm.doSaveOffering = doSaveOffering;
@@ -23,6 +24,8 @@
             getOfferingRunningTotal();
             console.log("Activated Offerings Controller");
         }
+
+        // #region Add Tithes Component
 
         function doSaveOffering(offeringRecord) {
             if (utilityService.isUndefinedOrNull(offeringRecord.OfferingId)) {
@@ -39,16 +42,37 @@
         function onSaveSuccess(response) {
             vm.processFlow = operationFlowService.operationCompletion("Offering Saved Successfully!", true);
             getOfferingRunningTotal();
-            //getOfferingActivity(vm.activityType);
+            getOfferingActivity(vm.activityType);
+            clearActivity();
         }
 
         function onSaveError(reason) {
             vm.processFlow = operationFlowService.operationCompletion(reason.message, false);
         }
 
-        function getOfferingActivity(offeringActivityType) {
-
+        function clearActivity() {
+            vm.offeringActivity.data = utilityService.clearObject(vm.offeringActivity.data);
         }
+
+        // #endregion
+
+        // #region Offering Activity Component
+
+        function getOfferingActivity(activityType) {
+
+            vm.activityType = activityType;
+
+            offeringDataService.getActivity(activityType)
+                .then(function (response) {
+                    vm.offeringActivity = response.data;
+                    if (response.data.length > 0)
+                        vm.offeringActivityPanelSettings.isOpen = true;
+                });
+        }
+
+        // #endregion
+
+        // #region Offering Running Totals Component
 
         function getOfferingRunningTotal() {
             offeringDataService.getRunningTotals(null, entitySelectorService.entityType.Offering)
@@ -57,12 +81,19 @@
                 });
         }
 
+        // #endregion
+
+
+        // #region Panel Settings
+
         function setOfferingActivityPanelDefaults() {
             vm.offeringActivityPanelSettings = {
                 panelHeading: "Today's Offering Activity",
                 isOpen: false
             }
         }
+
+        // #endregion
     }
 
 })();

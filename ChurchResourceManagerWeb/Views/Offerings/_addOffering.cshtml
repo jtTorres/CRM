@@ -1,4 +1,4 @@
-﻿<form id="addOfferingsForm" name="addOfferingsForm" novalidate ng-submit="aoc.addOffering(aoc.Offering, addOfferingsForm)" autocomplete="off">
+﻿<form id="aoc.addOfferingsForm" name="aoc.addOfferingsForm" novalidate ng-submit="aoc.addOffering(aoc.Offering, aoc.addOfferingsForm)" autocomplete="off">
     <!--Date-->
     <div class="col-xs-10">
         <div class="form-group">
@@ -12,7 +12,7 @@
                    ui-mask-placeholder
                    model-view-value="true"
                    required />
-            <div class="help-block-error" ng-messages="addOfferingsForm.dateTxtBx.$error" ng-if="addOfferingsForm.dateTxtBx.$touched || addOfferingsForm.$submitted">
+            <div class="help-block-error" ng-messages="aoc.addOfferingsForm.dateTxtBx.$error" ng-if="aoc.addOfferingsForm.dateTxtBx.$touched || aoc.addOfferingsForm.$submitted">
                 <div ng-messages-include="message-template"></div>
             </div>
         </div>
@@ -25,7 +25,7 @@
                 <span class="input-group-addon">$</span>
                 <input id="amountTxtBx" name="amountTxtBx" class="form-control" type="text" placeholder="Offering Amount (Ex. $0.00)" ng-model="aoc.Offering.OfferingAmount" required />
             </div>
-            <div class="help-block-error" ng-messages="addOfferingsForm.amountTxtBx.$error" ng-if="addOfferingsForm.amountTxtBx.$touched || addOfferingsForm.$submitted">
+            <div class="help-block-error" ng-messages="aoc.addOfferingsForm.amountTxtBx.$error" ng-if="aoc.addOfferingsForm.amountTxtBx.$touched || aoc.addOfferingsForm.$submitted">
                 <div ng-messages-include="message-template"></div>
             </div>
         </div>

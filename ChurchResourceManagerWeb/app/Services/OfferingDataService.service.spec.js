@@ -9,7 +9,7 @@
         updateOffering: "/Offerings/UpdateOffering/",
         deleteOffering: "/Offerings/DeleteOffering/",
         getRunningTotals: "/Shared/GetRunningTotals/",
-        getTodaysActivity: "/Shared/GetTodaysActivity/"
+        getActivity: "/Shared/GetEntityActivityReport/"
     };
 
     var responseData = {
@@ -20,7 +20,7 @@
     var today = new Date();
 
     // function vars
-    var addOffering, updateOffering, deleteOffering, getRunningTotals, getTodaysActivity, setResponseStatus, doWhen, httpFlush, expectHttpOk, expectHttpError;
+    var addOffering, updateOffering, deleteOffering, getRunningTotals, getActivity, setResponseStatus, doWhen, httpFlush, expectHttpOk, expectHttpError;
 
     beforeEach(module("app"));
 
@@ -98,10 +98,10 @@
             httpFlush();
         }
 
-        getTodaysActivity = function (httpStatus, httpData) {
-            doWhen("GET", urls.getTodaysActivity, httpStatus, httpData);
+        getActivity = function (httpStatus, httpData) {
+            doWhen("GET", urls.getActivity, httpStatus, httpData);
 
-            offeringDataService.getTodaysActivity()
+            offeringDataService.getActivity()
                 .then(setResponseStatus)
                 .catch(setResponseStatus);
 
@@ -163,20 +163,20 @@
         expect(httpResponses.data.Total).toBe("10");
     });
 
-    it("getTodaysActivity - should return http success", function () {
-        getTodaysActivity(200, responseData.todaysActivity);
+    it("getActivity - should return http success", function () {
+        getActivity(200, responseData.todaysActivity);
 
         expectHttpOk();
     });
 
-    it("getTodaysActivity - should return http Server Error", function () {
-        getTodaysActivity(500);
+    it("getActivity - should return http Server Error", function () {
+        getActivity(500);
 
         expectHttpError("Error Getting Activity");
     });
 
-    it("getTodaysActivity - should return data", function () {
-        getTodaysActivity(200, responseData.todaysActivity);
+    it("getActivity - should return data", function () {
+        getActivity(200, responseData.todaysActivity);
 
         expect(httpResponses.data.Amount).toBe("10.00");
     });

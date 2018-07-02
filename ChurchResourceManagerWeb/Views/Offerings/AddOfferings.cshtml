@@ -18,14 +18,14 @@
                     </div>
                 </div>
             </div>
-            <running-totals running-total="oc.runningTotal"></running-totals>
+            <running-totals running-total="oc.runningTotal" offering-activity="oc.offeringActivity" ></running-totals>
         </div>
     </div>
 
     <!--Offering Activity-->
     <div style="padding-top: 10px;">
         <offering-activity get-offering-activity="oc.getOfferingActivity(offeringActivityType)"
-                           offering-activity-type="today"
+                           offering-activity-type="{{oc.activityType.Today}}"
                            panel-settings="oc.offeringActivityPanelSettings"
                            offering-activity="oc.offeringActivity"
                            open-edit-modal="oc.openEditOfferingModal(offering, index)"

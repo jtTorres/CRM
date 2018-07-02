@@ -12,7 +12,7 @@
             updateOffering: updateOffering,
             deleteOffering: deleteOffering,
             getRunningTotals: getRunningTotals,
-            getTodaysActivity: getTodaysActivity
+            getActivity: getActivity
         }
 
         function addOffering(offeringRecord) {
@@ -91,10 +91,14 @@
             return $q.reject(utilityService.httpError(reason, "Error Getting Running Totals"));
         }
 
-        function getTodaysActivity() {
+        function getActivity(activity) {
             return $http({
                 method: "GET",
-                url: "/Shared/GetTodaysActivity/"
+                url: "/Shared/GetEntityActivityReport/",
+                params: {
+                    activity: activity
+
+                }
             })
                 .then(onGetTodaysActivityComplete)
                 .catch(onGetTodaysActivityError);
