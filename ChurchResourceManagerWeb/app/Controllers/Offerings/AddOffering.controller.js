@@ -12,6 +12,7 @@
 
 
         vm.addOffering = addOffering;
+        vm.clearForm = clearForm;
         //////////////////////
 
         activate();
