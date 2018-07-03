@@ -22,6 +22,11 @@ namespace ChurchResourceManagerWeb.Controllers
             return View();
         }
 
+        public ActionResult OfferingsSearch()
+        {
+            return View();
+        }
+
         #region PartialViews for Components
 
         public ActionResult AddOffering()

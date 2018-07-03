@@ -1184,6 +1184,7 @@
     <Content Include="Views\Offerings\_offeringActivity.cshtml" />
     <Content Include="Views\Offerings\_editOfferingModal.cshtml" />
     <Content Include="Views\Offerings\_deleteOfferingModal.cshtml" />
+    <Content Include="Views\Offerings\OfferingsSearch.cshtml" />
     <None Include="Views\Test\SpecRunner.cshtml" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />

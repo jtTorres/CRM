@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "OfferingsSearch";
+}
+
+<h2 style="padding-bottom: 40px;">@ViewBag.Title</h2>
+
+<div ng-controller="offeringController as oc">
+    <offering-activity get-offering-activity="oc.getOfferingActivity(offeringActivityType)"
+                       offering-activity-type="{{oc.activityType.All}}"
+                       panel-settings="oc.offeringActivityPanelSettings"
+                       offering-activity="oc.offeringActivity"
+                       open-edit-modal="oc.openEditOfferingModal(offering, index)"
+                       open-delete-modal="oc.openDeleteOfferingModal(offeringId)"
+                       include-date-column="true"></offering-activity>
+</div>
+
