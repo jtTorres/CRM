@@ -3,9 +3,9 @@
     angular.module("app")
         .factory("membershipDataService", membershipDataService);
 
-    membershipDataService.$inject = ["$http", "$q", "utilityService"];
+    membershipDataService.$inject = ["$http", "$q", "utilityService", "stateList"];
 
-    function membershipDataService($http, $q, utilityService) {
+    function membershipDataService($http, $q, utilityService, stateList) {
 
         var allMembership = {
             data: {}
@@ -13,7 +13,8 @@
 
         return {
             getAllMembership: getAllMembership,
-            allMembership: allMembership
+            allMembership: allMembership,
+            getStateList: getStateList
         };
 
 
@@ -32,6 +33,10 @@
 
         function onGetMembershipError(reason) {
             return $q.reject(utilityService.httpError(reason, "Error Getting Membership"));
+        }
+
+        function getStateList() {
+            return stateList;
         }
     }
 

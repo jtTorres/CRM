@@ -1,0 +1,13 @@
+﻿
+
+@{
+    ViewBag.Title = "Add Membership";
+}
+
+<div ng-controller="membershipController as mc">
+    <div class="container">
+        <div class="row">
+            <add-membership genders="mc.genders" marital-statuses="mc.maritalStatuses" state-list="mc.stateList", member-groups="mc.memberGroups"></add-membership>
+        </div>
+    </div>
+</div>

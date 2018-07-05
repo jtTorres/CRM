@@ -194,6 +194,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MembershipController.cs" />
     <Compile Include="Controllers\OfferingsController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\TestController.cs" />
@@ -281,6 +282,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\Components\addMembership.component.js" />
     <Content Include="app\Components\addOffering.component.js" />
     <Content Include="app\Components\addOffering.component.spec.js" />
     <Content Include="app\Components\addTithe.component.js" />
@@ -297,6 +299,8 @@
     <Content Include="app\Controllers\Home\Home.controller.js" />
     <Content Include="app\Controllers\Home\Home.controller.spec.js" />
     <Content Include="app\Components\Shared\runningTotal.component.spec.js" />
+    <Content Include="app\Controllers\Membership\AddMembership.controller.js" />
+    <Content Include="app\Controllers\Membership\Membership.controller.js" />
     <Content Include="app\Controllers\Offerings\AddOffering.controller.js" />
     <Content Include="app\Controllers\Offerings\DeleteOffering.controller.js" />
     <Content Include="app\Controllers\Offerings\EditOffering.controller.js" />
@@ -314,6 +318,7 @@
     <Content Include="app\Controllers\Tithing\TithingActivityByMemberGrid.controller.js" />
     <Content Include="app\Core\ActivitySelector.service.js" />
     <Content Include="app\Core\EntitySelector.service.js" />
+    <Content Include="app\Core\stateLIst.service.js" />
     <Content Include="app\Filters\Search.filter.js" />
     <Content Include="app\Services\OfferingDataService.service.js" />
     <Content Include="app\Services\OfferingDataService.service.spec.js" />
@@ -1185,6 +1190,9 @@
     <Content Include="Views\Offerings\_editOfferingModal.cshtml" />
     <Content Include="Views\Offerings\_deleteOfferingModal.cshtml" />
     <Content Include="Views\Offerings\OfferingsSearch.cshtml" />
+    <Content Include="Views\Membership\Home.cshtml" />
+    <Content Include="Views\Membership\AddMembership.cshtml" />
+    <Content Include="Views\Membership\_addMembership.cshtml" />
     <None Include="Views\Test\SpecRunner.cshtml" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
