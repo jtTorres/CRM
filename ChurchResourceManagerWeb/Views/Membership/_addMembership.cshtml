@@ -1,101 +1,139 @@
 ﻿<form id="amc.addMembershipForm" name="amc.addMembershipForm" novalidate ng-submit="amc.addMembership(amc.Membership, amc.addMembershipForm)" autocomplete="off">
     <div class="col-xs-12">
         <uib-accordion close-others="amc.accordionSettings.closeOthers">
-            <div uib-accordion-group class="panel-default" is-open="amc.accordionSettings.isOpen">
+            <div uib-accordion-group class="panel-default" @*is-open="amc.accordionSettings.isOpen"*@>
                 <uib-accordion-heading>
                     Family Information   <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': amc.accordionSettings.isOpen, 'glyphicon-chevron-up': !amc.accordionSettings.isOpen}"></i>
                 </uib-accordion-heading>
                 <div class="col-xs-6">
                     <div class="form-group">
                         <label for="familyNameTxtBx">Family Name</label>
-                        <input id="familyNameTxtBx" name="familyNameTxtBx" class="form-control" type="text" placeholder="(Ex. Torres-Velez)" ng-model="amc.Membership.FamilyName" />
+                        <input id="familyNameTxtBx" name="familyNameTxtBx" class="form-control" type="text" placeholder="(Ex. Torres-Velez)" ng-model="amc.Membership.FamilyName" required />
+                        <div class="help-block-error" ng-messages="amc.addMembershipForm.familyNameTxtBx.$error" ng-if="amc.addMembershipForm.familyNameTxtBx.$touched">
+                            <div ng-messages-include="message-template"></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div uib-accordion-group class="panel-default" is-open="amc.accordionSettings.isOpen">
+            <div uib-accordion-group class="panel-default" @*is-open="amc.accordionSettings.isOpen"*@>
                 <uib-accordion-heading>
-                    Personal Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': amc.accordionSettings.isOpen, 'glyphicon-chevron-up': !amc.accordionSettings.isOpen}"></i>
+                    Member Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': amc.accordionSettings.isOpen, 'glyphicon-chevron-up': !amc.accordionSettings.isOpen}"></i>
                 </uib-accordion-heading>
-                <div class="col-xs-6">
-                    <div class="form-group">
-                        <label for="firstNameTxtBx">First Name</label>
-                        <input id="firstNameTxtBx" name="firstNameTxtBx" class="form-control" type="text" placeholder="" ng-model="amc.Membership.FirstName" />
+                <div uib-accordion-group class="panel-default" @*is-open="amc.accordionSettings.isOpen"*@>
+                    <uib-accordion-heading>
+                        Personal Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': amc.accordionSettings.isOpen, 'glyphicon-chevron-up': !amc.accordionSettings.isOpen}"></i>
+                    </uib-accordion-heading>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label for="firstNameTxtBx">First Name</label>
+                            <input id="firstNameTxtBx" name="firstNameTxtBx" class="form-control" type="text" placeholder="" ng-model="amc.Membership.FirstName" required/>
+                            <div class="help-block-error" ng-messages="amc.addMembershipForm.firstNameTxtBx.$error" ng-if="amc.addMembershipForm.firstNameTxtBx.$touched">
+                                <div ng-messages-include="message-template"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="middleNameTxtBx">Middle Name</label>
+                            <input id="middleNameTxtBx" name="middleNameTxtBx" class="form-control" type="text" placeholder="" ng-model="amc.Membership.MiddleName"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastNameTxtBx">Last Name</label>
+                            <input id="lastNameTxtBx" name="lastNameTxtBx" class="form-control" type="text" placeholder="" ng-model="amc.Membership.LastName" required/>
+                            <div class="help-block-error" ng-messages="amc.addMembershipForm.lastNameTxtBx.$error" ng-if="amc.addMembershipForm.lastNameTxtBx.$touched">
+                                <div ng-messages-include="message-template"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dobTxtBx">Date of Birth</label>
+                            <input id="dobTxtBx" name="dobTxtBx" class="form-control" type="text" ng-model="amc.Membership.Dob"
+                                   ui-mask="99/99/9999"
+                                   ui-mask-placeholder
+                                   model-view-value="true"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="ddlGender">Gender</label>
+                            <select id="ddlGender" name="ddlGender" class="form-control" ng-model="amc.Membership.Gender" ng-options="g.Name for g in amc.genders" required></select>
+                            <div class="help-block-error" ng-messages="amc.addMembershipForm.ddlGender.$error" ng-if="amc.addMembershipForm.ddlGender.$touched">
+                                <div ng-messages-include="message-template"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ddlMaritalStatus">Marital Status</label>
+                            <select id="ddlMaritalStatus" name="ddlMaritalStatus" class="form-control" ng-model="amc.Membership.MaritalStatusId" ng-options="m.Name for m in amc.maritalStatuses" required></select>
+                            <div class="help-block-error" ng-messages="amc.addMembershipForm.ddlMaritalStatus.$error" ng-if="amc.addMembershipForm.ddlMaritalStatus.$touched">
+                                <div ng-messages-include="message-template"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="memberGroupTxtBx">Member Group</label>
+                            <select id="memberGroupTxtBx" name="memberGroupTxtBx" class="form-control" ng-model="amc.Membership.MemberGroup" ng-options="m.Name for m in amc.memberGroups" required></select>
+                            <div class="help-block-error" ng-messages="amc.addMembershipForm.memberGroupTxtBx.$error" ng-if="amc.addMembershipForm.memberGroupTxtBx.$touched">
+                                <div ng-messages-include="message-template"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="middleNameTxtBx">Middle Name</label>
-                        <input id="middleNameTxtBx" name="middleNameTxtBx" class="form-control" type="text" placeholder="" ng-model="amc.Membership.MiddleName" />
-                    </div>
-                    <div class="form-group">
-                        <label for="lastNameTxtBx">Last Name</label>
-                        <input id="lastNameTxtBx" name="lastNameTxtBx" class="form-control" type="text" placeholder="" ng-model="amc.Membership.LastName" />
-                    </div>
-                    <div class="form-group">
-                        <label for="dobTxtBx">Date of Birth</label>
-                        <input id="dobTxtBx" name="dobTxtBx" class="form-control" type="text" ng-model="amc.Membership.Dob"
-                               ui-mask="99/99/9999"
-                               ui-mask-placeholder
-                               model-view-value="true" />
-                    </div>
-                    <div class="form-group">
-                        <label for="ddlGender">Gender</label>
-                        <select id="ddlGender" name="ddlGender" class="form-control" ng-model="amc.Membership.Gender" ng-options="g.Name for g in amc.genders"></select>
-                    </div>
-                    <div class="form-group">
-                        <label for="ddlMaritalStatus">Marital Status</label>
-                        <select id="ddlMaritalStatus" name="ddlMaritalStatus" class="form-control" ng-model="amc.Membership.MaritalStatusId" ng-options="m.Name for m in amc.maritalStatuses"></select>
-                    </div>
-                    <div class="form-group">
-                        <label for="memberGroupTxtBx">Member Group</label>
-                        <select id="memberGroupTxtBx" name="memberGroupTxtBx" class="form-control" ng-model="amc.Membership.MemberGroup" ng-options="m.Name for m in amc.memberGroups"></select>
+                </div>
+
+                <div uib-accordion-group class="panel-default" @*is-open="amc.accordionSettings.isOpen"*@>
+                    <uib-accordion-heading>
+                        Contact Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': amc.accordionSettings.isOpen, 'glyphicon-chevron-up': !amc.accordionSettings.isOpen}"></i>
+                    </uib-accordion-heading>
+                    <div class="col-xs-6">
+                        <div class="form-group">
+                            <label for="phoneNumberTxtBx">Phone Number</label>
+                            <input id="phoneNumberTxtBx" name="phoneNumberTxtBx" class="form-control" type="text" placeholder="(414)-123-4567" ng-model="amc.Membership.PhoneNumber"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="emailTxtBx">Email</label>
+                            <input id="emailTxtBx" name="emailTxtBx" class="form-control" type="text" placeholder="joeShmoe@gmail.com" ng-model="amc.Membership.Email"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="preferredContactMethodTxtBx">Preferred Contact Method</label>
+                            <select id="preferredContactMethodTxtBx" name="preferredContactMethodTxtBx" class="form-control" ng-model="amc.Membership.PreferredContactMethod" ng-options="m.Name for m in amc.preferredContactMethods" ng-required="amc.Membership.PhoneNumber.length > 0 || amc.Membership.Email.length > 0"></select>
+                            <div class="help-block-error" ng-messages="amc.addMembershipForm.preferredContactMethodTxtBx.$error" ng-if="amc.addMembershipForm.preferredContactMethodTxtBx.$touched">
+                                <div ng-messages-include="message-template"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div uib-accordion-group class="panel-default" is-open="amc.accordionSettings.isOpen">
+            <div uib-accordion-group class="panel-default" @*is-open="amc.accordionSettings.isOpen"*@>
                 <uib-accordion-heading>
                     Address Information   <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': amc.accordionSettings.isOpen, 'glyphicon-chevron-up': !amc.accordionSettings.isOpen}"></i>
                 </uib-accordion-heading>
                 <div class="col-xs-6">
                     <div class="form-group">
                         <label for="address1TxtBx">Address</label>
-                        <input id="address1TxtBx" name="address1TxtBx" class="form-control" type="text" placeholder="123 Main St." ng-model="amc.Membership.Address1" />
+                        <input id="address1TxtBx" name="address1TxtBx" class="form-control" type="text" placeholder="123 Main St." ng-model="amc.Membership.Address1" required />
+                        <div class="help-block-error" ng-messages="amc.addMembershipForm.address1TxtBx.$error" ng-if="amc.addMembershipForm.address1TxtBx.$touched">
+                            <div ng-messages-include="message-template"></div>
+                        </div>
                         <input id="address2TxtBx" name="address2TxtBx" class="form-control" type="text" placeholder="Apt. 123" ng-model="amc.Membership.Address2" />
                     </div>
                     <div class="form-group">
                         <label for="cityTxtBx">City</label>
-                        <input id="cityTxtBx" name="cityTxtBx" class="form-control" type="text" placeholder="123 Main St." ng-model="amc.Membership.City" />
+                        <input id="cityTxtBx" name="cityTxtBx" class="form-control" type="text" placeholder="123 Main St." ng-model="amc.Membership.City" required />
+                        <div class="help-block-error" ng-messages="amc.addMembershipForm.cityTxtBx.$error" ng-if="amc.addMembershipForm.cityTxtBx.$touched">
+                            <div ng-messages-include="message-template"></div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="stateTxtBx">State</label>
-                        <select id="stateTxtBx" name="stateTxtBx" class="form-control" ng-model="amc.Membership.State" ng-options="m.Name for m in amc.stateList"></select>
+                        <select id="stateTxtBx" name="stateTxtBx" class="form-control" ng-model="amc.Membership.State" ng-options="m.Name for m in amc.stateList" required></select>
+                        <div class="help-block-error" ng-messages="amc.addMembershipForm.stateTxtBx.$error" ng-if="amc.addMembershipForm.stateTxtBx.$touched">
+                            <div ng-messages-include="message-template"></div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="zipTxtBx">Zip Code</label>
-                        <input id="zipTxtBx" name="zipTxtBx" class="form-control" type="text" placeholder="123 Main St." ng-model="amc.Membership.ZipCode" />
+                        <input id="zipTxtBx" name="zipTxtBx" class="form-control" type="text" placeholder="123 Main St." ng-model="amc.Membership.ZipCode" required />
+                        <div class="help-block-error" ng-messages="amc.addMembershipForm.zipTxtBx.$error" ng-if="amc.addMembershipForm.zipTxtBx.$touched">
+                            <div ng-messages-include="message-template"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div uib-accordion-group class="panel-default" is-open="amc.accordionSettings.isOpen">
-                <uib-accordion-heading>
-                    Contact Information   <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': amc.accordionSettings.isOpen, 'glyphicon-chevron-up': !amc.accordionSettings.isOpen}"></i>
-                </uib-accordion-heading>
-                <div class="col-xs-6">
-                    <div class="form-group">
-                        <label for="phoneNumberTxtBx">Phone Number</label>
-                        <input id="phoneNumberTxtBx" name="phoneNumberTxtBx" class="form-control" type="text" placeholder="(414)-123-4567" ng-model="amc.Membership.PhoneNumber" />
-                    </div>
-                    <div class="form-group">
-                        <label for="emailTxtBx">Email</label>
-                        <input id="emailTxtBx" name="emailTxtBx" class="form-control" type="text" placeholder="joeShmoe@gmail.com" ng-model="amc.Membership.Email" />
-                    </div>
-                    <div class="form-group">
-                        <label for="preferredContactMethodTxtBx">Preferred Contact Method</label>
-                        <select id="preferredContactMethodTxtBx" name="preferredContactMethodTxtBx" class="form-control" ng-model="amc.Membership.PreferredContactMethod" ng-options="m.Name for m in amc.preferredContactMethods"></select>
-                    </div>
-                </div>
-            </div>
-
         </uib-accordion>
     </div>
     <!--Submit and Clear Form Buttons-->
