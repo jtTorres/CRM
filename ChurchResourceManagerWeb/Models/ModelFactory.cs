@@ -7,6 +7,7 @@ namespace ChurchResourceManagerWeb.Models
 {
     public class ModelFactory
     {
+        #region EF Creations
         public TITHES CreateTithe(TithesViewModel tithe)
         {
             return new TITHES
@@ -34,6 +35,62 @@ namespace ChurchResourceManagerWeb.Models
             };
         }
 
+        public LOCATIONS CreateLocation(MembershipInfoViewModel membershipRecord)
+        {
+            return new LOCATIONS
+            {
+                ADDRESS1 = membershipRecord.Address1,
+                ADDRESS2 = membershipRecord.Address2,
+                CITY = membershipRecord.City,
+                STATE = membershipRecord.State,
+                ZIP_CODE = membershipRecord.ZipCode
+            };
+        }
+
+        public MEMBERSHIP CreateMembership(MembershipInfoViewModel membership)
+        {
+            return new MEMBERSHIP
+            {
+                FIRST_NAME = membership.FirstName,
+                MIDDLE_NAME = membership.MiddleName,
+                LAST_NAME = membership.LastName,
+                DOB = Convert.ToDateTime(membership.Dob),
+                GENDER = membership.Gender,
+                FAMILY_ID = membership.FamilyId,
+                MARITAL_STATUS_ID = membership.MaritalStatusId,
+                GROUP_ID = membership.GroupId,
+                PREFERRERD_CONTACT_METHOD = membership.PreferredContactMethod,
+                MEMBERSHIP_TYPE_ID = membership.MembershipTypeId,
+                LOCATION_ID = membership.LocationId,
+                EXIT_DATE = null,
+                LAST_MODIFIED_DATE = DateTime.Now
+            };
+        }
+
+        public IEnumerable<CONTACT_INFO> CreateContactInfo(IEnumerable<ContactInfoViewModel> contactInfo)
+        {
+
+            return contactInfo.Select(c => new CONTACT_INFO
+            {
+                MEMBER_ID = c.MemberId,
+                CONTACT_METHOD_ID = c.ContactMethodId,
+                CONTACT_INFO1 = c.ContactInfo
+            }).ToList();
+        }
+
+        public FAMILIES CreateFamily(string familyName)
+        {
+            return new FAMILIES
+            {
+                NAME = familyName
+            };
+        }
+
+
+        #endregion
+
+
+        #region List Creations
         public IEnumerable<TithesViewModel> CreateTithesViewModelList(IQueryable<TITHES> tithe, IQueryable<MEMBERSHIP> member)
         {
             return (from t in tithe
@@ -65,5 +122,22 @@ namespace ChurchResourceManagerWeb.Models
             }).ToList();
         }
 
+        public IEnumerable<ContactInfoViewModel> CreateContactInfoViewModelList(int memberId, string homePhone, string cellPhone, string email)
+        {
+            var contactInfo = new List<ContactInfoViewModel>();
+
+            if (!string.IsNullOrEmpty(homePhone))
+                contactInfo.Add(new ContactInfoViewModel() { MemberId = memberId, ContactMethodId = 1, ContactInfo = homePhone });
+
+            if (!string.IsNullOrEmpty(cellPhone))
+                contactInfo.Add(new ContactInfoViewModel() { MemberId = memberId, ContactMethodId = 2, ContactInfo = cellPhone });
+
+            if (!string.IsNullOrEmpty(email))
+                contactInfo.Add(new ContactInfoViewModel() { MemberId = memberId, ContactMethodId = 3, ContactInfo = email });
+
+            return contactInfo;
+
+        }
+        #endregion
     }
 }

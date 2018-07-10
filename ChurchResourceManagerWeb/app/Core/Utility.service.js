@@ -6,9 +6,9 @@
         //register the service with angular
         .factory("utilityService", utilityService);
 
-    utilityService.$inject = [];
+    utilityService.$inject = ["$anchorScroll", "$location"];
 
-    function utilityService() {
+    function utilityService($anchorScroll, $location) {
 
 
         return {
@@ -20,7 +20,8 @@
             closeModal: closeModal,
             updateArray: updateArray,
             deleteArray: deleteArray,
-            getArrayIndexOf: getArrayIndexOf
+            getArrayIndexOf: getArrayIndexOf,
+            scrollTop: scrollTop
         };
 
         function httpError(reason, errorMessage) {
@@ -88,6 +89,11 @@
 
         function getArrayDeleteCount(deleteCount) {
             return isUndefinedOrNull(deleteCount) ? 1 : deleteCount;
+        }
+
+        function scrollTop(location) {
+            $location.hash(location);
+            $anchorScroll();
         }
     }
 

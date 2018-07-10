@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
+using ChurchResourceManagerWeb.Models;
 
 namespace ChurchResourceManagerWeb.Controllers
 {
-    public class MembershipController : Controller
+    [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+    public class MembershipController : BaseController
     {
         // GET: Membership
         public ActionResult Home()
@@ -26,5 +29,21 @@ namespace ChurchResourceManagerWeb.Controllers
             return PartialView("_addMembership");
         }
         #endregion
+
+
+        public JsonResult AddMembershipRecord(MembershipInfoViewModel membershipRecord)
+        {
+            try
+            {
+                if (Repo.AddMembership(membershipRecord) && Repo.SaveAll())
+                    return Json(new { Success = true });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+            return Json(new { Success = false });
+        }
     }
 }

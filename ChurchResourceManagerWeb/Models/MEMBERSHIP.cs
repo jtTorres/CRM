@@ -22,19 +22,19 @@ namespace ChurchResourceManagerWeb.Models
             this.TITHES = new HashSet<TITHES>();
         }
     
-        public int FAMILY_ID { get; set; }
+        public Nullable<int> FAMILY_ID { get; set; }
         public int MEMBER_ID { get; set; }
         public string FIRST_NAME { get; set; }
         public string MIDDLE_NAME { get; set; }
         public string LAST_NAME { get; set; }
         public Nullable<System.DateTime> DOB { get; set; }
         public string GENDER { get; set; }
-        public short LOCATION_ID { get; set; }
-        public byte MARITAL_STATUS_ID { get; set; }
-        public byte GROUP_ID { get; set; }
-        public byte PREFERRERD_CONTACT_METHOD { get; set; }
+        public Nullable<short> LOCATION_ID { get; set; }
+        public Nullable<byte> MARITAL_STATUS_ID { get; set; }
+        public Nullable<byte> GROUP_ID { get; set; }
+        public Nullable<byte> PREFERRERD_CONTACT_METHOD { get; set; }
         public Nullable<System.DateTime> EXIT_DATE { get; set; }
-        public byte MEMBERSHIP_TYPE_ID { get; set; }
+        public Nullable<byte> MEMBERSHIP_TYPE_ID { get; set; }
         public System.DateTime LAST_MODIFIED_DATE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

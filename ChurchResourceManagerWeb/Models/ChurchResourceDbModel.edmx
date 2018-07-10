@@ -58,7 +58,7 @@
           <Key>
             <PropertyRef Name="LOCATION_ID" />
           </Key>
-          <Property Name="LOCATION_ID" Type="smallint" Nullable="false" />
+          <Property Name="LOCATION_ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ADDRESS1" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="ADDRESS2" Type="varchar" MaxLength="255" />
           <Property Name="CITY" Type="varchar" MaxLength="50" Nullable="false" />
@@ -83,19 +83,19 @@
           <Key>
             <PropertyRef Name="MEMBER_ID" />
           </Key>
-          <Property Name="FAMILY_ID" Type="int" Nullable="false" />
+          <Property Name="FAMILY_ID" Type="int" />
           <Property Name="MEMBER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FIRST_NAME" Type="varchar" MaxLength="80" Nullable="false" />
           <Property Name="MIDDLE_NAME" Type="char" MaxLength="1" />
           <Property Name="LAST_NAME" Type="varchar" MaxLength="90" Nullable="false" />
           <Property Name="DOB" Type="date" />
           <Property Name="GENDER" Type="char" MaxLength="1" />
-          <Property Name="LOCATION_ID" Type="smallint" Nullable="false" />
-          <Property Name="MARITAL_STATUS_ID" Type="tinyint" Nullable="false" />
-          <Property Name="GROUP_ID" Type="tinyint" Nullable="false" />
-          <Property Name="PREFERRERD_CONTACT_METHOD" Type="tinyint" Nullable="false" />
+          <Property Name="LOCATION_ID" Type="smallint" />
+          <Property Name="MARITAL_STATUS_ID" Type="tinyint" />
+          <Property Name="GROUP_ID" Type="tinyint" />
+          <Property Name="PREFERRERD_CONTACT_METHOD" Type="tinyint" />
           <Property Name="EXIT_DATE" Type="date" />
-          <Property Name="MEMBERSHIP_TYPE_ID" Type="tinyint" Nullable="false" />
+          <Property Name="MEMBERSHIP_TYPE_ID" Type="tinyint" />
           <Property Name="LAST_MODIFIED_DATE" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="MEMBERSHIP_TYPES">
@@ -203,7 +203,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_MEMBERSHIP_to_FAMILIES_FAMILY_ID">
-          <End Role="FAMILIES" Type="Self.FAMILIES" Multiplicity="1" />
+          <End Role="FAMILIES" Type="Self.FAMILIES" Multiplicity="0..1" />
           <End Role="MEMBERSHIP" Type="Self.MEMBERSHIP" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FAMILIES">
@@ -215,7 +215,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_MEMBERSHIP_to_LOCATIONS_LOCATION_ID">
-          <End Role="LOCATIONS" Type="Self.LOCATIONS" Multiplicity="1" />
+          <End Role="LOCATIONS" Type="Self.LOCATIONS" Multiplicity="0..1" />
           <End Role="MEMBERSHIP" Type="Self.MEMBERSHIP" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LOCATIONS">
@@ -227,7 +227,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_MEMBERSHIP_to_MARITAL_STATUS_MARITAL_STATUS_ID">
-          <End Role="MARITAL_STATUS" Type="Self.MARITAL_STATUS" Multiplicity="1" />
+          <End Role="MARITAL_STATUS" Type="Self.MARITAL_STATUS" Multiplicity="0..1" />
           <End Role="MEMBERSHIP" Type="Self.MEMBERSHIP" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MARITAL_STATUS">
@@ -239,7 +239,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_MEMBERSHIP_to_MEMBER_GROUPS_GROUP_ID">
-          <End Role="MEMBER_GROUPS" Type="Self.MEMBER_GROUPS" Multiplicity="1" />
+          <End Role="MEMBER_GROUPS" Type="Self.MEMBER_GROUPS" Multiplicity="0..1" />
           <End Role="MEMBERSHIP" Type="Self.MEMBERSHIP" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MEMBER_GROUPS">
@@ -251,7 +251,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_MEMBERSHIP_to_MEMBERSHIP_TYPES_MEMBERSHIP_TYPE_ID">
-          <End Role="MEMBERSHIP_TYPES" Type="Self.MEMBERSHIP_TYPES" Multiplicity="1" />
+          <End Role="MEMBERSHIP_TYPES" Type="Self.MEMBERSHIP_TYPES" Multiplicity="0..1" />
           <End Role="MEMBERSHIP" Type="Self.MEMBERSHIP" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MEMBERSHIP_TYPES">
@@ -523,19 +523,19 @@
           <Key>
             <PropertyRef Name="MEMBER_ID" />
           </Key>
-          <Property Name="FAMILY_ID" Type="Int32" Nullable="false" />
+          <Property Name="FAMILY_ID" Type="Int32" />
           <Property Name="MEMBER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FIRST_NAME" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
           <Property Name="MIDDLE_NAME" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="LAST_NAME" Type="String" Nullable="false" MaxLength="90" FixedLength="false" Unicode="false" />
           <Property Name="DOB" Type="DateTime" Precision="0" />
           <Property Name="GENDER" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="LOCATION_ID" Type="Int16" Nullable="false" />
-          <Property Name="MARITAL_STATUS_ID" Type="Byte" Nullable="false" />
-          <Property Name="GROUP_ID" Type="Byte" Nullable="false" />
-          <Property Name="PREFERRERD_CONTACT_METHOD" Type="Byte" Nullable="false" />
+          <Property Name="LOCATION_ID" Type="Int16" />
+          <Property Name="MARITAL_STATUS_ID" Type="Byte" />
+          <Property Name="GROUP_ID" Type="Byte" />
+          <Property Name="PREFERRERD_CONTACT_METHOD" Type="Byte" />
           <Property Name="EXIT_DATE" Type="DateTime" Precision="0" />
-          <Property Name="MEMBERSHIP_TYPE_ID" Type="Byte" Nullable="false" />
+          <Property Name="MEMBERSHIP_TYPE_ID" Type="Byte" />
           <Property Name="LAST_MODIFIED_DATE" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="ACTIVITIES" Relationship="ChurchResourceDbModel.fk_ACTIVITIES_to_MEMBERSHSIP" FromRole="MEMBERSHIP" ToRole="ACTIVITIES" />
           <NavigationProperty Name="CONTACT_INFO" Relationship="ChurchResourceDbModel.fk_CONTACT_INFO_to_MEMBERSHIP_MEMBER_ID" FromRole="MEMBERSHIP" ToRole="CONTACT_INFO" />
@@ -668,7 +668,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_MEMBERSHIP_to_FAMILIES_FAMILY_ID">
-          <End Type="ChurchResourceDbModel.FAMILIES" Role="FAMILIES" Multiplicity="1" />
+          <End Type="ChurchResourceDbModel.FAMILIES" Role="FAMILIES" Multiplicity="0..1" />
           <End Type="ChurchResourceDbModel.MEMBERSHIP" Role="MEMBERSHIP" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FAMILIES">
@@ -680,7 +680,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_MEMBERSHIP_to_LOCATIONS_LOCATION_ID">
-          <End Type="ChurchResourceDbModel.LOCATIONS" Role="LOCATIONS" Multiplicity="1" />
+          <End Type="ChurchResourceDbModel.LOCATIONS" Role="LOCATIONS" Multiplicity="0..1" />
           <End Type="ChurchResourceDbModel.MEMBERSHIP" Role="MEMBERSHIP" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LOCATIONS">
@@ -692,7 +692,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_MEMBERSHIP_to_MARITAL_STATUS_MARITAL_STATUS_ID">
-          <End Type="ChurchResourceDbModel.MARITAL_STATUS" Role="MARITAL_STATUS" Multiplicity="1" />
+          <End Type="ChurchResourceDbModel.MARITAL_STATUS" Role="MARITAL_STATUS" Multiplicity="0..1" />
           <End Type="ChurchResourceDbModel.MEMBERSHIP" Role="MEMBERSHIP" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MARITAL_STATUS">
@@ -704,7 +704,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_MEMBERSHIP_to_MEMBER_GROUPS_GROUP_ID">
-          <End Type="ChurchResourceDbModel.MEMBER_GROUPS" Role="MEMBER_GROUPS" Multiplicity="1" />
+          <End Type="ChurchResourceDbModel.MEMBER_GROUPS" Role="MEMBER_GROUPS" Multiplicity="0..1" />
           <End Type="ChurchResourceDbModel.MEMBERSHIP" Role="MEMBERSHIP" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MEMBER_GROUPS">
@@ -716,7 +716,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_MEMBERSHIP_to_MEMBERSHIP_TYPES_MEMBERSHIP_TYPE_ID">
-          <End Type="ChurchResourceDbModel.MEMBERSHIP_TYPES" Role="MEMBERSHIP_TYPES" Multiplicity="1" />
+          <End Type="ChurchResourceDbModel.MEMBERSHIP_TYPES" Role="MEMBERSHIP_TYPES" Multiplicity="0..1" />
           <End Type="ChurchResourceDbModel.MEMBERSHIP" Role="MEMBERSHIP" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MEMBERSHIP_TYPES">

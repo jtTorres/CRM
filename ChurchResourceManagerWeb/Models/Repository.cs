@@ -30,8 +30,8 @@ namespace ChurchResourceManagerWeb.Models
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                //throw;
-                return false;
+                throw;
+                //return false;
             }
 
         }
@@ -46,9 +46,56 @@ namespace ChurchResourceManagerWeb.Models
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                //throw;
-                return false;
+                throw;
+                //return false;
             }
+        }
+
+        public bool AddMembership(MembershipInfoViewModel membershipRecord)
+        {
+            try
+            {
+                var family = ModelFactory.CreateFamily(membershipRecord.FamilyName);
+                db.FAMILIES.Add(family);
+                SaveAll();
+
+                membershipRecord.FamilyId = family.FAMILY_ID;
+
+                var location = ModelFactory.CreateLocation(membershipRecord);
+                db.LOCATIONS.Add(location);
+                SaveAll();
+
+                membershipRecord.LocationId = location.LOCATION_ID;
+
+                var member = ModelFactory.CreateMembership(membershipRecord);
+                db.MEMBERSHIP.Add(member);
+                SaveAll();
+
+                membershipRecord.MemberId = member.MEMBER_ID;
+
+                var contactInfoVm = ModelFactory.CreateContactInfoViewModelList(member.MEMBER_ID, membershipRecord.HomePhoneNumber, membershipRecord.CellPhoneNumber, membershipRecord.Email);
+                var contactInfo = ModelFactory.CreateContactInfo(contactInfoVm);
+                AddContactInfo(contactInfo);
+                SaveAll();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+                //return false;
+            }
+        }
+
+        public bool AddContactInfo(IEnumerable<CONTACT_INFO> contactInfo)
+        {
+            foreach (var info in contactInfo)
+            {
+                db.CONTACT_INFO.Add(info);
+            }
+
+            return true;
         }
 
 
@@ -170,7 +217,5 @@ namespace ChurchResourceManagerWeb.Models
         {
             return db.SaveChanges() > 0;
         }
-
-
     }
 }

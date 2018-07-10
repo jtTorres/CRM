@@ -1,14 +1,15 @@
 ﻿<form id="amc.addMembershipForm" name="amc.addMembershipForm" novalidate ng-submit="amc.addMembership(amc.Membership, amc.addMembershipForm)" autocomplete="off">
     <div class="col-xs-12">
         <uib-accordion close-others="amc.accordionSettings.closeOthers">
-            <div uib-accordion-group class="panel-default" @*is-open="amc.accordionSettings.isOpen"*@>
+            <div uib-accordion-group class="panel-default" is-open="amc.accordionSettings.isOpen">
                 <uib-accordion-heading>
                     Family Information   <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': amc.accordionSettings.isOpen, 'glyphicon-chevron-up': !amc.accordionSettings.isOpen}"></i>
                 </uib-accordion-heading>
                 <div class="col-xs-6">
-                    <div class="form-group">
+                    <div class="form-group" ng-class="{'has-error' : amc.addMembershipForm.familyNameTxtBx.$invalid && amc.addMembershipForm.familyNameTxtBx.$touched}">
                         <label for="familyNameTxtBx">Family Name</label>
-                        <input id="familyNameTxtBx" name="familyNameTxtBx" class="form-control" type="text" placeholder="(Ex. Torres-Velez)" ng-model="amc.Membership.FamilyName" required />
+                        <input id="familyNameTxtBx" name="familyNameTxtBx" class="form-control" type="text" placeholder="(Ex. Torres-Velez)" 
+                               ng-model="amc.Membership.FamilyName" required maxlength="80"/>
                         <div class="help-block-error" ng-messages="amc.addMembershipForm.familyNameTxtBx.$error" ng-if="amc.addMembershipForm.familyNameTxtBx.$touched">
                             <div ng-messages-include="message-template"></div>
                         </div>
@@ -25,48 +26,51 @@
                         Personal Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': amc.accordionSettings.isOpen, 'glyphicon-chevron-up': !amc.accordionSettings.isOpen}"></i>
                     </uib-accordion-heading>
                     <div class="col-xs-6">
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{'has-error' : amc.addMembershipForm.firstNameTxtBx.$invalid && amc.addMembershipForm.firstNameTxtBx.$touched}">
                             <label for="firstNameTxtBx">First Name</label>
-                            <input id="firstNameTxtBx" name="firstNameTxtBx" class="form-control" type="text" placeholder="" ng-model="amc.Membership.FirstName" required/>
+                            <input id="firstNameTxtBx" name="firstNameTxtBx" class="form-control" type="text" placeholder="" ng-model="amc.Membership.FirstName" required
+                                   maxlength="80"/>
                             <div class="help-block-error" ng-messages="amc.addMembershipForm.firstNameTxtBx.$error" ng-if="amc.addMembershipForm.firstNameTxtBx.$touched">
                                 <div ng-messages-include="message-template"></div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{'has-error' : amc.addMembershipForm.middleNameTxtBx.$invalid && amc.addMembershipForm.middleNameTxtBx.$touched}">
                             <label for="middleNameTxtBx">Middle Name</label>
-                            <input id="middleNameTxtBx" name="middleNameTxtBx" class="form-control" type="text" placeholder="" ng-model="amc.Membership.MiddleName"/>
+                            <input id="middleNameTxtBx" name="middleNameTxtBx" class="form-control" type="text" placeholder="" ng-model="amc.Membership.MiddleName"
+                                   maxlength="1"/>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{'has-error' : amc.addMembershipForm.lastNameTxtBx.$invalid && amc.addMembershipForm.lastNameTxtBx.$touched}">
                             <label for="lastNameTxtBx">Last Name</label>
-                            <input id="lastNameTxtBx" name="lastNameTxtBx" class="form-control" type="text" placeholder="" ng-model="amc.Membership.LastName" required/>
+                            <input id="lastNameTxtBx" name="lastNameTxtBx" class="form-control" type="text" placeholder="" ng-model="amc.Membership.LastName" required
+                                   maxlength="90"/>
                             <div class="help-block-error" ng-messages="amc.addMembershipForm.lastNameTxtBx.$error" ng-if="amc.addMembershipForm.lastNameTxtBx.$touched">
                                 <div ng-messages-include="message-template"></div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{'has-error' : amc.addMembershipForm.dobTxtBx.$invalid && amc.addMembershipForm.dobTxtBx.$touched}">
                             <label for="dobTxtBx">Date of Birth</label>
                             <input id="dobTxtBx" name="dobTxtBx" class="form-control" type="text" ng-model="amc.Membership.Dob"
                                    ui-mask="99/99/9999"
                                    ui-mask-placeholder
                                    model-view-value="true"/>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{'has-error' : amc.addMembershipForm.ddlGender.$invalid && amc.addMembershipForm.ddlGender.$touched}">
                             <label for="ddlGender">Gender</label>
-                            <select id="ddlGender" name="ddlGender" class="form-control" ng-model="amc.Membership.Gender" ng-options="g.Name for g in amc.genders" required></select>
+                            <select id="ddlGender" name="ddlGender" class="form-control" ng-model="amc.Membership.SelectedGender" ng-options="g.Name for g in amc.genders" required></select>
                             <div class="help-block-error" ng-messages="amc.addMembershipForm.ddlGender.$error" ng-if="amc.addMembershipForm.ddlGender.$touched">
                                 <div ng-messages-include="message-template"></div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{'has-error' : amc.addMembershipForm.ddlMaritalStatus.$invalid && amc.addMembershipForm.ddlMaritalStatus.$touched}">
                             <label for="ddlMaritalStatus">Marital Status</label>
-                            <select id="ddlMaritalStatus" name="ddlMaritalStatus" class="form-control" ng-model="amc.Membership.MaritalStatusId" ng-options="m.Name for m in amc.maritalStatuses" required></select>
+                            <select id="ddlMaritalStatus" name="ddlMaritalStatus" class="form-control" ng-model="amc.Membership.SelectedMaritalStatus" ng-options="m.Name for m in amc.maritalStatuses" required></select>
                             <div class="help-block-error" ng-messages="amc.addMembershipForm.ddlMaritalStatus.$error" ng-if="amc.addMembershipForm.ddlMaritalStatus.$touched">
                                 <div ng-messages-include="message-template"></div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{'has-error' : amc.addMembershipForm.memberGroupTxtBx.$invalid && amc.addMembershipForm.memberGroupTxtBx.$touched}">
                             <label for="memberGroupTxtBx">Member Group</label>
-                            <select id="memberGroupTxtBx" name="memberGroupTxtBx" class="form-control" ng-model="amc.Membership.MemberGroup" ng-options="m.Name for m in amc.memberGroups" required></select>
+                            <select id="memberGroupTxtBx" name="memberGroupTxtBx" class="form-control" ng-model="amc.Membership.SelectedMemberGroup" ng-options="m.Name for m in amc.memberGroups" required></select>
                             <div class="help-block-error" ng-messages="amc.addMembershipForm.memberGroupTxtBx.$error" ng-if="amc.addMembershipForm.memberGroupTxtBx.$touched">
                                 <div ng-messages-include="message-template"></div>
                             </div>
@@ -79,17 +83,24 @@
                         Contact Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': amc.accordionSettings.isOpen, 'glyphicon-chevron-up': !amc.accordionSettings.isOpen}"></i>
                     </uib-accordion-heading>
                     <div class="col-xs-6">
-                        <div class="form-group">
-                            <label for="phoneNumberTxtBx">Phone Number</label>
-                            <input id="phoneNumberTxtBx" name="phoneNumberTxtBx" class="form-control" type="text" placeholder="(414)-123-4567" ng-model="amc.Membership.PhoneNumber"/>
+                        <div class="form-group" ng-class="{'has-error' : amc.addMembershipForm.homePhoneNumberTxtBx.$invalid && amc.addMembershipForm.homePhoneNumberTxtBx.$touched}">
+                            <label for="homePhoneNumberTxtBx">Home Phone Number</label>
+                            <input id="homePhoneNumberTxtBx" name="homePhoneNumberTxtBx" class="form-control" type="text" ng-model="amc.Membership.HomePhoneNumber" 
+                                   ui-mask="(999)-999-9999"/>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{'has-error' : amc.addMembershipForm.cellPhoneNumberTxtBx.$invalid && amc.addMembershipForm.cellPhoneNumberTxtBx.$touched}">
+                            <label for="cellPhoneNumberTxtBx">Cellphone Number</label>
+                            <input id="cellPhoneNumberTxtBx" name="cellPhoneNumberTxtBx" class="form-control" type="text" ng-model="amc.Membership.CellPhoneNumber" 
+                                   ui-mask="(999)-999-9999"/>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error' : amc.addMembershipForm.emailTxtBx.$invalid && amc.addMembershipForm.emailTxtBx.$touched}">
                             <label for="emailTxtBx">Email</label>
-                            <input id="emailTxtBx" name="emailTxtBx" class="form-control" type="text" placeholder="joeShmoe@gmail.com" ng-model="amc.Membership.Email"/>
+                            <input id="emailTxtBx" name="emailTxtBx" class="form-control" type="email" placeholder="joeShmoe@gmail.com" ng-model="amc.Membership.Email" 
+                                   maxlength="255"/>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" ng-class="{'has-error' : amc.addMembershipForm.preferredContactMethodTxtBx.$invalid && amc.addMembershipForm.preferredContactMethodTxtBx.$touched}">
                             <label for="preferredContactMethodTxtBx">Preferred Contact Method</label>
-                            <select id="preferredContactMethodTxtBx" name="preferredContactMethodTxtBx" class="form-control" ng-model="amc.Membership.PreferredContactMethod" ng-options="m.Name for m in amc.preferredContactMethods" ng-required="amc.Membership.PhoneNumber.length > 0 || amc.Membership.Email.length > 0"></select>
+                            <select id="preferredContactMethodTxtBx" name="preferredContactMethodTxtBx" class="form-control" ng-model="amc.Membership.SelectedPreferredContactMethod" ng-options="m.Name for m in amc.preferredContactMethods" ng-required="amc.Membership.HomePhoneNumber.length > 0 || amc.Membership.CellPhoneNumber.length > 0 || amc.Membership.Email.length > 0"></select>
                             <div class="help-block-error" ng-messages="amc.addMembershipForm.preferredContactMethodTxtBx.$error" ng-if="amc.addMembershipForm.preferredContactMethodTxtBx.$touched">
                                 <div ng-messages-include="message-template"></div>
                             </div>
@@ -103,31 +114,35 @@
                     Address Information   <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': amc.accordionSettings.isOpen, 'glyphicon-chevron-up': !amc.accordionSettings.isOpen}"></i>
                 </uib-accordion-heading>
                 <div class="col-xs-6">
-                    <div class="form-group">
+                    <div class="form-group" ng-class="{'has-error' : amc.addMembershipForm.address1TxtBx.$invalid && amc.addMembershipForm.address1TxtBx.$touched}">
                         <label for="address1TxtBx">Address</label>
-                        <input id="address1TxtBx" name="address1TxtBx" class="form-control" type="text" placeholder="123 Main St." ng-model="amc.Membership.Address1" required />
+                        <input id="address1TxtBx" name="address1TxtBx" class="form-control" type="text" placeholder="123 Main St." ng-model="amc.Membership.Address1" required 
+                               maxlength="255"/>
                         <div class="help-block-error" ng-messages="amc.addMembershipForm.address1TxtBx.$error" ng-if="amc.addMembershipForm.address1TxtBx.$touched">
                             <div ng-messages-include="message-template"></div>
                         </div>
-                        <input id="address2TxtBx" name="address2TxtBx" class="form-control" type="text" placeholder="Apt. 123" ng-model="amc.Membership.Address2" />
+                        <input id="address2TxtBx" name="address2TxtBx" class="form-control" type="text" placeholder="Apt. 123" ng-model="amc.Membership.Address2" 
+                               maxlength="255"/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" ng-class="{'has-error' : amc.addMembershipForm.cityTxtBx.$invalid && amc.addMembershipForm.cityTxtBx.$touched}">
                         <label for="cityTxtBx">City</label>
-                        <input id="cityTxtBx" name="cityTxtBx" class="form-control" type="text" placeholder="123 Main St." ng-model="amc.Membership.City" required />
+                        <input id="cityTxtBx" name="cityTxtBx" class="form-control" type="text" placeholder="Milwaukee" ng-model="amc.Membership.City" required 
+                               maxlength="50"/>
                         <div class="help-block-error" ng-messages="amc.addMembershipForm.cityTxtBx.$error" ng-if="amc.addMembershipForm.cityTxtBx.$touched">
                             <div ng-messages-include="message-template"></div>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" ng-class="{'has-error' : amc.addMembershipForm.stateTxtBx.$invalid && amc.addMembershipForm.stateTxtBx.$touched}">
                         <label for="stateTxtBx">State</label>
-                        <select id="stateTxtBx" name="stateTxtBx" class="form-control" ng-model="amc.Membership.State" ng-options="m.Name for m in amc.stateList" required></select>
+                        <select id="stateTxtBx" name="stateTxtBx" class="form-control" ng-model="amc.Membership.SelectedState" ng-options="m.Name for m in amc.stateList" required></select>
                         <div class="help-block-error" ng-messages="amc.addMembershipForm.stateTxtBx.$error" ng-if="amc.addMembershipForm.stateTxtBx.$touched">
                             <div ng-messages-include="message-template"></div>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" ng-class="{'has-error' : amc.addMembershipForm.zipTxtBx.$invalid && amc.addMembershipForm.zipTxtBx.$touched}">
                         <label for="zipTxtBx">Zip Code</label>
-                        <input id="zipTxtBx" name="zipTxtBx" class="form-control" type="text" placeholder="123 Main St." ng-model="amc.Membership.ZipCode" required />
+                        <input id="zipTxtBx" name="zipTxtBx" class="form-control" type="text" ng-model="amc.Membership.ZipCode" required 
+                               maxlength="10" ui-mask="99999-?9?9?9?9"/>
                         <div class="help-block-error" ng-messages="amc.addMembershipForm.zipTxtBx.$error" ng-if="amc.addMembershipForm.zipTxtBx.$touched">
                             <div ng-messages-include="message-template"></div>
                         </div>

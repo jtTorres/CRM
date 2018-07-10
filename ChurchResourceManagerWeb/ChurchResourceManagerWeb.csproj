@@ -225,6 +225,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ChurchResourceDbModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ContactInfoViewModel.cs" />
     <Compile Include="Models\CONTACT_INFO.cs">
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
     </Compile>
@@ -250,6 +251,8 @@
     <Compile Include="Models\MEMBERSHIP.cs">
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MembershipForeignKeysViewModel.cs" />
+    <Compile Include="Models\MembershipInfoViewModel.cs" />
     <Compile Include="Models\MembershipViewModel.cs" />
     <Compile Include="Models\MEMBERSHIP_TYPES.cs">
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>

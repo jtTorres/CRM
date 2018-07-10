@@ -12,6 +12,7 @@
         };
 
         return {
+            addMembership: addMembership,
             getAllMembership: getAllMembership,
             allMembership: allMembership,
             getStateList: getStateList
@@ -37,6 +38,26 @@
 
         function getStateList() {
             return stateList;
+        }
+
+        function addMembership(membershipRecord) {
+            return $http({
+                method: "POST",
+                url: "/Membership/AddMembershipRecord/",
+                data: {
+                    membershipRecord: membershipRecord
+                }
+            })
+                .then(onAddMembershipComplete)
+                .catch(onAddMembershipError);
+        }
+
+        function onAddMembershipComplete(response) {
+            return response;
+        }
+
+        function onAddMembershipError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Getting Membership"));
         }
     }
 
