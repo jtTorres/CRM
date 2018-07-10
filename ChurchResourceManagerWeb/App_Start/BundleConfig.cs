@@ -19,8 +19,10 @@ namespace ChurchResourceManagerWeb
                 "~/Scripts/angular-messages.js",
                 "~/Scripts/angular-ui/ui-bootstrap-tpls.min.js",
                 "~/Scripts/angular-sanitize.min.js",
-                "~/Scripts/mg/packages/angular-ui/mask.min.js"
+                "~/Scripts/mg/packages/angular-ui/mask.min.js",
+                "~/Scripts/angular-animate.min.js"
                 ));
+
 
             //add bundle for business logic scripts related to app
             bundles.Add(new ScriptBundle("~/bundles/ChurchResourceManagerApp")

@@ -1,1 +1,1 @@
-﻿angular.module("app", ["ngMessages", "ui.bootstrap", "ngSanitize", "ui.mask"]);
+﻿angular.module("app", ["ngMessages", "ui.bootstrap", "ngSanitize", "ui.mask", "ngAnimate"]);

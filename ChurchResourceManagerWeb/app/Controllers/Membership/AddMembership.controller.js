@@ -18,6 +18,11 @@
             { Name: "Cell Phone", ID: 2 },
             { Name: "Email", ID: 3 }
         ];
+        vm.membershipStatus = [
+            { Type: "Unknown", ID: 0 },
+            { Type: "Active", ID: 1 },
+            { Type: "Passive", ID: 2 }
+        ];
 
         /////////////////////////////////
 
@@ -51,8 +56,12 @@
         // #region Accordion Configuration
         function setAccordionDefaults() {
             vm.accordionSettings = {
-                isOpen: true,
-                closeOthers: true
+                isFamilyOpen: true,
+                isMemberInfoOpen: false,
+                isPersonalInfoOpen: false,
+                isContactInfoOpen: false,
+                isAddressInfoOpen: false,
+                closeOthers: false
             };
         }
         // #endregion
