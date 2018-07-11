@@ -36,6 +36,7 @@ namespace ChurchResourceManagerWeb.Models
         public Nullable<System.DateTime> EXIT_DATE { get; set; }
         public Nullable<byte> MEMBERSHIP_TYPE_ID { get; set; }
         public System.DateTime LAST_MODIFIED_DATE { get; set; }
+        public Nullable<byte> RELATIONSHIP_TYPE_ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ACTIVITIES> ACTIVITIES { get; set; }

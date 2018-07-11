@@ -23,6 +23,11 @@
             { Type: "Active", ID: 1 },
             { Type: "Passive", ID: 2 }
         ];
+        vm.relationshipTypes = [
+            { Type: "Head of Household", ID: 1 },
+            { Type: "Spouse", ID: 2 },
+            { Type: "Child", ID: 3 }
+        ];
 
         /////////////////////////////////
 

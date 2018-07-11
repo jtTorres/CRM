@@ -30,6 +30,7 @@ namespace ChurchResourceManagerWeb.Models
         public string HomePhoneNumber { get; set; }
         public string CellPhoneNumber { get; set; }
         public string Email { get; set; }
+        public byte RelationshipTypeId { get; set; }
 
 
         public string MemberKey => $"{MemberId} - {FirstName} {LastName}";

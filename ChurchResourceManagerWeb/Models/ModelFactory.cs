@@ -63,7 +63,8 @@ namespace ChurchResourceManagerWeb.Models
                 MEMBERSHIP_TYPE_ID = membership.MembershipTypeId,
                 LOCATION_ID = membership.LocationId,
                 EXIT_DATE = null,
-                LAST_MODIFIED_DATE = DateTime.Now
+                LAST_MODIFIED_DATE = DateTime.Now,
+                RELATIONSHIP_TYPE_ID = membership.RelationshipTypeId
             };
         }
 

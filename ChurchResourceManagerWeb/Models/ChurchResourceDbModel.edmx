@@ -97,6 +97,7 @@
           <Property Name="EXIT_DATE" Type="date" />
           <Property Name="MEMBERSHIP_TYPE_ID" Type="tinyint" />
           <Property Name="LAST_MODIFIED_DATE" Type="datetime" Nullable="false" />
+          <Property Name="RELATIONSHIP_TYPE_ID" Type="tinyint" />
         </EntityType>
         <EntityType Name="MEMBERSHIP_TYPES">
           <Key>
@@ -114,6 +115,13 @@
           <Property Name="DONATION_TYPE_ID" Type="tinyint" Nullable="false" />
           <Property Name="OFFERING_AMOUNT" Type="smallmoney" Nullable="false" />
           <Property Name="COMMENTS" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="RELATIONSHIP_TYPES">
+          <Key>
+            <PropertyRef Name="RELATIONSHIP_TYPE_ID" />
+          </Key>
+          <Property Name="RELATIONSHIP_TYPE_ID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="varchar" MaxLength="80" Nullable="false" />
         </EntityType>
         <EntityType Name="TITHES">
           <Key>
@@ -262,6 +270,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_MEMBERSHIP_to_RELATIONSHIP_TYPES_RELATIONSHIP_TYPE_ID">
+          <End Role="RELATIONSHIP_TYPES" Type="Self.RELATIONSHIP_TYPES" Multiplicity="1" />
+          <End Role="RELATIONSHIP_TYPES1" Type="Self.RELATIONSHIP_TYPES" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="RELATIONSHIP_TYPES">
+              <PropertyRef Name="RELATIONSHIP_TYPE_ID" />
+            </Principal>
+            <Dependent Role="RELATIONSHIP_TYPES1">
+              <PropertyRef Name="RELATIONSHIP_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_TITHES_to_DONATION_TYPES_DONATION_TYPE_ID">
           <End Role="DONATION_TYPES" Type="Self.DONATION_TYPES" Multiplicity="1" />
           <End Role="TITHES" Type="Self.TITHES" Multiplicity="*" />
@@ -311,6 +331,7 @@
           <EntitySet Name="MEMBERSHIP" EntityType="Self.MEMBERSHIP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MEMBERSHIP_TYPES" EntityType="Self.MEMBERSHIP_TYPES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OFFERINGS" EntityType="Self.OFFERINGS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RELATIONSHIP_TYPES" EntityType="Self.RELATIONSHIP_TYPES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TITHES" EntityType="Self.TITHES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TRANSACTION_TYPES" EntityType="Self.TRANSACTION_TYPES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TRANSACTIONS" EntityType="Self.TRANSACTIONS" Schema="dbo" store:Type="Tables" />
@@ -350,6 +371,10 @@
           <AssociationSet Name="fk_MEMBERSHIP_to_MEMBERSHIP_TYPES_MEMBERSHIP_TYPE_ID" Association="Self.fk_MEMBERSHIP_to_MEMBERSHIP_TYPES_MEMBERSHIP_TYPE_ID">
             <End Role="MEMBERSHIP_TYPES" EntitySet="MEMBERSHIP_TYPES" />
             <End Role="MEMBERSHIP" EntitySet="MEMBERSHIP" />
+          </AssociationSet>
+          <AssociationSet Name="fk_MEMBERSHIP_to_RELATIONSHIP_TYPES_RELATIONSHIP_TYPE_ID" Association="Self.fk_MEMBERSHIP_to_RELATIONSHIP_TYPES_RELATIONSHIP_TYPE_ID">
+            <End Role="RELATIONSHIP_TYPES" EntitySet="RELATIONSHIP_TYPES" />
+            <End Role="RELATIONSHIP_TYPES1" EntitySet="RELATIONSHIP_TYPES" />
           </AssociationSet>
           <AssociationSet Name="fk_TITHES_to_DONATION_TYPES_DONATION_TYPE_ID" Association="Self.fk_TITHES_to_DONATION_TYPES_DONATION_TYPE_ID">
             <End Role="DONATION_TYPES" EntitySet="DONATION_TYPES" />
@@ -432,6 +457,11 @@
           <AssociationSet Name="fk_TRANSACTIONS_to_TRANSACTION_TYPES_TRANSACTION_TYPE_ID" Association="ChurchResourceDbModel.fk_TRANSACTIONS_to_TRANSACTION_TYPES_TRANSACTION_TYPE_ID">
             <End Role="TRANSACTION_TYPES" EntitySet="TRANSACTION_TYPES" />
             <End Role="TRANSACTIONS" EntitySet="TRANSACTIONS" />
+          </AssociationSet>
+          <EntitySet Name="RELATIONSHIP_TYPES" EntityType="ChurchResourceDbModel.RELATIONSHIP_TYPES" />
+          <AssociationSet Name="fk_MEMBERSHIP_to_RELATIONSHIP_TYPES_RELATIONSHIP_TYPE_ID" Association="ChurchResourceDbModel.fk_MEMBERSHIP_to_RELATIONSHIP_TYPES_RELATIONSHIP_TYPE_ID">
+            <End Role="RELATIONSHIP_TYPES" EntitySet="RELATIONSHIP_TYPES" />
+            <End Role="RELATIONSHIP_TYPES1" EntitySet="RELATIONSHIP_TYPES" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="ACTIVITIES">
@@ -545,6 +575,7 @@
           <NavigationProperty Name="MEMBER_GROUPS" Relationship="ChurchResourceDbModel.fk_MEMBERSHIP_to_MEMBER_GROUPS_GROUP_ID" FromRole="MEMBERSHIP" ToRole="MEMBER_GROUPS" />
           <NavigationProperty Name="MEMBERSHIP_TYPES" Relationship="ChurchResourceDbModel.fk_MEMBERSHIP_to_MEMBERSHIP_TYPES_MEMBERSHIP_TYPE_ID" FromRole="MEMBERSHIP" ToRole="MEMBERSHIP_TYPES" />
           <NavigationProperty Name="TITHES" Relationship="ChurchResourceDbModel.fk_TITHES_to_MEMBERSHIP_MEMBER_ID" FromRole="MEMBERSHIP" ToRole="TITHES" />
+          <Property Name="RELATIONSHIP_TYPE_ID" Type="Byte" />
         </EntityType>
         <EntityType Name="MEMBERSHIP_TYPES">
           <Key>
@@ -751,6 +782,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="RELATIONSHIP_TYPES">
+          <Key>
+            <PropertyRef Name="RELATIONSHIP_TYPE_ID" />
+          </Key>
+          <Property Name="RELATIONSHIP_TYPE_ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DESCRIPTION" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RELATIONSHIP_TYPES1" Relationship="ChurchResourceDbModel.fk_MEMBERSHIP_to_RELATIONSHIP_TYPES_RELATIONSHIP_TYPE_ID" FromRole="RELATIONSHIP_TYPES" ToRole="RELATIONSHIP_TYPES1" />
+          <NavigationProperty Name="RELATIONSHIP_TYPES2" Relationship="ChurchResourceDbModel.fk_MEMBERSHIP_to_RELATIONSHIP_TYPES_RELATIONSHIP_TYPE_ID" FromRole="RELATIONSHIP_TYPES1" ToRole="RELATIONSHIP_TYPES" />
+        </EntityType>
+        <Association Name="fk_MEMBERSHIP_to_RELATIONSHIP_TYPES_RELATIONSHIP_TYPE_ID">
+          <End Type="ChurchResourceDbModel.RELATIONSHIP_TYPES" Role="RELATIONSHIP_TYPES" Multiplicity="1" />
+          <End Type="ChurchResourceDbModel.RELATIONSHIP_TYPES" Role="RELATIONSHIP_TYPES1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="RELATIONSHIP_TYPES">
+              <PropertyRef Name="RELATIONSHIP_TYPE_ID" />
+            </Principal>
+            <Dependent Role="RELATIONSHIP_TYPES1">
+              <PropertyRef Name="RELATIONSHIP_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -842,6 +894,7 @@
           <EntitySetMapping Name="MEMBERSHIP">
             <EntityTypeMapping TypeName="ChurchResourceDbModel.MEMBERSHIP">
               <MappingFragment StoreEntitySet="MEMBERSHIP">
+                <ScalarProperty Name="RELATIONSHIP_TYPE_ID" ColumnName="RELATIONSHIP_TYPE_ID" />
                 <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
                 <ScalarProperty Name="MEMBERSHIP_TYPE_ID" ColumnName="MEMBERSHIP_TYPE_ID" />
                 <ScalarProperty Name="EXIT_DATE" ColumnName="EXIT_DATE" />
@@ -918,6 +971,14 @@
               <MappingFragment StoreEntitySet="UTILITY_BILLS">
                 <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
                 <ScalarProperty Name="UTILITY_BILL_ID" ColumnName="UTILITY_BILL_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RELATIONSHIP_TYPES">
+            <EntityTypeMapping TypeName="ChurchResourceDbModel.RELATIONSHIP_TYPES">
+              <MappingFragment StoreEntitySet="RELATIONSHIP_TYPES">
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="RELATIONSHIP_TYPE_ID" ColumnName="RELATIONSHIP_TYPE_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

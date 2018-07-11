@@ -164,7 +164,8 @@ namespace ChurchResourceManagerWeb.Models
                                   PreferredContactMethod = m.PREFERRERD_CONTACT_METHOD,
                                   ExitDate = m.EXIT_DATE.ToString(),
                                   MembershipTypeId = m.MEMBERSHIP_TYPE_ID,
-                                  LastModifiedDate = m.LAST_MODIFIED_DATE
+                                  LastModifiedDate = m.LAST_MODIFIED_DATE,
+                                  RelationshipTypeId = m.RELATIONSHIP_TYPE_ID
                               }).ToList();
 
             return membership;

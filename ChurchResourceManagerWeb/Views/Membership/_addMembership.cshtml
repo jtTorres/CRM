@@ -21,11 +21,20 @@
                 <uib-accordion-heading>
                     Member Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': amc.accordionSettings.isMemberInfoOpen, 'glyphicon-chevron-up': !amc.accordionSettings.isMemberInfoOpen}"></i>
                 </uib-accordion-heading>
-                <div class="form-group">
-                    <label for="ddlMembershipStatus">Membership Status</label>
-                    <select id="ddlMembershipStatus" name="ddlMembershipStatus" class="form-control" ng-model="amc.Membership.SelectedMembershipStatus" ng-options="g.Type for g in amc.membershipStatus" required></select>
-                    <div class="help-block-error" ng-messages="amc.addMembershipForm.ddlMembershipStatus.$error" ng-if="amc.addMembershipForm.ddlMembershipStatus.$touched">
-                        <div ng-messages-include="message-template"></div>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="ddlMembershipStatus">Membership Status</label>
+                        <select id="ddlMembershipStatus" name="ddlMembershipStatus" class="form-control" ng-model="amc.Membership.SelectedMembershipStatus" ng-options="g.Type for g in amc.membershipStatus" required></select>
+                        <div class="help-block-error" ng-messages="amc.addMembershipForm.ddlMembershipStatus.$error" ng-if="amc.addMembershipForm.ddlMembershipStatus.$touched">
+                            <div ng-messages-include="message-template"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ddlRelationshipTypes">Relation</label>
+                        <select id="ddlRelationshipTypes" name="ddlRelationshipTypes" class="form-control" ng-model="amc.Membership.SelectedRelationshipType" ng-options="r.Type for r in amc.relationshipTypes" required></select>
+                        <div class="help-block-error" ng-messages="amc.addMembershipForm.ddlRelationshipTypes.$error" ng-if="amc.addMembershipForm.ddlRelationshipTypes.$touched">
+                            <div ng-messages-include="message-template"></div>
+                        </div>
                     </div>
                 </div>
                 <div uib-accordion-group class="panel-default" is-open="amc.accordionSettings.isPersonalInfoOpen">

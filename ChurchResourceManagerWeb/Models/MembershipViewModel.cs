@@ -24,6 +24,7 @@ namespace ChurchResourceManagerWeb.Models
         public string ExitDate { get; set; }
         public byte? MembershipTypeId { get; set; }
         public DateTime LastModifiedDate { get; set; }
+        public byte? RelationshipTypeId { get; set; }
         public string MemberKey => $"{MemberId} - {FirstName} {LastName}";
         public string FullName => $"{FirstName} {LastName}";
     }

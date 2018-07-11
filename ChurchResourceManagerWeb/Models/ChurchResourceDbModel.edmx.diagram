@@ -33,6 +33,8 @@
         <AssociationConnector Association="ChurchResourceDbModel.fk_MEMBERSHIP_to_MEMBERSHIP_TYPES_MEMBERSHIP_TYPE_ID" />
         <AssociationConnector Association="ChurchResourceDbModel.fk_TITHES_to_MEMBERSHIP_MEMBER_ID" />
         <AssociationConnector Association="ChurchResourceDbModel.fk_TRANSACTIONS_to_TRANSACTION_TYPES_TRANSACTION_TYPE_ID" />
+        <EntityTypeShape EntityType="ChurchResourceDbModel.RELATIONSHIP_TYPES" Width="1.5" PointX="5.375" PointY="11.75" />
+        <AssociationConnector Association="ChurchResourceDbModel.fk_MEMBERSHIP_to_RELATIONSHIP_TYPES_RELATIONSHIP_TYPE_ID" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
