@@ -192,6 +192,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActivitySelector.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\EnumsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MembershipController.cs" />
@@ -226,6 +227,7 @@
       <DependentUpon>ChurchResourceDbModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ContactInfoViewModel.cs" />
+    <Compile Include="Models\ContactMethodsViewModel.cs" />
     <Compile Include="Models\CONTACT_INFO.cs">
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
     </Compile>
@@ -248,11 +250,15 @@
     <Compile Include="Models\MARITAL_STATUS.cs">
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MaritalStatusesViewModel.cs" />
+    <Compile Include="Models\MemberGroupsViewModel.cs" />
+    <Compile Include="Models\MemberInfoViewModel.cs" />
     <Compile Include="Models\MEMBERSHIP.cs">
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MembershipForeignKeysViewModel.cs" />
     <Compile Include="Models\MembershipInfoViewModel.cs" />
+    <Compile Include="Models\MembershipStatusViewModel.cs" />
     <Compile Include="Models\MembershipViewModel.cs" />
     <Compile Include="Models\MEMBERSHIP_TYPES.cs">
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
@@ -265,6 +271,7 @@
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OfferingsViewModel.cs" />
+    <Compile Include="Models\RelationshipTypesViewModel.cs" />
     <Compile Include="Models\RELATIONSHIP_TYPES.cs">
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
     </Compile>
@@ -296,6 +303,7 @@
     <Content Include="app\Components\deleteTithe.component.js" />
     <Content Include="app\Components\editOfferingModal.component.js" />
     <Content Include="app\Components\editTitheModal.component.js" />
+    <Content Include="app\Components\memberInformation.component.js" />
     <Content Include="app\Components\offeringActivity.component.js" />
     <Content Include="app\Components\offeringActivity.component.spec.js" />
     <Content Include="app\Components\Shared\runningTotal.component.js" />
@@ -306,6 +314,7 @@
     <Content Include="app\Controllers\Home\Home.controller.spec.js" />
     <Content Include="app\Components\Shared\runningTotal.component.spec.js" />
     <Content Include="app\Controllers\Membership\AddMembership.controller.js" />
+    <Content Include="app\Controllers\Membership\MemberInformation.controller.js" />
     <Content Include="app\Controllers\Membership\Membership.controller.js" />
     <Content Include="app\Controllers\Offerings\AddOffering.controller.js" />
     <Content Include="app\Controllers\Offerings\DeleteOffering.controller.js" />
@@ -324,6 +333,7 @@
     <Content Include="app\Controllers\Tithing\TithingActivityByMemberGrid.controller.js" />
     <Content Include="app\Core\ActivitySelector.service.js" />
     <Content Include="app\Core\EntitySelector.service.js" />
+    <Content Include="app\Core\EnumsData.service.js" />
     <Content Include="app\Core\stateLIst.service.js" />
     <Content Include="app\Filters\Search.filter.js" />
     <Content Include="app\Services\OfferingDataService.service.js" />
@@ -1199,6 +1209,7 @@
     <Content Include="Views\Membership\Home.cshtml" />
     <Content Include="Views\Membership\AddMembership.cshtml" />
     <Content Include="Views\Membership\_addMembership.cshtml" />
+    <Content Include="Views\Membership\_memberInformation.cshtml" />
     <None Include="Views\Test\SpecRunner.cshtml" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />

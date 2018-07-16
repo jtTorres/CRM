@@ -120,7 +120,7 @@
           <Key>
             <PropertyRef Name="RELATIONSHIP_TYPE_ID" />
           </Key>
-          <Property Name="RELATIONSHIP_TYPE_ID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RELATIONSHIP_TYPE_ID" Type="tinyint" Nullable="false" />
           <Property Name="DESCRIPTION" Type="varchar" MaxLength="80" Nullable="false" />
         </EntityType>
         <EntityType Name="TITHES">

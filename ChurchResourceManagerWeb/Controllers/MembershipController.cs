@@ -28,9 +28,15 @@ namespace ChurchResourceManagerWeb.Controllers
         {
             return PartialView("_addMembership");
         }
+
+        public ActionResult MemberInformation()
+        {
+            return PartialView("_memberInformation");
+        }
         #endregion
 
 
+        [HttpPost]
         public JsonResult AddMembershipRecord(MembershipInfoViewModel membershipRecord)
         {
             try
@@ -44,6 +50,20 @@ namespace ChurchResourceManagerWeb.Controllers
                 throw;
             }
             return Json(new { Success = false });
+        }
+
+        [HttpGet]
+        public JsonResult GetEmptyMemberInfo()
+        {
+            try
+            {
+                return Json(Repo.GetEmptyMemberInfo(), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
         }
     }
 }

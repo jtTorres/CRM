@@ -14,7 +14,8 @@
                     genders: "<",
                     maritalStatuses: "<",
                     stateList: "<",
-                    memberGroups: "<"
+                    memberGroups: "<",
+                    memberInfo: "<"
                 }
             });
 

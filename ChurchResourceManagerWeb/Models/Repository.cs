@@ -196,6 +196,41 @@ namespace ChurchResourceManagerWeb.Models
             return amount.Any() ? amount.Sum(a => a.OFFERING_AMOUNT).ToString(CultureInfo.CurrentCulture) : "0";
         }
 
+        //public IEnumerable<MemberInfoViewModel> GetMemberInfo(int? familyId)
+        //{
+
+        //}
+
+        public MemberInfoViewModel GetEmptyMemberInfo()
+        {
+            return new MemberInfoViewModel();
+        }
+
+        public IEnumerable<ContactMethodsViewModel> GetContactMethods()
+        {
+            return ModelFactory.CreateContactMethodsList(db.CONTACT_METHODS);
+        }
+
+        public IEnumerable<MembershipStatusViewModel> GetMembershipStatuses()
+        {
+            return ModelFactory.CreateMembershipStatusList(db.MEMBERSHIP_TYPES);
+        }
+
+        public IEnumerable<RelationshipTypesViewModel> GetRelationshipTypes()
+        {
+            return ModelFactory.CreateRelationshipTypesList(db.RELATIONSHIP_TYPES);
+        }
+
+        public IEnumerable<MaritalStatusesViewModel> GetMaritalStatuses()
+        {
+            return ModelFactory.CreateMaritalStatusList(db.MARITAL_STATUS);
+        }
+
+        public IEnumerable<MemberGroupsViewModel> GetMemberGroups()
+        {
+            return ModelFactory.CreateMemberGroupsViewModel(db.MEMBER_GROUPS);
+        }
+
         #endregion
 
         #region switches

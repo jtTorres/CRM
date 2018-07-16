@@ -15,7 +15,8 @@
             addMembership: addMembership,
             getAllMembership: getAllMembership,
             allMembership: allMembership,
-            getStateList: getStateList
+            getStateList: getStateList,
+            getEmptyMemberInfo: getEmptyMemberInfo
         };
 
 
@@ -58,6 +59,23 @@
 
         function onAddMembershipError(reason) {
             return $q.reject(utilityService.httpError(reason, "Error Getting Membership"));
+        }
+
+        function getEmptyMemberInfo() {
+            return $http({
+                method: "GET",
+                url: "/Membership/GetEmptyMemberInfo/"
+            })
+                .then(onGetEmptyMemberInfoSuccess)
+                .catch(onGetEmptyMemberInfoError);
+        }
+
+        function onGetEmptyMemberInfoSuccess(response) {
+            return response;
+        }
+
+        function onGetEmptyMemberInfoError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Getting Member Info"));
         }
     }
 

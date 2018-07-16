@@ -4,30 +4,14 @@
     angular.module("app")
         .controller("addMembershipController", addMembershipController);
 
-    addMembershipController.$inject = ["operationFlowService", "utilityService"];
+    addMembershipController.$inject = ["operationFlowService", "utilityService", "$scope"];
 
-    function addMembershipController(operationFlowService, utilityService) {
+    function addMembershipController(operationFlowService, utilityService, $scope) {
         var vm = this;
 
 
         vm.addMembership = addMembership;
         vm.clearForm = clearForm;
-        vm.preferredContactMethods = [
-            { Name: "Do Not Contact", ID: 0 },
-            { Name: "Home Phone", ID: 1 },
-            { Name: "Cell Phone", ID: 2 },
-            { Name: "Email", ID: 3 }
-        ];
-        vm.membershipStatus = [
-            { Type: "Unknown", ID: 0 },
-            { Type: "Active", ID: 1 },
-            { Type: "Passive", ID: 2 }
-        ];
-        vm.relationshipTypes = [
-            { Type: "Head of Household", ID: 1 },
-            { Type: "Spouse", ID: 2 },
-            { Type: "Child", ID: 3 }
-        ];
 
         /////////////////////////////////
 
@@ -69,6 +53,12 @@
                 closeOthers: false
             };
         }
+
+        //$scope.$on("memberInfoAddRelative", openMemberInfoPanel);
+        //function openMemberInfoPanel() {
+        //    vm.accordionSettings.isMemberInfoOpen = true;
+        //}
+
         // #endregion
 
         function clearForm() {

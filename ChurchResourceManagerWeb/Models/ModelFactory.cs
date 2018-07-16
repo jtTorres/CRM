@@ -68,17 +68,6 @@ namespace ChurchResourceManagerWeb.Models
             };
         }
 
-        public IEnumerable<CONTACT_INFO> CreateContactInfo(IEnumerable<ContactInfoViewModel> contactInfo)
-        {
-
-            return contactInfo.Select(c => new CONTACT_INFO
-            {
-                MEMBER_ID = c.MemberId,
-                CONTACT_METHOD_ID = c.ContactMethodId,
-                CONTACT_INFO1 = c.ContactInfo
-            }).ToList();
-        }
-
         public FAMILIES CreateFamily(string familyName)
         {
             return new FAMILIES
@@ -87,6 +76,14 @@ namespace ChurchResourceManagerWeb.Models
             };
         }
 
+        public CONTACT_METHODS CreateContactMethods(ContactMethodsViewModel contactMethods)
+        {
+            return new CONTACT_METHODS
+            {
+                CONTACT_METHOD_ID = contactMethods.Id,
+                DESCRIPTION = contactMethods.Description
+            };
+        }
 
         #endregion
 
@@ -138,6 +135,62 @@ namespace ChurchResourceManagerWeb.Models
 
             return contactInfo;
 
+        }
+
+        public IEnumerable<CONTACT_INFO> CreateContactInfo(IEnumerable<ContactInfoViewModel> contactInfo)
+        {
+
+            return contactInfo.Select(c => new CONTACT_INFO
+            {
+                MEMBER_ID = c.MemberId,
+                CONTACT_METHOD_ID = c.ContactMethodId,
+                CONTACT_INFO1 = c.ContactInfo
+            }).ToList();
+        }
+
+        public IEnumerable<ContactMethodsViewModel> CreateContactMethodsList(IQueryable<CONTACT_METHODS> contactMethods)
+        {
+            return contactMethods.Select(c => new ContactMethodsViewModel
+            {
+                Id = c.CONTACT_METHOD_ID,
+                Description = c.DESCRIPTION
+            }).ToList();
+        }
+
+        public IEnumerable<MembershipStatusViewModel> CreateMembershipStatusList(IQueryable<MEMBERSHIP_TYPES> membershipStatus)
+        {
+            return membershipStatus.Select(m => new MembershipStatusViewModel
+            {
+                Id = m.MEMBERSHIP_TYPE_ID,
+                Description = m.DESCRIPTION
+            }).ToList();
+        }
+
+        public IEnumerable<RelationshipTypesViewModel> CreateRelationshipTypesList(IQueryable<RELATIONSHIP_TYPES> relationshipTypes)
+        {
+            return relationshipTypes.Select(r => new RelationshipTypesViewModel
+            {
+                Id = r.RELATIONSHIP_TYPE_ID,
+                Description = r.DESCRIPTION
+            }).ToList();
+        }
+
+        public IEnumerable<MaritalStatusesViewModel> CreateMaritalStatusList(IQueryable<MARITAL_STATUS> maritalStatus)
+        {
+            return maritalStatus.Select(m => new MaritalStatusesViewModel
+            {
+                Id = m.MARITAL_STATUS_ID,
+                Description = m.DESCRIPTION
+            }).ToList();
+        }
+
+        public IEnumerable<MemberGroupsViewModel> CreateMemberGroupsViewModel(IQueryable<MEMBER_GROUPS> memberGroup)
+        {
+            return memberGroup.Select(m => new MemberGroupsViewModel
+            {
+                Id = m.GROUP_ID,
+                Description = m.DESCRIPTION
+            }).ToList();
         }
         #endregion
     }
