@@ -92,7 +92,7 @@
             membershipDataService.getEmptyMemberInfo()
                 .then(function (response) {
                     vm.emptyMemberInfo = angular.copy(response.data);
-                    vm.memberInfoArray.push(vm.emptyMemberInfo);
+                    vm.memberInfoArray.push(response.data);
                 })
                 .catch(function (reason) {
                     vm.processFlow = operationFlowService.operationCompletion(reason.message, false);
@@ -100,11 +100,18 @@
         }
 
         $scope.$on("memberInfoAddRelative", addRelative);
+        $scope.$on("memberInfoRemoveRelative", removeRelative);
 
         function addRelative() {
             var emptyMemberInfoCopy = angular.copy(vm.emptyMemberInfo);
             vm.memberInfoArray.push(emptyMemberInfoCopy);
         }
+
+        function removeRelative(event, index) {
+            vm.memberInfoArray.splice(index, 1);
+        }
+
+
         // #endregion
     }
 

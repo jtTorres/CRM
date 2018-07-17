@@ -109,7 +109,7 @@
             <button ng-if="mic.displayAddRelativeButton(mic.index, mic.memberInfoCount)" type="button" class="btn btn-success" ng-click="mic.onAddRelative()">
                 <span class="glyphicon glyphicon-plus"></span> Add More
             </button>
-            <button ng-if="mic.index >= 0" type="button" class="btn btn-danger">
+            <button ng-if="mic.index > 0" type="button" class="btn btn-danger" ng-click="mic.onRemoveRelative(mic.index)">
                 <span class="glyphicon glyphicon-minus"></span> Remove
             </button>
         </div>

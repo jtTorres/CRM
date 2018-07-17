@@ -10,6 +10,7 @@
         var vm = this;
         vm.displayAddRelativeButton = displayAddRelativeButton;
         vm.onAddRelative = onAddRelative;
+        vm.onRemoveRelative = onRemoveRelative;
         /////////////////////////
 
 
@@ -31,6 +32,10 @@
 
         function onAddRelative() {
             $scope.$emit("memberInfoAddRelative");
+        }
+
+        function onRemoveRelative(index) {
+            $scope.$emit("memberInfoRemoveRelative", index);
         }
     }
 
