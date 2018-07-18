@@ -12,29 +12,10 @@
         vm.emptyMemberInfo = {};
 
         vm.getEmptyMemberInfo = getEmptyMemberInfo;
+        vm.Membership = {};
         vm.memberInfoArray = [];
         vm.doSaveMembership = doSaveMembership;
-
-        vm.genders = [
-            { Name: "Male", Abbreviation: "M" },
-            { Name: "Female", Abbreviation: "F" }
-        ];
-        vm.maritalStatuses = [
-            { Name: "Unknown", ID: 0 },
-            { Name: "Single", ID: 1 },
-            { Name: "Married", ID: 2 },
-            { Name: "Divorced", ID: 3 },
-            { Name: "Widowed", ID: 4 }
-        ];
-
         vm.stateList = membershipDataService.getStateList();
-        vm.memberGroups = [
-            { Name: "Unknown", ID: 0 },
-            { Name: "Adults", ID: 1 },
-            { Name: "Youth", ID: 2 },
-            { Name: "Children", ID: 3 }
-
-        ];
         /////////////////////////////
 
         activate();

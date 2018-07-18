@@ -12,6 +12,7 @@
 
         vm.addMembership = addMembership;
         vm.clearForm = clearForm;
+        vm.Membership = {};
 
         /////////////////////////////////
 
@@ -19,6 +20,7 @@
 
         function activate() {
             setAccordionDefaults();
+            setMembershipFromBinding();
             console.log("Activated Add Membership Controller");
         }
 
@@ -40,6 +42,11 @@
             membershipRecord.GroupId = vm.Membership.SelectedMemberGroup.ID;
             membershipRecord.PreferredContactMethod = vm.Membership.SelectedPreferredContactMethod.ID;
             membershipRecord.State = vm.Membership.SelectedState.Abbreviation;
+        }
+
+        function setMembershipFromBinding() {
+            if (!utilityService.isUndefinedOrNull(vm.membership))
+                vm.Membership = vm.membership;
         }
 
         // #region Accordion Configuration

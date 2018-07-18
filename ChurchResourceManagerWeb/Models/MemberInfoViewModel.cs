@@ -17,6 +17,8 @@ namespace ChurchResourceManagerWeb.Models
         public string Email { get; set; }
         public byte RelationshipTypeId { get; set; }
         public int MembershipStatusId { get; set; }
+        public byte MaritalStatusId { get; set; }
+        public byte GroupId { get; set; }
         public int PreferredContactMethod { get; set; }
     }
 }

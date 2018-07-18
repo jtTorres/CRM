@@ -18,9 +18,7 @@
             </div>
 
             <!--member information-->
-            <!--will need to ad an ng-repeat here....-->
             <div ng-repeat="info in amc.memberInfo track by $index">
-                @*TODO: do a function that will pass the length of amc.memberInfo and the index. if the index is the same as the length then that one gets the add button*@
                 <member-information member-info="info" accordion-settings="amc.accordionSettings" index="$index" member-info-count="amc.memberInfo.length -1"></member-information>
             </div>
 

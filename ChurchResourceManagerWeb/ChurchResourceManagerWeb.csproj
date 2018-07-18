@@ -256,7 +256,6 @@
     <Compile Include="Models\MEMBERSHIP.cs">
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\MembershipForeignKeysViewModel.cs" />
     <Compile Include="Models\MembershipInfoViewModel.cs" />
     <Compile Include="Models\MembershipStatusViewModel.cs" />
     <Compile Include="Models\MembershipViewModel.cs" />

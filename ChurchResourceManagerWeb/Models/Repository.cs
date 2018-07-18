@@ -201,9 +201,10 @@ namespace ChurchResourceManagerWeb.Models
 
         //}
 
-        public MemberInfoViewModel GetEmptyMemberInfo()
+        public MembershipInfoViewModel GetEmptyMemberInfo()
         {
-            return new MemberInfoViewModel();
+            //return new MemberInfoViewModel();
+            return new MembershipInfoViewModel();
         }
 
         public IEnumerable<ContactMethodsViewModel> GetContactMethods()

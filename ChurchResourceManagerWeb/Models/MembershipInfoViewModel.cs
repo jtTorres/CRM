@@ -7,6 +7,8 @@ namespace ChurchResourceManagerWeb.Models
 {
     public class MembershipInfoViewModel
     {
+        public List<MemberInfoViewModel> MemberInfo { get; set; }
+
         public int FamilyId { get; set; }
         public string FamilyName { get; set; }
         public int MemberId { get; set; }
