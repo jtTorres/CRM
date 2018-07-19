@@ -26,12 +26,22 @@ namespace ChurchResourceManagerWeb.Controllers
 
         public ActionResult AddMember()
         {
-            return PartialView("_addMembership");
+            return PartialView("_membership");
         }
 
         public ActionResult MemberInformation()
         {
             return PartialView("_memberInformation");
+        }
+
+        public ActionResult Family()
+        {
+            return PartialView("_family");
+        }
+
+        public ActionResult Address()
+        {
+            return PartialView("_address");
         }
         #endregion
 
@@ -50,6 +60,20 @@ namespace ChurchResourceManagerWeb.Controllers
                 throw;
             }
             return Json(new { Success = false });
+        }
+
+        [HttpPost]
+        public JsonResult AddFamily(FamiliesViewModel family)
+        {
+            try
+            {
+                return Json(new { Id = Repo.AddFamily(family) });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
         }
 
         [HttpGet]

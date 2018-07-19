@@ -114,3 +114,7 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
+.tab-content {
+    padding-top: 1%;
+}

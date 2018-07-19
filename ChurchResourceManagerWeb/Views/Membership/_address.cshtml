@@ -1,0 +1,42 @@
+﻿<div class="row">
+    <div class="col-xs-6">
+        <div class="form-group" ng-class="{'has-error' : amc.addMembershipForm.address1TxtBx.$invalid && amc.addMembershipForm.address1TxtBx.$touched}">
+            <label for="address1TxtBx">Address</label>
+            <input id="address1TxtBx" name="address1TxtBx" class="form-control" type="text" placeholder="123 Main St." ng-model="amc.Membership.Address1" required
+                   maxlength="255" />
+            <div class="help-block-error" ng-messages="amc.addMembershipForm.address1TxtBx.$error" ng-if="amc.addMembershipForm.address1TxtBx.$touched">
+                <div ng-messages-include="message-template"></div>
+            </div>
+            <input id="address2TxtBx" name="address2TxtBx" class="form-control" type="text" placeholder="Apt. 123" ng-model="amc.Membership.Address2"
+                   maxlength="255" />
+        </div>
+        <div class="form-group" ng-class="{'has-error' : amc.addMembershipForm.cityTxtBx.$invalid && amc.addMembershipForm.cityTxtBx.$touched}">
+            <label for="cityTxtBx">City</label>
+            <input id="cityTxtBx" name="cityTxtBx" class="form-control" type="text" placeholder="Milwaukee" ng-model="amc.Membership.City" required
+                   maxlength="50" />
+            <div class="help-block-error" ng-messages="amc.addMembershipForm.cityTxtBx.$error" ng-if="amc.addMembershipForm.cityTxtBx.$touched">
+                <div ng-messages-include="message-template"></div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error' : amc.addMembershipForm.stateTxtBx.$invalid && amc.addMembershipForm.stateTxtBx.$touched}">
+            <label for="stateTxtBx">State</label>
+            <select id="stateTxtBx" name="stateTxtBx" class="form-control" ng-model="amc.Membership.SelectedState" ng-options="m.Name for m in amc.stateList" required></select>
+            <div class="help-block-error" ng-messages="amc.addMembershipForm.stateTxtBx.$error" ng-if="amc.addMembershipForm.stateTxtBx.$touched">
+                <div ng-messages-include="message-template"></div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error' : amc.addMembershipForm.zipTxtBx.$invalid && amc.addMembershipForm.zipTxtBx.$touched}">
+            <label for="zipTxtBx">Zip Code</label>
+            <input id="zipTxtBx" name="zipTxtBx" class="form-control" type="text" ng-model="amc.Membership.ZipCode" required
+                   maxlength="10" ui-mask="99999-?9?9?9?9" />
+            <div class="help-block-error" ng-messages="amc.addMembershipForm.zipTxtBx.$error" ng-if="amc.addMembershipForm.zipTxtBx.$touched">
+                <div ng-messages-include="message-template"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <button id="submitFamilyBtn" name="submitFamilyBtn" class="btn btn-primary" type="submit">
+        <span class="glyphicon glyphicon-check"></span> Save
+    </button>
+</div>

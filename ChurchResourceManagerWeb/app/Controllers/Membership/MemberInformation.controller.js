@@ -8,7 +8,9 @@
 
     function memberInformationController($scope, enumsDataService) {
         var vm = this;
-        vm.displayAddRelativeButton = displayAddRelativeButton;
+
+        vm.edit = edit;
+        vm.followLastCurrentActiveIndex = followLastCurrentActiveIndex;
         vm.onAddRelative = onAddRelative;
         vm.onRemoveRelative = onRemoveRelative;
         /////////////////////////
@@ -26,7 +28,7 @@
             vm.enums = enumsDataService.enums;
         }
 
-        function displayAddRelativeButton(currentIndex, relativesCount) {
+        function followLastCurrentActiveIndex(currentIndex, relativesCount) {
             return currentIndex === relativesCount;
         }
 
@@ -36,6 +38,10 @@
 
         function onRemoveRelative(index) {
             $scope.$emit("memberInfoRemoveRelative", index);
+        }
+
+        function edit() {
+            vm.onEdit({ formName: "personalInfoForm" });
         }
     }
 

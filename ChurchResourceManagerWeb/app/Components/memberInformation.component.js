@@ -11,7 +11,9 @@
                     memberInfo: "<",
                     accordionSettings: "<",
                     index: "<",
-                    memberInfoCount: "<"
+                    memberInfoCount: "<",
+                    beingEdited: "<",
+                    onEdit: "&"
                 }
             });
 

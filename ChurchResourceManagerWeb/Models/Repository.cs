@@ -51,6 +51,22 @@ namespace ChurchResourceManagerWeb.Models
             }
         }
 
+        public int AddFamily(FamiliesViewModel family)
+        {
+            try
+            {
+                var fam = ModelFactory.CreateFamily(family.Name);
+                db.FAMILIES.Add(fam);
+                SaveAll();
+                return fam.FAMILY_ID;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
         public bool AddMembership(MembershipInfoViewModel membershipRecord)
         {
             try

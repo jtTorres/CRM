@@ -1,116 +1,128 @@
 ﻿<ng-form id="memberInfoForm" name="memberInfoForm">
-    <div uib-accordion-group class="panel-default" is-open="mic.accordionSettings.isMemberInfoOpen">
-        <uib-accordion-heading>
-            Member Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': mic.accordionSettings.isMemberInfoOpen, 'glyphicon-chevron-up': !mic.accordionSettings.isMemberInfoOpen}"></i>
-        </uib-accordion-heading>
-        <div class="col-xs-12">
-            <div class="form-group" ng-class="{'has-error' : memberInfoForm.ddlMembershipStatus.$invalid && memberInfoForm.ddlMembershipStatus.$touched}">
-                <label for="ddlMembershipStatus">Membership Status</label>
-                <select id="ddlMembershipStatus" name="ddlMembershipStatus" class="form-control" ng-model="mic.memberInfo.SelectedMembershipStatus" ng-options="g.Description for g in mic.enums.membershipStatuses" required></select>
-                <div class="help-block-error" ng-messages="memberInfoForm.ddlMembershipStatus.$error" ng-if="memberInfoForm.ddlMembershipStatus.$touched">
-                    <div ng-messages-include="message-template"></div>
-                </div>
-            </div>
-            <div class="form-group" ng-class="{'has-error' : memberInfoForm.ddlRelationshipTypes.$invalid && memberInfoForm.ddlRelationshipTypes.$touched}">
-                <label for="ddlRelationshipTypes">Relation</label>
-                <select id="ddlRelationshipTypes" name="ddlRelationshipTypes" class="form-control" ng-model="mic.memberInfo.SelectedRelationshipType" ng-options="r.Description for r in mic.enums.relationshipTypes" required></select>
-                <div class="help-block-error" ng-messages="memberInfoForm.ddlRelationshipTypes.$error" ng-if="memberInfoForm.ddlRelationshipTypes.$touched">
-                    <div ng-messages-include="message-template"></div>
-                </div>
-            </div>
-        </div>
-        <div uib-accordion-group class="panel-default" is-open="mic.accordionSettings.isPersonalInfoOpen">
-            <uib-accordion-heading>
-                Personal Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': mic.accordionSettings.isPersonalInfoOpen, 'glyphicon-chevron-up': !mic.accordionSettings.isPersonalInfoOpen}"></i>
-            </uib-accordion-heading>
-            <div class="col-xs-6">
-                <div class="form-group" ng-class="{'has-error' : memberInfoForm.firstNameTxtBx.$invalid && memberInfoForm.firstNameTxtBx.$touched}">
-                    <label for="firstNameTxtBx">First Name</label>
-                    <input id="firstNameTxtBx" name="firstNameTxtBx" class="form-control" type="text" placeholder="" ng-model="mic.memberInfo.FirstName" required
-                           maxlength="80" />
-                    <div class="help-block-error" ng-messages="memberInfoForm.firstNameTxtBx.$error" ng-if="memberInfoForm.firstNameTxtBx.$touched">
-                        <div ng-messages-include="message-template"></div>
+    <div class="row">
+        <uib-accordion close-others="false">
+            <div uib-accordion-group class="panel-default" is-open="true">
+                <uib-accordion-heading>
+                    Member Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': mic.accordionSettings.isMemberInfoOpen, 'glyphicon-chevron-up': !mic.accordionSettings.isMemberInfoOpen}"></i>
+                </uib-accordion-heading>
+                <div class="col-xs-12">
+                    <div class="form-group" ng-class="{'has-error' : memberInfoForm.ddlMembershipStatus.$invalid && memberInfoForm.ddlMembershipStatus.$touched}">
+                        <label for="ddlMembershipStatus">Membership Status</label>
+                        <select id="ddlMembershipStatus" name="ddlMembershipStatus" class="form-control" ng-model="mic.memberInfo.SelectedMembershipStatus" ng-options="g.Description for g in mic.enums.membershipStatuses" required></select>
+                        <div class="help-block-error" ng-messages="memberInfoForm.ddlMembershipStatus.$error" ng-if="memberInfoForm.ddlMembershipStatus.$touched">
+                            <div ng-messages-include="message-template"></div>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error' : memberInfoForm.ddlRelationshipTypes.$invalid && memberInfoForm.ddlRelationshipTypes.$touched}">
+                        <label for="ddlRelationshipTypes">Relation</label>
+                        <select id="ddlRelationshipTypes" name="ddlRelationshipTypes" class="form-control" ng-model="mic.memberInfo.SelectedRelationshipType" ng-options="r.Description for r in mic.enums.relationshipTypes" required></select>
+                        <div class="help-block-error" ng-messages="memberInfoForm.ddlRelationshipTypes.$error" ng-if="memberInfoForm.ddlRelationshipTypes.$touched">
+                            <div ng-messages-include="message-template"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group" ng-class="{'has-error' : memberInfoForm.middleNameTxtBx.$invalid && memberInfoForm.middleNameTxtBx.$touched}">
-                    <label for="middleNameTxtBx">Middle Name</label>
-                    <input id="middleNameTxtBx" name="middleNameTxtBx" class="form-control" type="text" placeholder="" ng-model="mic.memberInfo.MiddleName"
-                           maxlength="1" />
-                </div>
-                <div class="form-group" ng-class="{'has-error' : memberInfoForm.lastNameTxtBx.$invalid && memberInfoForm.lastNameTxtBx.$touched}">
-                    <label for="lastNameTxtBx">Last Name</label>
-                    <input id="lastNameTxtBx" name="lastNameTxtBx" class="form-control" type="text" placeholder="" ng-model="mic.memberInfo.LastName" required
-                           maxlength="90" />
-                    <div class="help-block-error" ng-messages="memberInfoForm.lastNameTxtBx.$error" ng-if="memberInfoForm.lastNameTxtBx.$touched">
-                        <div ng-messages-include="message-template"></div>
+                <div uib-accordion-group class="panel-default" is-open="mic.accordionSettings.isPersonalInfoOpen">
+                    <uib-accordion-heading>
+                        Personal Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': mic.accordionSettings.isPersonalInfoOpen, 'glyphicon-chevron-up': !mic.accordionSettings.isPersonalInfoOpen}"></i>
+                    </uib-accordion-heading>
+                    <div class="col-xs-6">
+                        <div class="form-group" ng-class="{'has-error' : memberInfoForm.firstNameTxtBx.$invalid && memberInfoForm.firstNameTxtBx.$touched}">
+                            <label for="firstNameTxtBx">First Name</label>
+                            <input id="firstNameTxtBx" name="firstNameTxtBx" class="form-control" type="text" placeholder="" ng-model="mic.memberInfo.FirstName" required
+                                   maxlength="80" />
+                            <div class="help-block-error" ng-messages="memberInfoForm.firstNameTxtBx.$error" ng-if="memberInfoForm.firstNameTxtBx.$touched">
+                                <div ng-messages-include="message-template"></div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error' : memberInfoForm.middleNameTxtBx.$invalid && memberInfoForm.middleNameTxtBx.$touched}">
+                            <label for="middleNameTxtBx">Middle Name</label>
+                            <input id="middleNameTxtBx" name="middleNameTxtBx" class="form-control" type="text" placeholder="" ng-model="mic.memberInfo.MiddleName"
+                                   maxlength="1" />
+                        </div>
+                        <div class="form-group" ng-class="{'has-error' : memberInfoForm.lastNameTxtBx.$invalid && memberInfoForm.lastNameTxtBx.$touched}">
+                            <label for="lastNameTxtBx">Last Name</label>
+                            <input id="lastNameTxtBx" name="lastNameTxtBx" class="form-control" type="text" placeholder="" ng-model="mic.memberInfo.LastName" required
+                                   maxlength="90" />
+                            <div class="help-block-error" ng-messages="memberInfoForm.lastNameTxtBx.$error" ng-if="memberInfoForm.lastNameTxtBx.$touched">
+                                <div ng-messages-include="message-template"></div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error' : memberInfoForm.dobTxtBx.$invalid && memberInfoForm.dobTxtBx.$touched}">
+                            <label for="dobTxtBx">Date of Birth</label>
+                            <input id="dobTxtBx" name="dobTxtBx" class="form-control" type="text" ng-model="mic.memberInfo.Dob"
+                                   ui-mask="99/99/9999"
+                                   ui-mask-placeholder
+                                   model-view-value="true" />
+                        </div>
+                        <div class="form-group" ng-class="{'has-error' : memberInfoForm.ddlGender.$invalid && memberInfoForm.ddlGender.$touched}">
+                            <label for="ddlGender">Gender</label>
+                            <select id="ddlGender" name="ddlGender" class="form-control" ng-model="mic.memberInfo.SelectedGender" ng-options="g.Description for g in mic.enums.genders" required></select>
+                            <div class="help-block-error" ng-messages="memberInfoForm.ddlGender.$error" ng-if="memberInfoForm.ddlGender.$touched">
+                                <div ng-messages-include="message-template"></div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error' : memberInfoForm.ddlMaritalStatus.$invalid && memberInfoForm.ddlMaritalStatus.$touched}">
+                            <label for="ddlMaritalStatus">Marital Status</label>
+                            <select id="ddlMaritalStatus" name="ddlMaritalStatus" class="form-control" ng-model="mic.memberInfo.SelectedMaritalStatus" ng-options="m.Description for m in mic.enums.maritalStatuses" required></select>
+                            <div class="help-block-error" ng-messages="memberInfoForm.ddlMaritalStatus.$error" ng-if="memberInfoForm.ddlMaritalStatus.$touched">
+                                <div ng-messages-include="message-template"></div>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error' : memberInfoForm.memberGroupTxtBx.$invalid && memberInfoForm.memberGroupTxtBx.$touched}">
+                            <label for="memberGroupTxtBx">Member Group</label>
+                            <select id="memberGroupTxtBx" name="memberGroupTxtBx" class="form-control" ng-model="mic.memberInfo.SelectedMemberGroup" ng-options="m.Description for m in mic.enums.memberGroups" required></select>
+                            <div class="help-block-error" ng-messages="memberInfoForm.memberGroupTxtBx.$error" ng-if="memberInfoForm.memberGroupTxtBx.$touched">
+                                <div ng-messages-include="message-template"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group" ng-class="{'has-error' : memberInfoForm.dobTxtBx.$invalid && memberInfoForm.dobTxtBx.$touched}">
-                    <label for="dobTxtBx">Date of Birth</label>
-                    <input id="dobTxtBx" name="dobTxtBx" class="form-control" type="text" ng-model="mic.memberInfo.Dob"
-                           ui-mask="99/99/9999"
-                           ui-mask-placeholder
-                           model-view-value="true" />
-                </div>
-                <div class="form-group" ng-class="{'has-error' : memberInfoForm.ddlGender.$invalid && memberInfoForm.ddlGender.$touched}">
-                    <label for="ddlGender">Gender</label>
-                    <select id="ddlGender" name="ddlGender" class="form-control" ng-model="mic.memberInfo.SelectedGender" ng-options="g.Description for g in mic.enums.genders" required></select>
-                    <div class="help-block-error" ng-messages="memberInfoForm.ddlGender.$error" ng-if="memberInfoForm.ddlGender.$touched">
-                        <div ng-messages-include="message-template"></div>
-                    </div>
-                </div>
-                <div class="form-group" ng-class="{'has-error' : memberInfoForm.ddlMaritalStatus.$invalid && memberInfoForm.ddlMaritalStatus.$touched}">
-                    <label for="ddlMaritalStatus">Marital Status</label>
-                    <select id="ddlMaritalStatus" name="ddlMaritalStatus" class="form-control" ng-model="mic.memberInfo.SelectedMaritalStatus" ng-options="m.Description for m in mic.enums.maritalStatuses" required></select>
-                    <div class="help-block-error" ng-messages="memberInfoForm.ddlMaritalStatus.$error" ng-if="memberInfoForm.ddlMaritalStatus.$touched">
-                        <div ng-messages-include="message-template"></div>
-                    </div>
-                </div>
-                <div class="form-group" ng-class="{'has-error' : memberInfoForm.memberGroupTxtBx.$invalid && memberInfoForm.memberGroupTxtBx.$touched}">
-                    <label for="memberGroupTxtBx">Member Group</label>
-                    <select id="memberGroupTxtBx" name="memberGroupTxtBx" class="form-control" ng-model="mic.memberInfo.SelectedMemberGroup" ng-options="m.Description for m in mic.enums.memberGroups" required></select>
-                    <div class="help-block-error" ng-messages="memberInfoForm.memberGroupTxtBx.$error" ng-if="memberInfoForm.memberGroupTxtBx.$touched">
-                        <div ng-messages-include="message-template"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div uib-accordion-group class="panel-default" is-open="mic.accordionSettings.isContactInfoOpen">
-            <uib-accordion-heading>
-                Contact Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': mic.accordionSettings.isContactInfoOpen, 'glyphicon-chevron-up': !mic.accordionSettings.isContactInfoOpen}"></i>
-            </uib-accordion-heading>
-            <div class="col-xs-6">
-                <div class="form-group" ng-class="{'has-error' : memberInfoForm.homePhoneNumberTxtBx.$invalid && memberInfoForm.homePhoneNumberTxtBx.$touched}">
-                    <label for="homePhoneNumberTxtBx">Home Phone Number</label>
-                    <input id="homePhoneNumberTxtBx" name="homePhoneNumberTxtBx" class="form-control" type="text" ng-model="mic.memberInfo.HomePhoneNumber"
-                           ui-mask="(999)-999-9999" />
-                </div>
-                <div class="form-group" ng-class="{'has-error' : memberInfoForm.cellPhoneNumberTxtBx.$invalid && memberInfoForm.cellPhoneNumberTxtBx.$touched}">
-                    <label for="cellPhoneNumberTxtBx">Cellphone Number</label>
-                    <input id="cellPhoneNumberTxtBx" name="cellPhoneNumberTxtBx" class="form-control" type="text" ng-model="mic.memberInfo.CellPhoneNumber"
-                           ui-mask="(999)-999-9999" />
-                </div>
-                <div class="form-group" ng-class="{'has-error' : memberInfoForm.emailTxtBx.$invalid && memberInfoForm.emailTxtBx.$touched}">
-                    <label for="emailTxtBx">Email</label>
-                    <input id="emailTxtBx" name="emailTxtBx" class="form-control" type="email" placeholder="joeShmoe@gmail.com" ng-model="mic.memberInfo.Email"
-                           maxlength="255" />
-                </div>
-                <div class="form-group" ng-class="{'has-error' : memberInfoForm.preferredContactMethodTxtBx.$invalid && memberInfoForm.preferredContactMethodTxtBx.$touched}">
-                    <label for="preferredContactMethodTxtBx">Preferred Contact Method</label>
-                    <select id="preferredContactMethodTxtBx" name="preferredContactMethodTxtBx" class="form-control" ng-model="mic.memberInfo.SelectedPreferredContactMethod" ng-options="m.Description for m in mic.enums.contactMethods" ng-required="mic.memberInfo.HomePhoneNumber.length > 0 || mic.memberInfo.CellPhoneNumber.length > 0 || mic.memberInfo.Email.length > 0"></select>
-                    <div class="help-block-error" ng-messages="memberInfoForm.preferredContactMethodTxtBx.$error" ng-if="memberInfoForm.preferredContactMethodTxtBx.$touched">
-                        <div ng-messages-include="message-template"></div>
+                <div uib-accordion-group class="panel-default" is-open="mic.accordionSettings.isContactInfoOpen">
+                    <uib-accordion-heading>
+                        Contact Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': mic.accordionSettings.isContactInfoOpen, 'glyphicon-chevron-up': !mic.accordionSettings.isContactInfoOpen}"></i>
+                    </uib-accordion-heading>
+                    <div class="col-xs-6">
+                        <div class="form-group" ng-class="{'has-error' : memberInfoForm.homePhoneNumberTxtBx.$invalid && memberInfoForm.homePhoneNumberTxtBx.$touched}">
+                            <label for="homePhoneNumberTxtBx">Home Phone Number</label>
+                            <input id="homePhoneNumberTxtBx" name="homePhoneNumberTxtBx" class="form-control" type="text" ng-model="mic.memberInfo.HomePhoneNumber"
+                                   ui-mask="(999)-999-9999" />
+                        </div>
+                        <div class="form-group" ng-class="{'has-error' : memberInfoForm.cellPhoneNumberTxtBx.$invalid && memberInfoForm.cellPhoneNumberTxtBx.$touched}">
+                            <label for="cellPhoneNumberTxtBx">Cellphone Number</label>
+                            <input id="cellPhoneNumberTxtBx" name="cellPhoneNumberTxtBx" class="form-control" type="text" ng-model="mic.memberInfo.CellPhoneNumber"
+                                   ui-mask="(999)-999-9999" />
+                        </div>
+                        <div class="form-group" ng-class="{'has-error' : memberInfoForm.emailTxtBx.$invalid && memberInfoForm.emailTxtBx.$touched}">
+                            <label for="emailTxtBx">Email</label>
+                            <input id="emailTxtBx" name="emailTxtBx" class="form-control" type="email" placeholder="joeShmoe@gmail.com" ng-model="mic.memberInfo.Email"
+                                   maxlength="255" />
+                        </div>
+                        <div class="form-group" ng-class="{'has-error' : memberInfoForm.preferredContactMethodTxtBx.$invalid && memberInfoForm.preferredContactMethodTxtBx.$touched}">
+                            <label for="preferredContactMethodTxtBx">Preferred Contact Method</label>
+                            <select id="preferredContactMethodTxtBx" name="preferredContactMethodTxtBx" class="form-control" ng-model="mic.memberInfo.SelectedPreferredContactMethod" ng-options="m.Description for m in mic.enums.contactMethods" ng-required="mic.memberInfo.HomePhoneNumber.length > 0 || mic.memberInfo.CellPhoneNumber.length > 0 || mic.memberInfo.Email.length > 0"></select>
+                            <div class="help-block-error" ng-messages="memberInfoForm.preferredContactMethodTxtBx.$error" ng-if="memberInfoForm.preferredContactMethodTxtBx.$touched">
+                                <div ng-messages-include="message-template"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div style="margin-top: 1%;">
+                    <button ng-if="mic.followLastCurrentActiveIndex(mic.index, mic.memberInfoCount)" type="button" class="btn btn-success" ng-click="mic.onAddRelative()">
+                        <span class="glyphicon glyphicon-plus"></span> Add More
+                    </button>
+                    <button ng-if="mic.index > 0" type="button" class="btn btn-danger" ng-click="mic.onRemoveRelative(mic.index)">
+                        <span class="glyphicon glyphicon-minus"></span> Remove
+                    </button>
+                </div>
             </div>
-        </div>
-        <div style="margin-top: 1%;">
-            <button ng-if="mic.displayAddRelativeButton(mic.index, mic.memberInfoCount)" type="button" class="btn btn-success" ng-click="mic.onAddRelative()">
-                <span class="glyphicon glyphicon-plus"></span> Add More
+        </uib-accordion>
+        <div style="padding-top: 1%; padding-left: .5%;" ng-if="mic.followLastCurrentActiveIndex(mic.index, mic.memberInfoCount)">
+            <button id="editFamilyBtn" name="editFamilyBtn" class="btn btn-primary" type="button" ng-click="mic.edit()" ng-disabled="mic.beingEdited">
+                <span class="glyphicon glyphicon-edit"></span> Edit
             </button>
-            <button ng-if="mic.index > 0" type="button" class="btn btn-danger" ng-click="mic.onRemoveRelative(mic.index)">
-                <span class="glyphicon glyphicon-minus"></span> Remove
+            <button id="submitFamilyBtn" name="submitFamilyBtn" class="btn btn-primary" type="submit" ng-disabled="!mic.beingEdited">
+                <span class="glyphicon glyphicon-check"></span> Save
             </button>
         </div>
     </div>

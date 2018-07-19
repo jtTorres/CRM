@@ -15,7 +15,8 @@
                     maritalStatuses: "<",
                     stateList: "<",
                     memberGroups: "<",
-                    memberInfo: "<"
+                    memberInfo: "<",
+                    beingEdited: "<"
                 }
             });
 

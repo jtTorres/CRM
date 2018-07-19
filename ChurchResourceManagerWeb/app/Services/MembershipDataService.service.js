@@ -12,6 +12,7 @@
         };
 
         return {
+            addFamily: addFamily,
             addMembership: addMembership,
             getAllMembership: getAllMembership,
             allMembership: allMembership,
@@ -76,6 +77,26 @@
 
         function onGetEmptyMemberInfoError(reason) {
             return $q.reject(utilityService.httpError(reason, "Error Getting Member Info"));
+        }
+
+        function addFamily(family) {
+            return $http({
+                method: "POST",
+                url: "/Membership/AddFamily/",
+                data: {
+                    family: family
+                }
+            })
+                .then(onAddFamilySuccess)
+                .catch(onAddFamilyError);
+        }
+
+        function onAddFamilySuccess(response) {
+            return response;
+        }
+
+        function onAddFamilyError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Adding Family"));
         }
     }
 

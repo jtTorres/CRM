@@ -9,7 +9,15 @@
     function membershipController(membershipDataService, utilityService, operationFlowService, $scope, enumsDataService) {
         var vm = this;
         vm.addRelative = addRelative;
+        vm.beingEdited = {
+            familyForm: true,
+            personalInfoForm: true,
+            addressInfoForm: true
+        }
+        vm.doEdit = doEdit;
+        vm.doSaveFamily = doSaveFamily;
         vm.emptyMemberInfo = {};
+        vm.Family = {}
 
         vm.getEmptyMemberInfo = getEmptyMemberInfo;
         vm.Membership = {};
@@ -39,12 +47,38 @@
         }
 
         function onSaveSuccess(response) {
-            vm.processFlow = operationFlowService.operationCompletion("Membership Saved Successfully!", true);
+            vm.processFlow = operationFlowService.operationCompletion("Saved Successfully!", true);
         }
 
         function onSaveError(reason) {
             vm.processFlow = operationFlowService.operationCompletion(reason.message, false);
         }
+
+        // #region Family Tab
+        function doSaveFamily(family) {
+            if (utilityService.isUndefinedOrNull(vm.Family.FamilyId)) {
+                return membershipDataService.addFamily(family)
+                    .then(function (response) {
+                        if (response.data) {
+                            if (response.data.Id) {
+                                vm.Family.FamilyId = response.data.Id;
+                                vm.beingEdited.familyForm = false;
+                                vm.processFlow = operationFlowService.operationCompletion("Saved Successfully!", true);
+                            }
+                        }
+                    })
+                    .catch(onSaveError);
+            } else {
+                return membershipDataService.updateMembership(membershipRecord)
+                    .then(onSaveSuccess)
+                    .catch(onSaveError);
+            }
+        }
+
+        function doEdit(formName) {
+            vm.beingEdited[formName] = true;
+        }
+        // #endregion
 
         function getAllEnums() {
             enumsDataService.getContactMethods().then(function (response) {

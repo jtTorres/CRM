@@ -4,10 +4,35 @@
     ViewBag.Title = "Add Membership";
 }
 
+<h2 style="padding-bottom: 40px;">@ViewBag.Title</h2>
+
 <div ng-controller="membershipController as mc">
     <div class="container">
         <div class="row">
-            <add-membership member-info="mc.memberInfoArray" on-save="mc.doSaveMembership(membershipRecord)" genders="mc.genders" marital-statuses="mc.maritalStatuses" state-list="mc.stateList", member-groups="mc.memberGroups"></add-membership>
+            <div class="col-xs-12">
+                <uib-tabset active="active">
+                    <!--Family Form-->
+                    <uib-tab index="0" heading="Family">
+                        <family family="mc.Family" being-edited="mc.beingEdited.familyForm" on-edit="mc.doEdit(formName)" on-submit="mc.doSaveFamily(family)"></family>
+                    </uib-tab>
+                    <uib-tab index="1" heading="Personal Information" @*style="padding-bottom: 1%"*@>
+                        <!--member information-->
+                        <div class="row">
+                            <div class="col-xs-11" style="padding-left: 3%;">
+                                <div ng-repeat="info in mc.memberInfoArray track by $index">
+                                    <div style="padding-bottom: 1%;">
+                                        <member-information being-edited="mc.beingEdited.personalInfoForm" member-info="info" on-edit="mc.doEdit(formName)" accordion-settings="mc.accordionSettings" index="$index" member-info-count="mc.memberInfoArray.length -1"></member-information>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </uib-tab>
+                    <uib-tab index="2" heading="Address Information">
+                        <!--Address Information-->
+                        <address></address>
+                    </uib-tab>
+                </uib-tabset>
+            </div>
         </div>
     </div>
 </div>

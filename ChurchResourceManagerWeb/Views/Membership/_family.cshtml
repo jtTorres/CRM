@@ -1,0 +1,23 @@
+﻿<form id="fc.addFamilyForm" name="fc.addFamilyForm" novalidate ng-submit="fc.submit(fc.family, fc.addFamilyForm)" autocomplete="off">
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="form-group" ng-class="{'has-error' : fc.addFamilyForm.familyNameTxtBx.$invalid && fc.addFamilyForm.familyNameTxtBx.$touched}">
+                <label for="familyNameTxtBx">Family Name</label>
+                <input id="familyNameTxtBx" name="familyNameTxtBx" class="form-control" type="text" placeholder="(Ex. Torres-Velez)"
+                       ng-model="fc.family.Name" required maxlength="80" ng-show="fc.beingEdited" />
+                <p ng-show="!fc.beingEdited">{{fc.family.Name}}</p>
+                <div class="help-block-error" ng-messages="fc.addFamilyForm.familyNameTxtBx.$error" ng-if="fc.addFamilyForm.familyNameTxtBx.$touched">
+                    <div ng-messages-include="message-template"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <button id="editFamilyBtn" name="editFamilyBtn" class="btn btn-primary" type="button" ng-click="fc.edit()" ng-disabled="fc.beingEdited">
+            <span class="glyphicon glyphicon-edit"></span> Edit
+        </button>
+        <button id="submitFamilyBtn" name="submitFamilyBtn" class="btn btn-primary" type="submit" ng-disabled="!fc.beingEdited">
+            <span class="glyphicon glyphicon-check"></span> Save
+        </button>
+    </div>
+</form>
