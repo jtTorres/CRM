@@ -43,23 +43,26 @@ namespace ChurchResourceManagerWeb.Controllers
         {
             return PartialView("_address");
         }
+
+        public ActionResult ContactInformation()
+        {
+            return PartialView("_contactInformation");
+        }
         #endregion
 
 
         [HttpPost]
-        public JsonResult AddMembershipRecord(MembershipInfoViewModel membershipRecord)
+        public JsonResult AddMembershipRecord(MembershipViewModel[] membershipRecord)
         {
             try
             {
-                if (Repo.AddMembership(membershipRecord) && Repo.SaveAll())
-                    return Json(new { Success = true });
+                return Json(new { MemberIds = Repo.AddMembership(membershipRecord) });
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 throw;
             }
-            return Json(new { Success = false });
         }
 
         [HttpPost]
@@ -76,12 +79,40 @@ namespace ChurchResourceManagerWeb.Controllers
             }
         }
 
+        [HttpPost]
+        public JsonResult AddLocation(LocationsViewModel location)
+        {
+            try
+            {
+                return Json(new { LocationId = Repo.AddLocationInfo(location) });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
         [HttpGet]
         public JsonResult GetEmptyMemberInfo()
         {
             try
             {
                 return Json(Repo.GetEmptyMemberInfo(), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public JsonResult AddContactInfo(ContactInfoViewModel[] contactInfo)
+        {
+            try
+            {
+                return Json(new { success = Repo.AddContactInfo(contactInfo) });
             }
             catch (Exception ex)
             {

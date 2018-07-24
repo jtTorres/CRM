@@ -247,6 +247,7 @@
     <Compile Include="Models\LOCATIONS.cs">
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LocationsViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MARITAL_STATUS.cs">
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
@@ -260,7 +261,7 @@
     <Compile Include="Models\MembershipInfoViewModel.cs" />
     <Compile Include="Models\MembershipStatusViewModel.cs" />
     <Compile Include="Models\MembershipViewModel.cs" />
-    <Compile Include="Models\MEMBERSHIP_TYPES.cs">
+    <Compile Include="Models\MEMBERSHIP_STATUS.cs">
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MEMBER_GROUPS.cs">
@@ -300,6 +301,7 @@
     <Content Include="app\Components\addOffering.component.spec.js" />
     <Content Include="app\Components\address.component.js" />
     <Content Include="app\Components\addTithe.component.js" />
+    <Content Include="app\Components\contactInformation.component.js" />
     <Content Include="app\Components\deleteOffering.component.js" />
     <Content Include="app\Components\deleteTithe.component.js" />
     <Content Include="app\Components\editOfferingModal.component.js" />
@@ -317,6 +319,7 @@
     <Content Include="app\Components\Shared\runningTotal.component.spec.js" />
     <Content Include="app\Controllers\Membership\AddMembership.controller.js" />
     <Content Include="app\Controllers\Membership\Address.controller.js" />
+    <Content Include="app\Controllers\Membership\ContactInformation.controller.js" />
     <Content Include="app\Controllers\Membership\Family.controller.js" />
     <Content Include="app\Controllers\Membership\MemberInformation.controller.js" />
     <Content Include="app\Controllers\Membership\Membership.controller.js" />
@@ -1217,6 +1220,7 @@
     <Content Include="Views\Membership\_memberInformation.cshtml" />
     <Content Include="Views\Membership\_family.cshtml" />
     <Content Include="Views\Membership\_address.cshtml" />
+    <Content Include="Views\Membership\_contactInformation.cshtml" />
     <None Include="Views\Test\SpecRunner.cshtml" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />

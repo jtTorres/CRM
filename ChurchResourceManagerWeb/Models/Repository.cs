@@ -67,40 +67,67 @@ namespace ChurchResourceManagerWeb.Models
             }
         }
 
-        public bool AddMembership(MembershipInfoViewModel membershipRecord)
+        public int AddLocationInfo(LocationsViewModel location)
         {
             try
             {
-                var family = ModelFactory.CreateFamily(membershipRecord.FamilyName);
-                db.FAMILIES.Add(family);
+                var loc = ModelFactory.CreateLocation(location);
+                db.LOCATIONS.Add(loc);
                 SaveAll();
+                return loc.LOCATION_ID;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
 
-                membershipRecord.FamilyId = family.FAMILY_ID;
+        public List<int> AddMembership(MembershipViewModel[] membershipRecord)
+        {
+            try
+            {
+                var memberIds = new List<int>();
+                foreach (var memberInfo in membershipRecord)
+                {
+                    var member = ModelFactory.CreateMembership(memberInfo);
+                    db.MEMBERSHIP.Add(member);
 
-                var location = ModelFactory.CreateLocation(membershipRecord);
-                db.LOCATIONS.Add(location);
-                SaveAll();
+                    SaveAll();
 
-                membershipRecord.LocationId = location.LOCATION_ID;
+                    memberInfo.MemberId = member.MEMBER_ID;
+                    memberIds.Add(memberInfo.MemberId);
+                }
 
-                var member = ModelFactory.CreateMembership(membershipRecord);
-                db.MEMBERSHIP.Add(member);
-                SaveAll();
-
-                membershipRecord.MemberId = member.MEMBER_ID;
-
-                var contactInfoVm = ModelFactory.CreateContactInfoViewModelList(member.MEMBER_ID, membershipRecord.HomePhoneNumber, membershipRecord.CellPhoneNumber, membershipRecord.Email);
-                var contactInfo = ModelFactory.CreateContactInfo(contactInfoVm);
-                AddContactInfo(contactInfo);
-                SaveAll();
-
-                return true;
+                return memberIds;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 throw;
                 //return false;
+            }
+        }
+
+        public bool AddContactInfo(ContactInfoViewModel[] contactInfo)
+        {
+            try
+            {
+                foreach (var contact in contactInfo)
+                {
+                    var contactInfoListVm = ModelFactory.CreateContactInfoViewModelList(contact.MemberId, contact.HomePhoneNumber, contact.CellPhoneNumber, contact.Email);
+                    var info = ModelFactory.CreateContactInfo(contactInfoListVm);
+                    AddContactInfo(info);
+                    SaveAll();
+                }
+
+                //return SaveAll();
+                return UpdateMembershipPreferredContactMethod(contactInfo);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
             }
         }
 
@@ -129,6 +156,46 @@ namespace ChurchResourceManagerWeb.Models
         {
             db.Entry(GetOfferingById(offering.OfferingId)).CurrentValues.SetValues(ModelFactory.CreateOffering(offering));
             return SaveAll();
+        }
+
+        public bool UpdateMembershipPreferredContactMethod(ContactInfoViewModel[] contactInfo)
+        {
+            try
+            {
+                var membership = new List<MembershipViewModel>();
+                foreach (var info in contactInfo)
+                {
+                    var member = GetMembershipById(info.MemberId);
+                    member.PREFERRERD_CONTACT_METHOD = info.PreferredContactMethod;
+                    membership.Add(ModelFactory.CreateMembershipViewModel(member));
+                }
+
+                return UpdateMembership(membership);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        public bool UpdateMembership(List<MembershipViewModel> membership)
+        {
+            try
+            {
+                foreach (var memberInfo in membership)
+                {
+                    db.Entry(GetMembershipById(memberInfo.MemberId)).CurrentValues.SetValues(ModelFactory.CreateMembership(memberInfo));
+                    SaveAll();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
         }
         #endregion
 
@@ -179,8 +246,8 @@ namespace ChurchResourceManagerWeb.Models
                                   GroupId = m.GROUP_ID,
                                   PreferredContactMethod = m.PREFERRERD_CONTACT_METHOD,
                                   ExitDate = m.EXIT_DATE.ToString(),
-                                  MembershipTypeId = m.MEMBERSHIP_TYPE_ID,
-                                  LastModifiedDate = m.LAST_MODIFIED_DATE,
+                                  MembershipStatusId = m.MEMBERSHIP_STATUS_ID,
+                                  LastModifiedDateTime = m.LAST_MODIFIED_DATE,
                                   RelationshipTypeId = m.RELATIONSHIP_TYPE_ID
                               }).ToList();
 
@@ -230,7 +297,7 @@ namespace ChurchResourceManagerWeb.Models
 
         public IEnumerable<MembershipStatusViewModel> GetMembershipStatuses()
         {
-            return ModelFactory.CreateMembershipStatusList(db.MEMBERSHIP_TYPES);
+            return ModelFactory.CreateMembershipStatusList(db.MEMBERSHIP_STATUS);
         }
 
         public IEnumerable<RelationshipTypesViewModel> GetRelationshipTypes()
@@ -246,6 +313,11 @@ namespace ChurchResourceManagerWeb.Models
         public IEnumerable<MemberGroupsViewModel> GetMemberGroups()
         {
             return ModelFactory.CreateMemberGroupsViewModel(db.MEMBER_GROUPS);
+        }
+
+        public MEMBERSHIP GetMembershipById(int memberId)
+        {
+            return db.MEMBERSHIP.Find(memberId);
         }
 
         #endregion

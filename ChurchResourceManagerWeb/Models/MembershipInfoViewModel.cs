@@ -7,7 +7,8 @@ namespace ChurchResourceManagerWeb.Models
 {
     public class MembershipInfoViewModel
     {
-        public List<MemberInfoViewModel> MemberInfo { get; set; }
+        //public List<MemberInfoViewModel> MemberInfo { get; set; }
+        public MembershipInfoViewModel[] MemberInfo { get; set; }
 
         public int FamilyId { get; set; }
         public string FamilyName { get; set; }
@@ -22,7 +23,7 @@ namespace ChurchResourceManagerWeb.Models
         public byte GroupId { get; set; }
         public byte PreferredContactMethod { get; set; }
         public string ExitDate { get; set; }
-        public byte MembershipTypeId { get; set; }
+        public byte MembershipStatusId { get; set; }
         public string LastModifiedDate { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }

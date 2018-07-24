@@ -9,11 +9,12 @@
                 controllerAs: "mic",
                 bindings: {
                     memberInfo: "<",
+                    memberInfoArray: "<",
                     accordionSettings: "<",
-                    index: "<",
-                    memberInfoCount: "<",
                     beingEdited: "<",
-                    onEdit: "&"
+                    onEdit: "&",
+                    onSubmit: "&",
+                    onFindActiveIndex: "&"
                 }
             });
 

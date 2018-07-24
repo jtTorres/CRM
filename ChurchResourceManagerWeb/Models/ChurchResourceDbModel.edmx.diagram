@@ -14,8 +14,7 @@
         <EntityTypeShape EntityType="ChurchResourceDbModel.LOCATIONS" Width="1.5" PointX="0.75" PointY="5.375" />
         <EntityTypeShape EntityType="ChurchResourceDbModel.MARITAL_STATUS" Width="1.5" PointX="0.75" PointY="13.25" />
         <EntityTypeShape EntityType="ChurchResourceDbModel.MEMBER_GROUPS" Width="1.5" PointX="0.75" PointY="8.625" />
-        <EntityTypeShape EntityType="ChurchResourceDbModel.MEMBERSHIP" Width="1.5" PointX="3" PointY="3.875" />
-        <EntityTypeShape EntityType="ChurchResourceDbModel.MEMBERSHIP_TYPES" Width="1.5" PointX="0.75" PointY="2.25" />
+        <EntityTypeShape EntityType="ChurchResourceDbModel.MEMBERSHIP" Width="1.625" PointX="3" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ChurchResourceDbModel.OFFERINGS" Width="1.5" PointX="8.75" PointY="9.375" />
         <EntityTypeShape EntityType="ChurchResourceDbModel.TITHES" Width="1.5" PointX="5.25" PointY="1.125" />
         <EntityTypeShape EntityType="ChurchResourceDbModel.TRANSACTION_TYPES" Width="1.5" PointX="7.75" PointY="2.125" />
@@ -30,11 +29,12 @@
         <AssociationConnector Association="ChurchResourceDbModel.fk_MEMBERSHIP_to_LOCATIONS_LOCATION_ID" />
         <AssociationConnector Association="ChurchResourceDbModel.fk_MEMBERSHIP_to_MARITAL_STATUS_MARITAL_STATUS_ID" />
         <AssociationConnector Association="ChurchResourceDbModel.fk_MEMBERSHIP_to_MEMBER_GROUPS_GROUP_ID" />
-        <AssociationConnector Association="ChurchResourceDbModel.fk_MEMBERSHIP_to_MEMBERSHIP_TYPES_MEMBERSHIP_TYPE_ID" />
         <AssociationConnector Association="ChurchResourceDbModel.fk_TITHES_to_MEMBERSHIP_MEMBER_ID" />
         <AssociationConnector Association="ChurchResourceDbModel.fk_TRANSACTIONS_to_TRANSACTION_TYPES_TRANSACTION_TYPE_ID" />
         <EntityTypeShape EntityType="ChurchResourceDbModel.RELATIONSHIP_TYPES" Width="1.5" PointX="5.375" PointY="11.75" />
         <AssociationConnector Association="ChurchResourceDbModel.fk_MEMBERSHIP_to_RELATIONSHIP_TYPES_RELATIONSHIP_TYPE_ID" />
+        <EntityTypeShape EntityType="ChurchResourceDbModel.MEMBERSHIP_STATUS" Width="1.5" PointX="11.375" PointY="7.875" />
+        <AssociationConnector Association="ChurchResourceDbModel.fk_MEMBERSHIP_to_MEMBERSHIP_STATUS_MEMBERSHIP_STATUS_ID" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

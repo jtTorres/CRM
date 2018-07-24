@@ -13,7 +13,9 @@
 
         return {
             addFamily: addFamily,
+            addContactInfo: addContactInfo,
             addMembership: addMembership,
+            addLocation: addLocation,
             getAllMembership: getAllMembership,
             allMembership: allMembership,
             getStateList: getStateList,
@@ -97,6 +99,46 @@
 
         function onAddFamilyError(reason) {
             return $q.reject(utilityService.httpError(reason, "Error Adding Family"));
+        }
+
+        function addLocation(location) {
+            return $http({
+                method: "POST",
+                url: "/Membership/AddLocation/",
+                data: {
+                    location: location
+                }
+            })
+                .then(onAddLocationSuccess)
+                .catch(onAddLocationError);
+        }
+
+        function onAddLocationSuccess(response) {
+            return response;
+        }
+
+        function onAddLocationError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Adding Address Information"));
+        }
+
+        function addContactInfo(contactInfo) {
+            return $http({
+                method: "POST",
+                url: "/Membership/AddContactInfo/",
+                data: {
+                    contactInfo: contactInfo
+                }
+            })
+                .then(onAddContactInfoSuccess)
+                .catch(onAddContactInfoError);
+        }
+
+        function onAddContactInfoSuccess(response) {
+            return response;
+        }
+
+        function onAddContactInfoError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Adding Contact Information"));
         }
     }
 

@@ -35,34 +35,35 @@ namespace ChurchResourceManagerWeb.Models
             };
         }
 
-        public LOCATIONS CreateLocation(MembershipInfoViewModel membershipRecord)
+        public LOCATIONS CreateLocation(LocationsViewModel loc)
         {
             return new LOCATIONS
             {
-                ADDRESS1 = membershipRecord.Address1,
-                ADDRESS2 = membershipRecord.Address2,
-                CITY = membershipRecord.City,
-                STATE = membershipRecord.State,
-                ZIP_CODE = membershipRecord.ZipCode
+                ADDRESS1 = loc.Address1,
+                ADDRESS2 = loc.Address2,
+                CITY = loc.City,
+                STATE = loc.State,
+                ZIP_CODE = loc.ZipCode
             };
         }
 
-        public MEMBERSHIP CreateMembership(MembershipInfoViewModel membership)
+        public MEMBERSHIP CreateMembership(MembershipViewModel membership)
         {
             return new MEMBERSHIP
             {
+                FAMILY_ID = membership.FamilyId,
+                MEMBER_ID = membership.MemberId,
                 FIRST_NAME = membership.FirstName,
                 MIDDLE_NAME = membership.MiddleName,
                 LAST_NAME = membership.LastName,
                 DOB = Convert.ToDateTime(membership.Dob),
                 GENDER = membership.Gender,
-                FAMILY_ID = membership.FamilyId,
+                LOCATION_ID = membership.LocationId,
                 MARITAL_STATUS_ID = membership.MaritalStatusId,
                 GROUP_ID = membership.GroupId,
                 PREFERRERD_CONTACT_METHOD = membership.PreferredContactMethod,
-                MEMBERSHIP_TYPE_ID = membership.MembershipTypeId,
-                LOCATION_ID = membership.LocationId,
-                EXIT_DATE = null,
+                EXIT_DATE = membership.ExitDateTime,
+                MEMBERSHIP_STATUS_ID = membership.MembershipStatusId,
                 LAST_MODIFIED_DATE = DateTime.Now,
                 RELATIONSHIP_TYPE_ID = membership.RelationshipTypeId
             };
@@ -87,6 +88,30 @@ namespace ChurchResourceManagerWeb.Models
 
         #endregion
 
+        #region ViewModel Creation
+
+        public MembershipViewModel CreateMembershipViewModel(MEMBERSHIP membership)
+        {
+            return new MembershipViewModel
+            {
+                FamilyId = membership.FAMILY_ID,
+                MemberId = membership.MEMBER_ID,
+                FirstName = membership.FIRST_NAME,
+                MiddleName = membership.MIDDLE_NAME,
+                LastName = membership.LAST_NAME,
+                DobDateTime = membership.DOB,
+                LocationId = membership.LOCATION_ID,
+                MaritalStatusId = membership.MARITAL_STATUS_ID,
+                GroupId = membership.GROUP_ID,
+                PreferredContactMethod = membership.PREFERRERD_CONTACT_METHOD,
+                ExitDateTime = membership.EXIT_DATE,
+                MembershipStatusId = membership.MEMBERSHIP_STATUS_ID,
+                LastModifiedDateTime = membership.LAST_MODIFIED_DATE,
+                RelationshipTypeId = membership.RELATIONSHIP_TYPE_ID
+            };
+        }
+
+        #endregion
 
         #region List Creations
         public IEnumerable<TithesViewModel> CreateTithesViewModelList(IQueryable<TITHES> tithe, IQueryable<MEMBERSHIP> member)
@@ -148,6 +173,28 @@ namespace ChurchResourceManagerWeb.Models
             }).ToList();
         }
 
+
+        public IEnumerable<MembershipViewModel> CreateMembershipViewModelList(IEnumerable<MEMBERSHIP> membership)
+        {
+            return membership.Select(m => new MembershipViewModel
+            {
+                FamilyId = m.FAMILY_ID,
+                MemberId = m.MEMBER_ID,
+                FirstName = m.FIRST_NAME,
+                MiddleName = m.MIDDLE_NAME,
+                LastName = m.LAST_NAME,
+                DobDateTime = m.DOB,
+                LocationId = m.LOCATION_ID,
+                MaritalStatusId = m.MARITAL_STATUS_ID,
+                GroupId = m.GROUP_ID,
+                PreferredContactMethod = m.PREFERRERD_CONTACT_METHOD,
+                ExitDateTime = m.EXIT_DATE,
+                MembershipStatusId = m.MEMBERSHIP_STATUS_ID,
+                LastModifiedDateTime = m.LAST_MODIFIED_DATE,
+                RelationshipTypeId = m.RELATIONSHIP_TYPE_ID
+            }).ToList();
+        }
+
         public IEnumerable<ContactMethodsViewModel> CreateContactMethodsList(IQueryable<CONTACT_METHODS> contactMethods)
         {
             return contactMethods.Select(c => new ContactMethodsViewModel
@@ -157,11 +204,11 @@ namespace ChurchResourceManagerWeb.Models
             }).ToList();
         }
 
-        public IEnumerable<MembershipStatusViewModel> CreateMembershipStatusList(IQueryable<MEMBERSHIP_TYPES> membershipStatus)
+        public IEnumerable<MembershipStatusViewModel> CreateMembershipStatusList(IQueryable<MEMBERSHIP_STATUS> membershipStatus)
         {
             return membershipStatus.Select(m => new MembershipStatusViewModel
             {
-                Id = m.MEMBERSHIP_TYPE_ID,
+                Id = m.MEMBERSHIP_STATUS_ID,
                 Description = m.DESCRIPTION
             }).ToList();
         }

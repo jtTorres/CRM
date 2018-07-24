@@ -34,9 +34,9 @@ namespace ChurchResourceManagerWeb.Models
         public Nullable<byte> GROUP_ID { get; set; }
         public Nullable<byte> PREFERRERD_CONTACT_METHOD { get; set; }
         public Nullable<System.DateTime> EXIT_DATE { get; set; }
-        public Nullable<byte> MEMBERSHIP_TYPE_ID { get; set; }
         public System.DateTime LAST_MODIFIED_DATE { get; set; }
         public Nullable<byte> RELATIONSHIP_TYPE_ID { get; set; }
+        public Nullable<byte> MEMBERSHIP_STATUS_ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ACTIVITIES> ACTIVITIES { get; set; }
@@ -46,8 +46,8 @@ namespace ChurchResourceManagerWeb.Models
         public virtual LOCATIONS LOCATIONS { get; set; }
         public virtual MARITAL_STATUS MARITAL_STATUS { get; set; }
         public virtual MEMBER_GROUPS MEMBER_GROUPS { get; set; }
-        public virtual MEMBERSHIP_TYPES MEMBERSHIP_TYPES { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TITHES> TITHES { get; set; }
+        public virtual MEMBERSHIP_STATUS MEMBERSHIP_STATUS { get; set; }
     }
 }

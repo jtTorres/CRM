@@ -70,7 +70,7 @@
     <Build Include="dbo.LOCATIONS.sql" />
     <Build Include="dbo.CONTACT_METHODS.sql" />
     <Build Include="dbo.CONTACT_INFO.sql" />
-    <Build Include="dbo.MEMBERSHIP_TYPES.sql" />
+    <Build Include="dbo.MEMBERSHIP_STATUS.sql" />
     <Build Include="dbo.Trigger.UpdateLastModifiedDateIn_MEMBERSHIP.sql" />
     <Build Include="dbo.TRANSACTION_TYPES.sql" />
     <Build Include="dbo.TRANSACTIONS.sql" />

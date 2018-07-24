@@ -58,7 +58,7 @@
           <Key>
             <PropertyRef Name="LOCATION_ID" />
           </Key>
-          <Property Name="LOCATION_ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LOCATION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ADDRESS1" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="ADDRESS2" Type="varchar" MaxLength="255" />
           <Property Name="CITY" Type="varchar" MaxLength="50" Nullable="false" />
@@ -90,20 +90,20 @@
           <Property Name="LAST_NAME" Type="varchar" MaxLength="90" Nullable="false" />
           <Property Name="DOB" Type="date" />
           <Property Name="GENDER" Type="char" MaxLength="1" />
-          <Property Name="LOCATION_ID" Type="smallint" />
+          <Property Name="LOCATION_ID" Type="int" />
           <Property Name="MARITAL_STATUS_ID" Type="tinyint" />
           <Property Name="GROUP_ID" Type="tinyint" />
           <Property Name="PREFERRERD_CONTACT_METHOD" Type="tinyint" />
           <Property Name="EXIT_DATE" Type="date" />
-          <Property Name="MEMBERSHIP_TYPE_ID" Type="tinyint" />
+          <Property Name="MEMBERSHIP_STATUS_ID" Type="tinyint" />
           <Property Name="LAST_MODIFIED_DATE" Type="datetime" Nullable="false" />
           <Property Name="RELATIONSHIP_TYPE_ID" Type="tinyint" />
         </EntityType>
-        <EntityType Name="MEMBERSHIP_TYPES">
+        <EntityType Name="MEMBERSHIP_STATUS">
           <Key>
-            <PropertyRef Name="MEMBERSHIP_TYPE_ID" />
+            <PropertyRef Name="MEMBERSHIP_STATUS_ID" />
           </Key>
-          <Property Name="MEMBERSHIP_TYPE_ID" Type="tinyint" Nullable="false" />
+          <Property Name="MEMBERSHIP_STATUS_ID" Type="tinyint" Nullable="false" />
           <Property Name="DESCRIPTION" Type="varchar" MaxLength="80" Nullable="false" />
         </EntityType>
         <EntityType Name="OFFERINGS">
@@ -258,15 +258,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_MEMBERSHIP_to_MEMBERSHIP_TYPES_MEMBERSHIP_TYPE_ID">
-          <End Role="MEMBERSHIP_TYPES" Type="Self.MEMBERSHIP_TYPES" Multiplicity="0..1" />
+        <Association Name="fk_MEMBERSHIP_to_MEMBERSHIP_STATUS_MEMBERSHIP_STATUS_ID">
+          <End Role="MEMBERSHIP_STATUS" Type="Self.MEMBERSHIP_STATUS" Multiplicity="0..1" />
           <End Role="MEMBERSHIP" Type="Self.MEMBERSHIP" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="MEMBERSHIP_TYPES">
-              <PropertyRef Name="MEMBERSHIP_TYPE_ID" />
+            <Principal Role="MEMBERSHIP_STATUS">
+              <PropertyRef Name="MEMBERSHIP_STATUS_ID" />
             </Principal>
             <Dependent Role="MEMBERSHIP">
-              <PropertyRef Name="MEMBERSHIP_TYPE_ID" />
+              <PropertyRef Name="MEMBERSHIP_STATUS_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -329,7 +329,7 @@
           <EntitySet Name="MARITAL_STATUS" EntityType="Self.MARITAL_STATUS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MEMBER_GROUPS" EntityType="Self.MEMBER_GROUPS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MEMBERSHIP" EntityType="Self.MEMBERSHIP" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="MEMBERSHIP_TYPES" EntityType="Self.MEMBERSHIP_TYPES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MEMBERSHIP_STATUS" EntityType="Self.MEMBERSHIP_STATUS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OFFERINGS" EntityType="Self.OFFERINGS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RELATIONSHIP_TYPES" EntityType="Self.RELATIONSHIP_TYPES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TITHES" EntityType="Self.TITHES" Schema="dbo" store:Type="Tables" />
@@ -368,8 +368,8 @@
             <End Role="MEMBER_GROUPS" EntitySet="MEMBER_GROUPS" />
             <End Role="MEMBERSHIP" EntitySet="MEMBERSHIP" />
           </AssociationSet>
-          <AssociationSet Name="fk_MEMBERSHIP_to_MEMBERSHIP_TYPES_MEMBERSHIP_TYPE_ID" Association="Self.fk_MEMBERSHIP_to_MEMBERSHIP_TYPES_MEMBERSHIP_TYPE_ID">
-            <End Role="MEMBERSHIP_TYPES" EntitySet="MEMBERSHIP_TYPES" />
+          <AssociationSet Name="fk_MEMBERSHIP_to_MEMBERSHIP_STATUS_MEMBERSHIP_STATUS_ID" Association="Self.fk_MEMBERSHIP_to_MEMBERSHIP_STATUS_MEMBERSHIP_STATUS_ID">
+            <End Role="MEMBERSHIP_STATUS" EntitySet="MEMBERSHIP_STATUS" />
             <End Role="MEMBERSHIP" EntitySet="MEMBERSHIP" />
           </AssociationSet>
           <AssociationSet Name="fk_MEMBERSHIP_to_RELATIONSHIP_TYPES_RELATIONSHIP_TYPE_ID" Association="Self.fk_MEMBERSHIP_to_RELATIONSHIP_TYPES_RELATIONSHIP_TYPE_ID">
@@ -404,7 +404,6 @@
           <EntitySet Name="MARITAL_STATUS" EntityType="ChurchResourceDbModel.MARITAL_STATUS" />
           <EntitySet Name="MEMBER_GROUPS" EntityType="ChurchResourceDbModel.MEMBER_GROUPS" />
           <EntitySet Name="MEMBERSHIP" EntityType="ChurchResourceDbModel.MEMBERSHIP" />
-          <EntitySet Name="MEMBERSHIP_TYPES" EntityType="ChurchResourceDbModel.MEMBERSHIP_TYPES" />
           <EntitySet Name="OFFERINGS" EntityType="ChurchResourceDbModel.OFFERINGS" />
           <EntitySet Name="TITHES" EntityType="ChurchResourceDbModel.TITHES" />
           <EntitySet Name="TRANSACTION_TYPES" EntityType="ChurchResourceDbModel.TRANSACTION_TYPES" />
@@ -446,10 +445,6 @@
             <End Role="MEMBER_GROUPS" EntitySet="MEMBER_GROUPS" />
             <End Role="MEMBERSHIP" EntitySet="MEMBERSHIP" />
           </AssociationSet>
-          <AssociationSet Name="fk_MEMBERSHIP_to_MEMBERSHIP_TYPES_MEMBERSHIP_TYPE_ID" Association="ChurchResourceDbModel.fk_MEMBERSHIP_to_MEMBERSHIP_TYPES_MEMBERSHIP_TYPE_ID">
-            <End Role="MEMBERSHIP_TYPES" EntitySet="MEMBERSHIP_TYPES" />
-            <End Role="MEMBERSHIP" EntitySet="MEMBERSHIP" />
-          </AssociationSet>
           <AssociationSet Name="fk_TITHES_to_MEMBERSHIP_MEMBER_ID" Association="ChurchResourceDbModel.fk_TITHES_to_MEMBERSHIP_MEMBER_ID">
             <End Role="MEMBERSHIP" EntitySet="MEMBERSHIP" />
             <End Role="TITHES" EntitySet="TITHES" />
@@ -462,6 +457,11 @@
           <AssociationSet Name="fk_MEMBERSHIP_to_RELATIONSHIP_TYPES_RELATIONSHIP_TYPE_ID" Association="ChurchResourceDbModel.fk_MEMBERSHIP_to_RELATIONSHIP_TYPES_RELATIONSHIP_TYPE_ID">
             <End Role="RELATIONSHIP_TYPES" EntitySet="RELATIONSHIP_TYPES" />
             <End Role="RELATIONSHIP_TYPES1" EntitySet="RELATIONSHIP_TYPES" />
+          </AssociationSet>
+          <EntitySet Name="MEMBERSHIP_STATUS" EntityType="ChurchResourceDbModel.MEMBERSHIP_STATUS" />
+          <AssociationSet Name="fk_MEMBERSHIP_to_MEMBERSHIP_STATUS_MEMBERSHIP_STATUS_ID" Association="ChurchResourceDbModel.fk_MEMBERSHIP_to_MEMBERSHIP_STATUS_MEMBERSHIP_STATUS_ID">
+            <End Role="MEMBERSHIP_STATUS" EntitySet="MEMBERSHIP_STATUS" />
+            <End Role="MEMBERSHIP" EntitySet="MEMBERSHIP" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="ACTIVITIES">
@@ -565,7 +565,6 @@
           <Property Name="GROUP_ID" Type="Byte" />
           <Property Name="PREFERRERD_CONTACT_METHOD" Type="Byte" />
           <Property Name="EXIT_DATE" Type="DateTime" Precision="0" />
-          <Property Name="MEMBERSHIP_TYPE_ID" Type="Byte" />
           <Property Name="LAST_MODIFIED_DATE" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="ACTIVITIES" Relationship="ChurchResourceDbModel.fk_ACTIVITIES_to_MEMBERSHSIP" FromRole="MEMBERSHIP" ToRole="ACTIVITIES" />
           <NavigationProperty Name="CONTACT_INFO" Relationship="ChurchResourceDbModel.fk_CONTACT_INFO_to_MEMBERSHIP_MEMBER_ID" FromRole="MEMBERSHIP" ToRole="CONTACT_INFO" />
@@ -573,17 +572,10 @@
           <NavigationProperty Name="LOCATIONS" Relationship="ChurchResourceDbModel.fk_MEMBERSHIP_to_LOCATIONS_LOCATION_ID" FromRole="MEMBERSHIP" ToRole="LOCATIONS" />
           <NavigationProperty Name="MARITAL_STATUS" Relationship="ChurchResourceDbModel.fk_MEMBERSHIP_to_MARITAL_STATUS_MARITAL_STATUS_ID" FromRole="MEMBERSHIP" ToRole="MARITAL_STATUS" />
           <NavigationProperty Name="MEMBER_GROUPS" Relationship="ChurchResourceDbModel.fk_MEMBERSHIP_to_MEMBER_GROUPS_GROUP_ID" FromRole="MEMBERSHIP" ToRole="MEMBER_GROUPS" />
-          <NavigationProperty Name="MEMBERSHIP_TYPES" Relationship="ChurchResourceDbModel.fk_MEMBERSHIP_to_MEMBERSHIP_TYPES_MEMBERSHIP_TYPE_ID" FromRole="MEMBERSHIP" ToRole="MEMBERSHIP_TYPES" />
           <NavigationProperty Name="TITHES" Relationship="ChurchResourceDbModel.fk_TITHES_to_MEMBERSHIP_MEMBER_ID" FromRole="MEMBERSHIP" ToRole="TITHES" />
           <Property Name="RELATIONSHIP_TYPE_ID" Type="Byte" />
-        </EntityType>
-        <EntityType Name="MEMBERSHIP_TYPES">
-          <Key>
-            <PropertyRef Name="MEMBERSHIP_TYPE_ID" />
-          </Key>
-          <Property Name="MEMBERSHIP_TYPE_ID" Type="Byte" Nullable="false" />
-          <Property Name="DESCRIPTION" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="MEMBERSHIP" Relationship="ChurchResourceDbModel.fk_MEMBERSHIP_to_MEMBERSHIP_TYPES_MEMBERSHIP_TYPE_ID" FromRole="MEMBERSHIP_TYPES" ToRole="MEMBERSHIP" />
+          <Property Name="MEMBERSHIP_STATUS_ID" Type="Byte" />
+          <NavigationProperty Name="MEMBERSHIP_STATUS" Relationship="ChurchResourceDbModel.fk_MEMBERSHIP_to_MEMBERSHIP_STATUS_MEMBERSHIP_STATUS_ID" FromRole="MEMBERSHIP" ToRole="MEMBERSHIP_STATUS" />
         </EntityType>
         <EntityType Name="OFFERINGS">
           <Key>
@@ -746,18 +738,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_MEMBERSHIP_to_MEMBERSHIP_TYPES_MEMBERSHIP_TYPE_ID">
-          <End Type="ChurchResourceDbModel.MEMBERSHIP_TYPES" Role="MEMBERSHIP_TYPES" Multiplicity="0..1" />
-          <End Type="ChurchResourceDbModel.MEMBERSHIP" Role="MEMBERSHIP" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MEMBERSHIP_TYPES">
-              <PropertyRef Name="MEMBERSHIP_TYPE_ID" />
-            </Principal>
-            <Dependent Role="MEMBERSHIP">
-              <PropertyRef Name="MEMBERSHIP_TYPE_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_TITHES_to_MEMBERSHIP_MEMBER_ID">
           <End Type="ChurchResourceDbModel.MEMBERSHIP" Role="MEMBERSHIP" Multiplicity="1" />
           <End Type="ChurchResourceDbModel.TITHES" Role="TITHES" Multiplicity="*" />
@@ -800,6 +780,26 @@
             </Principal>
             <Dependent Role="RELATIONSHIP_TYPES1">
               <PropertyRef Name="RELATIONSHIP_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MEMBERSHIP_STATUS">
+          <Key>
+            <PropertyRef Name="MEMBERSHIP_STATUS_ID" />
+          </Key>
+          <Property Name="MEMBERSHIP_STATUS_ID" Type="Byte" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MEMBERSHIP" Relationship="ChurchResourceDbModel.fk_MEMBERSHIP_to_MEMBERSHIP_STATUS_MEMBERSHIP_STATUS_ID" FromRole="MEMBERSHIP_STATUS" ToRole="MEMBERSHIP" />
+        </EntityType>
+        <Association Name="fk_MEMBERSHIP_to_MEMBERSHIP_STATUS_MEMBERSHIP_STATUS_ID">
+          <End Type="ChurchResourceDbModel.MEMBERSHIP_STATUS" Role="MEMBERSHIP_STATUS" Multiplicity="0..1" />
+          <End Type="ChurchResourceDbModel.MEMBERSHIP" Role="MEMBERSHIP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEMBERSHIP_STATUS">
+              <PropertyRef Name="MEMBERSHIP_STATUS_ID" />
+            </Principal>
+            <Dependent Role="MEMBERSHIP">
+              <PropertyRef Name="MEMBERSHIP_STATUS_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -894,9 +894,9 @@
           <EntitySetMapping Name="MEMBERSHIP">
             <EntityTypeMapping TypeName="ChurchResourceDbModel.MEMBERSHIP">
               <MappingFragment StoreEntitySet="MEMBERSHIP">
+                <ScalarProperty Name="MEMBERSHIP_STATUS_ID" ColumnName="MEMBERSHIP_STATUS_ID" />
                 <ScalarProperty Name="RELATIONSHIP_TYPE_ID" ColumnName="RELATIONSHIP_TYPE_ID" />
                 <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
-                <ScalarProperty Name="MEMBERSHIP_TYPE_ID" ColumnName="MEMBERSHIP_TYPE_ID" />
                 <ScalarProperty Name="EXIT_DATE" ColumnName="EXIT_DATE" />
                 <ScalarProperty Name="PREFERRERD_CONTACT_METHOD" ColumnName="PREFERRERD_CONTACT_METHOD" />
                 <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
@@ -909,14 +909,6 @@
                 <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
                 <ScalarProperty Name="MEMBER_ID" ColumnName="MEMBER_ID" />
                 <ScalarProperty Name="FAMILY_ID" ColumnName="FAMILY_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MEMBERSHIP_TYPES">
-            <EntityTypeMapping TypeName="ChurchResourceDbModel.MEMBERSHIP_TYPES">
-              <MappingFragment StoreEntitySet="MEMBERSHIP_TYPES">
-                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
-                <ScalarProperty Name="MEMBERSHIP_TYPE_ID" ColumnName="MEMBERSHIP_TYPE_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -979,6 +971,14 @@
               <MappingFragment StoreEntitySet="RELATIONSHIP_TYPES">
                 <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
                 <ScalarProperty Name="RELATIONSHIP_TYPE_ID" ColumnName="RELATIONSHIP_TYPE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MEMBERSHIP_STATUS">
+            <EntityTypeMapping TypeName="ChurchResourceDbModel.MEMBERSHIP_STATUS">
+              <MappingFragment StoreEntitySet="MEMBERSHIP_STATUS">
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="MEMBERSHIP_STATUS_ID" ColumnName="MEMBERSHIP_STATUS_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

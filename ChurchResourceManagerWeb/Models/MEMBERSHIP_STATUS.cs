@@ -12,15 +12,15 @@ namespace ChurchResourceManagerWeb.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MEMBERSHIP_TYPES
+    public partial class MEMBERSHIP_STATUS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MEMBERSHIP_TYPES()
+        public MEMBERSHIP_STATUS()
         {
             this.MEMBERSHIP = new HashSet<MEMBERSHIP>();
         }
     
-        public byte MEMBERSHIP_TYPE_ID { get; set; }
+        public byte MEMBERSHIP_STATUS_ID { get; set; }
         public string DESCRIPTION { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

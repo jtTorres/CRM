@@ -1,0 +1,58 @@
+﻿<form id="cic.contactInfoMainForm" name="cic.contactInfoMainForm" novalidate autocomplete="off" ng-submit="cic.submit(cic.contactInfo, cic.contactInfoMainForm)">
+    <div class="row">
+        <div class="col-xs-11" style="padding-left: 3%;">
+            <div ng-repeat="info in cic.contactInfo track by $index">
+                <div style="padding-bottom: 1%;">
+                    <ng-form id="contactInfoForm" name="contactInfoForm">
+                        <div class="row">
+                            <uib-accordion close-others="false">
+                                <div uib-accordion-group class="panel-default" is-open="cic.accordionSettings.isContactInfoOpen">
+                                    <uib-accordion-heading>
+                                        Contact Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': cic.accordionSettings.isContactInfoOpen, 'glyphicon-chevron-up': !cic.accordionSettings.isContactInfoOpen}"></i>
+                                    </uib-accordion-heading>
+                                    <div class="col-xs-6">
+                                        <div class="form-group" ng-class="{'has-error' : contactInfoForm.homePhoneNumberTxtBx.$invalid && contactInfoForm.homePhoneNumberTxtBx.$touched}">
+                                            <label for="homePhoneNumberTxtBx">Home Phone Number</label>
+                                            <input id="homePhoneNumberTxtBx" name="homePhoneNumberTxtBx" class="form-control" type="text" ng-model="cic.contactInfo[$index].HomePhoneNumber"
+                                                   ui-mask="(999)-999-9999" />
+                                        </div>
+                                        <div class="form-group" ng-class="{'has-error' : contactInfoForm.cellPhoneNumberTxtBx.$invalid && contactInfoForm.cellPhoneNumberTxtBx.$touched}">
+                                            <label for="cellPhoneNumberTxtBx">Cellphone Number</label>
+                                            <input id="cellPhoneNumberTxtBx" name="cellPhoneNumberTxtBx" class="form-control" type="text" ng-model="cic.contactInfo[$index].CellPhoneNumber"
+                                                   ui-mask="(999)-999-9999" />
+                                        </div>
+                                        <div class="form-group" ng-class="{'has-error' : contactInfoForm.emailTxtBx.$invalid && contactInfoForm.emailTxtBx.$touched}">
+                                            <label for="emailTxtBx">Email</label>
+                                            <input id="emailTxtBx" name="emailTxtBx" class="form-control" type="email" placeholder="joeShmoe@gmail.com" ng-model="cic.contactInfo[$index].Email"
+                                                   maxlength="255" />
+                                        </div>
+                                        <div class="form-group" ng-class="{'has-error' : contactInfoForm.preferredContactMethodTxtBx.$invalid && contactInfoForm.preferredContactMethodTxtBx.$touched}">
+                                            <label for="preferredContactMethodTxtBx">Preferred Contact Method</label>
+                                            <select id="preferredContactMethodTxtBx" name="preferredContactMethodTxtBx" class="form-control" ng-model="cic.contactInfo[$index].SelectedPreferredContactMethod" ng-options="m.Description for m in cic.enums.contactMethods" ng-required="cic.contactInfo[$index].HomePhoneNumber.length > 0 || cic.contactInfo[$index].CellPhoneNumber.length > 0 || cic.contactInfo[$index].Email.length > 0"></select>
+                                            <div class="help-block-error" ng-messages="contactInfoForm.preferredContactMethodTxtBx.$error" ng-if="contactInfoForm.preferredContactMethodTxtBx.$touched">
+                                                <div ng-messages-include="message-template"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="margin-top: 1%;">
+                                    <button ng-if="$index > 0" type="button" class="btn btn-danger" ng-click="cic.onRemoveContactInfo($index)">
+                                        <span class="glyphicon glyphicon-minus"></span> Remove
+                                    </button>
+                                </div>
+                            </uib-accordion>
+                            <div style="padding-top: 1%; padding-left: .5%;" ng-if="cic.followLastCurrentActiveIndex($index, cic.contactInfo.length)">
+                                <button id="editFamilyBtn" name="editFamilyBtn" class="btn btn-primary" type="button" ng-click="cic.edit()" ng-disabled="cic.beingEdited">
+                                    <span class="glyphicon glyphicon-edit"></span> Edit
+                                </button>
+                                <button id="submitFamilyBtn" name="submitFamilyBtn" class="btn btn-primary" type="submit" ng-disabled="!cic.beingEdited">
+                                    <span class="glyphicon glyphicon-check"></span> Save
+                                </button>
+                            </div>
+                        </div>
+                    </ng-form>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

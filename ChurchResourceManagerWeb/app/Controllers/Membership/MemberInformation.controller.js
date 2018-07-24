@@ -4,15 +4,16 @@
     angular.module("app")
         .controller("memberInformationController", memberInformationController);
 
-    memberInformationController.$inject = ["$scope", "enumsDataService"];
+    memberInformationController.$inject = ["$scope", "enumsDataService", "operationFlowService"];
 
-    function memberInformationController($scope, enumsDataService) {
+    function memberInformationController($scope, enumsDataService, operationFlowService) {
         var vm = this;
 
         vm.edit = edit;
         vm.followLastCurrentActiveIndex = followLastCurrentActiveIndex;
         vm.onAddRelative = onAddRelative;
         vm.onRemoveRelative = onRemoveRelative;
+        vm.submit = submit;
         /////////////////////////
 
 
@@ -28,8 +29,9 @@
             vm.enums = enumsDataService.enums;
         }
 
-        function followLastCurrentActiveIndex(currentIndex, relativesCount) {
-            return currentIndex === relativesCount;
+        function followLastCurrentActiveIndex(currentIndex, arrayCount) {
+            //return currentIndex === relativesCount;
+            return vm.onFindActiveIndex({ currentIndex: currentIndex, arrayCount: arrayCount });
         }
 
         function onAddRelative() {
@@ -42,6 +44,11 @@
 
         function edit() {
             vm.onEdit({ formName: "personalInfoForm" });
+        }
+
+        function submit(memberInfo, form) {
+            if (!operationFlowService.isFormValid(form)) return;
+            vm.onSubmit({ memberInfo: memberInfo });
         }
     }
 

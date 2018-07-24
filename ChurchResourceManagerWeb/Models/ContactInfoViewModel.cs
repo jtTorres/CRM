@@ -10,5 +10,9 @@ namespace ChurchResourceManagerWeb.Models
         public int MemberId { get; set; }
         public byte ContactMethodId { get; set; }
         public string ContactInfo { get; set; }
+        public string HomePhoneNumber { get; set; }
+        public string CellPhoneNumber { get; set; }
+        public string Email { get; set; }
+        public byte PreferredContactMethod { get; set; }
     }
 }

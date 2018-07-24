@@ -6,10 +6,13 @@
             {
                 templateUrl: "/Membership/Address/",
                 controller: "addressController",
-                controllerAs: "fc",
+                controllerAs: "ac",
                 bindings: {
                     onSubmit: "&",
-                    address: "<"
+                    locationAddress: "<",
+                    beingEdited: "<",
+                    onEdit: "&",
+                    stateList: "<"
                 }
             });
 

@@ -16,14 +16,40 @@ namespace ChurchResourceManagerWeb.Models
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
-        public string Dob { get; set; }
+        public DateTime? DobDateTime { get; set; }
+
+        public string Dob
+        {
+            get => DobDateTime.ToString();
+            set => DobDateTime = Convert.ToDateTime(value);
+        }
+
+        public string Gender { get; set; }
         public short? LocationId { get; set; }
         public byte? MaritalStatusId { get; set; }
-        public short? GroupId { get; set; }
+        public byte? GroupId { get; set; }
         public byte? PreferredContactMethod { get; set; }
-        public string ExitDate { get; set; }
-        public byte? MembershipTypeId { get; set; }
-        public DateTime LastModifiedDate { get; set; }
+        public DateTime? ExitDateTime { get; set; }
+
+        public string ExitDate
+        {
+            //get => string.IsNullOrEmpty(ExitDateTime.ToString()) ? null : ExitDateTime.ToString();
+            //set => ExitDateTime = Convert.ToDateTime(value);
+            get => ExitDateTime.ToString();
+            set
+            {
+                if (value != null)
+                    ExitDateTime = Convert.ToDateTime(value);
+            }
+        }
+        public byte? MembershipStatusId { get; set; }
+        public DateTime LastModifiedDateTime { get; set; }
+
+        public string LastModifiedDate
+        {
+            get => LastModifiedDateTime.ToString("MM/dd/yyyy");
+            set => LastModifiedDateTime = Convert.ToDateTime(value);
+        }
         public byte? RelationshipTypeId { get; set; }
         public string MemberKey => $"{MemberId} - {FirstName} {LastName}";
         public string FullName => $"{FirstName} {LastName}";

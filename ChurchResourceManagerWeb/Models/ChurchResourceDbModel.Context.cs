@@ -35,12 +35,12 @@ namespace ChurchResourceManagerWeb.Models
         public virtual DbSet<MARITAL_STATUS> MARITAL_STATUS { get; set; }
         public virtual DbSet<MEMBER_GROUPS> MEMBER_GROUPS { get; set; }
         public virtual DbSet<MEMBERSHIP> MEMBERSHIP { get; set; }
-        public virtual DbSet<MEMBERSHIP_TYPES> MEMBERSHIP_TYPES { get; set; }
         public virtual DbSet<OFFERINGS> OFFERINGS { get; set; }
         public virtual DbSet<TITHES> TITHES { get; set; }
         public virtual DbSet<TRANSACTION_TYPES> TRANSACTION_TYPES { get; set; }
         public virtual DbSet<TRANSACTIONS> TRANSACTIONS { get; set; }
         public virtual DbSet<UTILITY_BILLS> UTILITY_BILLS { get; set; }
         public virtual DbSet<RELATIONSHIP_TYPES> RELATIONSHIP_TYPES { get; set; }
+        public virtual DbSet<MEMBERSHIP_STATUS> MEMBERSHIP_STATUS { get; set; }
     }
 }
