@@ -10,6 +10,7 @@
         var vm = this;
         vm.addRelative = addRelative;
         vm.Address = {};
+        vm.activeTab = 0;
         vm.beingEdited = {
             familyForm: true,
             personalInfoForm: true,
@@ -21,15 +22,23 @@
         vm.doSaveContactInfo = doSaveContactInfo;
         vm.doSaveFamily = doSaveFamily;
         vm.emptyMemberInfo = {};
+        vm.enableDisableTab = enableDisableTab;
         vm.Family = {}
         vm.findActiveIndex = findActiveIndex;
 
         vm.getEmptyMemberInfo = getEmptyMemberInfo;
+        vm.disableTabs = true;
         vm.Membership = {};
         vm.memberInfoArray = [];
         vm.contactInfo = [];
         vm.doSaveMembership = doSaveMembership;
         vm.stateList = membershipDataService.getStateList();
+        const tabs = {
+            Family: 0,
+            Address: 1,
+            Personal: 2,
+            Contact: 3
+        }
         /////////////////////////////
 
         activate();
@@ -49,6 +58,7 @@
                             if (response.data.Id) {
                                 vm.Family.FamilyId = response.data.Id;
                                 vm.beingEdited.familyForm = false;
+                                setActiveTab(tabs.Address);
                                 vm.processFlow = operationFlowService.operationCompletion("Saved Successfully!", true);
                             }
                         }
@@ -76,7 +86,7 @@
                         if (response.data) {
                             if (response.data.LocationId) {
                                 vm.Address.LocationId = response.data.LocationId;
-
+                                setActiveTab(tabs.Personal);
                                 vm.beingEdited.addressInfoForm = false;
                                 vm.processFlow = operationFlowService.operationCompletion("Saved Successfully!", true);
                             }
@@ -103,9 +113,10 @@
                         if (response.data) {
                             if (response.data.MemberIds) {
                                 assignMemberIds(response.data.MemberIds);
+                                setActiveTab(tabs.Contact);
+                                vm.beingEdited.personalInfoForm = false;
+                                vm.processFlow = operationFlowService.operationCompletion("Saved Successfully!", true);
                             }
-                            vm.beingEdited.personalInfoForm = false;
-                            vm.processFlow = operationFlowService.operationCompletion("Saved Successfully!", true);
                         }
                     })
                     .catch(onSaveError);
@@ -135,6 +146,7 @@
                     .then(function (response) {
                         vm.beingEdited.contactInfoForm = false;
                         vm.processFlow = operationFlowService.operationCompletion("Saved Successfully!", true);
+                        vm.disableTabs = false;
                     })
                     .catch(onSaveError);
             } else {
@@ -184,6 +196,15 @@
         // #region Shared Functions
         function findActiveIndex(currentIndex, arrayCount) {
             return currentIndex === arrayCount - 1;
+        }
+
+        function setActiveTab(tab) {
+            vm.activeTab = tab;
+        }
+
+        function enableDisableTab(index) {
+            //return vm.activeTab < index || vm.disableTabs;
+            return (vm.activeTab !== index && vm.disableTabs) || vm.disableTabs;
         }
         // #endregion
 
