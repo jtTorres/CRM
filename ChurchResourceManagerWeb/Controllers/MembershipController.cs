@@ -34,9 +34,19 @@ namespace ChurchResourceManagerWeb.Controllers
             return PartialView("_memberInformation");
         }
 
+        public ActionResult MemberInformationReadOnly()
+        {
+            return PartialView("_memberInformationReadOnly");
+        }
+
         public ActionResult Family()
         {
             return PartialView("_family");
+        }
+
+        public ActionResult FamilyReadOnly()
+        {
+            return PartialView("_familyReadOnly");
         }
 
         public ActionResult Address()
@@ -44,9 +54,19 @@ namespace ChurchResourceManagerWeb.Controllers
             return PartialView("_address");
         }
 
+        public ActionResult AddressReadOnly()
+        {
+            return PartialView("_addressReadOnly");
+        }
+
         public ActionResult ContactInformation()
         {
             return PartialView("_contactInformation");
+        }
+
+        public ActionResult ContactInformationReadOnly()
+        {
+            return PartialView("_contactInformationReadOnly");
         }
         #endregion
 

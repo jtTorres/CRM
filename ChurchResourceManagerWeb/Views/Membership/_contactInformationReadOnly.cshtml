@@ -1,0 +1,31 @@
+﻿<div class="col-xs-11" style="padding-left: 3%;">
+    <div ng-repeat="info in cic.contactInfo track by $index">
+        <div style="padding-bottom: 1%;">
+            <uib-accordion close-others="false">
+                <div uib-accordion-group class="panel-default" is-open="cic.accordionSettings.isContactInfoOpen">
+                    <uib-accordion-heading>
+                        Contact Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': cic.accordionSettings.isContactInfoOpen, 'glyphicon-chevron-up': !cic.accordionSettings.isContactInfoOpen}"></i>
+                    </uib-accordion-heading>
+                    <div class="col-xs-6">
+                        <div class="read-only-padding">
+                            <label for="homePhoneNumber">Home Phone Number</label>
+                            <div id="homePhoneNumber">{{cic.contactInfo[$index].HomePhoneNumber}}</div>
+                        </div>
+                        <div class="read-only-padding">
+                            <label for="cellPhoneNumber">Cell Phone Number</label>
+                            <div id="cellPhoneNumber">{{cic.contactInfo[$index].CellPhoneNumber}}</div>
+                        </div>
+                        <div class="read-only-padding">
+                            <label for="email">Email</label>
+                            <div id="email">{{cic.contactInfo[$index].Email}}</div>
+                        </div>
+                        <div class="read-only-padding">
+                            <label for="preferredContactMethod">Preferred Contact Method</label>
+                            <div id="preferredContactMethod">{{cic.contactInfo[$index].SelectedPreferredContactMethod.Description}}</div>
+                        </div>
+                    </div>
+                </div>
+            </uib-accordion>
+        </div>
+    </div>
+</div>

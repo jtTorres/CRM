@@ -64,8 +64,10 @@ div.crm-validation-error {
     height: 34px;
 }
 
-/* Hide default HTML checkbox */
-.switch input {display:none;}
+    /* Hide default HTML checkbox */
+    .switch input {
+        display: none;
+    }
 
 /* The slider */
 .slider {
@@ -80,17 +82,17 @@ div.crm-validation-error {
     transition: .4s;
 }
 
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-}
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
 
 input:checked + .slider {
     background-color: #2196F3;
@@ -111,10 +113,14 @@ input:checked + .slider:before {
     border-radius: 34px;
 }
 
-.slider.round:before {
-    border-radius: 50%;
-}
+    .slider.round:before {
+        border-radius: 50%;
+    }
 
 .tab-content {
     padding-top: 1%;
+}
+
+.read-only-padding {
+    padding-bottom: 3%;
 }
