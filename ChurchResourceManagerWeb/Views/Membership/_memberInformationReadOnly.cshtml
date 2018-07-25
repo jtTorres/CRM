@@ -1,5 +1,4 @@
 ﻿<div class="col-xs-11" style="padding-left: 3%;">
-    <div ng-repeat="info in mic.memberInfoArray track by $index">
         <div style="padding-bottom: 1%;">
             <uib-accordion close-others="false">
                 <div uib-accordion-group class="panel-default" is-open="true">
@@ -9,11 +8,11 @@
                     <div class="col-xs-12">
                         <div class="read-only-padding">
                             <label for="membershipStatus">Membership Status</label>
-                            <div id="membershipStatus">{{mic.memberInfoArray[$index].SelectedMembershipStatus.Description}}</div>
+                            <div id="membershipStatus">{{mic.memberInfo.SelectedMembershipStatus.Description}}</div>
                         </div>
                         <div class="read-only-padding">
                             <label for="relationshipTypes">Relation</label>
-                            <div id="relationshipTypes">{{mic.memberInfoArray[$index].SelectedRelationshipType.Description}}</div>
+                            <div id="relationshipTypes">{{mic.memberInfo.SelectedRelationshipType.Description}}</div>
                         </div>
                     </div>
                     <div uib-accordion-group class="panel-default" is-open="mic.accordionSettings.isPersonalInfoOpen">
@@ -23,36 +22,35 @@
                         <div class="col-xs-6">
                             <div class="read-only-padding">
                                 <label for="firstName">First Name</label>
-                                <div id="firstName">{{mic.memberInfoArray[$index].FirstName}}</div>
+                                <div id="firstName">{{mic.memberInfo.FirstName}}</div>
                             </div>
                             <div class="read-only-padding">
                                 <label for="middleName">Middle Name</label>
-                                <div id="middleName">{{mic.memberInfoArray[$index].MiddleName}}</div>
+                                <div id="middleName">{{mic.memberInfo.MiddleName}}</div>
                             </div>
                             <div class="read-only-padding">
                                 <label for="lastName">Last Name</label>
-                                <div id="lastName">{{mic.memberInfoArray[$index].LastName}}</div>
+                                <div id="lastName">{{mic.memberInfo.LastName}}</div>
                             </div>
                             <div class="read-only-padding">
                                 <label for="dob">Date of Birth</label>
-                                <div id="dob">{{mic.memberInfoArray[$index].Dob}}</div>
+                                <div id="dob">{{mic.memberInfo.Dob}}</div>
                             </div>
                             <div class="read-only-padding">
                                 <label for="gender">Gender</label>
-                                <div id="gender">{{mic.memberInfoArray[$index].SelectedGender.Description}}</div>
+                                <div id="gender">{{mic.memberInfo.SelectedGender.Description}}</div>
                             </div>
                             <div class="read-only-padding">
                                 <label for="maritalStatus">Marital Status</label>
-                                <div id="maritalStatus">{{mic.memberInfoArray[$index].SelectedMaritalStatus.Description}}</div>
+                                <div id="maritalStatus">{{mic.memberInfo.SelectedMaritalStatus.Description}}</div>
                             </div>
                             <div class="read-only-padding">
                                 <label for="memberGroup">Member Group</label>
-                                <div id="memberGroup">{{mic.memberInfoArray[$index].SelectedMemberGroup.Description}}</div>
+                                <div id="memberGroup">{{mic.memberInfo.SelectedMemberGroup.Description}}</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </uib-accordion>
         </div>
-    </div>
 </div>

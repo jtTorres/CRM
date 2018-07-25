@@ -8,7 +8,7 @@
                 controller: "memberInformationController",
                 controllerAs: "mic",
                 bindings: {
-                    memberInfoArray: "<"
+                    memberInfo: "<"
                 }
             });
 

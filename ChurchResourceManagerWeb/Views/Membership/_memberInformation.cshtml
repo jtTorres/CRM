@@ -1,8 +1,8 @@
 ﻿<form id="mic.personalInfoMainForm" name="mic.personalInfoMainForm" novalidate autocomplete="off" ng-submit="mic.submit(mic.memberInfoArray, mic.personalInfoMainForm)">
     <div class="row">
-        <div class="col-xs-11" style="padding-left: 3%;" ng-show="mic.beingEdited">
+        <div class="col-xs-11" style="padding-left: 3%;">
             <div ng-repeat="info in mic.memberInfoArray track by $index">
-                <div style="padding-bottom: 1%;">
+                <div style="padding-bottom: 1%;" ng-show="mic.beingEdited">
                     <ng-form id="memberInfoForm" name="memberInfoForm">
                         <div class="row">
                             <uib-accordion close-others="false">
@@ -103,10 +103,8 @@
                         </div>
                     </ng-form>
                 </div>
+                <member-information-read-only member-info="info" ng-show="!mic.beingEdited"></member-information-read-only>
             </div>
         </div>
-        
-        <member-information-read-only member-info-array="mic.memberInfoArray" ng-show="!mic.beingEdited"></member-information-read-only>
-
     </div>
 </form>
