@@ -6,9 +6,9 @@
                     <ng-form id="memberInfoForm" name="memberInfoForm">
                         <div class="row">
                             <uib-accordion close-others="false">
-                                <div uib-accordion-group class="panel-default" is-open="true">
+                                <div uib-accordion-group class="panel-default" is-open="info.IsMemberInfoPanelOpen">
                                     <uib-accordion-heading>
-                                        Member Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': mic.accordionSettings.isMemberInfoOpen, 'glyphicon-chevron-up': !mic.accordionSettings.isMemberInfoOpen}"></i>
+                                        Member Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': info.IsMemberInfoPanelOpen, 'glyphicon-chevron-up': !info.IsMemberInfoPanelOpen}"></i>
                                     </uib-accordion-heading>
                                     <div class="col-xs-12">
                                         <div class="form-group" ng-class="{'has-error' : memberInfoForm.ddlMembershipStatus.$invalid && memberInfoForm.ddlMembershipStatus.$touched}">
@@ -26,9 +26,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div uib-accordion-group class="panel-default" is-open="mic.accordionSettings.isPersonalInfoOpen">
+                                    <div uib-accordion-group class="panel-default" is-open="info.IsPersonalInfoPanelOpen">
                                         <uib-accordion-heading>
-                                            Personal Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': mic.accordionSettings.isPersonalInfoOpen, 'glyphicon-chevron-up': !mic.accordionSettings.isPersonalInfoOpen}"></i>
+                                            Personal Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': info.IsPersonalInfoPanelOpen, 'glyphicon-chevron-up': !info.IsPersonalInfoPanelOpen}"></i>
                                         </uib-accordion-heading>
                                         <div class="col-xs-6">
                                             <div class="form-group" ng-class="{'has-error' : memberInfoForm.firstNameTxtBx.$invalid && memberInfoForm.firstNameTxtBx.$touched}">

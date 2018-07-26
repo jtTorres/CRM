@@ -38,7 +38,7 @@ namespace ChurchResourceManagerWeb.Models
             get => ExitDateTime.ToString();
             set
             {
-                if (value != null)
+                if (!string.IsNullOrEmpty(value))
                     ExitDateTime = Convert.ToDateTime(value);
             }
         }

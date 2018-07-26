@@ -6,9 +6,9 @@
                     <ng-form id="contactInfoForm" name="contactInfoForm">
                         <div class="row">
                             <uib-accordion close-others="false">
-                                <div uib-accordion-group class="panel-default" is-open="cic.accordionSettings.isContactInfoOpen">
+                                <div uib-accordion-group class="panel-default" is-open="info.IsContactInfoPanelOpen">
                                     <uib-accordion-heading>
-                                        Contact Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': cic.accordionSettings.isContactInfoOpen, 'glyphicon-chevron-up': !cic.accordionSettings.isContactInfoOpen}"></i>
+                                        Contact Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': info.IsContactInfoPanelOpen, 'glyphicon-chevron-up': !info.IsContactInfoPanelOpen}"></i>
                                     </uib-accordion-heading>
                                     <div class="col-xs-6">
                                         <div class="form-group" ng-class="{'has-error' : contactInfoForm.homePhoneNumberTxtBx.$invalid && contactInfoForm.homePhoneNumberTxtBx.$touched}">
@@ -52,7 +52,7 @@
                         </div>
                     </ng-form>
                 </div>
-                <contact-information-read-only contact-info="info" ng-show="!cic.beingEdited"></contact-information-read-only>
+                <contact-information-read-only contact-info="info" ng-show="!cic.beingEdited" is-accordion-open="info.IsContactInfoPanelOpen"></contact-information-read-only>
             </div>
         </div>
     </div>

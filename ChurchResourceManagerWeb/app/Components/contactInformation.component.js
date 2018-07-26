@@ -13,7 +13,8 @@
                     onFindActiveIndex: "&",
                     contactMethods: "<",
                     beingEdited: "<",
-                    onEdit: "&"
+                    onEdit: "&",
+                    isAccordionOpen: "<"
                 }
             });
 

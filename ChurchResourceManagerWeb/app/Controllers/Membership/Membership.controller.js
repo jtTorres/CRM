@@ -21,6 +21,7 @@
         vm.doSaveAddressInfo = doSaveAddressInfo;
         vm.doSaveContactInfo = doSaveContactInfo;
         vm.doSaveFamily = doSaveFamily;
+        vm.emptyContactInfo = {};
         vm.emptyMemberInfo = {};
         vm.enableDisableTab = enableDisableTab;
         vm.Family = {}
@@ -47,6 +48,7 @@
             console.log("Activated Membership Controller");
             getEmptyMemberInfo();
             getAllEnums();
+            setAccordionDefaults();
         }
 
         // #region Family Tab
@@ -163,9 +165,10 @@
         function getEmptyMemberInfo() {
             membershipDataService.getEmptyMemberInfo()
                 .then(function (response) {
-                    vm.emptyMemberInfo = angular.copy(response.data);
-                    vm.memberInfoArray.push(response.data);
-                    vm.contactInfo.push({});
+                    vm.emptyMemberInfo = angular.copy(response.data.memberInfo);
+                    vm.emptyContactInfo = angular.copy(response.data.contactInfo);
+                    vm.memberInfoArray.push(response.data.memberInfo);
+                    vm.contactInfo.push(response.data.contactInfo);
                 })
                 .catch(function (reason) {
                     vm.processFlow = operationFlowService.operationCompletion(reason.message, false);
@@ -178,8 +181,10 @@
 
         function addRelative() {
             var emptyMemberInfoCopy = angular.copy(vm.emptyMemberInfo);
+            var emptyContactInfoCopy = angular.copy(vm.emptyContactInfo);
+
             vm.memberInfoArray.push(emptyMemberInfoCopy);
-            vm.contactInfo.push({});
+            vm.contactInfo.push(emptyContactInfoCopy);
         }
 
         function removeRelative(event, index) {
@@ -227,6 +232,17 @@
                 vm.memberInfoArray[i].MemberId = memberIds[i];
                 vm.contactInfo[i].MemberId = memberIds[i];
             }
+        }
+
+        function setAccordionDefaults() {
+            vm.accordionSettings = {
+                isFamilyOpen: true,
+                isMemberInfoOpen: false,
+                isPersonalInfoOpen: false,
+                isContactInfoOpen: true,
+                isAddressInfoOpen: false,
+                closeOthers: false
+            };
         }
 
         function getAllEnums() {

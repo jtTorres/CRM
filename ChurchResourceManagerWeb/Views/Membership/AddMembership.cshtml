@@ -24,7 +24,7 @@
                         <member-information being-edited="mc.beingEdited.personalInfoForm" member-info-array="mc.memberInfoArray" on-edit="mc.doEdit(formName)" accordion-settings="mc.accordionSettings" on-submit="mc.doSaveMembership(memberInfo)" on-find-active-index="mc.findActiveIndex(currentIndex, arrayCount)"></member-information>
                     </uib-tab>
                     <uib-tab index="3" heading="Contact Information" disable="mc.enableDisableTab(3)">
-                        <contact-information on-submit="mc.doSaveContactInfo(contactInfo)" on-edit="mc.doEdit(formName)" contact-info="mc.contactInfo" on-find-active-index="mc.findActiveIndex(currentIndex, arrayCount)" being-edited="mc.beingEdited.contactInfoForm"></contact-information>
+                        <contact-information on-submit="mc.doSaveContactInfo(contactInfo)" on-edit="mc.doEdit(formName)" contact-info="mc.contactInfo" on-find-active-index="mc.findActiveIndex(currentIndex, arrayCount)" being-edited="mc.beingEdited.contactInfoForm" is-accordion-open="mc.accordionSettings.isContactInfoOpen"></contact-information>
                     </uib-tab>
                 </uib-tabset>
             </div>

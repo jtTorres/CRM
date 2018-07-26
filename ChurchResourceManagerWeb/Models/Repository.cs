@@ -279,15 +279,9 @@ namespace ChurchResourceManagerWeb.Models
             return amount.Any() ? amount.Sum(a => a.OFFERING_AMOUNT).ToString(CultureInfo.CurrentCulture) : "0";
         }
 
-        //public IEnumerable<MemberInfoViewModel> GetMemberInfo(int? familyId)
-        //{
-
-        //}
-
-        public MembershipInfoViewModel GetEmptyMemberInfo()
+        public object GetEmptyMemberInfo()
         {
-            //return new MemberInfoViewModel();
-            return new MembershipInfoViewModel();
+            return new { memberInfo = new MembershipInfoViewModel(), contactInfo = new ContactInfoViewModel() };
         }
 
         public IEnumerable<ContactMethodsViewModel> GetContactMethods()

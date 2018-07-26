@@ -8,7 +8,8 @@
                 controller: "contactInformationController",
                 controllerAs: "cic",
                 bindings: {
-                    contactInfo: "<"
+                    contactInfo: "<",
+                    isAccordionOpen: "<"
                 }
             });
 

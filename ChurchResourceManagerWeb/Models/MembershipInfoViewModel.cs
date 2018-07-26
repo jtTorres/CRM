@@ -38,5 +38,7 @@ namespace ChurchResourceManagerWeb.Models
 
         public string MemberKey => $"{MemberId} - {FirstName} {LastName}";
         public string FullName => $"{FirstName} {LastName}";
+        public bool IsMemberInfoPanelOpen => true;
+        public bool IsPersonalInfoPanelOpen { get; set; }
     }
 }
