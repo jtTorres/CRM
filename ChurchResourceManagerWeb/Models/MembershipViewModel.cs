@@ -16,11 +16,11 @@ namespace ChurchResourceManagerWeb.Models
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
-        public DateTime? DobDateTime { get; set; }
+        public DateTime DobDateTime { get; set; }
 
         public string Dob
         {
-            get => DobDateTime.ToString();
+            get => DobDateTime.ToString("MM/dd/yyyy");
             set => DobDateTime = Convert.ToDateTime(value);
         }
 

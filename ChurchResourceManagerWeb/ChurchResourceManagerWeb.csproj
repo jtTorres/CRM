@@ -255,6 +255,7 @@
     <Compile Include="Models\MaritalStatusesViewModel.cs" />
     <Compile Include="Models\MemberGroupsViewModel.cs" />
     <Compile Include="Models\MemberInfoViewModel.cs" />
+    <Compile Include="Models\MemberSearchViewModel.cs" />
     <Compile Include="Models\MEMBERSHIP.cs">
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
     </Compile>
@@ -312,6 +313,7 @@
     <Content Include="app\Components\familyReadOnly.component.js" />
     <Content Include="app\Components\memberInformation.component.js" />
     <Content Include="app\Components\memberInformationReadOnly.component.js" />
+    <Content Include="app\Components\membersGrid.component.js" />
     <Content Include="app\Components\offeringActivity.component.js" />
     <Content Include="app\Components\offeringActivity.component.spec.js" />
     <Content Include="app\Components\Shared\runningTotal.component.js" />
@@ -326,6 +328,7 @@
     <Content Include="app\Controllers\Membership\ContactInformation.controller.js" />
     <Content Include="app\Controllers\Membership\Family.controller.js" />
     <Content Include="app\Controllers\Membership\MemberInformation.controller.js" />
+    <Content Include="app\Controllers\Membership\MembersGrid.controller.js" />
     <Content Include="app\Controllers\Membership\Membership.controller.js" />
     <Content Include="app\Controllers\Offerings\AddOffering.controller.js" />
     <Content Include="app\Controllers\Offerings\DeleteOffering.controller.js" />
@@ -1228,6 +1231,8 @@
     <Content Include="Views\Membership\_addressReadOnly.cshtml" />
     <Content Include="Views\Membership\_contactInformationReadOnly.cshtml" />
     <Content Include="Views\Membership\_memberInformationReadOnly.cshtml" />
+    <Content Include="Views\Membership\_membersGrid.cshtml" />
+    <Content Include="Views\Membership\MembersSearch.cshtml" />
     <None Include="Views\Test\SpecRunner.cshtml" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />

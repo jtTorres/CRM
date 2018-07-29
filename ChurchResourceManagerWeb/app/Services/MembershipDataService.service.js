@@ -19,7 +19,8 @@
             getAllMembership: getAllMembership,
             allMembership: allMembership,
             getStateList: getStateList,
-            getEmptyMemberInfo: getEmptyMemberInfo
+            getEmptyMemberInfo: getEmptyMemberInfo,
+            getMemberSearch: getMemberSearch
         };
 
 
@@ -139,6 +140,23 @@
 
         function onAddContactInfoError(reason) {
             return $q.reject(utilityService.httpError(reason, "Error Adding Contact Information"));
+        }
+
+        function getMemberSearch() {
+            return $http({
+                method: "GET",
+                url: "/Membership/GetMemberSearch/"
+            })
+                .then(onGetMemberSearchSuccess)
+                .catch(onGetMemberSearchError);
+        }
+
+        function onGetMemberSearchSuccess(response) {
+            return response;
+        }
+
+        function onGetMemberSearchError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Getting Member Information"));
         }
     }
 

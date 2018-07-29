@@ -254,6 +254,11 @@ namespace ChurchResourceManagerWeb.Models
             return membership;
         }
 
+        public IEnumerable<MemberSearchViewModel> GetMemberSearch()
+        {
+            return ModelFactory.CreateMemberSearchViewModelList(db.MEMBERSHIP, db.FAMILIES, db.MEMBERSHIP_STATUS);
+        }
+
         public IEnumerable<TithesViewModel> GetMemberTithes(int memberId, DateTime? date)
         {
 

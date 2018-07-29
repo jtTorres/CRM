@@ -99,7 +99,7 @@ namespace ChurchResourceManagerWeb.Models
                 FirstName = membership.FIRST_NAME,
                 MiddleName = membership.MIDDLE_NAME,
                 LastName = membership.LAST_NAME,
-                DobDateTime = membership.DOB,
+                DobDateTime = Convert.ToDateTime(membership.DOB),
                 LocationId = membership.LOCATION_ID,
                 MaritalStatusId = membership.MARITAL_STATUS_ID,
                 GroupId = membership.GROUP_ID,
@@ -130,6 +130,25 @@ namespace ChurchResourceManagerWeb.Models
                         CheckNumber = t.CHECK_NUMBER ?? 0,
                         TitheAmount = t.TITHE_AMOUNT,
                         Comments = t.COMMENTS
+                    }).ToList();
+        }
+
+        public IEnumerable<MemberSearchViewModel> CreateMemberSearchViewModelList(IQueryable<MEMBERSHIP> membership, IQueryable<FAMILIES> family, IQueryable<MEMBERSHIP_STATUS> membershipStatus)
+        {
+            return (from m in membership
+                    join f in family on m.FAMILY_ID equals f.FAMILY_ID
+                    join ms in membershipStatus on m.MEMBERSHIP_STATUS_ID equals ms.MEMBERSHIP_STATUS_ID
+                    select new MemberSearchViewModel
+                    {
+                        FamilyId = f.FAMILY_ID,
+                        FamilyName = f.NAME,
+                        MemberId = m.MEMBER_ID,
+                        FirstName = m.FIRST_NAME,
+                        MiddleName = m.MIDDLE_NAME,
+                        LastName = m.LAST_NAME,
+                        Dob = m.DOB.ToString(),
+                        Gender = m.GENDER,
+                        MembershipStatus = ms.DESCRIPTION
                     }).ToList();
         }
 
@@ -183,7 +202,7 @@ namespace ChurchResourceManagerWeb.Models
                 FirstName = m.FIRST_NAME,
                 MiddleName = m.MIDDLE_NAME,
                 LastName = m.LAST_NAME,
-                DobDateTime = m.DOB,
+                DobDateTime = Convert.ToDateTime(m.DOB),
                 LocationId = m.LOCATION_ID,
                 MaritalStatusId = m.MARITAL_STATUS_ID,
                 GroupId = m.GROUP_ID,

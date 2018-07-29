@@ -22,6 +22,11 @@ namespace ChurchResourceManagerWeb.Controllers
             return View();
         }
 
+        public ActionResult MembersSearch()
+        {
+            return View();
+        }
+
         #region PartialViews for Components
 
         public ActionResult AddMember()
@@ -68,6 +73,11 @@ namespace ChurchResourceManagerWeb.Controllers
         {
             return PartialView("_contactInformationReadOnly");
         }
+
+        public ActionResult Members()
+        {
+            return PartialView("_membersGrid");
+        }
         #endregion
 
 
@@ -113,6 +123,20 @@ namespace ChurchResourceManagerWeb.Controllers
             }
         }
 
+        [HttpPost]
+        public JsonResult AddContactInfo(ContactInfoViewModel[] contactInfo)
+        {
+            try
+            {
+                return Json(new { success = Repo.AddContactInfo(contactInfo) });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
         [HttpGet]
         public JsonResult GetEmptyMemberInfo()
         {
@@ -127,12 +151,12 @@ namespace ChurchResourceManagerWeb.Controllers
             }
         }
 
-        [HttpPost]
-        public JsonResult AddContactInfo(ContactInfoViewModel[] contactInfo)
+        [HttpGet]
+        public JsonResult GetMemberSearch()
         {
             try
             {
-                return Json(new { success = Repo.AddContactInfo(contactInfo) });
+                return Json(Repo.GetMemberSearch(), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -140,5 +164,7 @@ namespace ChurchResourceManagerWeb.Controllers
                 throw;
             }
         }
+
+
     }
 }

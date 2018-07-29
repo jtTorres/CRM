@@ -1,0 +1,56 @@
+﻿<div class="col-xs-12">
+    <div uib-accordion>
+        <div uib-accordion-group class="panel panel-primary text-center" heading="Members" is-open="true">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th width="15%">Family Name</th>
+                            <th width="20%">First Name</th>
+                            <th width="20%">Last Name</th>
+                            <th width="10%">Date of Birth</th>
+                            <th width="6%">Gender</th>
+                            <th width="8%">Membership Status</th>
+                            <th width="3%"></th> <!--empty space for edit/delete-->
+                        </tr>
+                        <tr class="list-group" id="searchRow" name="searchRow">
+                            <td>
+                                <input type="text" id="txtFamilyName" name="txtFamilyName" class="form-control" ng-model="search.FamilyName" />
+                            </td>
+                            <td>
+                                <input type="text" id="txtFirstName" name="txtFirstName" class="form-control" ng-model="search.FirstName" />
+                            </td>
+                            <td>
+                                <input type="text" id="txtLastName" name="txtLastName" class="form-control" ng-model="search.LastName" />
+                            </td>
+                            <td>
+                                <input type="text" id="txtDob" name="txtDob" class="form-control" ng-model="search.Dob" />
+                            </td>
+                            <td>
+                                <input type="text" id="txtGender" name="txtGender" class="form-control" ng-model="search.Gender" />
+                            </td>
+                            <td>
+                                <input type="text" id="txtMembershipStatus" name="txtMembershipStatus" class="form-control" ng-model="search.MembershipStatus" />
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-left" ng-repeat="member in mgc.members | filter: search">
+                            <td>{{member.FamilyName}}</td>
+                            <td>{{member.FirstName}}</td>
+                            <td>{{member.LastName}}</td>
+                            <td>{{member.Dob}}</td>
+                            <td class="text-center">{{member.Gender}}</td>
+                            <td>{{member.MembershipStatus}}</td>
+                            <td>
+                                <span ng-click="mgc.editMember(offering, $index)" uib-tooltip="Click to Edit" class="glyphicon glyphicon-pencil clickable"></span>
+                                @*|*@
+                                @*<span ng-click="mgc.deleteMember(offering.OfferingId)" uib-tooltip="Click to Delete" class="glyphicon glyphicon-remove clickable"></span>*@
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
