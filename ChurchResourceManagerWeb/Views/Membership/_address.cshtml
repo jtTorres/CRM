@@ -40,10 +40,10 @@
 
     </div>
     <div>
-        <button id="editFamilyBtn" name="editFamilyBtn" class="btn btn-primary" type="button" ng-click="ac.edit()" ng-disabled="ac.beingEdited">
+        <button id="editFamilyBtn" name="editFamilyBtn" class="btn btn-primary" type="button" ng-click="ac.edit()" ng-if="!ac.beingEdited">
             <span class="glyphicon glyphicon-edit"></span> Edit
         </button>
-        <button id="submitFamilyBtn" name="submitFamilyBtn" class="btn btn-primary" type="submit" ng-disabled="!ac.beingEdited">
+        <button id="submitFamilyBtn" name="submitFamilyBtn" class="btn btn-primary" type="submit" ng-if="ac.beingEdited">
             <span class="glyphicon glyphicon-check"></span> Save
         </button>
     </div>

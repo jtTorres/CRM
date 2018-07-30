@@ -42,9 +42,6 @@
                                 </div>
                             </uib-accordion>
                             <div style="padding-top: 1%; padding-left: .5%;" ng-if="cic.followLastCurrentActiveIndex($index, cic.contactInfo.length)">
-                                <button id="editFamilyBtn" name="editFamilyBtn" class="btn btn-primary" type="button" ng-click="cic.edit()" ng-disabled="cic.beingEdited">
-                                    <span class="glyphicon glyphicon-edit"></span> Edit
-                                </button>
                                 <button id="submitFamilyBtn" name="submitFamilyBtn" class="btn btn-primary" type="submit" ng-disabled="!cic.beingEdited">
                                     <span class="glyphicon glyphicon-check"></span> Save
                                 </button>
