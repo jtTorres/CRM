@@ -18,6 +18,7 @@
             contactInfoForm: true
         }
         vm.doEdit = doEdit;
+        vm.doSave = doSave;
         vm.doSaveAddressInfo = doSaveAddressInfo;
         vm.doSaveContactInfo = doSaveContactInfo;
         vm.doSaveFamily = doSaveFamily;
@@ -199,6 +200,25 @@
         // #endregion
 
         // #region Shared Functions
+        function doSave(formName, formData) {
+            switch (formName) {
+                case "family":
+                    doSaveFamily(formData);
+                    break;
+                case "address":
+                    doSaveAddressInfo(formData);
+                    break;
+                case "memberInfo":
+                    doSaveMembership(formData);
+                    break;
+                case "contactInfo":
+                    doSaveContactInfo(formData);
+                    break;
+                default:
+                    break;
+            }
+        }
+
         function findActiveIndex(currentIndex, arrayCount) {
             return currentIndex === arrayCount - 1;
         }

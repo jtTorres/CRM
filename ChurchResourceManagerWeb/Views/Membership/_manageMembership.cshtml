@@ -1,0 +1,23 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <uib-tabset active="mmc.activeTab">
+                <!--Family Form-->
+                <uib-tab index="0" heading="Family" disable="mmc.disableTab({index: 0})">
+                    <family family="mmc.Family" being-edited="mmc.beingEdited.familyForm" on-edit="mmc.onEdit({formName:formName})" on-submit="mmc.onSubmit({formName: 'family',  formData: family})"></family>
+                </uib-tab>
+                <uib-tab index="1" heading="Address Information" disable="mmc.disableTab({index: 1})">
+                    <!--Address Information-->
+                    <address location-address="mmc.Address" on-submit="mmc.onSubmit({formName: 'address',  formData: addressInfo})" on-edit="mmc.onEdit({formName:formName})" being-edited="mmc.beingEdited.addressInfoForm" state-list="mmc.stateList"></address>
+                </uib-tab>
+                <uib-tab index="2" heading="Personal Details" disable="mmc.disableTab({index: 2})">
+                    <!--member information-->
+                    <member-information being-edited="mmc.beingEdited.personalInfoForm" member-info-array="mmc.memberInfoArray" on-edit="mmc.onEdit({formName:formName})" accordion-settings="mmc.accordionSettings" on-submit="mmc.onSubmit({formName: 'memberInfo',  formData: memberInfo})" on-find-active-index="mmc.onFindActiveIndex({currentIndex: currentIndex, arrayCount: arrayCount})"></member-information>
+                </uib-tab>
+                <uib-tab index="3" heading="Contact Information" disable="mmc.disableTab({index: 3})">
+                    <contact-information on-submit="mmc.onSubmit({formName: 'contactInfo',  formData: contactInfo})" on-edit="mmc.onEdit({formName:formName})" contact-info="mmc.contactInfo" on-find-active-index="mmc.onFindActiveIndex({currentIndex: currentIndex, arrayCount: arrayCount})" being-edited="mmc.beingEdited.contactInfoForm" is-accordion-open="mmc.accordionSettings.isContactInfoOpen"></contact-information>
+                </uib-tab>
+            </uib-tabset>
+        </div>
+    </div>
+</div>

@@ -7,27 +7,17 @@
 <h2 style="padding-bottom: 40px;">@ViewBag.Title</h2>
 
 <div ng-controller="membershipController as mc">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <uib-tabset active="mc.activeTab">
-                    <!--Family Form-->
-                    <uib-tab index="0" heading="Family" disable="mc.enableDisableTab(0)">
-                        <family family="mc.Family" being-edited="mc.beingEdited.familyForm" on-edit="mc.doEdit(formName)" on-submit="mc.doSaveFamily(family)"></family>
-                    </uib-tab>
-                    <uib-tab index="1" heading="Address Information" disable="mc.enableDisableTab(1)">
-                        <!--Address Information-->
-                        <address location-address="mc.Address" on-submit="mc.doSaveAddressInfo(addressInfo)" on-edit="mc.doEdit(formName)" being-edited="mc.beingEdited.addressInfoForm" state-list="mc.stateList"></address>
-                    </uib-tab>
-                    <uib-tab index="2" heading="Personal Details" disable="mc.enableDisableTab(2)">
-                        <!--member information-->
-                        <member-information being-edited="mc.beingEdited.personalInfoForm" member-info-array="mc.memberInfoArray" on-edit="mc.doEdit(formName)" accordion-settings="mc.accordionSettings" on-submit="mc.doSaveMembership(memberInfo)" on-find-active-index="mc.findActiveIndex(currentIndex, arrayCount)"></member-information>
-                    </uib-tab>
-                    <uib-tab index="3" heading="Contact Information" disable="mc.enableDisableTab(3)">
-                        <contact-information on-submit="mc.doSaveContactInfo(contactInfo)" on-edit="mc.doEdit(formName)" contact-info="mc.contactInfo" on-find-active-index="mc.findActiveIndex(currentIndex, arrayCount)" being-edited="mc.beingEdited.contactInfoForm" is-accordion-open="mc.accordionSettings.isContactInfoOpen"></contact-information>
-                    </uib-tab>
-                </uib-tabset>
-            </div>
-        </div>
-    </div>
+    <manage-membership active-tab="mc.activeTab"
+                       disable-tab="mc.enableDisableTab(index)"
+                       being-edited="mc.beingEdited"
+                       family="mc.Family"
+                       address="mc.Address"
+                       member-info-array="mc.memberInfoArray"
+                       contact-info="mc.contactInfo"
+                       on-edit="mc.doEdit(formName)"
+                       on-submit="mc.doSave(formName, formData)"
+                       state-list="mc.stateList"
+                       on-find-active-index="mc.findActiveIndex(currentIndex, arrayCount)">
+
+    </manage-membership>
 </div>

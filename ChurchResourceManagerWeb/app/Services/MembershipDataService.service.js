@@ -16,11 +16,12 @@
             addContactInfo: addContactInfo,
             addMembership: addMembership,
             addLocation: addLocation,
-            getAllMembership: getAllMembership,
             allMembership: allMembership,
+            editMembership: editMembership,
+            getAllMembership: getAllMembership,
             getStateList: getStateList,
             getEmptyMemberInfo: getEmptyMemberInfo,
-            getMemberSearch: getMemberSearch
+            getMemberSearch: getMemberSearch,
         };
 
 
@@ -157,6 +158,13 @@
 
         function onGetMemberSearchError(reason) {
             return $q.reject(utilityService.httpError(reason, "Error Getting Member Information"));
+        }
+
+        function editMembership() {
+            return $http({
+                method: "GET",
+                url: "/Membership/"
+            })
         }
     }
 

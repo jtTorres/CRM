@@ -22,6 +22,11 @@ namespace ChurchResourceManagerWeb.Controllers
             return View();
         }
 
+        public ActionResult EditMembership()
+        {
+            return View();
+        }
+
         public ActionResult MembersSearch()
         {
             return View();
@@ -77,6 +82,11 @@ namespace ChurchResourceManagerWeb.Controllers
         public ActionResult Members()
         {
             return PartialView("_membersGrid");
+        }
+
+        public ActionResult ManageMembership()
+        {
+            return PartialView("_manageMembership");
         }
         #endregion
 
