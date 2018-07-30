@@ -1,54 +1,62 @@
-﻿        <div style="padding-bottom: 1%;">
-            <uib-accordion close-others="false">
-                <div uib-accordion-group class="panel-default" is-open="memberInfo.IsMemberInfoPanelOpen">
-                    <uib-accordion-heading>
-                        Member Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': memberInfo.IsMemberInfoPanelOpen, 'glyphicon-chevron-up': !memberInfo.IsMemberInfoPanelOpen}"></i>
-                    </uib-accordion-heading>
-                    <div class="col-xs-12">
-                        <div class="read-only-padding">
-                            <label for="membershipStatus">Membership Status</label>
-                            <div id="membershipStatus">{{mic.memberInfo.SelectedMembershipStatus.Description}}</div>
-                        </div>
-                        <div class="read-only-padding">
-                            <label for="relationshipTypes">Relation</label>
-                            <div id="relationshipTypes">{{mic.memberInfo.SelectedRelationshipType.Description}}</div>
-                        </div>
+﻿<div style="padding-bottom: 1%;">
+    <uib-accordion close-others="false">
+        <div uib-accordion-group class="panel-default" is-open="memberInfo.IsMemberInfoPanelOpen">
+            <uib-accordion-heading>
+                Member Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': memberInfo.IsMemberInfoPanelOpen, 'glyphicon-chevron-up': !memberInfo.IsMemberInfoPanelOpen}"></i>
+            </uib-accordion-heading>
+            <div class="col-xs-12">
+                <div class="read-only-padding">
+                    <label for="membershipStatus">Membership Status</label>
+                    <div id="membershipStatus">{{mic.memberInfo.SelectedMembershipStatus.Description}}</div>
+                </div>
+                <div class="read-only-padding">
+                    <label for="relationshipTypes">Relation</label>
+                    <div id="relationshipTypes">{{mic.memberInfo.SelectedRelationshipType.Description}}</div>
+                </div>
+            </div>
+            <div uib-accordion-group class="panel-default" is-open="memberInfo.IsPersonalInfoPanelOpen">
+                <uib-accordion-heading>
+                    Personal Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': memberInfo.IsPersonalInfoPanelOpen, 'glyphicon-chevron-up': !memberInfo.IsPersonalInfoPanelOpen}"></i>
+                </uib-accordion-heading>
+                <div class="col-xs-6">
+                    <div class="read-only-padding">
+                        <label for="firstName">First Name</label>
+                        <div id="firstName">{{mic.memberInfo.FirstName}}</div>
                     </div>
-                    <div uib-accordion-group class="panel-default" is-open="memberInfo.IsPersonalInfoPanelOpen">
-                        <uib-accordion-heading>
-                            Personal Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': memberInfo.IsPersonalInfoPanelOpen, 'glyphicon-chevron-up': !memberInfo.IsPersonalInfoPanelOpen}"></i>
-                        </uib-accordion-heading>
-                        <div class="col-xs-6">
-                            <div class="read-only-padding">
-                                <label for="firstName">First Name</label>
-                                <div id="firstName">{{mic.memberInfo.FirstName}}</div>
-                            </div>
-                            <div class="read-only-padding">
-                                <label for="middleName">Middle Name</label>
-                                <div id="middleName">{{mic.memberInfo.MiddleName}}</div>
-                            </div>
-                            <div class="read-only-padding">
-                                <label for="lastName">Last Name</label>
-                                <div id="lastName">{{mic.memberInfo.LastName}}</div>
-                            </div>
-                            <div class="read-only-padding">
-                                <label for="dob">Date of Birth</label>
-                                <div id="dob">{{mic.memberInfo.Dob}}</div>
-                            </div>
-                            <div class="read-only-padding">
-                                <label for="gender">Gender</label>
-                                <div id="gender">{{mic.memberInfo.SelectedGender.Description}}</div>
-                            </div>
-                            <div class="read-only-padding">
-                                <label for="maritalStatus">Marital Status</label>
-                                <div id="maritalStatus">{{mic.memberInfo.SelectedMaritalStatus.Description}}</div>
-                            </div>
-                            <div class="read-only-padding">
-                                <label for="memberGroup">Member Group</label>
-                                <div id="memberGroup">{{mic.memberInfo.SelectedMemberGroup.Description}}</div>
-                            </div>
-                        </div>
+                    <div class="read-only-padding">
+                        <label for="middleName">Middle Name</label>
+                        <div id="middleName">{{mic.memberInfo.MiddleName}}</div>
+                    </div>
+                    <div class="read-only-padding">
+                        <label for="lastName">Last Name</label>
+                        <div id="lastName">{{mic.memberInfo.LastName}}</div>
+                    </div>
+                    <div class="read-only-padding">
+                        <label for="dob">Date of Birth</label>
+                        <div id="dob">{{mic.memberInfo.Dob}}</div>
+                    </div>
+                    <div class="read-only-padding">
+                        <label for="gender">Gender</label>
+                        <div id="gender">{{mic.memberInfo.SelectedGender.Description}}</div>
+                    </div>
+                    <div class="read-only-padding">
+                        <label for="maritalStatus">Marital Status</label>
+                        <div id="maritalStatus">{{mic.memberInfo.SelectedMaritalStatus.Description}}</div>
+                    </div>
+                    <div class="read-only-padding">
+                        <label for="memberGroup">Member Group</label>
+                        <div id="memberGroup">{{mic.memberInfo.SelectedMemberGroup.Description}}</div>
                     </div>
                 </div>
-            </uib-accordion>
+            </div>
         </div>
+    </uib-accordion>
+    <div style="padding-top: 1%; padding-left: .5%;" ng-show="mic.activeIndex">
+        <button id="editFamilyBtn" name="editFamilyBtn" class="btn btn-primary" type="button" ng-click="mic.edit()" ng-disabled="mic.beingEdited">
+            <span class="glyphicon glyphicon-edit"></span> Edit
+        </button>
+        <button id="submitFamilyBtn" name="submitFamilyBtn" class="btn btn-primary" type="submit" ng-disabled="!mic.beingEdited">
+            <span class="glyphicon glyphicon-check"></span> Save
+        </button>
+    </div>
+</div>

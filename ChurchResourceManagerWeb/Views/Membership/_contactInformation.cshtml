@@ -52,7 +52,7 @@
                         </div>
                     </ng-form>
                 </div>
-                <contact-information-read-only contact-info="info" ng-show="!cic.beingEdited" is-accordion-open="info.IsContactInfoPanelOpen"></contact-information-read-only>
+                <contact-information-read-only contact-info="info" ng-show="!cic.beingEdited" is-accordion-open="info.IsContactInfoPanelOpen" active-index="cic.followLastCurrentActiveIndex($index, cic.contactInfo.length)"></contact-information-read-only>
             </div>
         </div>
     </div>

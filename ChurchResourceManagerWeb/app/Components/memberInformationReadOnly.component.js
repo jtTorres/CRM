@@ -8,7 +8,10 @@
                 controller: "memberInformationController",
                 controllerAs: "mic",
                 bindings: {
-                    memberInfo: "<"
+                    memberInfo: "<",
+                    activeIndex: "<",
+                    onEdit: "&",
+                    onSubmit: "&"
                 }
             });
 

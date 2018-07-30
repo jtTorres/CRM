@@ -9,7 +9,10 @@
                 controllerAs: "cic",
                 bindings: {
                     contactInfo: "<",
-                    isAccordionOpen: "<"
+                    isAccordionOpen: "<",
+                    activeIndex: "<",
+                    onEdit: "&",
+                    onSubmit: "&"
                 }
             });
 
