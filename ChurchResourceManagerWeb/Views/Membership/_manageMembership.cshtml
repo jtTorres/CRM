@@ -12,10 +12,10 @@
                 </uib-tab>
                 <uib-tab index="2" heading="Personal Details" disable="mmc.disableTab({index: 2})">
                     <!--member information-->
-                    <member-information being-edited="mmc.beingEdited.personalInfoForm" member-info-array="mmc.memberInfoArray" on-edit="mmc.onEdit({formName:formName})" accordion-settings="mmc.accordionSettings" on-submit="mmc.onSubmit({formName: 'memberInfo',  formData: memberInfo})" on-find-active-index="mmc.onFindActiveIndex({currentIndex: currentIndex, arrayCount: arrayCount})"></member-information>
+                    <member-information being-edited="mmc.beingEdited.personalInfoForm" member-info-array="mmc.memberInfoArray" on-edit="mmc.onEdit({formName:'personalInfoForm'})" accordion-settings="mmc.accordionSettings" on-submit="mmc.onSubmit({formName: 'memberInfo',  formData: memberInfo})" on-find-active-index="mmc.onFindActiveIndex({currentIndex: currentIndex, arrayCount: arrayCount})"></member-information>
                 </uib-tab>
                 <uib-tab index="3" heading="Contact Information" disable="mmc.disableTab({index: 3})">
-                    <contact-information on-submit="mmc.onSubmit({formName: 'contactInfo',  formData: contactInfo})" on-edit="mmc.onEdit({formName:formName})" contact-info="mmc.contactInfo" on-find-active-index="mmc.onFindActiveIndex({currentIndex: currentIndex, arrayCount: arrayCount})" being-edited="mmc.beingEdited.contactInfoForm" is-accordion-open="mmc.accordionSettings.isContactInfoOpen"></contact-information>
+                    <contact-information on-submit="mmc.onSubmit({formName: 'contactInfo',  formData: contactInfo})" on-edit="mmc.onEdit({formName:'contactInfoForm'})" contact-info="mmc.contactInfo" on-find-active-index="mmc.onFindActiveIndex({currentIndex: currentIndex, arrayCount: arrayCount})" being-edited="mmc.beingEdited.contactInfoForm" is-accordion-open="mmc.accordionSettings.isContactInfoOpen"></contact-information>
                 </uib-tab>
             </uib-tabset>
         </div>

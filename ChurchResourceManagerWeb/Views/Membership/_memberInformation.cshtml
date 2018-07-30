@@ -100,7 +100,7 @@
                         </div>
                     </ng-form>
                 </div>
-                <member-information-read-only member-info="info" active-index="mic.followLastCurrentActiveIndex($index, mic.memberInfoArray.length)" ng-show="!mic.beingEdited"></member-information-read-only>
+                <member-information-read-only member-info="info" active-index="mic.followLastCurrentActiveIndex($index, mic.memberInfoArray.length)" on-edit="mic.edit()" ng-show="!mic.beingEdited"></member-information-read-only>
             </div>
         </div>
     </div>
