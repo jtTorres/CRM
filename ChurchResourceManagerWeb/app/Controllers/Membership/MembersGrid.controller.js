@@ -10,7 +10,7 @@
     function membersGridController(membershipDataService) {
         var vm = this;
 
-
+        vm.edit = edit;
         /////////////////////////////
 
         activate();
@@ -22,6 +22,9 @@
                 });
         }
 
+        function edit(member) {
+            vm.openEditModal({ member: member });
+        }
 
     }
 

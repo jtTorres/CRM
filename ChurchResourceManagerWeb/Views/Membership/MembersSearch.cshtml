@@ -6,5 +6,7 @@
 
 <h2>@ViewBag.Title</h2>
 
-<members-grid></members-grid>
+<div ng-controller="membershipController as mc">
+    <members-grid open-edit-modal="mc.openEditMembershipModal(member)"></members-grid>
+</div>
 

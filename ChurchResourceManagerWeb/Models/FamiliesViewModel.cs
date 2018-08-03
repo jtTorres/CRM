@@ -7,7 +7,7 @@ namespace ChurchResourceManagerWeb.Models
 {
     public class FamiliesViewModel
     {
-        //public int FamilyId { get; set; }
+        public int FamilyId { get; set; }
         public string Name { get; set; }
     }
 }

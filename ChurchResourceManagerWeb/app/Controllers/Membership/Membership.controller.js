@@ -4,9 +4,9 @@
     angular.module("app")
         .controller("membershipController", membershipController);
 
-    membershipController.$inject = ["membershipDataService", "utilityService", "operationFlowService", "$scope", "enumsDataService"];
+    membershipController.$inject = ["membershipDataService", "utilityService", "operationFlowService", "$scope", "enumsDataService", "$uibModal"];
 
-    function membershipController(membershipDataService, utilityService, operationFlowService, $scope, enumsDataService) {
+    function membershipController(membershipDataService, utilityService, operationFlowService, $scope, enumsDataService, $uibModal) {
         var vm = this;
         vm.addRelative = addRelative;
         vm.Address = {};
@@ -17,36 +17,38 @@
             addressInfoForm: true,
             contactInfoForm: true
         }
+        vm.contactInfo = [];
+        vm.disableTabs = true;
         vm.doEdit = doEdit;
         vm.doSave = doSave;
         vm.doSaveAddressInfo = doSaveAddressInfo;
         vm.doSaveContactInfo = doSaveContactInfo;
         vm.doSaveFamily = doSaveFamily;
+        vm.doSaveMembership = doSaveMembership;
         vm.emptyContactInfo = {};
         vm.emptyMemberInfo = {};
         vm.enableDisableTab = enableDisableTab;
         vm.Family = {}
         vm.findActiveIndex = findActiveIndex;
-
         vm.getEmptyMemberInfo = getEmptyMemberInfo;
-        vm.disableTabs = true;
         vm.Membership = {};
         vm.memberInfoArray = [];
-        vm.contactInfo = [];
-        vm.doSaveMembership = doSaveMembership;
+        vm.openEditMembershipModal = openEditMembershipModal;
         vm.stateList = membershipDataService.getStateList();
+        /////////////////////////////
+
         const tabs = {
             Family: 0,
             Address: 1,
             Personal: 2,
             Contact: 3
         }
-        /////////////////////////////
 
         activate();
 
         function activate() {
             console.log("Activated Membership Controller");
+
             getEmptyMemberInfo();
             getAllEnums();
             setAccordionDefaults();
@@ -231,6 +233,14 @@
             //return vm.activeTab < index || vm.disableTabs;
             return (vm.activeTab !== index && vm.disableTabs) || vm.disableTabs;
         }
+
+        function getMemberToEdit(familyId) {
+            return membershipDataService.editMembership(familyId)
+                .then(function (response) {
+                    vm.membershipToEdit = response.data;
+                })
+                .catch(onSaveError);
+        }
         // #endregion
 
 
@@ -312,6 +322,46 @@
             }
         }
         // #endregion
+
+
+
+        // #region Edit Membership Modal Component
+
+        function openEditMembershipModal(member) {
+
+            getMemberToEdit(member.FamilyId)
+                .then(function () {
+                    var memberToEdit = angular.copy(member);
+
+                    var modalInstance = $uibModal.open({
+                        animation: true,
+                        component: "editMembershipModal",
+                        windowClass: "edit-membership-modal",
+                        resolve: {
+                            membershipToEdit: function () {
+                                return vm.membershipToEdit;
+                            },
+                            stateList: function () {
+                                return vm.stateList;
+                            },
+                            beingEdited: function () {
+                                return vm.beingEdited;
+                            },
+                            activeTab: function() {
+                                return vm.activeTab;
+                            }
+                        }
+                    });
+
+                    modalInstance.result
+                        .then(function () {
+
+                        });
+                });
+        }
+        // #endregion
+
+
     }
 
 })();

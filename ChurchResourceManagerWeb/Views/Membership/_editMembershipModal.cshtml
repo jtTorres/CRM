@@ -1,0 +1,29 @@
+﻿    <div class="modal-header">
+    <button type="button" class="close" ng-click="emc.dismiss()">&times;</button>
+    <h4 class="modal-title text-center" id="modal-title">Edit Membership</h4>
+</div>
+<div class="modal-body">
+    @*TODO: Add error message banners*@
+
+    <div>
+        <manage-membership active-tab="emc.activeTab"
+                           @*disable-tab="mc.enableDisableTab(index)"*@
+                           being-edited="emc.beingEdited"
+                           family="emc.family"
+                           address="emc.address"
+                           member-info-array="emc.memberInfoArray"
+                           contact-info="emc.contactInfo"
+                           on-edit="mc.doEdit(formName)"
+                           on-submit="mc.doSave(formName, formData)"
+                           state-list="emc.stateList"
+                           on-find-active-index="mc.findActiveIndex(currentIndex, arrayCount)"
+                           is-edit-mode="true">
+
+        </manage-membership>
+    </div>
+</div>
+<div class="modal-footer">
+    <!--Submit and Clear Form Buttons-->
+    <div class="col-xs-12">
+    </div>
+</div>

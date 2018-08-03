@@ -4,5 +4,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>EditMembership</h2>
+<h2 style="padding-bottom: 40px;">@ViewBag.Title</h2>
 
+<div ng-controller="membershipController as mc">
+    <manage-membership active-tab="mc.activeTab"
+                       disable-tab="mc.enableDisableTab(index)"
+                       being-edited="mc.beingEdited"
+                       family="mc.Family"
+                       address="mc.Address"
+                       member-info-array="mc.memberInfoArray"
+                       contact-info="mc.contactInfo"
+                       on-edit="mc.doEdit(formName)"
+                       on-submit="mc.doSave(formName, formData)"
+                       state-list="mc.stateList"
+                       on-find-active-index="mc.findActiveIndex(currentIndex, arrayCount)">
+
+    </manage-membership>
+</div>

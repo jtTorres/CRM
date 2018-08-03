@@ -4,11 +4,11 @@
             <uib-tabset active="mmc.activeTab">
                 <!--Family Form-->
                 <uib-tab index="0" heading="Family" disable="mmc.disableTab({index: 0})">
-                    <family family="mmc.Family" being-edited="mmc.beingEdited.familyForm" on-edit="mmc.onEdit({formName:formName})" on-submit="mmc.onSubmit({formName: 'family',  formData: family})"></family>
+                    <family family="mmc.family" being-edited="mmc.beingEdited.familyForm" on-edit="mmc.onEdit({formName:formName})" on-submit="mmc.onSubmit({formName: 'family',  formData: family})"></family>
                 </uib-tab>
                 <uib-tab index="1" heading="Address Information" disable="mmc.disableTab({index: 1})">
                     <!--Address Information-->
-                    <address location-address="mmc.Address" on-submit="mmc.onSubmit({formName: 'address',  formData: addressInfo})" on-edit="mmc.onEdit({formName:formName})" being-edited="mmc.beingEdited.addressInfoForm" state-list="mmc.stateList"></address>
+                    <address location-address="mmc.address" on-submit="mmc.onSubmit({formName: 'address',  formData: addressInfo})" on-edit="mmc.onEdit({formName:formName})" being-edited="mmc.beingEdited.addressInfoForm" state-list="mmc.stateList"></address>
                 </uib-tab>
                 <uib-tab index="2" heading="Personal Details" disable="mmc.disableTab({index: 2})">
                     <!--member information-->

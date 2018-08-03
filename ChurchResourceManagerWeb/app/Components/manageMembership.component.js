@@ -20,7 +20,8 @@
                     onSubmit: "&",
                     stateList: "<",
                     onFindActiveIndex: "&",
-                    accordionSettings: "<"
+                    accordionSettings: "<",
+                    isEditMode: "<"
                 }
             });
 

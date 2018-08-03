@@ -9,7 +9,8 @@
                 controller: "membersGridController",
                 controllerAs: "mgc",
                 bindings: {
-                    members: "<"
+                    members: "<",
+                    openEditModal: "&"
                 }
             });
 

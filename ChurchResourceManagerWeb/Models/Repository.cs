@@ -319,6 +319,29 @@ namespace ChurchResourceManagerWeb.Models
             return db.MEMBERSHIP.Find(memberId);
         }
 
+        public EditMembershipViewModel GetMembershipByFamilyId(int familyId)
+        {
+            var family = ModelFactory.CreateFamiliesViewModel(db.FAMILIES.Find(familyId));
+            var members = ModelFactory.CreateMembershipViewModelList(db.MEMBERSHIP.Where(f => f.FAMILY_ID == familyId));
+
+            var location = ModelFactory.CreateLocationViewModel(db.LOCATIONS.Find(members.FirstOrDefault().LocationId));
+
+            var memberIds = members.Select(m => m.MemberId).ToList();
+
+            var contact = (from c in db.CONTACT_INFO where memberIds.Contains(c.MEMBER_ID) select c);
+
+            var contactInfo = ModelFactory.CreateContactInfoViewModelList(contact, db.MEMBERSHIP.Where(f => f.FAMILY_ID == familyId));
+
+            var stuff = new EditMembershipViewModel
+            {
+                Family = family,
+                Location = location,
+                Membership = members,
+                ContactInfo = contactInfo
+            };
+            return stuff;
+        }
+
         #endregion
 
         #region switches

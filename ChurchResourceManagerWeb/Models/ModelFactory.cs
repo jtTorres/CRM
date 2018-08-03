@@ -100,6 +100,7 @@ namespace ChurchResourceManagerWeb.Models
                 MiddleName = membership.MIDDLE_NAME,
                 LastName = membership.LAST_NAME,
                 DobDateTime = Convert.ToDateTime(membership.DOB),
+                Gender = membership.GENDER,
                 LocationId = membership.LOCATION_ID,
                 MaritalStatusId = membership.MARITAL_STATUS_ID,
                 GroupId = membership.GROUP_ID,
@@ -108,6 +109,28 @@ namespace ChurchResourceManagerWeb.Models
                 MembershipStatusId = membership.MEMBERSHIP_STATUS_ID,
                 LastModifiedDateTime = membership.LAST_MODIFIED_DATE,
                 RelationshipTypeId = membership.RELATIONSHIP_TYPE_ID
+            };
+        }
+
+        public FamiliesViewModel CreateFamiliesViewModel(FAMILIES family)
+        {
+            return new FamiliesViewModel
+            {
+                FamilyId = family.FAMILY_ID,
+                Name = family.NAME
+            };
+        }
+
+        public LocationsViewModel CreateLocationViewModel(LOCATIONS location)
+        {
+            return new LocationsViewModel
+            {
+                LocationId = location.LOCATION_ID,
+                Address1 = location.ADDRESS1,
+                Address2 = location.ADDRESS2,
+                City = location.CITY,
+                State = location.STATE,
+                ZipCode = location.ZIP_CODE
             };
         }
 
@@ -181,6 +204,33 @@ namespace ChurchResourceManagerWeb.Models
 
         }
 
+        public IEnumerable<ContactInfoViewModel> CreateContactInfoViewModelList(IQueryable<CONTACT_INFO> contactInfo, IQueryable<MEMBERSHIP> member)
+        {
+
+            var query = contactInfo
+                .GroupBy(m => new { m.MEMBER_ID/*, m.CONTACT_METHOD_ID*/ })
+                .Select(g => new
+                {
+                    MemberId = g.Key.MEMBER_ID,
+                    HomePhoneNumber = g.Where(h => h.CONTACT_METHOD_ID == 1).Select(c => c.CONTACT_INFO1).Max(),
+                    CellPhoneNumber = g.Where(h => h.CONTACT_METHOD_ID == 2).Select(c => c.CONTACT_INFO1).Max(),
+                    Email = g.Where(h => h.CONTACT_METHOD_ID == 3).Select(c => c.CONTACT_INFO1).Max()
+                });
+
+            return (from c in query
+                    join m in member on c.MemberId equals m.MEMBER_ID
+                    select new ContactInfoViewModel
+                    {
+                        MemberId = c.MemberId,
+                        HomePhoneNumber = c.HomePhoneNumber,
+                        CellPhoneNumber = c.CellPhoneNumber,
+                        Email = c.Email,
+                        PreferredContactMethod = (byte)m.PREFERRERD_CONTACT_METHOD
+                    }).ToList();
+
+
+        }
+
         public IEnumerable<CONTACT_INFO> CreateContactInfo(IEnumerable<ContactInfoViewModel> contactInfo)
         {
 
@@ -203,6 +253,7 @@ namespace ChurchResourceManagerWeb.Models
                 MiddleName = m.MIDDLE_NAME,
                 LastName = m.LAST_NAME,
                 DobDateTime = Convert.ToDateTime(m.DOB),
+                Gender = m.GENDER,
                 LocationId = m.LOCATION_ID,
                 MaritalStatusId = m.MARITAL_STATUS_ID,
                 GroupId = m.GROUP_ID,
@@ -213,6 +264,8 @@ namespace ChurchResourceManagerWeb.Models
                 RelationshipTypeId = m.RELATIONSHIP_TYPE_ID
             }).ToList();
         }
+
+
 
         public IEnumerable<ContactMethodsViewModel> CreateContactMethodsList(IQueryable<CONTACT_METHODS> contactMethods)
         {

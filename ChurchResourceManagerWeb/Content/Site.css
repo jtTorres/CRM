@@ -124,3 +124,7 @@ input:checked + .slider:before {
 .read-only-padding {
     padding-bottom: 3%;
 }
+
+div.edit-membership-modal > div.modal-dialog {
+    width: 1000px !important;
+}

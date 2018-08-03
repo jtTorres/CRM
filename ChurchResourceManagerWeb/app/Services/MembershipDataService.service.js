@@ -21,7 +21,7 @@
             getAllMembership: getAllMembership,
             getStateList: getStateList,
             getEmptyMemberInfo: getEmptyMemberInfo,
-            getMemberSearch: getMemberSearch,
+            getMemberSearch: getMemberSearch
         };
 
 
@@ -160,11 +160,24 @@
             return $q.reject(utilityService.httpError(reason, "Error Getting Member Information"));
         }
 
-        function editMembership() {
+        function editMembership(familyId) {
             return $http({
                 method: "GET",
-                url: "/Membership/"
+                url: "/Membership/EditMembershipInfo/",
+                params: {
+                    familyId: familyId
+                }
             })
+                .then(onEditMembershipSuccess)
+                .catch(onEditMembershipError);
+        }
+
+        function onEditMembershipSuccess(response) {
+            return response;
+        }
+
+        function onEditMembershipError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Getting Member Information"));
         }
     }
 

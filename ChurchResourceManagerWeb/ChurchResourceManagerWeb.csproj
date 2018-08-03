@@ -238,6 +238,7 @@
     <Compile Include="Models\DONATION_TYPES.cs">
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EditMembershipViewModel.cs" />
     <Compile Include="Models\EntitySelector.cs" />
     <Compile Include="Models\FAMILIES.cs">
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
@@ -307,6 +308,7 @@
     <Content Include="app\Components\contactInformationReadOnly.component.js" />
     <Content Include="app\Components\deleteOffering.component.js" />
     <Content Include="app\Components\deleteTithe.component.js" />
+    <Content Include="app\Components\editMembershipModal.component.js" />
     <Content Include="app\Components\editOfferingModal.component.js" />
     <Content Include="app\Components\editTitheModal.component.js" />
     <Content Include="app\Components\family.component.js" />
@@ -327,6 +329,7 @@
     <Content Include="app\Controllers\Membership\AddMembership.controller.js" />
     <Content Include="app\Controllers\Membership\Address.controller.js" />
     <Content Include="app\Controllers\Membership\ContactInformation.controller.js" />
+    <Content Include="app\Controllers\Membership\EditMembership.controller.js" />
     <Content Include="app\Controllers\Membership\Family.controller.js" />
     <Content Include="app\Controllers\Membership\ManageMembership.controller.js" />
     <Content Include="app\Controllers\Membership\MemberInformation.controller.js" />
@@ -1237,6 +1240,7 @@
     <Content Include="Views\Membership\MembersSearch.cshtml" />
     <Content Include="Views\Membership\EditMembership.cshtml" />
     <Content Include="Views\Membership\_manageMembership.cshtml" />
+    <Content Include="Views\Membership\_editMembershipModal.cshtml" />
     <None Include="Views\Test\SpecRunner.cshtml" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />

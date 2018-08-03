@@ -22,10 +22,10 @@ namespace ChurchResourceManagerWeb.Controllers
             return View();
         }
 
-        public ActionResult EditMembership()
-        {
-            return View();
-        }
+        //public ActionResult EditMembership()
+        //{
+        //    return View();
+        //}
 
         public ActionResult MembersSearch()
         {
@@ -87,6 +87,11 @@ namespace ChurchResourceManagerWeb.Controllers
         public ActionResult ManageMembership()
         {
             return PartialView("_manageMembership");
+        }
+
+        public ActionResult EditMembership()
+        {
+            return PartialView("_editMembershipModal");
         }
         #endregion
 
@@ -175,6 +180,18 @@ namespace ChurchResourceManagerWeb.Controllers
             }
         }
 
-
+        [HttpGet]
+        public JsonResult EditMembershipInfo(int familyId)
+        {
+            try
+            {
+                return Json(Repo.GetMembershipByFamilyId(familyId), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
     }
 }

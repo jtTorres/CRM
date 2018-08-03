@@ -7,7 +7,7 @@ namespace ChurchResourceManagerWeb.Models
 {
     public class LocationsViewModel
     {
-        //public int LocationId { get; set; }
+        public int LocationId { get; set; }
         public string Address1 { get; set; }
 
         public string Address2 { get; set; }
