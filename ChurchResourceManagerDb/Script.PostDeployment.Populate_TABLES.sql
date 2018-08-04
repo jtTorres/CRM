@@ -126,7 +126,11 @@ USING
 	VALUES
 	(0, 'Unknown'),
 	(1, 'Active'),
-	(2, 'Passive')
+	(2, 'Passive'),
+	(3, 'Not a Member'),
+	(4, 'Transferred'),
+	(5, 'Terminated')
+
 ) AS SOURCE (MEMBERSHIP_STATUS_ID, [DESCRIPTION])
 ON TARGET.MEMBERSHIP_STATUS_ID = SOURCE.MEMBERSHIP_STATUS_ID
 
