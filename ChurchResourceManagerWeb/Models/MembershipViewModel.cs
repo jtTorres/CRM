@@ -53,5 +53,7 @@ namespace ChurchResourceManagerWeb.Models
         public byte? RelationshipTypeId { get; set; }
         public string MemberKey => $"{MemberId} - {FirstName} {LastName}";
         public string FullName => $"{FirstName} {LastName}";
+        public bool IsMemberInfoPanelOpen => true;
+        public bool IsPersonalInfoPanelOpen { get; set; }
     }
 }

@@ -29,6 +29,7 @@
         vm.emptyMemberInfo = {};
         vm.enableDisableTab = enableDisableTab;
         vm.Family = {}
+        vm.getMemberSearch = getMemberSearch;
         vm.findActiveIndex = findActiveIndex;
         vm.getEmptyMemberInfo = getEmptyMemberInfo;
         vm.Membership = {};
@@ -56,7 +57,7 @@
 
         // #region Family Tab
         function doSaveFamily(family) {
-            if (utilityService.isUndefinedOrNull(vm.Family.FamilyId)) {
+            if (utilityService.isUndefinedOrNull(family.FamilyId)) {//vm.Family.FamilyId
                 return membershipDataService.addFamily(family)
                     .then(function (response) {
                         if (response.data) {
@@ -70,7 +71,7 @@
                     })
                     .catch(onSaveError);
             } else {
-                return membershipDataService.updateMembership(membershipRecord)
+                return membershipDataService.updateFamily(family)
                     .then(onSaveSuccess)
                     .catch(onSaveError);
             }
@@ -99,7 +100,7 @@
                     })
                     .catch(onSaveError);
             } else {
-                return membershipDataService.updateLocation(addressInfo)
+                return membershipDataService.updateAddress(addressInfo)
                     .then(onSaveSuccess)
                     .catch(onSaveError);
             }
@@ -109,10 +110,11 @@
         // #region Member Info Tab
         function doSaveMembership(memberInfo) {
             setDdlSelections("personalInfo", memberInfo);
-            addLocationId(memberInfo);
-            addFamilyId(memberInfo);
 
             if (memberInfo[0].MemberId === 0) {
+                addLocationId(memberInfo);
+                addFamilyId(memberInfo);
+
                 return membershipDataService.addMembership(memberInfo)
                     .then(function (response) {
                         if (response.data) {
@@ -146,7 +148,7 @@
         function doSaveContactInfo(contactInfo) {
             setDdlSelections("contactInfo", contactInfo);
 
-            if (utilityService.isUndefinedOrNull(contactInfo.ContactMethodId)) {
+            if (utilityService.isUndefinedOrNull(contactInfo[0].ContactMethodId)) {
                 return membershipDataService.addContactInfo(contactInfo)
                     .then(function (response) {
                         vm.beingEdited.contactInfoForm = false;
@@ -347,20 +349,41 @@
                             beingEdited: function () {
                                 return vm.beingEdited;
                             },
-                            activeTab: function() {
+                            activeTab: function () {
                                 return vm.activeTab;
+                            },
+                            doSave: {
+                                save: function (formName, formData) {
+                                    return doSave(formName, formData);
+                                }
+                            },
+                            followIndex: {
+                                followActiveIndex: function (currentIndex, arrayCount) {
+                                    return findActiveIndex(currentIndex, arrayCount);
+                                }
                             }
                         }
                     });
 
                     modalInstance.result
-                        .then(function () {
-
+                        .then(function (stuff) {
+                            getMemberSearch();
+                        })
+                        .catch(function (reason) { //this will run if the user clicks out of the modal without click x button
+                            getMemberSearch();
                         });
                 });
         }
         // #endregion
 
+        // #region MemberSearch
+        function getMemberSearch() {
+            membershipDataService.getMemberSearch()
+                .then(function (response) {
+                    vm.members = response.data;
+                });
+        }
+        // #endregion
 
     }
 

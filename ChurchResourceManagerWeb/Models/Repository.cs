@@ -55,7 +55,7 @@ namespace ChurchResourceManagerWeb.Models
         {
             try
             {
-                var fam = ModelFactory.CreateFamily(family.Name);
+                var fam = ModelFactory.CreateFamily(family);
                 db.FAMILIES.Add(fam);
                 SaveAll();
                 return fam.FAMILY_ID;
@@ -115,13 +115,12 @@ namespace ChurchResourceManagerWeb.Models
             {
                 foreach (var contact in contactInfo)
                 {
-                    var contactInfoListVm = ModelFactory.CreateContactInfoViewModelList(contact.MemberId, contact.HomePhoneNumber, contact.CellPhoneNumber, contact.Email);
-                    var info = ModelFactory.CreateContactInfo(contactInfoListVm);
+                    var contactInfoListVm = ModelFactory.CreateContactInfoViewModelList(contact);
+                    var info = ModelFactory.CreateContactInfoList(contactInfoListVm);
                     AddContactInfo(info);
                     SaveAll();
                 }
 
-                //return SaveAll();
                 return UpdateMembershipPreferredContactMethod(contactInfo);
             }
             catch (Exception ex)
@@ -138,6 +137,12 @@ namespace ChurchResourceManagerWeb.Models
                 db.CONTACT_INFO.Add(info);
             }
 
+            return true;
+        }
+
+        public bool AddContactInfo(CONTACT_INFO contactInfo)
+        {
+            db.CONTACT_INFO.Add(contactInfo);
             return true;
         }
 
@@ -197,6 +202,38 @@ namespace ChurchResourceManagerWeb.Models
                 throw;
             }
         }
+
+        public bool UpdateFamily(FamiliesViewModel family)
+        {
+            db.Entry(GetFamilyById(family.FamilyId)).CurrentValues.SetValues(ModelFactory.CreateFamily(family));
+            return SaveAll();
+        }
+
+        public bool UpdateAddress(LocationsViewModel location)
+        {
+            db.Entry(GetLocationById(location.LocationId)).CurrentValues.SetValues(ModelFactory.CreateLocation(location));
+            return SaveAll();
+        }
+
+        public bool UpdateContactInfo(List<ContactInfoViewModel> contactInfo)
+        {
+            foreach (var contact in contactInfo)
+            {
+                var contactList = ModelFactory.CreateContactInfoViewModelList(contact);
+
+                foreach (var contacts in contactList)
+                {
+                    var contactx = GetContactInfoById(contacts.MemberId, contacts.ContactMethodId);
+
+                    if (contactx == null)
+                        AddContactInfo(ModelFactory.CreateContactInfo(contacts));
+                    else
+                        db.Entry(contactx).CurrentValues.SetValues(ModelFactory.CreateContactInfo(contacts));
+                }
+            }
+            return SaveAll();
+        }
+
         #endregion
 
         #region Delete Methods
@@ -332,14 +369,28 @@ namespace ChurchResourceManagerWeb.Models
 
             var contactInfo = ModelFactory.CreateContactInfoViewModelList(contact, db.MEMBERSHIP.Where(f => f.FAMILY_ID == familyId));
 
-            var stuff = new EditMembershipViewModel
+            return new EditMembershipViewModel
             {
                 Family = family,
                 Location = location,
                 Membership = members,
                 ContactInfo = contactInfo
             };
-            return stuff;
+        }
+
+        public FAMILIES GetFamilyById(int familyId)
+        {
+            return db.FAMILIES.Find(familyId);
+        }
+
+        public LOCATIONS GetLocationById(int locationId)
+        {
+            return db.LOCATIONS.Find(locationId);
+        }
+
+        public CONTACT_INFO GetContactInfoById(int contactMemberId, byte contactMethodId)
+        {
+            return db.CONTACT_INFO.FirstOrDefault(m => m.MEMBER_ID == contactMemberId && m.CONTACT_METHOD_ID == contactMethodId);
         }
 
         #endregion
@@ -364,5 +415,6 @@ namespace ChurchResourceManagerWeb.Models
         {
             return db.SaveChanges() > 0;
         }
+
     }
 }

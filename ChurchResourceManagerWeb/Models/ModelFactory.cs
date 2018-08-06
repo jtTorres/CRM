@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Web;
 
 namespace ChurchResourceManagerWeb.Models
@@ -39,6 +40,7 @@ namespace ChurchResourceManagerWeb.Models
         {
             return new LOCATIONS
             {
+                LOCATION_ID = loc.LocationId,
                 ADDRESS1 = loc.Address1,
                 ADDRESS2 = loc.Address2,
                 CITY = loc.City,
@@ -69,11 +71,12 @@ namespace ChurchResourceManagerWeb.Models
             };
         }
 
-        public FAMILIES CreateFamily(string familyName)
+        public FAMILIES CreateFamily(FamiliesViewModel family)
         {
             return new FAMILIES
             {
-                NAME = familyName
+                FAMILY_ID = family.FamilyId,
+                NAME = family.Name
             };
         }
 
@@ -187,18 +190,18 @@ namespace ChurchResourceManagerWeb.Models
             }).ToList();
         }
 
-        public IEnumerable<ContactInfoViewModel> CreateContactInfoViewModelList(int memberId, string homePhone, string cellPhone, string email)
+        public List<ContactInfoViewModel> CreateContactInfoViewModelList(ContactInfoViewModel contact)
         {
             var contactInfo = new List<ContactInfoViewModel>();
 
-            if (!string.IsNullOrEmpty(homePhone))
-                contactInfo.Add(new ContactInfoViewModel() { MemberId = memberId, ContactMethodId = 1, ContactInfo = homePhone });
+            if (!string.IsNullOrEmpty(contact.HomePhoneNumber))
+                contactInfo.Add(new ContactInfoViewModel() { MemberId = contact.MemberId, ContactMethodId = 1, ContactInfo = contact.HomePhoneNumber });
 
-            if (!string.IsNullOrEmpty(cellPhone))
-                contactInfo.Add(new ContactInfoViewModel() { MemberId = memberId, ContactMethodId = 2, ContactInfo = cellPhone });
+            if (!string.IsNullOrEmpty(contact.CellPhoneNumber))
+                contactInfo.Add(new ContactInfoViewModel() { MemberId = contact.MemberId, ContactMethodId = 2, ContactInfo = contact.CellPhoneNumber });
 
-            if (!string.IsNullOrEmpty(email))
-                contactInfo.Add(new ContactInfoViewModel() { MemberId = memberId, ContactMethodId = 3, ContactInfo = email });
+            if (!string.IsNullOrEmpty(contact.Email))
+                contactInfo.Add(new ContactInfoViewModel() { MemberId = contact.MemberId, ContactMethodId = 3, ContactInfo = contact.Email });
 
             return contactInfo;
 
@@ -217,7 +220,7 @@ namespace ChurchResourceManagerWeb.Models
                     Email = g.Where(h => h.CONTACT_METHOD_ID == 3).Select(c => c.CONTACT_INFO1).Max()
                 });
 
-            return (from c in query
+            var stuff = (from c in query
                     join m in member on c.MemberId equals m.MEMBER_ID
                     select new ContactInfoViewModel
                     {
@@ -228,10 +231,12 @@ namespace ChurchResourceManagerWeb.Models
                         PreferredContactMethod = (byte)m.PREFERRERD_CONTACT_METHOD
                     }).ToList();
 
+            return stuff;
+
 
         }
 
-        public IEnumerable<CONTACT_INFO> CreateContactInfo(IEnumerable<ContactInfoViewModel> contactInfo)
+        public IEnumerable<CONTACT_INFO> CreateContactInfoList(IEnumerable<ContactInfoViewModel> contactInfo)
         {
 
             return contactInfo.Select(c => new CONTACT_INFO
@@ -241,7 +246,6 @@ namespace ChurchResourceManagerWeb.Models
                 CONTACT_INFO1 = c.ContactInfo
             }).ToList();
         }
-
 
         public IEnumerable<MembershipViewModel> CreateMembershipViewModelList(IEnumerable<MEMBERSHIP> membership)
         {
@@ -312,5 +316,16 @@ namespace ChurchResourceManagerWeb.Models
             }).ToList();
         }
         #endregion
+
+
+        public CONTACT_INFO CreateContactInfo(ContactInfoViewModel contactInfoList)
+        {
+            return new CONTACT_INFO
+            {
+                MEMBER_ID = contactInfoList.MemberId,
+                CONTACT_METHOD_ID = contactInfoList.ContactMethodId,
+                CONTACT_INFO1 = contactInfoList.ContactInfo
+            };
+        }
     }
 }

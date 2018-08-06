@@ -193,5 +193,61 @@ namespace ChurchResourceManagerWeb.Controllers
                 throw;
             }
         }
+
+        [HttpPost]
+        public JsonResult UpdateFamily(FamiliesViewModel family)
+        {
+            try
+            {
+                return Json(new { success = Json(Repo.UpdateFamily(family)) });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public JsonResult UpdateAddress(LocationsViewModel location)
+        {
+            try
+            {
+                return Json(new { success = Json(Repo.UpdateAddress(location)) });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public JsonResult UpdateMembership(List<MembershipViewModel> membership)
+        {
+            try
+            {
+                return Json(new { success = Json(Repo.UpdateMembership(membership)) });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public JsonResult UpdateContactInfo(List<ContactInfoViewModel> contactInfo)
+        {
+            try
+            {
+                return Json(new { success = Json(Repo.UpdateContactInfo(contactInfo)) });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
     }
 }

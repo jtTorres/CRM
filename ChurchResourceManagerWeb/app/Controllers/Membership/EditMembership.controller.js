@@ -10,6 +10,9 @@
     function editMembershipController(enumsDataService) {
         var vm = this;
 
+        vm.dismiss = dismiss;
+        vm.doSave = doSave;
+        vm.findActiveIndex = findActiveIndex;
         //////////////////
 
         var enums = enumsDataService.enums;
@@ -24,12 +27,6 @@
             vm.beingEdited = vm.resolve.beingEdited;
 
             setMemberEnums();
-
-            //var membershipStatuses = enumsDataService.enums.membershipStatuses;
-            //vm.memberInfoArray[0].SelectedMembershipStatus = membershipStatuses[membershipStatuses.findIndex(x => x.Id === vm.memberInfoArray[0].MembershipStatusId)];
-
-            //vm.memberInfoArray[0].SelectedMembershipStatus = enumsDataService.enums.membershipStatuses[0];
-
         }
 
         function setMemberEnums() {
@@ -44,6 +41,19 @@
             angular.forEach(vm.contactInfo, function (contact, key, obj) {
                 contact.SelectedPreferredContactMethod = enums.contactMethods[enums.contactMethods.findIndex(x => x.Id === contact.PreferredContactMethod)];
             });
+        }
+
+        function doSave(formName, formData) {
+            return vm.resolve.doSave.save(formName, formData);
+        }
+
+        function findActiveIndex(currentIndex, arrayCount) {
+            return vm.resolve.followIndex.followActiveIndex(currentIndex, arrayCount);
+        }
+
+        function dismiss() {
+            vm.close({ $value: "stuff" });
+            console.log("YO!");
         }
 
     }

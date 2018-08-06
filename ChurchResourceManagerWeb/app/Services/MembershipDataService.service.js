@@ -21,7 +21,11 @@
             getAllMembership: getAllMembership,
             getStateList: getStateList,
             getEmptyMemberInfo: getEmptyMemberInfo,
-            getMemberSearch: getMemberSearch
+            getMemberSearch: getMemberSearch,
+            updateFamily: updateFamily,
+            updateAddress: updateAddress,
+            updateMembership: updateMembership,
+            updateContactInfo: updateContactInfo
         };
 
 
@@ -178,6 +182,86 @@
 
         function onEditMembershipError(reason) {
             return $q.reject(utilityService.httpError(reason, "Error Getting Member Information"));
+        }
+
+        function updateFamily(family) {
+            return $http({
+                method: "POST",
+                url: "/Membership/UpdateFamily/",
+                data: {
+                    family: family
+                }
+            })
+                .then(onUpdateFamilySuccess)
+                .catch(onUpdateFamilyError);
+        }
+
+        function onUpdateFamilySuccess(response) {
+            return response;
+        }
+
+        function onUpdateFamilyError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Saving Family"));
+        }
+
+        function updateAddress(location) {
+            return $http({
+                method: "POST",
+                url: "/Membership/UpdateAddress/",
+                data: {
+                    location: location
+                }
+            })
+                .then(onUpdateAddressSuccess)
+                .catch(onUpdateAddressError);
+        }
+
+        function onUpdateAddressSuccess(response) {
+            return response;
+        }
+
+        function onUpdateAddressError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Saving Address"));
+        }
+
+        function updateMembership(membership) {
+            return $http({
+                    method: "POST",
+                    url: "/Membership/UpdateMembership/",
+                    data: {
+                        membership: membership
+                    }
+                })
+                .then(onUpdateMembershipSuccess)
+                .catch(onUpdateMembershipError);
+        }
+
+        function onUpdateMembershipSuccess(response) {
+            return response;
+        }
+
+        function onUpdateMembershipError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Saving Membership"));
+        }
+
+        function updateContactInfo(contactInfo) {
+            return $http({
+                    method: "POST",
+                    url: "/Membership/UpdateContactInfo/",
+                    data: {
+                        contactInfo: contactInfo
+                    }
+                })
+                .then(onUpdateContactInfoSuccess)
+                .catch(onUpdateContactInfoError);
+        }
+
+        function onUpdateContactInfoSuccess(response) {
+            return response;
+        }
+
+        function onUpdateContactInfoError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Saving Contact Information"));
         }
     }
 

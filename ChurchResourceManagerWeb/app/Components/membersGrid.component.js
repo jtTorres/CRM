@@ -10,7 +10,8 @@
                 controllerAs: "mgc",
                 bindings: {
                     members: "<",
-                    openEditModal: "&"
+                    openEditModal: "&",
+                    getMemberSearchData: "&"
                 }
             });
 
