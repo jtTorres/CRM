@@ -27,6 +27,7 @@
             vm.beingEdited = vm.resolve.beingEdited;
 
             setMemberEnums();
+            addMemberName(vm.memberInfoArray);
         }
 
         function setMemberEnums() {
@@ -54,6 +55,12 @@
         function dismiss() {
             vm.close({ $value: "stuff" });
             console.log("YO!");
+        }
+
+        function addMemberName(membership) {
+            for (var i = 0; i < membership.length; i++) {
+                vm.contactInfo[i].Name = `${membership[i].FirstName} ${membership[i].LastName}`;
+            }
         }
 
     }

@@ -128,6 +128,7 @@
                             if (response.data.MemberIds) {
                                 memberIds = response.data.MemberIds;
                                 assignMemberIds("memberInfoArray");
+                                addMemberName(memberInfo);
                                 setActiveTab(tabs.Contact);
                                 vm.beingEdited.personalInfoForm = false;
                                 vm.processFlow = operationFlowService.operationCompletion("Saved Successfully!", true);
@@ -281,6 +282,12 @@
 
                 vm[objectName][i].MemberId = memberIds[i];
 
+            }
+        }
+
+        function addMemberName(membership) {
+            for (var i = 0; i < membership.length; i++) {
+                vm.contactInfo[i].Name = `${membership[i].FirstName} ${membership[i].LastName}`;
             }
         }
 

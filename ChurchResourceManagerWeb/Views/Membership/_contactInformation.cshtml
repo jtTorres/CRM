@@ -8,7 +8,8 @@
                             <uib-accordion close-others="false">
                                 <div uib-accordion-group class="panel-default" is-open="info.IsContactInfoPanelOpen">
                                     <uib-accordion-heading>
-                                        Contact Information <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': info.IsContactInfoPanelOpen, 'glyphicon-chevron-up': !info.IsContactInfoPanelOpen}"></i>
+                                        Contact Information - {{info.Name}}
+                                        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': info.IsContactInfoPanelOpen, 'glyphicon-chevron-up': !info.IsContactInfoPanelOpen}"></i>
                                     </uib-accordion-heading>
                                     <div class="col-xs-6">
                                         <div class="form-group" ng-class="{'has-error' : contactInfoForm.homePhoneNumberTxtBx.$invalid && contactInfoForm.homePhoneNumberTxtBx.$touched}">
