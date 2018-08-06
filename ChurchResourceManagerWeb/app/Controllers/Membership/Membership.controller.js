@@ -209,6 +209,7 @@
 
         function removeRelative(event, index) {
             vm.memberInfoArray.splice(index, 1);
+            vm.contactInfo.splice(index, 1);
         }
 
         function removeContactInfo(event, index) {
