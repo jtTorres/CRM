@@ -37,6 +37,7 @@
         vm.openEditMembershipModal = openEditMembershipModal;
         vm.stateList = membershipDataService.getStateList();
         /////////////////////////////
+        var memberIds = [];
 
         const tabs = {
             Family: 0,
@@ -119,7 +120,8 @@
                     .then(function (response) {
                         if (response.data) {
                             if (response.data.MemberIds) {
-                                assignMemberIds(response.data.MemberIds);
+                                memberIds = response.data.MemberIds;
+                                assignMemberIds("memberInfoArray");
                                 setActiveTab(tabs.Contact);
                                 vm.beingEdited.personalInfoForm = false;
                                 vm.processFlow = operationFlowService.operationCompletion("Saved Successfully!", true);
@@ -148,7 +150,8 @@
         function doSaveContactInfo(contactInfo) {
             setDdlSelections("contactInfo", contactInfo);
 
-            if (utilityService.isUndefinedOrNull(contactInfo[0].ContactMethodId)) {
+            if (contactInfo[0].MemberId === 0) {
+                assignMemberIds("contactInfo");
                 return membershipDataService.addContactInfo(contactInfo)
                     .then(function (response) {
                         vm.beingEdited.contactInfoForm = false;
@@ -232,7 +235,6 @@
         }
 
         function enableDisableTab(index) {
-            //return vm.activeTab < index || vm.disableTabs;
             return (vm.activeTab !== index && vm.disableTabs) || vm.disableTabs;
         }
 
@@ -259,10 +261,13 @@
             });
         }
 
-        function assignMemberIds(memberIds) {
+        function assignMemberIds(objectName) {
             for (var i = 0; i < memberIds.length; i++) {
-                vm.memberInfoArray[i].MemberId = memberIds[i];
-                vm.contactInfo[i].MemberId = memberIds[i];
+                //vm.memberInfoArray[i].MemberId = memberIds[i];
+                //vm.contactInfo[i].MemberId = memberIds[i];
+
+                vm[objectName][i].MemberId = memberIds[i];
+
             }
         }
 
