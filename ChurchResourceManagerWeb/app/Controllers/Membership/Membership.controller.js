@@ -73,7 +73,10 @@
                     .catch(onSaveError);
             } else {
                 return membershipDataService.updateFamily(family)
-                    .then(onSaveSuccess)
+                    .then(function () {
+                        vm.beingEdited.familyForm = false;
+                        onSaveSuccess();
+                    })
                     .catch(onSaveError);
             }
         }
@@ -102,7 +105,10 @@
                     .catch(onSaveError);
             } else {
                 return membershipDataService.updateAddress(addressInfo)
-                    .then(onSaveSuccess)
+                    .then(function () {
+                        vm.beingEdited.addressInfoForm = false;
+                        onSaveSuccess();
+                    })
                     .catch(onSaveError);
             }
         }
@@ -131,7 +137,10 @@
                     .catch(onSaveError);
             } else {
                 return membershipDataService.updateMembership(memberInfo)
-                    .then(onSaveSuccess)
+                    .then(function () {
+                        vm.beingEdited.personalInfoForm = false;
+                        onSaveSuccess();
+                    })
                     .catch(onSaveError);
             }
         }
@@ -161,7 +170,10 @@
                     .catch(onSaveError);
             } else {
                 return membershipDataService.updateContactInfo(contactInfo)
-                    .then(onSaveSuccess)
+                    .then(function () {
+                        vm.beingEdited.contactInfoForm = false;
+                        onSaveSuccess();
+                    })
                     .catch(onSaveError);
             }
         }
