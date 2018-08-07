@@ -3,7 +3,11 @@
     ViewBag.Title = "OfferingsSearch";
 }
 
-<h2 style="padding-bottom: 40px;">@ViewBag.Title</h2>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">@ViewBag.Title</h1>
+    </div>
+</div>
 
 <div ng-controller="offeringController as oc">
     <offering-activity get-offering-activity="oc.getOfferingActivity(offeringActivityType)"

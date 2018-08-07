@@ -4,7 +4,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@ViewBag.Title</h2>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">@ViewBag.Title</h1>
+    </div>
+</div>
 
 <div ng-controller="membershipController as mc">
     <members-grid open-edit-modal="mc.openEditMembershipModal(member)" get-member-search-data="mc.getMemberSearch()" members="mc.members"></members-grid>

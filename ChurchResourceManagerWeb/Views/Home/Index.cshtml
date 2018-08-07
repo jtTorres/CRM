@@ -2,42 +2,147 @@
     ViewBag.Title = "Home Page";
 }
 
-<div ng-controller="homeController as h">
-    <div class="jumbotron">
-        <h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+@*<div class="row">
+        <div class="col-lg-12">
+            <div ng-controller="homeController as h">
+                <div class="jumbotron">
+                    <h1>ASP.NET</h1>
+                    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+                    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <h2>Membership</h2>
+                        <p>
+                            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                            enables a clean separation of concerns and gives you full control over markup
+                            for enjoyable, agile development.
+                        </p>
+                        <p>
+                            <a class="btn btn-default" ng-href="/Membership/Home">Go to Membership &raquo;</a>
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <h2>Treasury</h2>
+                        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+                        <p>
+                            <a class="btn btn-default" ng-href="/Treasury/Home">Go to Treasury &raquo;</a>
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <h2>Reports</h2>
+                        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+                        <p>
+                            <a class="btn btn-default" ng-href="/Tithing/Home">Go to Reports &raquo;</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Dashboard</h1>
+    </div>
+</div>
+
+<div class="row">
+    <!--Membership Tile-->
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-users fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">26</div>
+                        <div>Members</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Membership</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p>
-                @*<button class="btn btn-default">@Html.ActionLink("Go to Membership", "Home", "Tithing") &raquo;</button>*@
-                <a class="btn btn-default" ng-href="/Membership/Home">Go to Membership &raquo;</a>
-            </p>
+    <!--Tithes Tile-->
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-money fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">$12</div>
+                        <div>Total Tithes Today</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
         </div>
-        <div class="col-md-4">
-            <h2>Treasury</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p>
-                @*<button class="btn btn-default">@Html.ActionLink("Go to Tithing", "Home", "Tithing") &raquo;</button>*@
-                @*<a class="btn btn-default" ng-href="/Tithing/Home">Go to Tithing &raquo;</a>*@
-                <a class="btn btn-default" ng-href="/Treasury/Home">Go to Treasury &raquo;</a>
-            </p>
+    </div>
+    
+    <!--Offerings Tile-->
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-dollar fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">$124</div>
+                        <div>Total Offerings Today</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
         </div>
-        <div class="col-md-4">
-            <h2>Reports</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p>
-                @*<button class="btn btn-default">@Html.ActionLink("Go to Reports", "Home", "Tithing") &raquo;</button>*@
-                <a class="btn btn-default" ng-href="/Tithing/Home">Go to Reports &raquo;</a>
-            </p>
+    </div>
+    
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-support fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div class="huge">13</div>
+                        <div>Support Tickets!</div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
         </div>
     </div>
 </div>

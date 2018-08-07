@@ -1,0 +1,134 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,*/
+select,
+textarea {
+    max-width: 280px;
+}
+
+/***************custom styles*****************/
+.clickable {
+    cursor: pointer;
+}
+/*This will prevent the text in the table columns from wrapping and it will put an ellipsis when it reaches the end of the column*/
+.table {
+    table-layout: fixed;
+}
+
+    .table td {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+/*This will make sure the icon on the date picker input doesn't go all the way to the right in forms*/
+#datePickerIcon {
+    width: 268px;
+}
+
+.panel-heading {
+    font-size: 16px;
+}
+
+/*Custom error validation*/
+div.crm-validation-error {
+    color: red;
+}
+
+.help-block-error {
+    color: red;
+}
+
+/*Format Checkbox*/
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+    /* Hide default HTML checkbox */
+    .switch input {
+        display: none;
+    }
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+.tab-content {
+    padding-top: 1%;
+}
+
+.read-only-padding {
+    padding-bottom: 3%;
+}
+
+div.edit-membership-modal > div.modal-dialog {
+    width: 1000px !important;
+}
+
+/*Custom Settings from another website*/
+
+@import "CustomStyling.less";

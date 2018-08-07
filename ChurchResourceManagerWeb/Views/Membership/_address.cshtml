@@ -1,6 +1,6 @@
 ﻿<form name="ac.addressInfoMainForm" id="ac.addressInfoMainForm" novalidate autocomplete="off" ng-submit="ac.submit(ac.locationAddress, ac.addressInfoMainForm)">
     <div class="row" style="padding-left: 3%">
-        <div class="col-xs-6" ng-show="ac.beingEdited">
+        <div class="col-xs-4" ng-show="ac.beingEdited">
             <div class="form-group" ng-class="{'has-error' : ac.addressInfoMainForm.address1TxtBx.$invalid && ac.addressInfoMainForm.address1TxtBx.$touched}">
                 <label for="address1TxtBx">Address</label>
                 <input id="address1TxtBx" name="address1TxtBx" class="form-control" type="text" placeholder="123 Main St." ng-model="ac.locationAddress.Address1" required
@@ -40,10 +40,10 @@
 
     </div>
     <div>
-        <button id="editFamilyBtn" name="editFamilyBtn" class="btn btn-primary" type="button" ng-click="ac.edit()" ng-if="!ac.beingEdited">
+        <button id="editFamilyBtn" name="editFamilyBtn" class="btn btn-default" type="button" ng-click="ac.edit()" ng-if="!ac.beingEdited">
             <span class="glyphicon glyphicon-edit"></span> Edit
         </button>
-        <button id="submitFamilyBtn" name="submitFamilyBtn" class="btn btn-primary" type="submit" ng-if="ac.beingEdited">
+        <button id="submitFamilyBtn" name="submitFamilyBtn" class="btn btn-default" type="submit" ng-if="ac.beingEdited">
             <span class="glyphicon glyphicon-check"></span> Save
         </button>
     </div>

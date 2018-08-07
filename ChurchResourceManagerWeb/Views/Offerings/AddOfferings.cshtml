@@ -3,14 +3,17 @@
     ViewBag.Title = "Add Offerings";
 }
 
-
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">@ViewBag.Title</h1>
+    </div>
+</div>
 
 <div ng-controller="offeringController as oc">
-    <div class="container">
         <div class="row">
             <div class="col-xs-5">
-                <div class="panel panel-primary">
-                    <div class="panel-heading text-center">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
                         Add Offerings
                     </div>
                     <div class="panel-body">
@@ -20,7 +23,6 @@
             </div>
             <running-totals running-total="oc.runningTotal" offering-activity="oc.offeringActivity" ></running-totals>
         </div>
-    </div>
 
     <!--Offering Activity-->
     <div style="padding-top: 10px;">

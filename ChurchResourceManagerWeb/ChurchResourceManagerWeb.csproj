@@ -371,15 +371,51 @@
     <Content Include="app\Services\MembershipDataService.service.spec.js" />
     <Content Include="app\Services\TithingDataService.service.js" />
     <Content Include="app\Services\TithingDataService.service.spec.js" />
+    <Content Include="Content\all.css" />
+    <Content Include="Content\all.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\brands.css" />
+    <Content Include="Content\brands.min.css" />
+    <Content Include="Content\CustomStyling.css">
+      <DependentUpon>CustomStyling.less</DependentUpon>
+    </Content>
+    <Content Include="Content\CustomStyling.min.css">
+      <DependentUpon>CustomStyling.css</DependentUpon>
+    </Content>
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\fontawesome.css" />
+    <Content Include="Content\fontawesome.min.css" />
+    <Content Include="Content\regular.css" />
+    <Content Include="Content\regular.min.css" />
+    <Content Include="Content\site.css">
+      <DependentUpon>site.less</DependentUpon>
+    </Content>
+    <Content Include="Content\site.min.css">
+      <DependentUpon>site.css</DependentUpon>
+    </Content>
+    <Content Include="Content\solid.css" />
+    <Content Include="Content\solid.min.css" />
+    <Content Include="Content\svg-with-js.css" />
+    <Content Include="Content\svg-with-js.min.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
+    <Content Include="Content\v4-shims.css" />
+    <Content Include="Content\v4-shims.min.css" />
+    <Content Include="Content\variables.css">
+      <DependentUpon>variables.less</DependentUpon>
+    </Content>
+    <Content Include="Content\variables.min.css">
+      <DependentUpon>variables.css</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\CustomStyling.less" />
+    <None Include="Content\site.less" />
     <Content Include="Models\ChurchResourceDbModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ChurchResourceDbModel.edmx</DependentUpon>
@@ -1192,6 +1228,12 @@
     <Content Include="Models\ChurchResourceDbModel.edmx.diagram">
       <DependentUpon>ChurchResourceDbModel.edmx</DependentUpon>
     </Content>
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\variables.less" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Jasmine\jasmine-jquery.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -1241,6 +1283,7 @@
     <Content Include="Views\Membership\EditMembership.cshtml" />
     <Content Include="Views\Membership\_manageMembership.cshtml" />
     <Content Include="Views\Membership\_editMembershipModal.cshtml" />
+    <Content Include="Views\Shared\_NavBar.cshtml" />
     <None Include="Views\Test\SpecRunner.cshtml" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
@@ -1285,12 +1328,26 @@
     <Content Include="Views\Tithing\_tithingActivity.cshtml" />
     <Content Include="Views\Tithing\_deleteTithesModal.cshtml" />
     <Content Include="Views\Tithing\_editTitheModal.cshtml" />
-    <None Include="Views\Tithing\_editTitheModal.cshtml.old" />
     <Content Include="Views\Tithing\Home.cshtml" />
     <Content Include="Views\Tithing\TithesSearch.cshtml" />
     <Content Include="Views\Tithing\EditTithes.cshtml" />
     <Content Include="Views\Tithing\_addTithe.cshtml" />
     <Content Include="Views\Treasury\Home.cshtml" />
+    <Content Include="webfonts\fa-brands-400.svg" />
+    <Content Include="webfonts\fa-regular-400.svg" />
+    <Content Include="webfonts\fa-solid-900.svg" />
+    <Content Include="webfonts\fa-solid-900.woff2" />
+    <Content Include="webfonts\fa-solid-900.woff" />
+    <Content Include="webfonts\fa-solid-900.ttf" />
+    <Content Include="webfonts\fa-solid-900.eot" />
+    <Content Include="webfonts\fa-regular-400.woff2" />
+    <Content Include="webfonts\fa-regular-400.woff" />
+    <Content Include="webfonts\fa-regular-400.ttf" />
+    <Content Include="webfonts\fa-regular-400.eot" />
+    <Content Include="webfonts\fa-brands-400.woff2" />
+    <Content Include="webfonts\fa-brands-400.woff" />
+    <Content Include="webfonts\fa-brands-400.ttf" />
+    <Content Include="webfonts\fa-brands-400.eot" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\Directives\" />

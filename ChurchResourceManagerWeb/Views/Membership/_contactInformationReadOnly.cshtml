@@ -1,9 +1,9 @@
 ﻿<div style="padding-bottom: 1%;">
     <uib-accordion close-others="false">
-        <div uib-accordion-group class="panel-default" is-open="contactInfo.IsContactInfoPanelOpen">
+        <div uib-accordion-group class="panel-default" is-open="cic.contactInfo.IsContactInfoPanelOpen">
             <uib-accordion-heading>
-                Contact Information - {{contactInfo.Name}}
-                <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': contactInfo.IsContactInfoPanelOpen, 'glyphicon-chevron-up': !contactInfo.IsContactInfoPanelOpen}"></i>
+                Contact Information - {{cic.contactInfo.Name}}
+                <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': cic.contactInfo.IsContactInfoPanelOpen, 'glyphicon-chevron-up': !contactInfo.IsContactInfoPanelOpen}"></i>
             </uib-accordion-heading>
             <div class="col-xs-6">
                 <div class="read-only-padding">
@@ -26,7 +26,7 @@
         </div>
     </uib-accordion>
     <div style="padding-top: 1%; padding-left: .5%;" ng-if="cic.activeIndex">
-        <button id="editFamilyBtn" name="editFamilyBtn" class="btn btn-primary" type="button" ng-click="cic.onEdit()" ng-disabled="cic.beingEdited">
+        <button id="editFamilyBtn" name="editFamilyBtn" class="btn btn-default" type="button" ng-click="cic.onEdit()" ng-disabled="cic.beingEdited">
             <span class="glyphicon glyphicon-edit"></span> Edit
         </button>
     </div>

@@ -68,8 +68,7 @@
             offeringDataService.getActivity(activityType)
                 .then(function (response) {
                     vm.offeringActivity = response.data;
-                    if (response.data.length > 0)
-                        vm.offeringActivityPanelSettings.isOpen = true;
+                    setOfferingActivityPanelDefaults(activityType, response.data.length);
                 });
         }
 
@@ -90,11 +89,24 @@
 
         // #region Panel Settings
 
-        function setOfferingActivityPanelDefaults() {
+        function setOfferingActivityPanelDefaults(activityType, recordCount) {
             vm.offeringActivityPanelSettings = {
-                panelHeading: "Today's Offering Activity",
+                panelHeading: "",
                 isOpen: false
             }
+
+            switch (activityType) {
+                case "1":
+                    vm.offeringActivityPanelSettings.panelHeading = "Today's Offering Activity";
+                    break;
+                case "2":
+                    vm.offeringActivityPanelSettings.panelHeading = "Offering Activity";
+                    break;
+                default:
+                    break;
+            }
+            vm.offeringActivityPanelSettings.isOpen = recordCount > 0 ? true : false;
+
         }
 
         // #endregion
