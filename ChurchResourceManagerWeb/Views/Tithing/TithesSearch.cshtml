@@ -1,13 +1,4 @@
-﻿
-@{
-    ViewBag.Title = "Tithes Search";
-}
-
-<div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header">@ViewBag.Title</h1>
-    </div>
-</div>
+﻿<page-header page-title="Tithes Search"></page-header>
 
 <div ng-controller="tithingController as tc">
     <tithing-activity get-tithing-activity="tc.getTithingActivity(tithingActivityType)"

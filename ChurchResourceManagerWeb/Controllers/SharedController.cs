@@ -17,6 +17,11 @@ namespace ChurchResourceManagerWeb.Controllers
             return PartialView("_runningTotals");
         }
 
+        public ActionResult PageHeader()
+        {
+            return PartialView("_pageHeader");
+        }
+
         [HttpGet]
         public JsonResult GetRunningTotals(DateTime date, EntitySelector.Entity entity)
         {

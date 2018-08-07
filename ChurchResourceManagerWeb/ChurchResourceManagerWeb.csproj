@@ -200,6 +200,7 @@
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\TithingController.cs" />
+    <Compile Include="Controllers\TransactionsController.cs" />
     <Compile Include="Controllers\TreasuryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -319,7 +320,9 @@
     <Content Include="app\Components\membersGrid.component.js" />
     <Content Include="app\Components\offeringActivity.component.js" />
     <Content Include="app\Components\offeringActivity.component.spec.js" />
+    <Content Include="app\Components\Shared\pageHeader.component.js" />
     <Content Include="app\Components\Shared\runningTotal.component.js" />
+    <Content Include="app\Components\submitTransaction.component.js" />
     <Content Include="app\Components\tithesRunningTotal.component.js" />
     <Content Include="app\Components\tithingActivity.component.js" />
     <Content Include="app\Components\tithingActivityByMemberGrid.component.js" />
@@ -341,6 +344,7 @@
     <Content Include="app\Controllers\Offerings\Offering.controller.js" />
     <Content Include="app\Controllers\Offerings\Offering.controller.spec.js" />
     <Content Include="app\Controllers\Offerings\OfferingActivity.controller.js" />
+    <Content Include="app\Controllers\Shared\pageHeader.controller.js" />
     <Content Include="app\Controllers\Shared\runningTotals.controller.js" />
     <Content Include="app\Controllers\Tithing\AddTithes.controller.js" />
     <Content Include="app\Controllers\Tithing\AddTithes.controller.spec.js" />
@@ -1284,6 +1288,7 @@
     <Content Include="Views\Membership\_manageMembership.cshtml" />
     <Content Include="Views\Membership\_editMembershipModal.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
+    <Content Include="Views\Shared\_pageHeader.cshtml" />
     <None Include="Views\Test\SpecRunner.cshtml" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
@@ -1348,6 +1353,8 @@
     <Content Include="webfonts\fa-brands-400.woff" />
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.eot" />
+    <Content Include="Views\Transactions\_submitTransaction.cshtml" />
+    <Content Include="Views\Transactions\SubmitTransactions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\Directives\" />

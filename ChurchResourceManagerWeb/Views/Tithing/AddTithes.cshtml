@@ -1,17 +1,7 @@
-﻿
-@{
-    ViewBag.Title = "AddTithes";
-}
-
-<div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header">@ViewBag.Title</h1>
-    </div>
-</div>
+﻿<page-header page-title="Add Tithe"></page-header>
 
 
 <div ng-controller="tithingController as tc">
-    <div class="container">
         <div class="row">
             <div class="col-xs-5">
                 <div class="panel panel-default">
@@ -26,7 +16,6 @@
             <tithes-running-totals tithes-running-total="tc.tithesRunningTotal"></tithes-running-totals>
             <tithing-activity-by-member-grid panel-settings="tc.activityByMemberPanelSettings" open-edit-modal="tc.openEditTitheModal(tithe, index, grid)" open-delete-modal="tc.openDeleteTitheModal(titheId, memberId)"></tithing-activity-by-member-grid>
         </div>
-    </div>
 
     <!--Tithing Activity-->
     <div style="padding-top: 10px;">
