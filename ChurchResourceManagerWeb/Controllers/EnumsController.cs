@@ -10,6 +10,7 @@ namespace ChurchResourceManagerWeb.Controllers
     [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
     public class EnumsController : BaseController
     {
+        [HttpGet]
         public JsonResult GetContactMethods()
         {
             try
@@ -23,6 +24,7 @@ namespace ChurchResourceManagerWeb.Controllers
             }
         }
 
+        [HttpGet]
         public JsonResult GetMembershipStatuses()
         {
             try
@@ -36,6 +38,7 @@ namespace ChurchResourceManagerWeb.Controllers
             }
         }
 
+        [HttpGet]
         public JsonResult GetRelationshipTypes()
         {
             try
@@ -49,6 +52,7 @@ namespace ChurchResourceManagerWeb.Controllers
             }
         }
 
+        [HttpGet]
         public JsonResult GetMaritalStatuses()
         {
             try
@@ -62,11 +66,26 @@ namespace ChurchResourceManagerWeb.Controllers
             }
         }
 
+        [HttpGet]
         public JsonResult GetMemberGroups()
         {
             try
             {
                 return Json(Repo.GetMemberGroups(), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public JsonResult GetTransactionTypes()
+        {
+            try
+            {
+                return Json(Repo.GetTransactionTypes(), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

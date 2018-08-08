@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Web;
@@ -89,6 +90,20 @@ namespace ChurchResourceManagerWeb.Models
             };
         }
 
+        public TRANSACTIONS CreateTransaction(TransactionsViewModel transaction)
+        {
+            return new TRANSACTIONS
+            {
+                TRANSACTION_ID = transaction.TransactionId,
+                TRANSACTION_TYPE_ID = transaction.TransactionTypeId,
+                TRANSACTION_DATE = Convert.ToDateTime(transaction.TransactionDate),
+                CHECK_NUMBER = transaction.CheckNumber,
+                BANK_POSTED_DATE = Convert.ToDateTime(transaction.BankPostedDate),
+                IS_DEBIT = transaction.IsDebit,
+                COMMENTS = transaction.Comments
+            };
+        }
+
         #endregion
 
         #region ViewModel Creation
@@ -136,7 +151,6 @@ namespace ChurchResourceManagerWeb.Models
                 ZipCode = location.ZIP_CODE
             };
         }
-
         #endregion
 
         #region List Creations
@@ -221,15 +235,15 @@ namespace ChurchResourceManagerWeb.Models
                 });
 
             var stuff = (from c in query
-                    join m in member on c.MemberId equals m.MEMBER_ID
-                    select new ContactInfoViewModel
-                    {
-                        MemberId = c.MemberId,
-                        HomePhoneNumber = c.HomePhoneNumber,
-                        CellPhoneNumber = c.CellPhoneNumber,
-                        Email = c.Email,
-                        PreferredContactMethod = (byte)m.PREFERRERD_CONTACT_METHOD
-                    }).ToList();
+                         join m in member on c.MemberId equals m.MEMBER_ID
+                         select new ContactInfoViewModel
+                         {
+                             MemberId = c.MemberId,
+                             HomePhoneNumber = c.HomePhoneNumber,
+                             CellPhoneNumber = c.CellPhoneNumber,
+                             Email = c.Email,
+                             PreferredContactMethod = (byte)m.PREFERRERD_CONTACT_METHOD
+                         }).ToList();
 
             return stuff;
 
@@ -315,6 +329,30 @@ namespace ChurchResourceManagerWeb.Models
                 Description = m.DESCRIPTION
             }).ToList();
         }
+
+        public IEnumerable<TransactionsViewModel> CreateTransactionsViewModelList(IQueryable<TRANSACTIONS> transaction)
+        {
+            return transaction.Select(t => new TransactionsViewModel
+            {
+                TransactionId = t.TRANSACTION_ID,
+                TransactionTypeId = t.TRANSACTION_TYPE_ID,
+                TransactionDateTime = t.TRANSACTION_DATE,
+                CheckNumber = (short)t.CHECK_NUMBER,
+                BankPostedDateTime = Convert.ToDateTime(t.BANK_POSTED_DATE),
+                IsDebit = t.IS_DEBIT,
+                Comments = t.COMMENTS
+            }).ToList();
+        }
+
+        public IEnumerable<TransactionTypesViewModel> CreateTransactionTypesViewModelList(IQueryable<TRANSACTION_TYPES> transactionType)
+        {
+            return transactionType.Select(t => new TransactionTypesViewModel
+            {
+                Id = t.TRANSACTION_TYPE_ID,
+                Description = t.DESCRIPTION
+            }).ToList();
+        }
+
         #endregion
 
 

@@ -287,6 +287,8 @@
     <Compile Include="Models\TRANSACTIONS.cs">
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TransactionsViewModel.cs" />
+    <Compile Include="Models\TransactionTypesViewModel.cs" />
     <Compile Include="Models\TRANSACTION_TYPES.cs">
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
     </Compile>
@@ -354,6 +356,8 @@
     <Content Include="app\Controllers\Tithing\EditTithe.controller.spec.js" />
     <Content Include="app\Controllers\Tithing\TithesRunningTotals.controller.js" />
     <Content Include="app\Controllers\Tithing\TithingActivityByMemberGrid.controller.js" />
+    <Content Include="app\Controllers\Transactions\SubmitTransaction.controller.js" />
+    <Content Include="app\Controllers\Transactions\Transactions.controller.js" />
     <Content Include="app\Core\ActivitySelector.service.js" />
     <Content Include="app\Core\EntitySelector.service.js" />
     <Content Include="app\Core\EnumsData.service.js" />
@@ -375,6 +379,7 @@
     <Content Include="app\Services\MembershipDataService.service.spec.js" />
     <Content Include="app\Services\TithingDataService.service.js" />
     <Content Include="app\Services\TithingDataService.service.spec.js" />
+    <Content Include="app\Services\TransactionsDataService.service.js" />
     <Content Include="Content\all.css" />
     <Content Include="Content\all.min.css" />
     <Content Include="Content\bootstrap.css" />

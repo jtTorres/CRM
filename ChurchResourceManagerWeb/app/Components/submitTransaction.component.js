@@ -9,7 +9,10 @@
                 controller: "submitTransactionController",
                 controllerAs: "stc",
                 bindings: {
-                    transaction: "<"
+                    transaction: "<",
+                    onSubmit: "&",
+                    onClearForm: "&",
+                    enums: "<"
                 }
             });
 

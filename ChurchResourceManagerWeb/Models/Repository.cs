@@ -146,6 +146,12 @@ namespace ChurchResourceManagerWeb.Models
             return true;
         }
 
+        public bool SubmitTransaction(TransactionsViewModel transaction)
+        {
+            db.TRANSACTIONS.Add(ModelFactory.CreateTransaction(transaction));
+            return SaveAll();
+        }
+
 
         #endregion
 
@@ -349,6 +355,11 @@ namespace ChurchResourceManagerWeb.Models
         public IEnumerable<MemberGroupsViewModel> GetMemberGroups()
         {
             return ModelFactory.CreateMemberGroupsViewModel(db.MEMBER_GROUPS);
+        }
+
+        public IEnumerable<TransactionTypesViewModel> GetTransactionTypes()
+        {
+            return ModelFactory.CreateTransactionTypesViewModelList(db.TRANSACTION_TYPES);
         }
 
         public MEMBERSHIP GetMembershipById(int memberId)

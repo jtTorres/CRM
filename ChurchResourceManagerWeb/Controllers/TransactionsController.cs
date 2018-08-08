@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ChurchResourceManagerWeb.Models;
 
 namespace ChurchResourceManagerWeb.Controllers
 {
@@ -21,5 +22,19 @@ namespace ChurchResourceManagerWeb.Controllers
             return PartialView("_submitTransaction");
         }
         #endregion
+
+        [HttpPost]
+        public JsonResult SubmitATransaction(TransactionsViewModel transaction)
+        {
+            try
+            {
+                return Json(new { success = Repo.SubmitTransaction(transaction) });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
     }
 }

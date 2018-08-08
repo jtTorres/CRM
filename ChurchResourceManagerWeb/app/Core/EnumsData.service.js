@@ -14,6 +14,7 @@
             relationshipTypes: {},
             maritalStatuses: {},
             memberGroups: {},
+            transactionTypes: {},
             genders: [
                 { Description: "Male", Id: "M" },
                 { Description: "Female", Id: "F" }
@@ -27,6 +28,7 @@
             getRelationshipTypes: getRelationshipTypes,
             getMaritalStatuses: getMaritalStatuses,
             getMemberGroups: getMemberGroups,
+            getTransactionTypes: getTransactionTypes,
 
             enums: enums
         }
@@ -79,6 +81,15 @@
             return $http({
                 method: "GET",
                 url: "/Enums/GetMemberGroups/"
+            })
+                .then(onSuccess)
+                .catch(onFailure);
+        }
+
+        function getTransactionTypes() {
+            return $http({
+                method: "GET",
+                url: "/Enums/GetTransactionTypes/"
             })
                 .then(onSuccess)
                 .catch(onFailure);

@@ -1,1 +1,5 @@
 ﻿<page-header page-title="Submit Transaction"></page-header>
+
+<div ng-controller="transactionsController as tc">
+    <submit-transaction transaction="tc.transaction" on-submit="tc.doSave(transaction)" , on-clear-form="tc.doClearForm(form)" enums="tc.enums"></submit-transaction>
+</div>
