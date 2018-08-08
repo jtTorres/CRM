@@ -344,6 +344,24 @@ namespace ChurchResourceManagerWeb.Models
             }).ToList();
         }
 
+        public IEnumerable<TransactionsViewModel> CreateTransactionsViewModelList(IQueryable<TRANSACTIONS> transactions, IQueryable<TRANSACTION_TYPES> transactionTypes)
+        {
+            return (from t in transactions
+                    join tt in transactionTypes on t.TRANSACTION_TYPE_ID equals tt.TRANSACTION_TYPE_ID
+                    select new TransactionsViewModel
+                    {
+                        TransactionId = t.TRANSACTION_ID,
+                        TransactionType = tt.DESCRIPTION,
+                        TransactionTypeId = t.TRANSACTION_TYPE_ID,
+                        TransactionDateTime = t.TRANSACTION_DATE,
+                        CheckNumber = (short)t.CHECK_NUMBER,
+                        BankPostedDateTime = (DateTime)t.BANK_POSTED_DATE,
+                        IsDebit = t.IS_DEBIT,
+                        Comments = t.COMMENTS
+                    }
+                ).ToList();
+        }
+
         public IEnumerable<TransactionTypesViewModel> CreateTransactionTypesViewModelList(IQueryable<TRANSACTION_TYPES> transactionType)
         {
             return transactionType.Select(t => new TransactionTypesViewModel

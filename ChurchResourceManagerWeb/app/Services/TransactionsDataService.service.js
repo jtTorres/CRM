@@ -8,7 +8,8 @@
 
     function transactionsDataService($http, $q, utilityService) {
         return {
-            submitTransaction: submitTransaction
+            submitTransaction: submitTransaction,
+            getTransactions: getTransactions
         }
 
         function submitTransaction(transaction) {
@@ -30,6 +31,24 @@
         function onSubmitTransactionError(reason) {
             return $q.reject(utilityService.httpError(reason, "Error Submitting Transaction"));
         }
+
+        function getTransactions() {
+            return $http({
+                method: "GET",
+                url: "/Transactions/GetTransactions/"
+            })
+                .then(onGetTransactionsSuccess)
+                .catch(onGetTransactionsError);
+        }
+
+        function onGetTransactionsSuccess(response) {
+            return response;
+        }
+
+        function onGetTransactionsError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Getting Transactions"));
+        }
+
     }
 
 })();

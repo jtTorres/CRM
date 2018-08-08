@@ -11,6 +11,7 @@
 
         vm.doClearForm = doClearForm;
         vm.doSave = doSave;
+        vm.getTransactions = getTransactions;
         vm.transaction = {};
         /////////////////////////
 
@@ -46,6 +47,15 @@
         function getDropdownSelection(transaction) {
             transaction.TransactionTypeId = transaction.SelectedTransactionType.Id;
         }
+
+        // #region Transactions Search
+        function getTransactions() {
+            transactionsDataService.getTransactions()
+                .then(function (response) {
+                    vm.transactions = response.data;
+                });
+        }
+        // #endregion
 
     }
 

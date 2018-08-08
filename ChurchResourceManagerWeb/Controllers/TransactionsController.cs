@@ -15,11 +15,21 @@ namespace ChurchResourceManagerWeb.Controllers
             return View();
         }
 
+        public ActionResult TransactionsSearch()
+        {
+            return View();
+        }
+
         #region PartialViews for Components
 
         public ActionResult SubmitTransaction()
         {
             return PartialView("_submitTransaction");
+        }
+
+        public ActionResult TransactionsGrid()
+        {
+            return PartialView("_transactionsGrid");
         }
         #endregion
 
@@ -29,6 +39,20 @@ namespace ChurchResourceManagerWeb.Controllers
             try
             {
                 return Json(new { success = Repo.SubmitTransaction(transaction) });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public JsonResult GetTransactions()
+        {
+            try
+            {
+                return Json(Repo.GetTransactions(), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

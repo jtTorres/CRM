@@ -9,6 +9,7 @@ namespace ChurchResourceManagerWeb.Models
     {
         public int TransactionId { get; set; }
         public byte TransactionTypeId { get; set; }
+        public string TransactionType { get; set; }
         public DateTime TransactionDateTime { get; set; }
         public string TransactionDate
         {

@@ -404,6 +404,11 @@ namespace ChurchResourceManagerWeb.Models
             return db.CONTACT_INFO.FirstOrDefault(m => m.MEMBER_ID == contactMemberId && m.CONTACT_METHOD_ID == contactMethodId);
         }
 
+        public IEnumerable<TransactionsViewModel> GetTransactions()
+        {
+            return ModelFactory.CreateTransactionsViewModelList(db.TRANSACTIONS, db.TRANSACTION_TYPES);
+        }
+
         #endregion
 
         #region switches
@@ -426,6 +431,5 @@ namespace ChurchResourceManagerWeb.Models
         {
             return db.SaveChanges() > 0;
         }
-
     }
 }

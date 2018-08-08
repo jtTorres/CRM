@@ -328,6 +328,7 @@
     <Content Include="app\Components\tithesRunningTotal.component.js" />
     <Content Include="app\Components\tithingActivity.component.js" />
     <Content Include="app\Components\tithingActivityByMemberGrid.component.js" />
+    <Content Include="app\Components\transactionsGrid.component.js" />
     <Content Include="app\Controllers\Home\Home.controller.js" />
     <Content Include="app\Controllers\Home\Home.controller.spec.js" />
     <Content Include="app\Components\Shared\runningTotal.component.spec.js" />
@@ -358,6 +359,7 @@
     <Content Include="app\Controllers\Tithing\TithingActivityByMemberGrid.controller.js" />
     <Content Include="app\Controllers\Transactions\SubmitTransaction.controller.js" />
     <Content Include="app\Controllers\Transactions\Transactions.controller.js" />
+    <Content Include="app\Controllers\Transactions\TransactionsGrid.controller.js" />
     <Content Include="app\Core\ActivitySelector.service.js" />
     <Content Include="app\Core\EntitySelector.service.js" />
     <Content Include="app\Core\EnumsData.service.js" />
@@ -1360,6 +1362,8 @@
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="Views\Transactions\_submitTransaction.cshtml" />
     <Content Include="Views\Transactions\SubmitTransactions.cshtml" />
+    <Content Include="Views\Transactions\TransactionsSearch.cshtml" />
+    <Content Include="Views\Transactions\_transactionsGrid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\Directives\" />
