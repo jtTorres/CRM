@@ -12,7 +12,6 @@
         vm.doClearForm = doClearForm;
         vm.doSave = doSave;
         vm.transaction = {};
-
         /////////////////////////
 
 

@@ -53,10 +53,13 @@
             </div>
 
             <!--Is Debit-->
-            <div class="btn-group" data-toggle="buttons" style="padding-bottom: 5%;">
-                <label class="btn btn-default">
-                    <input type="checkbox" name="isDebitCkBx" autocomplete="off" ng-model="stc.transaction.IsDebit" /> Is Debit?
-                </label>
+            <div class="form-group">
+                <button id="isDebitCkBx" name="isDebitCkBx" type="button" class="btn btn-default" ng-class="{'btn-info': stc.transaction.IsDebit}" ng-model="stc.transaction.IsDebit"
+                        uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false">
+                    Is Debit? <i ng-class="{'glyphicon glyphicon-check': stc.transaction.IsDebit}"></i>
+                </button>
+
+
             </div>
 
             <!--Comments-->
