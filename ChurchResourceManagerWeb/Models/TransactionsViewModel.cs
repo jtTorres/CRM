@@ -17,12 +17,25 @@ namespace ChurchResourceManagerWeb.Models
             set => TransactionDateTime = Convert.ToDateTime(value);
         }
         public short CheckNumber { get; set; }
-        public DateTime BankPostedDateTime { get; set; }
+        public DateTime? BankPostedDateTime { get; set; }
         public string BankPostedDate
         {
-            get => BankPostedDateTime.ToString("MM/dd/yyyy");
-            set => BankPostedDateTime = Convert.ToDateTime(value);
+            get
+            {
+                if (BankPostedDateTime == null)
+                    return null;
+
+                var bankPostedDate = Convert.ToDateTime(BankPostedDateTime);
+                return bankPostedDate.ToString("MM/dd/yyyy");
+
+            }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                    BankPostedDateTime = Convert.ToDateTime(value);
+            }
         }
+
         public bool IsDebit { get; set; }
         public string Comments { get; set; }
     }

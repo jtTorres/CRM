@@ -33,15 +33,20 @@ namespace ChurchResourceManagerWeb.Models
 
         public string ExitDate
         {
-            //get => string.IsNullOrEmpty(ExitDateTime.ToString()) ? null : ExitDateTime.ToString();
-            //set => ExitDateTime = Convert.ToDateTime(value);
-            get => ExitDateTime.ToString();
+            get
+            {
+                if (ExitDateTime == null)
+                    return null;
+                var exitDate = Convert.ToDateTime(ExitDateTime);
+                return exitDate.ToString("MM/dd/yyyy");
+            }
             set
             {
                 if (!string.IsNullOrEmpty(value))
                     ExitDateTime = Convert.ToDateTime(value);
             }
         }
+
         public byte? MembershipStatusId { get; set; }
         public DateTime LastModifiedDateTime { get; set; }
 

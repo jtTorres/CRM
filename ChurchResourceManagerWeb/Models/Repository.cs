@@ -240,6 +240,12 @@ namespace ChurchResourceManagerWeb.Models
             return SaveAll();
         }
 
+        public bool UpdateTransaction(TransactionsViewModel transaction)
+        {
+            db.Entry(GetTransactionById(transaction.TransactionId)).CurrentValues.SetValues(ModelFactory.CreateTransaction(transaction));
+            return SaveAll();
+        }
+
         #endregion
 
         #region Delete Methods
@@ -409,6 +415,16 @@ namespace ChurchResourceManagerWeb.Models
             return ModelFactory.CreateTransactionsViewModelList(db.TRANSACTIONS, db.TRANSACTION_TYPES);
         }
 
+        public TransactionsViewModel GetTransactionViewModelById(int transactionId)
+        {
+            return ModelFactory.CreateTransactionsViewModel(db.TRANSACTIONS.Find(transactionId));
+        }
+
+        public TRANSACTIONS GetTransactionById(int transactionId)
+        {
+            return db.TRANSACTIONS.Find(transactionId);
+        }
+
         #endregion
 
         #region switches
@@ -431,5 +447,6 @@ namespace ChurchResourceManagerWeb.Models
         {
             return db.SaveChanges() > 0;
         }
+
     }
 }

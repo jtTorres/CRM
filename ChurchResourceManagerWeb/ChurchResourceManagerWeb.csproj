@@ -314,6 +314,7 @@
     <Content Include="app\Components\editMembershipModal.component.js" />
     <Content Include="app\Components\editOfferingModal.component.js" />
     <Content Include="app\Components\editTitheModal.component.js" />
+    <Content Include="app\Components\editTransactionModal.component.js" />
     <Content Include="app\Components\family.component.js" />
     <Content Include="app\Components\familyReadOnly.component.js" />
     <Content Include="app\Components\manageMembership.component.js" />
@@ -357,6 +358,7 @@
     <Content Include="app\Controllers\Tithing\EditTithe.controller.spec.js" />
     <Content Include="app\Controllers\Tithing\TithesRunningTotals.controller.js" />
     <Content Include="app\Controllers\Tithing\TithingActivityByMemberGrid.controller.js" />
+    <Content Include="app\Controllers\Transactions\EditTransaction.controller.js" />
     <Content Include="app\Controllers\Transactions\SubmitTransaction.controller.js" />
     <Content Include="app\Controllers\Transactions\Transactions.controller.js" />
     <Content Include="app\Controllers\Transactions\TransactionsGrid.controller.js" />
@@ -1364,6 +1366,7 @@
     <Content Include="Views\Transactions\SubmitTransactions.cshtml" />
     <Content Include="Views\Transactions\TransactionsSearch.cshtml" />
     <Content Include="Views\Transactions\_transactionsGrid.cshtml" />
+    <Content Include="Views\Transactions\_editTransaction.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\Directives\" />

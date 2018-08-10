@@ -9,7 +9,9 @@
     function transactionsDataService($http, $q, utilityService) {
         return {
             submitTransaction: submitTransaction,
-            getTransactions: getTransactions
+            getTransactions: getTransactions,
+            getTransaction: getTransaction,
+            updateTransaction: updateTransaction
         }
 
         function submitTransaction(transaction) {
@@ -47,6 +49,46 @@
 
         function onGetTransactionsError(reason) {
             return $q.reject(utilityService.httpError(reason, "Error Getting Transactions"));
+        }
+
+        function getTransaction(transactionId) {
+            return $http({
+                method: "GET",
+                url: "/Transactions/GetTransaction/",
+                params: {
+                    transactionId: transactionId
+                }
+            })
+                .then(onGetTransactionSuccess)
+                .catch(onGetTransactionError);
+        }
+
+        function onGetTransactionSuccess(response) {
+            return response;
+        }
+
+        function onGetTransactionError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Getting Transaction"));
+        }
+
+        function updateTransaction(transaction) {
+            return $http({
+                method: "POST",
+                url: "/Transactions/UpdateTransaction/",
+                data: {
+                    transaction: transaction
+                }
+            })
+                .then(onUpdateTransactionSuccess)
+                .catch(onUpdateTransactionError);
+        }
+
+        function onUpdateTransactionSuccess(response) {
+            return response;
+        }
+
+        function onUpdateTransactionError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Updating Transaction"));
         }
 
     }

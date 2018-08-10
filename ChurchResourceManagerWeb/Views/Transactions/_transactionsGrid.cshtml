@@ -39,8 +39,8 @@
                             <td>{{transaction.TransactionType}}</td>
                             <td>{{transaction.TransactionDate}}</td>
                             <td>{{transaction.CheckNumber}}</td>
-                            <td>{{transaction.BankPostedDate === '01/01/0001' ? '' : transaction.BankPostedDate}}</td>
-                            <td>{{transaction.IsDebit === 'false' ? 'N' : 'Y'}}</td>
+                            <td>{{transaction.BankPostedDate}}</td>
+                            <td>{{transaction.IsDebit === false ? 'N' : 'Y'}}</td>
                             <td>{{transaction.Comments}}</td>
                             <td>
                                 <span ng-click="tgc.edit(transaction)" uib-tooltip="Click to Edit" class="glyphicon glyphicon-pencil clickable"></span>

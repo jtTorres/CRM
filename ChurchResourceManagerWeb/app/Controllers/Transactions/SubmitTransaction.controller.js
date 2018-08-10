@@ -4,13 +4,12 @@
     angular.module("app")
         .controller("submitTransactionController", submitTransactionController);
 
-    submitTransactionController.$inject = ["operationFlowService", "enumsDataService"];
+    submitTransactionController.$inject = ["operationFlowService"];
 
-    function submitTransactionController(operationFlowService, enumsDataService) {
+    function submitTransactionController(operationFlowService) {
         var vm = this;
 
         vm.clearForm = clearForm;
-        vm.enums = {};
         vm.submit = submit;
 
         /////////////////////////
@@ -19,7 +18,6 @@
 
         function activate() {
             console.log("Activated Submit Transaction Controller...");
-            getEnums();
         }
 
         function submit(transaction, form) {
@@ -31,13 +29,6 @@
 
         function clearForm(form) {
             vm.onClearForm({ form: form });
-        }
-
-        function getEnums() {
-            enumsDataService.getTransactionTypes()
-                .then(function (response) {
-                    vm.enums.TransactionTypes = response.data;
-                });
         }
     }
 

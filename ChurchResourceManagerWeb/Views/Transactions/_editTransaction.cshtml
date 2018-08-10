@@ -1,0 +1,15 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="etc.dismiss()">&times;</button>
+    <h4 class="modal-title text-center" id="modal-title">Edit Transaction</h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-xs-10">
+            <submit-transaction transaction="etc.transaction" on-submit="etc.doSave(transaction)" , on-clear-form="etc.doClearForm(form)" enums="etc.enums"></submit-transaction>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="col-xs-12">
+    </div>
+</div>

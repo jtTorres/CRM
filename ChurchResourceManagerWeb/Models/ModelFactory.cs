@@ -98,7 +98,7 @@ namespace ChurchResourceManagerWeb.Models
                 TRANSACTION_TYPE_ID = transaction.TransactionTypeId,
                 TRANSACTION_DATE = Convert.ToDateTime(transaction.TransactionDate),
                 CHECK_NUMBER = transaction.CheckNumber,
-                BANK_POSTED_DATE = Convert.ToDateTime(transaction.BankPostedDate),
+                BANK_POSTED_DATE = transaction.BankPostedDateTime,
                 IS_DEBIT = transaction.IsDebit,
                 COMMENTS = transaction.Comments
             };
@@ -149,6 +149,20 @@ namespace ChurchResourceManagerWeb.Models
                 City = location.CITY,
                 State = location.STATE,
                 ZipCode = location.ZIP_CODE
+            };
+        }
+
+        public TransactionsViewModel CreateTransactionsViewModel(TRANSACTIONS transaction)
+        {
+            return new TransactionsViewModel
+            {
+                TransactionId = transaction.TRANSACTION_ID,
+                TransactionTypeId = transaction.TRANSACTION_TYPE_ID,
+                TransactionDateTime = transaction.TRANSACTION_DATE,
+                CheckNumber = (short)transaction.CHECK_NUMBER,
+                BankPostedDateTime = transaction.BANK_POSTED_DATE,
+                IsDebit = transaction.IS_DEBIT,
+                Comments = transaction.COMMENTS
             };
         }
         #endregion
@@ -346,20 +360,18 @@ namespace ChurchResourceManagerWeb.Models
 
         public IEnumerable<TransactionsViewModel> CreateTransactionsViewModelList(IQueryable<TRANSACTIONS> transactions, IQueryable<TRANSACTION_TYPES> transactionTypes)
         {
-            return (from t in transactions
-                    join tt in transactionTypes on t.TRANSACTION_TYPE_ID equals tt.TRANSACTION_TYPE_ID
-                    select new TransactionsViewModel
-                    {
-                        TransactionId = t.TRANSACTION_ID,
-                        TransactionType = tt.DESCRIPTION,
-                        TransactionTypeId = t.TRANSACTION_TYPE_ID,
-                        TransactionDateTime = t.TRANSACTION_DATE,
-                        CheckNumber = (short)t.CHECK_NUMBER,
-                        BankPostedDateTime = (DateTime)t.BANK_POSTED_DATE,
-                        IsDebit = t.IS_DEBIT,
-                        Comments = t.COMMENTS
-                    }
-                ).ToList();
+
+            return transactions.Include(tt => tt.TRANSACTION_TYPES.DESCRIPTION).Select(t => new TransactionsViewModel
+            {
+                TransactionId = t.TRANSACTION_ID,
+                TransactionType = t.TRANSACTION_TYPES.DESCRIPTION,
+                TransactionTypeId = t.TRANSACTION_TYPE_ID,
+                TransactionDateTime = t.TRANSACTION_DATE,
+                CheckNumber = (short)t.CHECK_NUMBER,
+                BankPostedDateTime = t.BANK_POSTED_DATE,
+                IsDebit = t.IS_DEBIT,
+                Comments = t.COMMENTS
+            }).ToList();
         }
 
         public IEnumerable<TransactionTypesViewModel> CreateTransactionTypesViewModelList(IQueryable<TRANSACTION_TYPES> transactionType)

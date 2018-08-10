@@ -31,6 +31,11 @@ namespace ChurchResourceManagerWeb.Controllers
         {
             return PartialView("_transactionsGrid");
         }
+
+        public ActionResult EditTransaction()
+        {
+            return PartialView("_editTransaction");
+        }
         #endregion
 
         [HttpPost]
@@ -53,6 +58,34 @@ namespace ChurchResourceManagerWeb.Controllers
             try
             {
                 return Json(Repo.GetTransactions(), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public JsonResult GetTransaction(int transactionId)
+        {
+            try
+            {
+                return Json(Repo.GetTransactionViewModelById(transactionId), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public JsonResult UpdateTransaction(TransactionsViewModel transaction)
+        {
+            try
+            {
+                return Json(new { success = Repo.UpdateTransaction(transaction) });
             }
             catch (Exception ex)
             {
