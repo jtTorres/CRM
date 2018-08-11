@@ -13,6 +13,7 @@
         vm.doSave = doSave;
         vm.enums = {};
         vm.getTransactions = getTransactions;
+        vm.openDeleteTransactionModal = openDeleteTransactionModal;
         vm.openEditTransactionModal = openEditTransactionModal;
         vm.transaction = {};
         /////////////////////////
@@ -114,6 +115,42 @@
                         });
                 });
         }
+        // #endregion
+
+        // #region Delete Transaction Modal Component
+        function openDeleteTransactionModal(transactionId) {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                component: "deleteTransactionModal",
+                resolve: {
+                    transactionToDelete: function () {
+                        return transactionId;
+                    },
+                    doDelete: {
+                        delete: function (transactionId) {
+                            return deleteTransaction(transactionId);
+                        }
+                    }
+                }
+            });
+
+            modalInstance.result
+                .then(function () {
+                    getTransactions();
+                });
+        }
+
+        function deleteTransaction(transactionId) {
+            //TODO: ADD RETURN TO THIS
+            return transactionsDataService.deleteTransaction(transactionId)
+                .then(function () {
+                    vm.processFlow = operationFlowService.operationCompletion("Transaction Deleted Successfully", true);
+                })
+                .catch(function (reason) {
+                    vm.processFlow = operationFlowService.operationCompletion(reason.message, false);
+                });
+        }
+
         // #endregion
 
     }

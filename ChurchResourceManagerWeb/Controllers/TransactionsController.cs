@@ -34,7 +34,12 @@ namespace ChurchResourceManagerWeb.Controllers
 
         public ActionResult EditTransaction()
         {
-            return PartialView("_editTransaction");
+            return PartialView("_editTransactionModal");
+        }
+
+        public ActionResult DeleteTransactionModal()
+        {
+            return PartialView("_deleteTransactionModal");
         }
         #endregion
 
@@ -86,6 +91,20 @@ namespace ChurchResourceManagerWeb.Controllers
             try
             {
                 return Json(new { success = Repo.UpdateTransaction(transaction) });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public JsonResult DeleteTransaction(int transactionId)
+        {
+            try
+            {
+                return Json(new { Success = Repo.DeleteTransaction(transactionId) });
             }
             catch (Exception ex)
             {

@@ -266,6 +266,11 @@ namespace ChurchResourceManagerWeb.Models
             return SaveAll();
         }
 
+        public bool DeleteTransaction(int transactionId)
+        {
+            db.Entry(GetTransactionById(transactionId)).State = EntityState.Deleted;
+            return SaveAll();
+        }
 
         #endregion
 
@@ -447,6 +452,5 @@ namespace ChurchResourceManagerWeb.Models
         {
             return db.SaveChanges() > 0;
         }
-
     }
 }

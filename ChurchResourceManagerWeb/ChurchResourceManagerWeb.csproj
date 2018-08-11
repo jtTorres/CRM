@@ -330,6 +330,7 @@
     <Content Include="app\Components\tithingActivity.component.js" />
     <Content Include="app\Components\tithingActivityByMemberGrid.component.js" />
     <Content Include="app\Components\transactionsGrid.component.js" />
+    <Content Include="app\Components\deleteTransaction.component.js" />
     <Content Include="app\Controllers\Home\Home.controller.js" />
     <Content Include="app\Controllers\Home\Home.controller.spec.js" />
     <Content Include="app\Components\Shared\runningTotal.component.spec.js" />
@@ -358,6 +359,7 @@
     <Content Include="app\Controllers\Tithing\EditTithe.controller.spec.js" />
     <Content Include="app\Controllers\Tithing\TithesRunningTotals.controller.js" />
     <Content Include="app\Controllers\Tithing\TithingActivityByMemberGrid.controller.js" />
+    <Content Include="app\Controllers\Transactions\DeleteTransaction.controller.js" />
     <Content Include="app\Controllers\Transactions\EditTransaction.controller.js" />
     <Content Include="app\Controllers\Transactions\SubmitTransaction.controller.js" />
     <Content Include="app\Controllers\Transactions\Transactions.controller.js" />
@@ -1366,7 +1368,8 @@
     <Content Include="Views\Transactions\SubmitTransactions.cshtml" />
     <Content Include="Views\Transactions\TransactionsSearch.cshtml" />
     <Content Include="Views\Transactions\_transactionsGrid.cshtml" />
-    <Content Include="Views\Transactions\_editTransaction.cshtml" />
+    <Content Include="Views\Transactions\_editTransactionModal.cshtml" />
+    <Content Include="Views\Transactions\_deleteTransactionModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\Directives\" />

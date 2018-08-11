@@ -1,5 +1,5 @@
 ﻿<page-header page-title="Transactions Search"></page-header>
 
 <div ng-controller="transactionsController as tc">
-    <transactions-grid transactions="tc.transactions" get-transactions="tc.getTransactions()" open-edit-modal="tc.openEditTransactionModal(transaction)" open-delete-modal=""></transactions-grid>
+    <transactions-grid transactions="tc.transactions" get-transactions="tc.getTransactions()" open-edit-modal="tc.openEditTransactionModal(transaction)" open-delete-modal="tc.openDeleteTransactionModal(transactionId)"></transactions-grid>
 </div>

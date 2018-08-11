@@ -11,7 +11,8 @@
             submitTransaction: submitTransaction,
             getTransactions: getTransactions,
             getTransaction: getTransaction,
-            updateTransaction: updateTransaction
+            updateTransaction: updateTransaction,
+            deleteTransaction: deleteTransaction
         }
 
         function submitTransaction(transaction) {
@@ -89,6 +90,26 @@
 
         function onUpdateTransactionError(reason) {
             return $q.reject(utilityService.httpError(reason, "Error Updating Transaction"));
+        }
+
+        function deleteTransaction(transactionId) {
+            return $http({
+                method: "POST",
+                url: "/Transactions/DeleteTransaction/",
+                data: {
+                    transactionId: transactionId
+                }
+            })
+                .then(onDeleteTransactionSuccess)
+                .catch(onDeleteTransactionError);
+        }
+
+        function onDeleteTransactionSuccess(response) {
+            return response;
+        }
+
+        function onDeleteTransactionError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Deleting Transaction"));
         }
 
     }

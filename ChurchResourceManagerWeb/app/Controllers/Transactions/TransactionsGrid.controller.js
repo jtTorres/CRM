@@ -10,7 +10,7 @@
     function transactionsGridController() {
         var vm = this;
 
-        //vm.deleteTransaction = deleteTransaction;
+        vm.deleteTransaction = deleteTransaction;
         vm.edit = edit;
         /////////////////////////////
 
@@ -22,6 +22,10 @@
 
         function edit(transaction) {
             vm.openEditModal({ transaction: transaction });
+        }
+
+        function deleteTransaction(transactionId) {
+            vm.openDeleteModal({ transactionId: transactionId });
         }
 
     }
