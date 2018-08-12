@@ -231,6 +231,9 @@ namespace ChurchResourceManagerWeb.Models
             if (!string.IsNullOrEmpty(contact.Email))
                 contactInfo.Add(new ContactInfoViewModel() { MemberId = contact.MemberId, ContactMethodId = 3, ContactInfo = contact.Email });
 
+            if (contact.IsContactInfoPanelDisabled)
+                contactInfo.Add(new ContactInfoViewModel() { MemberId = contact.MemberId, ContactMethodId = 0, ContactInfo = "No Contact Info" });
+
             return contactInfo;
 
         }
@@ -256,7 +259,9 @@ namespace ChurchResourceManagerWeb.Models
                              HomePhoneNumber = c.HomePhoneNumber,
                              CellPhoneNumber = c.CellPhoneNumber,
                              Email = c.Email,
-                             PreferredContactMethod = (byte)m.PREFERRERD_CONTACT_METHOD
+                             PreferredContactMethod = (byte)m.PREFERRERD_CONTACT_METHOD,
+                             IsContactInfoPanelDisabled = m.PREFERRERD_CONTACT_METHOD == 0,
+                             IsContactInfoPanelOpen = m.PREFERRERD_CONTACT_METHOD != 0
                          }).ToList();
 
             return stuff;

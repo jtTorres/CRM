@@ -14,6 +14,7 @@ namespace ChurchResourceManagerWeb.Models
         public string CellPhoneNumber { get; set; }
         public string Email { get; set; }
         public byte PreferredContactMethod { get; set; }
-        public bool IsContactInfoPanelOpen => true;
+        public bool IsContactInfoPanelOpen { get; set; }
+        public bool IsContactInfoPanelDisabled { get; set; }
     }
 }

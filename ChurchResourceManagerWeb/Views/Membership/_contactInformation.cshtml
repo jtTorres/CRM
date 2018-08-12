@@ -6,7 +6,7 @@
                     <ng-form id="contactInfoForm" name="contactInfoForm">
                         <div class="row">
                             <uib-accordion close-others="false">
-                                <div uib-accordion-group class="panel-default" is-open="info.IsContactInfoPanelOpen">
+                                <div uib-accordion-group class="panel-default" is-open="info.IsContactInfoPanelOpen" is-disabled="info.IsContactInfoPanelDisabled">
                                     <uib-accordion-heading>
                                         Contact Information - {{info.Name}}
                                         <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': info.IsContactInfoPanelOpen, 'glyphicon-chevron-up': !info.IsContactInfoPanelOpen}"></i>
@@ -37,8 +37,11 @@
                                     </div>
                                 </div>
                                 <div style="margin-top: 1%;">
-                                    <button ng-if="$index > 0" type="button" class="btn btn-danger" ng-click="cic.onRemoveContactInfo($index)">
+                                    <button ng-if="$index > 0 && !info.IsContactInfoPanelDisabled" type="button" class="btn btn-danger" ng-click="cic.onRemoveContactInfo($index)">
                                         <span class="glyphicon glyphicon-minus"></span> Remove
+                                    </button>
+                                    <button ng-if="info.IsContactInfoPanelDisabled" type="button" class="btn btn-success" ng-click="cic.onEnableContactInfo($index)">
+                                        <span class="glyphicon glyphicon-plus"></span> Add Info
                                     </button>
                                 </div>
                             </uib-accordion>

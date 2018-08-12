@@ -340,7 +340,23 @@ namespace ChurchResourceManagerWeb.Models
 
         public object GetEmptyMemberInfo()
         {
-            return new { memberInfo = new MembershipInfoViewModel(), contactInfo = new ContactInfoViewModel() };
+            return new
+            {
+                memberInfo = new MembershipInfoViewModel(),
+                contactInfo =
+                new ContactInfoViewModel
+                {
+                    MemberId = 0,
+                    ContactMethodId = 0,
+                    ContactInfo = null,
+                    HomePhoneNumber = null,
+                    CellPhoneNumber = null,
+                    Email = null,
+                    PreferredContactMethod = 0,
+                    IsContactInfoPanelOpen = true,
+                    IsContactInfoPanelDisabled = false
+                }
+            };
         }
 
         public IEnumerable<ContactMethodsViewModel> GetContactMethods()

@@ -198,7 +198,8 @@
 
         $scope.$on("memberInfoAddRelative", addRelative);
         $scope.$on("memberInfoRemoveRelative", removeRelative);
-        $scope.$on("contactInfoRemoveContact", removeContactInfo);
+        $scope.$on("contactInfoRemoveContact", enableDisableContactInfo);
+        $scope.$on("enableContactInfo", enableDisableContactInfo);
 
         function addRelative() {
             var emptyMemberInfoCopy = angular.copy(vm.emptyMemberInfo);
@@ -213,8 +214,9 @@
             vm.contactInfo.splice(index, 1);
         }
 
-        function removeContactInfo(event, index) {
-            vm.contactInfo.splice(index, 1);
+        function enableDisableContactInfo(event, index) {
+            vm.contactInfo[index].IsContactInfoPanelDisabled = !vm.contactInfo[index].IsContactInfoPanelDisabled;
+            vm.contactInfo[index].IsContactInfoPanelOpen = !vm.contactInfo[index].IsContactInfoPanelOpen;
         }
 
 
@@ -277,9 +279,6 @@
 
         function assignMemberIds(objectName) {
             for (var i = 0; i < memberIds.length; i++) {
-                //vm.memberInfoArray[i].MemberId = memberIds[i];
-                //vm.contactInfo[i].MemberId = memberIds[i];
-
                 vm[objectName][i].MemberId = memberIds[i];
 
             }
@@ -338,7 +337,8 @@
                     break;
                 case "contactInfo":
                     angular.forEach(record, function (info, key, obj) {
-                        info.PreferredContactMethod = info.SelectedPreferredContactMethod.Id;
+                        if (!info.IsContactInfoPanelDisabled)
+                            info.PreferredContactMethod = info.SelectedPreferredContactMethod.Id;
                     });
                     break;
                 case "addressInfo":
@@ -385,6 +385,11 @@
                             followIndex: {
                                 followActiveIndex: function (currentIndex, arrayCount) {
                                     return findActiveIndex(currentIndex, arrayCount);
+                                }
+                            },
+                            addInfo: {
+                                enableDisableContactInfo: function (index) {
+                                    return enableDisableContactInfo(index);
                                 }
                             }
                         }

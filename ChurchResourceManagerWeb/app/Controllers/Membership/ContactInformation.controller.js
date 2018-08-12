@@ -4,14 +4,15 @@
     angular.module("app")
         .controller("contactInformationController", contactInformationController);
 
-    contactInformationController.$inject = ["enumsDataService", "$scope", "operationFlowService"];
+    contactInformationController.$inject = ["enumsDataService", "$scope", "operationFlowService", "$rootScope"];
 
-    function contactInformationController(enumsDataService, $scope, operationFlowService) {
+    function contactInformationController(enumsDataService, $scope, operationFlowService, $rootScope) {
 
         var vm = this;
 
         vm.followLastCurrentActiveIndex = followLastCurrentActiveIndex;
         vm.enums = { contactMethods: enumsDataService.enums.contactMethods };
+        vm.onEnableContactInfo = onEnableContactInfo;
         vm.onRemoveContactInfo = onRemoveContactInfo;
         vm.submit = submit;
         vm.edit = edit;
@@ -33,6 +34,12 @@
         function submit(contactInfo, form) {
             if (!operationFlowService.isFormValid(form)) return;
             vm.onSubmit({ contactInfo: contactInfo });
+        }
+
+        function onEnableContactInfo(index) {
+            //$scope.$emit("enableContactInfo", index);
+            //$scope.$broadcast("enableContactInfo", index);
+            $rootScope.$broadcast("enableContactInfo", index);
         }
 
     }
