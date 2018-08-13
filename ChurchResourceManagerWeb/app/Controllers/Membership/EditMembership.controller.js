@@ -13,6 +13,7 @@
         vm.dismiss = dismiss;
         vm.doSave = doSave;
         vm.findActiveIndex = findActiveIndex;
+        vm.enableDisableContactInfo = enableDisableContactInfo;
         //////////////////
 
         var enums = enumsDataService.enums;
@@ -50,6 +51,10 @@
 
         function findActiveIndex(currentIndex, arrayCount) {
             return vm.resolve.followIndex.followActiveIndex(currentIndex, arrayCount);
+        }
+
+        function enableDisableContactInfo(info) {
+            return vm.resolve.addRemoveInfo.enableDisableContactInfo(info);
         }
 
         function dismiss() {

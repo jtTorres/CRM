@@ -37,10 +37,10 @@
                                     </div>
                                 </div>
                                 <div style="margin-top: 1%;">
-                                    <button ng-if="$index > 0 && !info.IsContactInfoPanelDisabled" type="button" class="btn btn-danger" ng-click="cic.onRemoveContactInfo($index)">
+                                    <button ng-if="$index > 0 && !info.IsContactInfoPanelDisabled" type="button" class="btn btn-danger" ng-click="cic.onEnableDisableContactInfo(cic.contactInfo[$index])">
                                         <span class="glyphicon glyphicon-minus"></span> Remove
                                     </button>
-                                    <button ng-if="info.IsContactInfoPanelDisabled" type="button" class="btn btn-success" ng-click="cic.onEnableContactInfo($index)">
+                                    <button ng-if="info.IsContactInfoPanelDisabled" type="button" class="btn btn-success" ng-click="cic.onEnableDisableContactInfo(cic.contactInfo[$index])">
                                         <span class="glyphicon glyphicon-plus"></span> Add Info
                                     </button>
                                 </div>

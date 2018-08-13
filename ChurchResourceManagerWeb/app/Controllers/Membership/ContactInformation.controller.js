@@ -12,8 +12,7 @@
 
         vm.followLastCurrentActiveIndex = followLastCurrentActiveIndex;
         vm.enums = { contactMethods: enumsDataService.enums.contactMethods };
-        vm.onEnableContactInfo = onEnableContactInfo;
-        vm.onRemoveContactInfo = onRemoveContactInfo;
+        vm.onEnableDisableContactInfo = onEnableDisableContactInfo;
         vm.submit = submit;
         vm.edit = edit;
         ////////////////////////////
@@ -23,8 +22,8 @@
             return vm.onFindActiveIndex({ currentIndex: currentIndex, arrayCount: arrayCount });
         }
 
-        function onRemoveContactInfo(index) {
-            $scope.$emit("contactInfoRemoveContact", index);
+        function onEnableDisableContactInfo(info) {
+            vm.enableDisableContactInfo({ info: info });
         }
 
         function edit() {
@@ -35,13 +34,6 @@
             if (!operationFlowService.isFormValid(form)) return;
             vm.onSubmit({ contactInfo: contactInfo });
         }
-
-        function onEnableContactInfo(index) {
-            //$scope.$emit("enableContactInfo", index);
-            //$scope.$broadcast("enableContactInfo", index);
-            $rootScope.$broadcast("enableContactInfo", index);
-        }
-
     }
 
 })();

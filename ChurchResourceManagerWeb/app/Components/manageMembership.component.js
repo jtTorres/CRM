@@ -21,7 +21,8 @@
                     stateList: "<",
                     onFindActiveIndex: "&",
                     accordionSettings: "<",
-                    isEditMode: "<"
+                    isEditMode: "<",
+                    enableDisableContactInfo: "&"
                 }
             });
 

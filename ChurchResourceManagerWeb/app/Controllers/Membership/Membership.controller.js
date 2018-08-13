@@ -27,6 +27,7 @@
         vm.doSaveMembership = doSaveMembership;
         vm.emptyContactInfo = {};
         vm.emptyMemberInfo = {};
+        vm.enableDisableContactInfo = enableDisableContactInfo;
         vm.enableDisableTab = enableDisableTab;
         vm.Family = {}
         vm.getMemberSearch = getMemberSearch;
@@ -198,8 +199,6 @@
 
         $scope.$on("memberInfoAddRelative", addRelative);
         $scope.$on("memberInfoRemoveRelative", removeRelative);
-        $scope.$on("contactInfoRemoveContact", enableDisableContactInfo);
-        $scope.$on("enableContactInfo", enableDisableContactInfo);
 
         function addRelative() {
             var emptyMemberInfoCopy = angular.copy(vm.emptyMemberInfo);
@@ -214,9 +213,10 @@
             vm.contactInfo.splice(index, 1);
         }
 
-        function enableDisableContactInfo(event, index) {
-            vm.contactInfo[index].IsContactInfoPanelDisabled = !vm.contactInfo[index].IsContactInfoPanelDisabled;
-            vm.contactInfo[index].IsContactInfoPanelOpen = !vm.contactInfo[index].IsContactInfoPanelOpen;
+        function enableDisableContactInfo(info) {
+            info.IsContactInfoPanelDisabled = !info.IsContactInfoPanelDisabled;
+            info.IsContactInfoPanelOpen = !info.IsContactInfoPanelOpen;
+
         }
 
 
@@ -387,9 +387,9 @@
                                     return findActiveIndex(currentIndex, arrayCount);
                                 }
                             },
-                            addInfo: {
-                                enableDisableContactInfo: function (index) {
-                                    return enableDisableContactInfo(index);
+                            addRemoveInfo: {
+                                enableDisableContactInfo: function (info) {
+                                    return enableDisableContactInfo(info);
                                 }
                             }
                         }

@@ -1295,7 +1295,6 @@
     <Content Include="Views\Membership\_memberInformationReadOnly.cshtml" />
     <Content Include="Views\Membership\_membersGrid.cshtml" />
     <Content Include="Views\Membership\MembersSearch.cshtml" />
-    <Content Include="Views\Membership\EditMembership.cshtml" />
     <Content Include="Views\Membership\_manageMembership.cshtml" />
     <Content Include="Views\Membership\_editMembershipModal.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />

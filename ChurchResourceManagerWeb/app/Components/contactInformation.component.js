@@ -14,7 +14,8 @@
                     contactMethods: "<",
                     beingEdited: "<",
                     onEdit: "&",
-                    isAccordionOpen: "<"
+                    isAccordionOpen: "<",
+                    enableDisableContactInfo: "&"
                 }
             });
 
