@@ -286,7 +286,7 @@ namespace ChurchResourceManagerWeb.Models
         }
         public IEnumerable<MembershipViewModel> GetAllMembership()
         {
-            var membership = (from m in db.MEMBERSHIP
+            var membership = (from m in db.MEMBERSHIP.Where( g => g.GROUP_ID != 3)
                               select new MembershipViewModel()
                               {
                                   FamilyId = m.FAMILY_ID,
