@@ -5,13 +5,13 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th ng-if="oac.includeDateColumn === 'true'">Date</th>
+                            <th ng-show="oac.includeDateColumn === 'true'">Date</th>
                             <th>Amount</th>
                             <th>Comments</th>
                             <th width="6%"></th> <!--empty space for edit/delete-->
                         </tr>
                         <tr class="list-group" id="searchRow" name="searchRow">
-                            <td ng-if="oac.includeDateColumn === 'true'">
+                            <td ng-show="oac.includeDateColumn === 'true'">
                                 <input type="text" id="txtDate" name="txtDate" class="form-control" ng-model="search.OfferingDate" />
                             </td>
                             <td>
@@ -24,7 +24,7 @@
                     </thead>
                     <tbody>
                         <tr class="text-left" ng-repeat="offering in oac.offeringActivity | filter: search">
-                            <td ng-if="oac.includeDateColumn === 'true'">{{offering.OfferingDate}}</td>
+                            <td ng-show="oac.includeDateColumn === 'true'">{{offering.OfferingDate}}</td>
                             <td>{{offering.OfferingAmount | currency}}</td>
                             <td>{{offering.Comments}}</td>
                             <td>

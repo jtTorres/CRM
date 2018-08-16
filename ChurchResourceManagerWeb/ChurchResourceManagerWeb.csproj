@@ -381,7 +381,6 @@
     <Content Include="app\Core\OperationFlow.service.spec.js" />
     <Content Include="app\Core\Utility.service.js" />
     <Content Include="app\Core\Utility.service.spec.js" />
-    <Content Include="app\Filters\DateToString.filter.js" />
     <Content Include="app\Services\MembershipDataService.service.js" />
     <Content Include="app\Services\MembershipDataService.service.spec.js" />
     <Content Include="app\Services\TithingDataService.service.js" />
