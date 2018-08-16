@@ -368,6 +368,7 @@
     <Content Include="app\Core\EntitySelector.service.js" />
     <Content Include="app\Core\EnumsData.service.js" />
     <Content Include="app\Core\stateLIst.service.js" />
+    <Content Include="app\Directives\CustomValidators.directive.js" />
     <Content Include="app\Filters\Search.filter.js" />
     <Content Include="app\Services\OfferingDataService.service.js" />
     <Content Include="app\Services\OfferingDataService.service.spec.js" />
@@ -430,6 +431,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\CustomStyling.less" />
+    <None Include="bundleconfig.json" />
     <None Include="Content\site.less" />
     <Content Include="Models\ChurchResourceDbModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -1371,7 +1373,6 @@
     <Content Include="Views\Transactions\_deleteTransactionModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\Directives\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>

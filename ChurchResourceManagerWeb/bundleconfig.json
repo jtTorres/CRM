@@ -1,0 +1,8 @@
+[
+  {
+    "outputFileName": "app/Directives/CustomValidators.directive.min.js",
+    "inputFiles": [
+      "app/Directives/CustomValidators.directive.js"
+    ]
+  }
+]
