@@ -5,9 +5,9 @@
     angular.module("app")
         .controller("addOfferingController", addOfferingController);
 
-    addOfferingController.$inject = ["utilityService", "operationFlowService"];
+    addOfferingController.$inject = ["utilityService", "operationFlowService", "$scope"];
 
-    function addOfferingController(utilityService, operationFlowService) {
+    function addOfferingController(utilityService, operationFlowService, $scope) {
         var vm = this;
 
 
@@ -39,9 +39,10 @@
 
         function clearForm() {
             vm.Offering = utilityService.clearObject(vm.Offering);
-            vm.addOfferingsForm.$setPristine();
-            vm.addOfferingsForm.$setUntouched();
+            operationFlowService.resetForm(vm.addOfferingsForm);
         }
+
+        $scope.$on("reloadAddOfferings", clearForm);
     }
 
 })();

@@ -318,6 +318,7 @@
     <Content Include="app\Components\family.component.js" />
     <Content Include="app\Components\familyReadOnly.component.js" />
     <Content Include="app\Components\manageMembership.component.js" />
+    <Content Include="app\Components\memberEntryComplete.component.js" />
     <Content Include="app\Components\memberInformation.component.js" />
     <Content Include="app\Components\memberInformationReadOnly.component.js" />
     <Content Include="app\Components\membersGrid.component.js" />
@@ -340,6 +341,7 @@
     <Content Include="app\Controllers\Membership\EditMembership.controller.js" />
     <Content Include="app\Controllers\Membership\Family.controller.js" />
     <Content Include="app\Controllers\Membership\ManageMembership.controller.js" />
+    <Content Include="app\Controllers\Membership\MemberEntryComplete.controller.js" />
     <Content Include="app\Controllers\Membership\MemberInformation.controller.js" />
     <Content Include="app\Controllers\Membership\MembersGrid.controller.js" />
     <Content Include="app\Controllers\Membership\Membership.controller.js" />
@@ -1300,6 +1302,7 @@
     <Content Include="Views\Membership\_editMembershipModal.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Shared\_pageHeader.cshtml" />
+    <Content Include="Views\Membership\_memberEntryCompleteModal.cshtml" />
     <None Include="Views\Test\SpecRunner.cshtml" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />

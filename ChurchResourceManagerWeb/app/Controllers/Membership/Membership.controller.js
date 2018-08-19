@@ -16,7 +16,7 @@
             personalInfoForm: true,
             addressInfoForm: true,
             contactInfoForm: true
-        }
+        };
         vm.contactInfo = [];
         vm.disableTabs = true;
         vm.doEdit = doEdit;
@@ -45,7 +45,7 @@
             Address: 1,
             Personal: 2,
             Contact: 3
-        }
+        };
 
         activate();
 
@@ -168,6 +168,7 @@
                         vm.beingEdited.contactInfoForm = false;
                         vm.processFlow = operationFlowService.operationCompletion("Saved Successfully!", true);
                         vm.disableTabs = false;
+                        memberEntryCompleteModal();
                     })
                     .catch(onSaveError);
             } else {
@@ -175,6 +176,7 @@
                     .then(function () {
                         vm.beingEdited.contactInfoForm = false;
                         onSaveSuccess();
+                        memberEntryCompleteModal();
                     })
                     .catch(onSaveError);
             }
@@ -301,6 +303,26 @@
             };
         }
 
+        $scope.$on("reloadAddMembership", clearForms);
+
+        function clearForms() {
+            vm.Family = {};
+            vm.Address = {};
+            vm.memberInfoArray = [];
+            vm.contactInfo = [];
+            getEmptyMemberInfo(); //this one will take care of resetting memberInfoArray and contact info
+            setAccordionDefaults();
+            vm.activeTab = 0;
+            vm.beingEdited = {
+                familyForm: true,
+                personalInfoForm: true,
+                addressInfoForm: true,
+                contactInfoForm: true
+            };
+            vm.disableTabs = true;
+            $scope.$broadcast("onClearForms");
+        }
+
         function getAllEnums() {
             enumsDataService.getContactMethods().then(function (response) {
                 enumsDataService.enums.contactMethods = response.data;
@@ -402,6 +424,27 @@
                         .catch(function (reason) { //this will run if the user clicks out of the modal without click x button
                             getMemberSearch();
                         });
+                });
+        }
+        // #endregion
+
+        // #region memberEntryCompleteModal
+        function memberEntryCompleteModal() {
+
+            var modalInstance = $uibModal.open({
+                animation: true,
+                component: "memberEntryCompleteModal",
+                resolve: {
+
+                }
+            });
+
+            modalInstance.result
+                .then(function () {
+                    clearForms();
+                })
+                .catch(function () { //this will run if the user clicks out of the modal without click x button
+                    var stuff = "";
                 });
         }
         // #endregion

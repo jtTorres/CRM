@@ -5,9 +5,9 @@
     angular.module("app")
         .controller("offeringController", offeringController);
 
-    offeringController.$inject = ["utilityService", "offeringDataService", "operationFlowService", "entitySelectorService", "activitySelectorService", "$uibModal"];
+    offeringController.$inject = ["utilityService", "offeringDataService", "operationFlowService", "entitySelectorService", "activitySelectorService", "$uibModal", "$scope"];
 
-    function offeringController(utilityService, offeringDataService, operationFlowService, entitySelectorService, activitySelectorService, $uibModal) {
+    function offeringController(utilityService, offeringDataService, operationFlowService, entitySelectorService, activitySelectorService, $uibModal, $scope) {
         var vm = this;
 
         vm.activityType = activitySelectorService.activityReportType;
@@ -23,8 +23,7 @@
 
         activate();
         function activate() {
-            setOfferingActivityPanelDefaults();
-            getOfferingRunningTotal();
+            setDefaults();
             console.log("Activated Offerings Controller");
         }
 
@@ -54,7 +53,8 @@
         }
 
         function clearActivity() {
-            vm.offeringActivity.data = utilityService.clearObject(vm.offeringActivity.data);
+            if (vm.offeringActivity)
+                vm.offeringActivity.data = utilityService.clearObject(vm.offeringActivity.data);
         }
 
         // #endregion
@@ -91,9 +91,9 @@
 
         function setOfferingActivityPanelDefaults(activityType, recordCount) {
             vm.offeringActivityPanelSettings = {
-                panelHeading: "",
+                panelHeading: "Today's Offering Activity",
                 isOpen: false
-            }
+            };
 
             switch (activityType) {
                 case "1":
@@ -174,6 +174,14 @@
         }
 
         // #endregion
+
+        function setDefaults() {
+            clearActivity();
+            setOfferingActivityPanelDefaults();
+            getOfferingRunningTotal();
+        }
+
+        $scope.$on("reloadAddOfferings", setDefaults);
     }
 
 })();

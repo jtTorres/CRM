@@ -4,9 +4,9 @@
     angular.module("app")
         .controller("familyController", familyController);
 
-    familyController.$inject = ["operationFlowService"];
+    familyController.$inject = ["operationFlowService", "$scope"];
 
-    function familyController(operationFlowService) {
+    function familyController(operationFlowService, $scope) {
         var vm = this;
 
         vm.submit = submit;
@@ -20,8 +20,14 @@
         }
 
         function edit() {
-            vm.onEdit({formName: "familyForm"});
+            vm.onEdit({ formName: "familyForm" });
         }
+
+        function resetForm() {
+            operationFlowService.resetForm(vm.addFamilyForm);
+        }
+
+        $scope.$on("onClearForms", resetForm);
 
     }
 

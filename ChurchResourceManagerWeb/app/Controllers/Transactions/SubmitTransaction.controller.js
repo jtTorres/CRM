@@ -4,9 +4,9 @@
     angular.module("app")
         .controller("submitTransactionController", submitTransactionController);
 
-    submitTransactionController.$inject = ["operationFlowService"];
+    submitTransactionController.$inject = ["operationFlowService", "$scope"];
 
-    function submitTransactionController(operationFlowService) {
+    function submitTransactionController(operationFlowService, $scope) {
         var vm = this;
 
         vm.clearForm = clearForm;
@@ -27,9 +27,11 @@
                 .then(clearForm(vm.transactionsForm));
         }
 
-        function clearForm(form) {
-            vm.onClearForm({ form: form });
+        function clearForm() {
+            vm.onClearForm({ form: vm.transactionsForm });
         }
+
+        $scope.$on("reloadSubmitTransactions", clearForm);
     }
 
 })();

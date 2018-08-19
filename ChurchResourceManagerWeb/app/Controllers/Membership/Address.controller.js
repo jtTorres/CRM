@@ -4,9 +4,9 @@
     angular.module("app")
         .controller("addressController", addressController);
 
-    addressController.$inject = ["operationFlowService", "membershipDataService"];
+    addressController.$inject = ["operationFlowService", "$scope"];
 
-    function addressController(operationFlowService, membershipDataService) {
+    function addressController(operationFlowService, $scope) {
         var vm = this;
 
         vm.edit = edit;
@@ -22,6 +22,12 @@
             if (!operationFlowService.isFormValid(form)) return;
             vm.onSubmit({ addressInfo: addressInfo });
         }
+
+        function resetForm() {
+            operationFlowService.resetForm(vm.addressInfoMainForm);
+        }
+
+        $scope.$on("onClearForms", resetForm);
     }
 
 })();

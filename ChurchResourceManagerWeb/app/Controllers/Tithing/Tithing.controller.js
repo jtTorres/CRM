@@ -5,9 +5,9 @@
     angular.module("app")
         .controller("tithingController", tithingController);
 
-    tithingController.$inject = ["tithingDataService", "membershipDataService", "$uibModal", "titheVars", "utilityService", "operationFlowService"];
+    tithingController.$inject = ["tithingDataService", "membershipDataService", "$uibModal", "titheVars", "utilityService", "operationFlowService", "$scope"];
 
-    function tithingController(tithingDataService, membershipDataService, $uibModal, titheVars, utilityService, operationFlowService) {
+    function tithingController(tithingDataService, membershipDataService, $uibModal, titheVars, utilityService, operationFlowService, $scope) {
 
         var vm = this;
 
@@ -30,9 +30,10 @@
         function activate() {
             return getAllMembership()
                 .then(function () {
-                    setActivityByMemberPanelDefaults();
-                    setTithingActivityPanelDefaults();
-                    getTithesRunningTotal();
+                    //setActivityByMemberPanelDefaults();
+                    //setTithingActivityPanelDefaults();
+                    //getTithesRunningTotal();
+                    setDefaults();
                     console.log("Activated Tithing Controller");
                 });
         }
@@ -225,6 +226,15 @@
         }
 
         // #endregion
+
+        function setDefaults() {
+            clearActivity();
+            setActivityByMemberPanelDefaults();
+            setTithingActivityPanelDefaults();
+            getTithesRunningTotal();
+        }
+
+        $scope.$on("reloadAddTithes", setDefaults);
     }
 
 })();

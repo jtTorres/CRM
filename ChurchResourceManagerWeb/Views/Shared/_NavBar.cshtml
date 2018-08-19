@@ -19,68 +19,70 @@
     </ul>
 
     <!--side bar stuff-->
-    <div class="navbar-default sidebar" role="navigation">
-        <div class="sidebar-nav navbar-collapse">
-            <ul class="nav" id="side-menu">
-                <li class="sidebar-search">
-                    <div class="input-group custom-search-form">
-                        <input type="text" class="form-control" placeholder="Search...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
-                                <i class="glyphicon glyphicon-search"></i>
-                            </button>
-                        </span>
-                    </div>
-                </li>
+    <div ng-controller="homeController as hc">
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="sidebar-search">
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </li>
 
-                <li>
-                    <a ng-href="/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                </li>
-                <li>
-                    <a ng-href="#"><i class="fa fa-users fa-fw"></i> Manage Membership<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a ng-href="/Membership/AddMembership">Add Membership</a>
-                        </li>
-                        <li>
-                            <a ng-href="/Membership/MembersSearch">View Membership</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a ng-href="#"><i class="fa fa-money fa-fw"></i> Manage Tithes<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a ng-href="/Tithing/AddTithes">Add Tithes</a>
-                        </li>
-                        <li>
-                            <a ng-href="/Tithing/TithesSearch">View Tithes</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a ng-href="#"><i class="fa fa-dollar fa-fw"></i> Manage Offerings<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a ng-href="/Offerings/AddOfferings">Add Offerings</a>
-                        </li>
-                        <li>
-                            <a ng-href="/Offerings/OfferingsSearch">View Offerings</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a ng-href="#"><i class="fa fa-bank fa-fw"></i> Manage Transactions<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a ng-href="/Transactions/SubmitTransactions">Submit Transaction</a>
-                        </li>
-                        <li>
-                            <a ng-href="/Transactions/TransactionsSearch">View Transactions</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+                    <li>
+                        <a ng-href="/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a ng-href="#"><i class="fa fa-users fa-fw"></i> Manage Membership<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li ng-click="hc.addMembershipLocationCheck()">
+                                <a ng-href="/Membership/AddMembership">Add Membership</a>
+                            </li>
+                            <li>
+                                <a ng-href="/Membership/MembersSearch">View Membership</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a ng-href="#"><i class="fa fa-money fa-fw"></i> Manage Tithes<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li ng-click="hc.addTithesLocationCheck()">
+                                <a ng-href="/Tithing/AddTithes">Add Tithes</a>
+                            </li>
+                            <li>
+                                <a ng-href="/Tithing/TithesSearch">View Tithes</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a ng-href="#"><i class="fa fa-dollar fa-fw"></i> Manage Offerings<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li ng-click="hc.addOfferingsLocationCheck()">
+                                <a ng-href="/Offerings/AddOfferings">Add Offerings</a>
+                            </li>
+                            <li>
+                                <a ng-href="/Offerings/OfferingsSearch">View Offerings</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a ng-href="#"><i class="fa fa-bank fa-fw"></i> Manage Transactions<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li ng-click="hc.submitTransactionLocationCheck()">
+                                <a ng-href="/Transactions/SubmitTransactions">Submit Transaction</a>
+                            </li>
+                            <li>
+                                <a ng-href="/Transactions/TransactionsSearch">View Transactions</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 

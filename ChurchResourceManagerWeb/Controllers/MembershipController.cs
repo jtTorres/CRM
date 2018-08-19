@@ -93,6 +93,11 @@ namespace ChurchResourceManagerWeb.Controllers
         {
             return PartialView("_editMembershipModal");
         }
+
+        public ActionResult MemberEntryCompleteModal()
+        {
+            return PartialView("_memberEntryCompleteModal");
+        }
         #endregion
 
 

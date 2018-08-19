@@ -4,9 +4,9 @@
     angular.module("app")
         .controller("addTithesController", addTithesController);
 
-    addTithesController.$inject = ["tithingDataService", "utilityService", "membershipDataService", "operationFlowService"];
+    addTithesController.$inject = ["utilityService", "membershipDataService", "operationFlowService", "$scope"];
 
-    function addTithesController(tithingDataService, utilityService, membershipDataService, operationFlowService) {
+    function addTithesController(utilityService, membershipDataService, operationFlowService, $scope) {
 
         var vm = this;
 
@@ -62,9 +62,10 @@
 
         function clearForm() {
             vm.Tithe = utilityService.clearObject(vm.Tithe);
-            vm.addTithesForm.$setPristine();
-            vm.addTithesForm.$setUntouched();
+            operationFlowService.resetForm(vm.addTithesForm);
         }
+
+        $scope.$on("reloadAddTithes", clearForm);
 
     }
 

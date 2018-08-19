@@ -47,8 +47,7 @@
 
         function doClearForm(form) {
             vm.transaction = utilityService.clearObject(vm.transaction);
-            form.$setPristine();
-            form.$setUntouched();
+            operationFlowService.resetForm(form);
         }
 
         function getDropdownSelection(transaction) {
@@ -152,6 +151,8 @@
         }
 
         // #endregion
+
+        //$scope.$on("reloadSubmitTransactions", doClearForm);
 
     }
 
