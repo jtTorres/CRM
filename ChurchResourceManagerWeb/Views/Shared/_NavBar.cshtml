@@ -37,9 +37,13 @@
                     <li>
                         <a ng-href="/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
-                    <li>
-                        <a ng-href="#"><i class="fa fa-users fa-fw"></i> Manage Membership<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
+                    <li ng-click="hc.activateDeactivateParent('ManageMembership')">
+                        <a ng-href="#">
+                            <i class="fa fa-users fa-fw"></i> 
+                            Manage Membership
+                            <span class="arrow" ng-class="{'fa fa-angle-down': hc.parentSideBar.ManageMembership.active, 'fa fa-angle-left': !hc.parentSideBar.ManageMembership.active}"></span>
+                        </a>
+                        <ul ng-show="hc.parentSideBar.ManageMembership.active" class="nav nav-second-level">
                             <li ng-click="hc.addMembershipLocationCheck()">
                                 <a ng-href="/Membership/AddMembership">Add Membership</a>
                             </li>
@@ -48,9 +52,12 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a ng-href="#"><i class="fa fa-money fa-fw"></i> Manage Tithes<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
+                    <li ng-click="hc.activateDeactivateParent('ManageTithes')">
+                        <a ng-href="#">
+                            <i class="fa fa-money fa-fw"></i> 
+                            Manage Tithes<span class="arrow" ng-class="{'fa fa-angle-down': hc.parentSideBar.ManageTithes.active, 'fa fa-angle-left': !hc.parentSideBar.ManageTithes.active}"></span>
+                        </a>
+                        <ul ng-show="hc.parentSideBar.ManageTithes.active" class="nav nav-second-level">
                             <li ng-click="hc.addTithesLocationCheck()">
                                 <a ng-href="/Tithing/AddTithes">Add Tithes</a>
                             </li>
@@ -59,9 +66,12 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a ng-href="#"><i class="fa fa-dollar fa-fw"></i> Manage Offerings<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
+                    <li ng-click="hc.activateDeactivateParent('ManageOfferings')">
+                        <a ng-href="#">
+                            <i class="fa fa-dollar fa-fw"></i> 
+                            Manage Offerings<span class="arrow" ng-class="{'fa fa-angle-down': hc.parentSideBar.ManageOfferings.active, 'fa fa-angle-left': !hc.parentSideBar.ManageOfferings.active}"></span>
+                        </a>
+                        <ul ng-show="hc.parentSideBar.ManageOfferings.active" class="nav nav-second-level">
                             <li ng-click="hc.addOfferingsLocationCheck()">
                                 <a ng-href="/Offerings/AddOfferings">Add Offerings</a>
                             </li>
@@ -70,9 +80,12 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a ng-href="#"><i class="fa fa-bank fa-fw"></i> Manage Transactions<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
+                    <li ng-click="hc.activateDeactivateParent('ManageTransactions')">
+                        <a ng-href="#">
+                            <i class="fa fa-bank fa-fw"></i> 
+                            Manage Transactions<span class="arrow" ng-class="{'fa fa-angle-down': hc.parentSideBar.ManageTransactions.active, 'fa fa-angle-left': !hc.parentSideBar.ManageTransactions.active}"></span>
+                        </a>
+                        <ul ng-show="hc.parentSideBar.ManageTransactions.active" class="nav nav-second-level">
                             <li ng-click="hc.submitTransactionLocationCheck()">
                                 <a ng-href="/Transactions/SubmitTransactions">Submit Transaction</a>
                             </li>
