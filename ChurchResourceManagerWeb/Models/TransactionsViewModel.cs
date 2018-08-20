@@ -16,6 +16,8 @@ namespace ChurchResourceManagerWeb.Models
             get => TransactionDateTime.ToString("MM/dd/yyyy");
             set => TransactionDateTime = Convert.ToDateTime(value);
         }
+        public decimal TransactionAmount { get; set; }
+        public string TransactionAmountString => TransactionAmount.ToString("C");
         public short CheckNumber { get; set; }
         public DateTime? BankPostedDateTime { get; set; }
         public string BankPostedDate
@@ -37,6 +39,7 @@ namespace ChurchResourceManagerWeb.Models
         }
 
         public bool IsDebit { get; set; }
+        public string IsDebitString => IsDebit ? "Y" : "N";
         public string Comments { get; set; }
     }
 }

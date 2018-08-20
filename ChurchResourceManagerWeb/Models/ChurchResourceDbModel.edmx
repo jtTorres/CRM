@@ -150,6 +150,7 @@
           <Property Name="TRANSACTION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TRANSACTION_TYPE_ID" Type="tinyint" Nullable="false" />
           <Property Name="TRANSACTION_DATE" Type="date" Nullable="false" />
+          <Property Name="TRANSACTION_AMOUNT" Type="money" Nullable="false" />
           <Property Name="CHECK_NUMBER" Type="smallint" />
           <Property Name="BANK_POSTED_DATE" Type="date" />
           <Property Name="IS_DEBIT" Type="bit" Nullable="false" />
@@ -622,6 +623,7 @@
           <Property Name="IS_DEBIT" Type="Boolean" Nullable="false" />
           <Property Name="COMMENTS" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TRANSACTION_TYPES" Relationship="ChurchResourceDbModel.fk_TRANSACTIONS_to_TRANSACTION_TYPES_TRANSACTION_TYPE_ID" FromRole="TRANSACTIONS" ToRole="TRANSACTION_TYPES" />
+          <Property Name="TRANSACTION_AMOUNT" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="UTILITY_BILLS">
           <Key>
@@ -948,6 +950,7 @@
           <EntitySetMapping Name="TRANSACTIONS">
             <EntityTypeMapping TypeName="ChurchResourceDbModel.TRANSACTIONS">
               <MappingFragment StoreEntitySet="TRANSACTIONS">
+                <ScalarProperty Name="TRANSACTION_AMOUNT" ColumnName="TRANSACTION_AMOUNT" />
                 <ScalarProperty Name="COMMENTS" ColumnName="COMMENTS" />
                 <ScalarProperty Name="IS_DEBIT" ColumnName="IS_DEBIT" />
                 <ScalarProperty Name="BANK_POSTED_DATE" ColumnName="BANK_POSTED_DATE" />

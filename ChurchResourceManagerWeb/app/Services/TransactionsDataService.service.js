@@ -12,8 +12,9 @@
             getTransactions: getTransactions,
             getTransaction: getTransaction,
             updateTransaction: updateTransaction,
-            deleteTransaction: deleteTransaction
-        }
+            deleteTransaction: deleteTransaction,
+            getExpensesRunningTotal: getExpensesRunningTotal
+        };
 
         function submitTransaction(transaction) {
             return $http({
@@ -110,6 +111,28 @@
 
         function onDeleteTransactionError(reason) {
             return $q.reject(utilityService.httpError(reason, "Error Deleting Transaction"));
+        }
+
+        function getExpensesRunningTotal(date, inquiryType) {
+            date = utilityService.isUndefinedOrNull(date) ? new Date() : date;
+            return $http({
+                method: "GET",
+                url: "/Transactions/GetRunningTotals/",
+                params: {
+                    date: date,
+                    inquiryType: inquiryType
+                }
+            })
+                .then(onGetExpensesRunningTotalSuccess)
+                .catch(onGetExpensesRunningTotalError);
+        }
+
+        function onGetExpensesRunningTotalSuccess(response) {
+            return response;
+        }
+
+        function onGetExpensesRunningTotalError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Getting Expenses"));
         }
 
     }

@@ -13,7 +13,7 @@
             deleteOffering: deleteOffering,
             getRunningTotals: getRunningTotals,
             getActivity: getActivity
-        }
+        };
 
         function addOffering(offeringRecord) {
             return $http({

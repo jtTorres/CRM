@@ -3,9 +3,9 @@
     angular.module("app")
         .controller("homeController", homeController);
 
-    homeController.$inject = ["operationFlowService", "enumsDataService"];
+    homeController.$inject = ["operationFlowService"];
 
-    function homeController(operationFlowService, enumsDataService) {
+    function homeController(operationFlowService) {
 
         var vm = this;
 
@@ -19,7 +19,7 @@
         activate();
 
         function activate() {
-
+            
             vm.parentSideBar = {
                 ManageMembership: { active: false },
                 ManageTithes: { active: false },

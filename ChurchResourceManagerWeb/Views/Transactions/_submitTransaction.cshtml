@@ -27,6 +27,18 @@
                     <div ng-messages-include="message-template"></div>
                 </div>
             </div>
+            
+            <!--Transaction Amount-->
+            <div class="form-group">
+                <label for="amountTxtBx">Amount</label>
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input id="amountTxtBx" name="amountTxtBx" type="text" class="form-control" placeholder="Amount (Ex. $0.00)" ng-model="stc.transaction.TransactionAmount" required />
+                </div>
+                <div class="help-block-error" ng-messages="stc.transactionsForm.checkNumberTxtBx.$error" ng-if="stc.transactionsForm.amountTxtBx.$touched || stc.transactionsForm.$submitted">
+                    <div ng-messages-include="message-template"></div>
+                </div>
+            </div>
 
             <!--Check Number-->
             <div class="form-group">

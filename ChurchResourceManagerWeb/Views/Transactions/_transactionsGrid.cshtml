@@ -7,6 +7,7 @@
                         <tr>
                             <th>Transaction Type</th>
                             <th>Transaction Date</th>
+                            <th>Amount</th>
                             <th>Check Number</th>
                             <th>Bank Posted Date</th>
                             <th>Is Debit</th>
@@ -21,13 +22,16 @@
                                 <input type="text" id="txtTransactionDate" name="txtTransactionDate" class="form-control" ng-model="search.TransactionDate" />
                             </td>
                             <td>
+                                <input type="text" id="txtTransactionAmount" name="txtTransactionAmount" class="form-control" ng-model="search.TransactionAmountString" />
+                            </td>
+                            <td>
                                 <input type="text" id="txtCheckNumber" name="txtCheckNumber" class="form-control" ng-model="search.CheckNumber" />
                             </td>
                             <td>
                                 <input type="text" id="txtBankPostedDate" name="txtBankPostedDate" class="form-control" ng-model="search.BankPostedDate" />
                             </td>
                             <td>
-                                <input type="text" id="txtIsDebit" name="txtIsDebit" class="form-control" ng-model="search.IsDebit" />
+                                <input type="text" id="txtIsDebit" name="txtIsDebit" class="form-control" ng-model="search.IsDebitString" />
                             </td>
                             <td>
                                 <input type="text" id="txtComments" name="txtComments" class="form-control" ng-model="search.Comments" />
@@ -38,9 +42,10 @@
                         <tr class="text-left" ng-repeat="transaction in tgc.transactions | filter: search">
                             <td>{{transaction.TransactionType}}</td>
                             <td>{{transaction.TransactionDate}}</td>
+                            <td>{{transaction.TransactionAmount | currency}}</td>
                             <td>{{transaction.CheckNumber}}</td>
                             <td>{{transaction.BankPostedDate}}</td>
-                            <td>{{transaction.IsDebit === false ? 'N' : 'Y'}}</td>
+                            <td>{{transaction.IsDebitString}}</td>
                             <td>{{transaction.Comments}}</td>
                             <td>
                                 <span ng-click="tgc.edit(transaction)" uib-tooltip="Click to Edit" class="glyphicon glyphicon-pencil clickable"></span>

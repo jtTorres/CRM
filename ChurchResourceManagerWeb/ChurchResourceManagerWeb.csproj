@@ -192,6 +192,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActivitySelector.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\EnumsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -284,6 +285,7 @@
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TithesViewModel.cs" />
+    <Compile Include="Models\TransactionInquiryTypes.cs" />
     <Compile Include="Models\TRANSACTIONS.cs">
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
     </Compile>
@@ -309,6 +311,7 @@
     <Content Include="app\Components\addTithe.component.js" />
     <Content Include="app\Components\contactInformation.component.js" />
     <Content Include="app\Components\contactInformationReadOnly.component.js" />
+    <Content Include="app\Components\dashboard.component.js" />
     <Content Include="app\Components\deleteOffering.component.js" />
     <Content Include="app\Components\deleteTithe.component.js" />
     <Content Include="app\Components\editMembershipModal.component.js" />
@@ -332,6 +335,7 @@
     <Content Include="app\Components\tithingActivityByMemberGrid.component.js" />
     <Content Include="app\Components\transactionsGrid.component.js" />
     <Content Include="app\Components\deleteTransaction.component.js" />
+    <Content Include="app\Controllers\Dashboard\Dashboard.controller.js" />
     <Content Include="app\Controllers\Home\Home.controller.js" />
     <Content Include="app\Controllers\Home\Home.controller.spec.js" />
     <Content Include="app\Components\Shared\runningTotal.component.spec.js" />
@@ -1303,6 +1307,7 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Shared\_pageHeader.cshtml" />
     <Content Include="Views\Membership\_memberEntryCompleteModal.cshtml" />
+    <Content Include="Views\Dashboard\_dashboard.cshtml" />
     <None Include="Views\Test\SpecRunner.cshtml" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />

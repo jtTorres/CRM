@@ -20,6 +20,10 @@
                 { Description: "Female", Id: "F" }
             ]
         };
+        var transactionInquiryTypes = {
+            Expenses: 1,
+            Income: 2
+        };
 
 
         return {
@@ -30,8 +34,9 @@
             getMemberGroups: getMemberGroups,
             getTransactionTypes: getTransactionTypes,
 
-            enums: enums
-        }
+            enums: enums,
+            transactionInquiryTypes: transactionInquiryTypes
+        };
 
         function onSuccess(response) {
             return response;

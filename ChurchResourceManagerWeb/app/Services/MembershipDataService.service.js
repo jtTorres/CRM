@@ -22,6 +22,7 @@
             getStateList: getStateList,
             getEmptyMemberInfo: getEmptyMemberInfo,
             getMemberSearch: getMemberSearch,
+            getMemberCount: getMemberCount,
             updateFamily: updateFamily,
             updateAddress: updateAddress,
             updateMembership: updateMembership,
@@ -226,12 +227,12 @@
 
         function updateMembership(membership) {
             return $http({
-                    method: "POST",
-                    url: "/Membership/UpdateMembership/",
-                    data: {
-                        membership: membership
-                    }
-                })
+                method: "POST",
+                url: "/Membership/UpdateMembership/",
+                data: {
+                    membership: membership
+                }
+            })
                 .then(onUpdateMembershipSuccess)
                 .catch(onUpdateMembershipError);
         }
@@ -246,12 +247,12 @@
 
         function updateContactInfo(contactInfo) {
             return $http({
-                    method: "POST",
-                    url: "/Membership/UpdateContactInfo/",
-                    data: {
-                        contactInfo: contactInfo
-                    }
-                })
+                method: "POST",
+                url: "/Membership/UpdateContactInfo/",
+                data: {
+                    contactInfo: contactInfo
+                }
+            })
                 .then(onUpdateContactInfoSuccess)
                 .catch(onUpdateContactInfoError);
         }
@@ -262,6 +263,23 @@
 
         function onUpdateContactInfoError(reason) {
             return $q.reject(utilityService.httpError(reason, "Error Saving Contact Information"));
+        }
+
+        function getMemberCount() {
+            return $http({
+                method: "GET",
+                url: "Dashboard/GetMemberCount/"
+            })
+                .then(onGetMemberCountSuccess)
+                .catch(onGetMemberError);
+        }
+
+        function onGetMemberCountSuccess(response) {
+            return response;
+        }
+
+        function onGetMemberError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Getting Member Counts"));
         }
     }
 

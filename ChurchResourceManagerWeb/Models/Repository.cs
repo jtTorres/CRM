@@ -286,7 +286,7 @@ namespace ChurchResourceManagerWeb.Models
         }
         public IEnumerable<MembershipViewModel> GetAllMembership()
         {
-            var membership = (from m in db.MEMBERSHIP.Where( g => g.GROUP_ID != 3)
+            var membership = (from m in db.MEMBERSHIP.Where(g => g.GROUP_ID != 3)
                               select new MembershipViewModel()
                               {
                                   FamilyId = m.FAMILY_ID,
@@ -446,6 +446,29 @@ namespace ChurchResourceManagerWeb.Models
             return db.TRANSACTIONS.Find(transactionId);
         }
 
+        public int GetMemberCounts()
+        {
+            return db.MEMBERSHIP.Count(m => m.MEMBERSHIP_STATUS_ID == 1);
+        }
+
+        public string GetTransactionRunningTotal(DateTime date, TransactionInquiryTypes.InquiryType inquiryType)
+        {
+            IQueryable<TRANSACTIONS> amount;
+            switch (inquiryType)
+            {
+                case TransactionInquiryTypes.InquiryType.Expenses:
+                    amount = db.TRANSACTIONS.Where(t => t.TRANSACTION_DATE == date && t.IS_DEBIT);
+                    break;
+                case TransactionInquiryTypes.InquiryType.Income:
+                    amount = db.TRANSACTIONS.Where(t => t.TRANSACTION_DATE == date && !t.IS_DEBIT);
+                    break;
+                default:
+                    amount = db.TRANSACTIONS;
+                    break;
+            }
+            return amount.Any() ? amount.Sum(a => a.TRANSACTION_AMOUNT).ToString(CultureInfo.CurrentCulture) : "0";
+        }
+
         #endregion
 
         #region switches
@@ -468,5 +491,7 @@ namespace ChurchResourceManagerWeb.Models
         {
             return db.SaveChanges() > 0;
         }
+
+
     }
 }

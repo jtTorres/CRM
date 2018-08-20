@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ChurchResourceManagerWeb.Models;
+using Microsoft.Ajax.Utilities;
 
 namespace ChurchResourceManagerWeb.Controllers
 {
@@ -105,6 +106,20 @@ namespace ChurchResourceManagerWeb.Controllers
             try
             {
                 return Json(new { Success = Repo.DeleteTransaction(transactionId) });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public JsonResult GetRunningTotals(DateTime date, TransactionInquiryTypes.InquiryType inquiryType)
+        {
+            try
+            {
+                return Json(Repo.GetTransactionRunningTotal(Utilities.ShortDateString(date), inquiryType), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
