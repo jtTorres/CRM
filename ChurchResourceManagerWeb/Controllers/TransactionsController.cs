@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using ChurchResourceManagerWeb.Models;
+using System;
 using System.Web.Mvc;
-using ChurchResourceManagerWeb.Models;
-using Microsoft.Ajax.Utilities;
+using System.Web.UI;
 
 namespace ChurchResourceManagerWeb.Controllers
 {
+    [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+    [Authorize]
     public class TransactionsController : BaseController
     {
 

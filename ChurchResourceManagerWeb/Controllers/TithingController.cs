@@ -1,13 +1,13 @@
-﻿using System;
+﻿using ChurchResourceManagerWeb.Models;
+using System;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Web.Mvc;
 using System.Web.UI;
-using ChurchResourceManagerWeb.Models;
 
 namespace ChurchResourceManagerWeb.Controllers
 {
     [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+    [Authorize]
     public class TithingController : BaseController
     {
         // GET: Tithing
