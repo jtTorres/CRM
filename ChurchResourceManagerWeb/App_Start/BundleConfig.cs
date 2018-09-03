@@ -20,7 +20,8 @@ namespace ChurchResourceManagerWeb
                 "~/Scripts/angular-ui/ui-bootstrap-tpls.min.js",
                 "~/Scripts/angular-sanitize.min.js",
                 "~/Scripts/mg/packages/angular-ui/mask.min.js",
-                "~/Scripts/angular-animate.min.js"
+                "~/Scripts/angular-animate.min.js",
+                "~/Scripts/angular-cookies.min.js"
                 ));
 
 

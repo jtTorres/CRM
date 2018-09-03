@@ -39,58 +39,58 @@
                     </li>
                     <li ng-click="hc.activateDeactivateParent('ManageMembership')">
                         <a ng-href="#">
-                            <i class="fa fa-users fa-fw"></i> 
+                            <i class="fa fa-users fa-fw"></i>
                             Manage Membership
                             <span class="arrow" ng-class="{'fa fa-angle-down': hc.parentSideBar.ManageMembership.active, 'fa fa-angle-left': !hc.parentSideBar.ManageMembership.active}"></span>
                         </a>
                         <ul ng-show="hc.parentSideBar.ManageMembership.active" class="nav nav-second-level">
                             <li ng-click="hc.addMembershipLocationCheck()">
-                                <a ng-href="/Membership/AddMembership">Add Membership</a>
+                                <a ng-class="{'active': hc.parentSideBar.ManageMembership.AddMembership.active}" ng-href="/Membership/AddMembership">Add Membership</a>
                             </li>
                             <li>
-                                <a ng-href="/Membership/MembersSearch">View Membership</a>
+                                <a ng-class="{'active': hc.parentSideBar.ManageMembership.ViewMembership.active}" ng-href="/Membership/MembersSearch">View Membership</a>
                             </li>
                         </ul>
                     </li>
                     <li ng-click="hc.activateDeactivateParent('ManageTithes')">
                         <a ng-href="#">
-                            <i class="fa fa-money fa-fw"></i> 
+                            <i class="fa fa-money fa-fw"></i>
                             Manage Tithes<span class="arrow" ng-class="{'fa fa-angle-down': hc.parentSideBar.ManageTithes.active, 'fa fa-angle-left': !hc.parentSideBar.ManageTithes.active}"></span>
                         </a>
                         <ul ng-show="hc.parentSideBar.ManageTithes.active" class="nav nav-second-level">
                             <li ng-click="hc.addTithesLocationCheck()">
-                                <a ng-href="/Tithing/AddTithes">Add Tithes</a>
+                                <a ng-class="{'active': hc.parentSideBar.ManageMembership.AddTithes.active}" ng-href="/Tithing/AddTithes">Add Tithes</a>
                             </li>
                             <li>
-                                <a ng-href="/Tithing/TithesSearch">View Tithes</a>
+                                <a ng-class="{'active': hc.parentSideBar.ManageMembership.ViewTithes.active}" ng-href="/Tithing/TithesSearch">View Tithes</a>
                             </li>
                         </ul>
                     </li>
                     <li ng-click="hc.activateDeactivateParent('ManageOfferings')">
                         <a ng-href="#">
-                            <i class="fa fa-dollar fa-fw"></i> 
+                            <i class="fa fa-dollar fa-fw"></i>
                             Manage Offerings<span class="arrow" ng-class="{'fa fa-angle-down': hc.parentSideBar.ManageOfferings.active, 'fa fa-angle-left': !hc.parentSideBar.ManageOfferings.active}"></span>
                         </a>
                         <ul ng-show="hc.parentSideBar.ManageOfferings.active" class="nav nav-second-level">
                             <li ng-click="hc.addOfferingsLocationCheck()">
-                                <a ng-href="/Offerings/AddOfferings">Add Offerings</a>
+                                <a ng-class="{'active': hc.parentSideBar.ManageMembership.AddOfferings.active}" ng-href="/Offerings/AddOfferings">Add Offerings</a>
                             </li>
                             <li>
-                                <a ng-href="/Offerings/OfferingsSearch">View Offerings</a>
+                                <a ng-class="{'active': hc.parentSideBar.ManageMembership.ViewOfferings.active}" ng-href="/Offerings/OfferingsSearch">View Offerings</a>
                             </li>
                         </ul>
                     </li>
                     <li ng-click="hc.activateDeactivateParent('ManageTransactions')">
                         <a ng-href="#">
-                            <i class="fa fa-bank fa-fw"></i> 
+                            <i class="fa fa-bank fa-fw"></i>
                             Manage Transactions<span class="arrow" ng-class="{'fa fa-angle-down': hc.parentSideBar.ManageTransactions.active, 'fa fa-angle-left': !hc.parentSideBar.ManageTransactions.active}"></span>
                         </a>
                         <ul ng-show="hc.parentSideBar.ManageTransactions.active" class="nav nav-second-level">
                             <li ng-click="hc.submitTransactionLocationCheck()">
-                                <a ng-href="/Transactions/SubmitTransactions">Submit Transaction</a>
+                                <a ng-class="{'active': hc.parentSideBar.ManageMembership.SubmitTransactions.active}" ng-href="/Transactions/SubmitTransactions">Submit Transaction</a>
                             </li>
                             <li>
-                                <a ng-href="/Transactions/TransactionsSearch">View Transactions</a>
+                                <a ng-class="{'active': hc.parentSideBar.ManageMembership.ViewTransactions.active}" ng-href="/Transactions/TransactionsSearch">View Transactions</a>
                             </li>
                         </ul>
                     </li>
