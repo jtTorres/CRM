@@ -1,14 +1,13 @@
-﻿using System;
+﻿using ChurchResourceManagerWeb.Models;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
-using ChurchResourceManagerWeb.Models;
 
 namespace ChurchResourceManagerWeb.Controllers
 {
     [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
+    [Authorize]
     public class MembershipController : BaseController
     {
         // GET: Membership
@@ -21,11 +20,6 @@ namespace ChurchResourceManagerWeb.Controllers
         {
             return View();
         }
-
-        //public ActionResult EditMembership()
-        //{
-        //    return View();
-        //}
 
         public ActionResult MembersSearch()
         {
