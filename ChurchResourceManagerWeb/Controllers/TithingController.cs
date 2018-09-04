@@ -25,7 +25,7 @@ namespace ChurchResourceManagerWeb.Controllers
         }
 
         #region PartialViews for Components
-        public ActionResult Addtithe()
+        public ActionResult AddTithe()
         {
             return PartialView("_addTithe");
         }

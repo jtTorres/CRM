@@ -4,7 +4,7 @@
     angular.module("app")
         .component("addTithe",
             {
-                templateUrl: "/Tithing/Addtithe",
+                templateUrl: "/Tithing/AddTithe",
                 controller: "addTithesController",
                 controllerAs: "atc",
                 bindings: {

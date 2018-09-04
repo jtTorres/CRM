@@ -1,0 +1,65 @@
+﻿
+<div class="row">
+    <uib-tabset active="0">
+        <uib-tab index="0" heading="Date Range">
+            <div class="row">
+                <div class="col-xs-6" style="padding-bottom: 1%;">
+                    <div class="btn-group">
+                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'TransactionDate'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'TransactionDate'" ng-show="rtc.reportType === 'Transaction'">Transaction Date</label>
+                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'BankPostedDate'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'BankPostedDate'" ng-show="rtc.reportType === 'Transaction'">Bank Posted Date</label>
+                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'ExitDate'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'ExitDate'" ng-show="rtc.reportType === 'Membership'">Exit Date</label>
+                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'Dob'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'Dob'" ng-show="rtc.reportType === 'Membership'">Date of Birth</label>
+                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'MembershipDate'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'MembershipDate'" ng-show="rtc.reportType === 'Transaction'">Membership Date</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    <p class="input-group">
+                        <input id="txtFromDt" name="txtFromDt" type="text" class="form-control" ng-model="rtc.fromDate" uib-datepicker-popup="{{rtc.dateFormat}}" is-open="rtc.isOpenFromDate" readonly />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="rtc.openFromDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+                <div class="col-xs-2">
+                    <p class="input-group">
+                        <input id="txtToDt" name="txtToDt" type="text" class="form-control" ng-model="rtc.toDate" uib-datepicker-popup="{{rtc.dateFormat}}" is-open="rtc.isOpenToDate" readonly/>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="rtc.openToDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1">
+                        <button class="btn btn-default">Go!</button>
+                    </div>
+                </div>
+            </div>
+        </uib-tab>
+        <uib-tab index="1" heading="Family" ng-if="rtc.reportType === 'Membership' || rtc.reportType === 'Tithing'">
+            <div class="row">
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <input id="txtFamilyName" name="txtFamilyName" type="text" class="form-control" ng-model="rtc.familyName" placeholder="Family Name" />
+                    </div>
+                </div>
+                <div class="col-xs-1">
+                    <button class="btn btn-default">Go!</button>
+                </div>
+            </div>
+        </uib-tab>
+        <uib-tab index="2" heading="Member" ng-if="rtc.reportType === 'Membership' || rtc.reportType === 'Tithing'">
+            <div class="row">
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <input id="txtMemberName" name="txtMemberName" type="text" class="form-control" ng-model="rtc.memberName" placeholder="Member Name" />
+                    </div>
+                </div>
+                <div class="col-xs-1">
+                    <button class="btn btn-default">Go!</button>
+                </div>
+            </div>
+        </uib-tab>
+    </uib-tabset>
+</div>

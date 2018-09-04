@@ -64,10 +64,11 @@
 
         function setDefaults() {
             vm.parentSideBar = {
-                ManageMembership: { active: false, AddMembership: { active: false }, ViewMembership: { active: false } },
-                ManageTithes: { active: false, AddTithes: { active: false }, ViewTithes: { active: false } },
-                ManageOfferings: { active: false, AddOfferings: { active: false }, ViewOfferings: { active: false } },
-                ManageTransactions: { active: false, SubmitTransactions: { active: false }, ViewTransactions: { active: false } }
+                ManageMembership: { active: false },
+                ManageTithes: { active: false },
+                ManageOfferings: { active: false },
+                ManageTransactions: { active: false },
+                Reporting: { active: false }
             };
         }
     }

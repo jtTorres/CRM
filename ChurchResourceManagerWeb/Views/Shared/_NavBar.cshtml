@@ -94,6 +94,23 @@
                             </li>
                         </ul>
                     </li>
+                    <li ng-click="hc.activateDeactivateParent('Reporting')">
+                        <a ng-href="#">
+                            <i class="glyphicon glyphicon-stats"></i>
+                            Reporting<span class="arrow" ng-class="{'fa fa-angle-down': hc.isActiveParentNav('Reporting'), 'fa fa-angle-left': !hc.isActiveParentNav('Reporting')}"></span>
+                        </a>
+                        <ul ng-show="hc.openCloseNav('Reporting') || hc.isActiveParentNav('Reporting')" class="nav nav-second-level">
+                            <li @*ng-click="hc.submitTransactionLocationCheck()"*@>
+                                <a ng-class="{'active': hc.checkActive('TithingReport')}" ng-href="/Reporting/TithingReport">Tithing</a>
+                            </li>
+                            <li>
+                                <a ng-class="{'active': hc.checkActive('OfferingReport')}" ng-href="/Reporting/OfferingReport">Offering</a>
+                            </li>
+                            <li>
+                                <a ng-class="{'active': hc.checkActive('Transactions')}" ng-href="/Reporting/TransactionsReport">Transactions</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
