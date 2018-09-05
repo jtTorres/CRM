@@ -43,7 +43,7 @@
                             Manage Membership
                             <span class="arrow" ng-class="{'fa fa-angle-down': hc.isActiveParentNav('ManageMembership'), 'fa fa-angle-left': !hc.isActiveParentNav('ManageMembership')}"></span>
                         </a>
-                        <ul ng-show="hc.openCloseNav('Membership') || hc.isActiveParentNav('ManageMembership')" class="nav nav-second-level">
+                        <ul ng-show="hc.openCloseNav('Membership/') || hc.isActiveParentNav('ManageMembership')" class="nav nav-second-level">
                             <li ng-click="hc.addMembershipLocationCheck()">
                                 <a ng-class="{'active': hc.checkActive('AddMembership')}" ng-href="/Membership/AddMembership">Add Membership</a>
                             </li>
@@ -57,7 +57,7 @@
                             <i class="fa fa-money fa-fw"></i>
                             Manage Tithes<span class="arrow" ng-class="{'fa fa-angle-down': hc.isActiveParentNav('ManageTithes'), 'fa fa-angle-left': !hc.isActiveParentNav('ManageTithes')}"></span>
                         </a>
-                        <ul ng-show="hc.openCloseNav('Tithing') || hc.isActiveParentNav('ManageTithes')" class="nav nav-second-level">
+                        <ul ng-show="hc.openCloseNav('Tithing/') || hc.isActiveParentNav('ManageTithes')" class="nav nav-second-level">
                             <li ng-click="hc.addTithesLocationCheck()">
                                 <a ng-class="{'active': hc.checkActive('AddTithes')}" ng-href="/Tithing/AddTithes">Add Tithes</a>
                             </li>
@@ -71,7 +71,7 @@
                             <i class="fa fa-dollar fa-fw"></i>
                             Manage Offerings<span class="arrow" ng-class="{'fa fa-angle-down': hc.isActiveParentNav('ManageOfferings'), 'fa fa-angle-left': !hc.isActiveParentNav('ManageOfferings')}"></span>
                         </a>
-                        <ul ng-show="hc.openCloseNav('Offerings') || hc.isActiveParentNav('ManageOfferings')" class="nav nav-second-level">
+                        <ul ng-show="hc.openCloseNav('Offerings/') || hc.isActiveParentNav('ManageOfferings')" class="nav nav-second-level">
                             <li ng-click="hc.addOfferingsLocationCheck()">
                                 <a ng-class="{'active': hc.checkActive('AddOfferings')}" ng-href="/Offerings/AddOfferings">Add Offerings</a>
                             </li>
@@ -85,7 +85,7 @@
                             <i class="fa fa-bank fa-fw"></i>
                             Manage Transactions<span class="arrow" ng-class="{'fa fa-angle-down': hc.isActiveParentNav('ManageTransactions'), 'fa fa-angle-left': !hc.isActiveParentNav('ManageTransactions')}"></span>
                         </a>
-                        <ul ng-show="hc.openCloseNav('Transactions') || hc.isActiveParentNav('ManageTransactions')" class="nav nav-second-level">
+                        <ul ng-show="hc.openCloseNav('Transactions/') || hc.isActiveParentNav('ManageTransactions')" class="nav nav-second-level">
                             <li ng-click="hc.submitTransactionLocationCheck()">
                                 <a ng-class="{'active': hc.checkActive('SubmitTransactions')}" ng-href="/Transactions/SubmitTransactions">Submit Transaction</a>
                             </li>
@@ -99,8 +99,11 @@
                             <i class="glyphicon glyphicon-stats"></i>
                             Reporting<span class="arrow" ng-class="{'fa fa-angle-down': hc.isActiveParentNav('Reporting'), 'fa fa-angle-left': !hc.isActiveParentNav('Reporting')}"></span>
                         </a>
-                        <ul ng-show="hc.openCloseNav('Reporting') || hc.isActiveParentNav('Reporting')" class="nav nav-second-level">
-                            <li @*ng-click="hc.submitTransactionLocationCheck()"*@>
+                        <ul ng-show="hc.openCloseNav('Reporting/') || hc.isActiveParentNav('Reporting')" class="nav nav-second-level">
+                            <li>
+                                <a ng-class="{'active': hc.checkActive('MembershipReport')}" ng-href="/Reporting/MembershipReport">Membership</a>
+                            </li>
+                            <li>
                                 <a ng-class="{'active': hc.checkActive('TithingReport')}" ng-href="/Reporting/TithingReport">Tithing</a>
                             </li>
                             <li>
