@@ -131,6 +131,20 @@ namespace ChurchResourceManagerWeb.Controllers
         }
 
         [HttpGet]
+        public JsonResult GetTithingActivityByDateRange(DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                return Json(Repo.GetTithingActivityByDateRange(startDate, endDate), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        [HttpGet]
         public JsonResult GetTithingActivity()
         {
             try

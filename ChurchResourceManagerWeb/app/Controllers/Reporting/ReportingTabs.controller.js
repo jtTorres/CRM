@@ -10,6 +10,7 @@
     function reportingTabsController() {
 
         var vm = this;
+        vm.onGoButton = onGoButton;
 
 
         vm.dateFormat = "MM/dd/yyyy";
@@ -23,6 +24,10 @@
 
         function openToDate() {
             vm.isOpenToDate = true;
+        }
+
+        function onGoButton(searchType, startDate, endDate, familyId, memberId) {
+            vm.goButton({ searchType: searchType, startDate: startDate, endDate: endDate, familyId: familyId, memberId: memberId });
         }
     }
 

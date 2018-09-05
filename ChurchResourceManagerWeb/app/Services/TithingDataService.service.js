@@ -18,6 +18,7 @@
             getTithesRunningTotal: getTithesRunningTotal,
             getTodaysTithingActivity: getTodaysTithingActivity,
             getTithingActivity: getTithingActivity,
+            getTithingActivityByDateRange: getTithingActivityByDateRange,
             updateTitheGrids: updateTitheGrids,
             addToTotal: addToTotal
         };
@@ -246,6 +247,27 @@
             } else {
                 return currentTotal += newTotal;
             }
+        }
+
+        function getTithingActivityByDateRange(startDate, endDate) {
+            return $http({
+                method: "GET",
+                url: "/Tithing/GetTithingActivityByDateRange/",
+                params: {
+                    startDate: startDate,
+                    endDate: endDate
+                }
+            })
+                .then(onGetTithingActivityByDateRangeComplete)
+                .catch(onGetTithingActivityByDateRangeError);
+        }
+
+        function onGetTithingActivityByDateRangeComplete(response) {
+            return response;
+        }
+
+        function onGetTithingActivityByDateRangeError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Getting Tithing Activity"));
         }
     }
 

@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-xs-2">
                     <p class="input-group">
-                        <input id="txtToDt" name="txtToDt" type="text" class="form-control" ng-model="rtc.toDate" uib-datepicker-popup="{{rtc.dateFormat}}" is-open="rtc.isOpenToDate" readonly/>
+                        <input id="txtToDt" name="txtToDt" type="text" class="form-control" ng-model="rtc.toDate" uib-datepicker-popup="{{rtc.dateFormat}}" is-open="rtc.isOpenToDate" readonly />
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default" ng-click="rtc.openToDate()"><i class="glyphicon glyphicon-calendar"></i></button>
                         </span>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-1">
-                        <button class="btn btn-default">Go!</button>
+                        <button class="btn btn-default" ng-click="rtc.onGoButton('DateRange', rtc.fromDate, rtc.toDate)">Go!</button>
                     </div>
                 </div>
             </div>

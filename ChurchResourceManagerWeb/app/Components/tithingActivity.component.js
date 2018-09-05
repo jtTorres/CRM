@@ -15,7 +15,8 @@
                     tithingActivity: "<",
                     panelSettings: "<",
                     tithingActivityType: "@",
-                    includeDateColumn: "@"
+                    includeDateColumn: "@",
+                    showEditDelete: "@"
                 }
             });
 

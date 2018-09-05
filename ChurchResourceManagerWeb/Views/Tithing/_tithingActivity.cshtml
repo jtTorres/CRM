@@ -13,7 +13,7 @@
                             <th>Amount</th>
                             <th>Check Number</th>
                             <th>Comments</th>
-                            <th width="6%"></th> <!--empty space for edit/delete-->
+                            <th ng-show="tac.showEditDelete === 'true'" width="6%"></th> <!--empty space for edit/delete-->
                         </tr>
                         <tr class="list-group" id="searchRow" name="searchRow">
                             <td>
@@ -44,7 +44,7 @@
                             <td>{{tithe.TitheAmount | currency}}</td>
                             <td>{{tithe.CheckNumber}}</td>
                             <td>{{tithe.Comments}}</td>
-                            <td>
+                            <td ng-show="tac.showEditDelete === 'true'">
                                 <span ng-click="tac.editTithe(tithe, $index)" uib-tooltip="Click to Edit" class="glyphicon glyphicon-pencil clickable"></span>
                                 |
                                 <span ng-click="tac.deleteTithe(tithe.TitheId, tithe.MemberId)" uib-tooltip="Click to Delete" class="glyphicon glyphicon-remove clickable"></span>

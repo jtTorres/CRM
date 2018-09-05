@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
-using System.Web;
-using Microsoft.Ajax.Utilities;
 
 namespace ChurchResourceManagerWeb.Models
 {
@@ -320,6 +317,12 @@ namespace ChurchResourceManagerWeb.Models
             return ModelFactory.CreateTithesViewModelList(tithe, db.MEMBERSHIP);
         }
 
+        public IEnumerable<TithesViewModel> GetTithingActivityByDateRange(DateTime startDate, DateTime endDate)
+        {
+            var tithe = db.TITHES.Where(t => t.TITHE_DATE >= startDate && t.TITHE_DATE <= endDate);
+            return ModelFactory.CreateTithesViewModelList(tithe, db.MEMBERSHIP);
+        }
+
         public IEnumerable<OfferingsViewModel> GetOfferings(DateTime? date)
         {
             var offering = db.OFFERINGS.Where(o => date != null ? o.OFFERING_DATE == date : date == null);
@@ -491,7 +494,5 @@ namespace ChurchResourceManagerWeb.Models
         {
             return db.SaveChanges() > 0;
         }
-
-
     }
 }

@@ -131,7 +131,7 @@
             vm.tithingActivityPanelSettings = {
                 panelHeading: "Today's Tithing Activity",
                 isOpen: false
-            }
+            };
         }
 
         // #region Tithes Running Total Component Functions

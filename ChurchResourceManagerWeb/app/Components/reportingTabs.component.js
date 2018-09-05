@@ -9,7 +9,8 @@
                 controller: "reportingTabsController",
                 controllerAs: "rtc",
                 bindings: {
-                    reportType: "@"
+                    reportType: "@",
+                    goButton: "&"
                 }
             });
 

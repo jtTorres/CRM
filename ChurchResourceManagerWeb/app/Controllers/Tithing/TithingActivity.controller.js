@@ -18,7 +18,7 @@
 
         vm.$onInit = function () {
             vm.getTithingActivity({ tithingActivityType: vm.tithingActivityType });
-        }
+        };
 
         function editTithe(tithe, index) {
             vm.openEditModal({ tithe: tithe, index: index });

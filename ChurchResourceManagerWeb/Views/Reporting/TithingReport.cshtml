@@ -1,3 +1,15 @@
 ﻿<page-header page-title="Tithing Report"></page-header>
 
-<tithes-reporting></tithes-reporting>
+<div ng-controller="tithesReportingController as trc">
+    <reporting-tabs report-type="Tithing" go-button="trc.getTithingActivity(searchType, startDate, endDate, familyId, memberId)"></reporting-tabs>
+
+    <div ng-show="trc.tithingActivity.length > 0">
+        <tithing-activity panel-settings="trc.tithingActivityPanelSettings"
+                          tithing-activity="trc.tithingActivity"
+                          open-edit-modal="tc.openEditTitheModal(tithe, index, grid)"
+                          open-delete-modal="tc.openDeleteTitheModal(titheId, memberId)"
+                          include-date-column="true"
+                          show-edit-delete="false">
+        </tithing-activity>
+    </div>
+</div>
