@@ -283,26 +283,26 @@ namespace ChurchResourceManagerWeb.Models
         }
         public IEnumerable<MembershipViewModel> GetAllMembership()
         {
-            var membership = (from m in db.MEMBERSHIP.Where(g => g.GROUP_ID != 3)
-                              select new MembershipViewModel()
-                              {
-                                  FamilyId = m.FAMILY_ID,
-                                  MemberId = m.MEMBER_ID,
-                                  FirstName = m.FIRST_NAME,
-                                  MiddleName = m.MIDDLE_NAME,
-                                  LastName = m.LAST_NAME,
-                                  Dob = m.DOB.ToString(),
-                                  LocationId = m.LOCATION_ID,
-                                  MaritalStatusId = m.MARITAL_STATUS_ID,
-                                  GroupId = m.GROUP_ID,
-                                  PreferredContactMethod = m.PREFERRERD_CONTACT_METHOD,
-                                  ExitDate = m.EXIT_DATE.ToString(),
-                                  MembershipStatusId = m.MEMBERSHIP_STATUS_ID,
-                                  LastModifiedDateTime = m.LAST_MODIFIED_DATE,
-                                  RelationshipTypeId = m.RELATIONSHIP_TYPE_ID
-                              }).ToList();
 
-            return membership;
+            return db.MEMBERSHIP.Include(f => f.FAMILIES).Where(g => g.GROUP_ID != 3).Select(m =>
+                new MembershipViewModel
+                {
+                    FamilyId = m.FAMILY_ID,
+                    FamilyName = m.FAMILIES.NAME,
+                    MemberId = m.MEMBER_ID,
+                    FirstName = m.FIRST_NAME,
+                    MiddleName = m.MIDDLE_NAME,
+                    LastName = m.LAST_NAME,
+                    Dob = m.DOB.ToString(),
+                    LocationId = m.LOCATION_ID,
+                    MaritalStatusId = m.MARITAL_STATUS_ID,
+                    GroupId = m.GROUP_ID,
+                    PreferredContactMethod = m.PREFERRERD_CONTACT_METHOD,
+                    ExitDate = m.EXIT_DATE.ToString(),
+                    MembershipStatusId = m.MEMBERSHIP_STATUS_ID,
+                    LastModifiedDateTime = m.LAST_MODIFIED_DATE,
+                    RelationshipTypeId = m.RELATIONSHIP_TYPE_ID
+                }).ToList();
         }
 
         public IEnumerable<MemberSearchViewModel> GetMemberSearch()
@@ -314,13 +314,18 @@ namespace ChurchResourceManagerWeb.Models
         {
 
             var tithe = db.TITHES.Where(t => (t.TITHE_DATE == date && memberId == 0) || (t.MEMBER_ID == memberId && memberId > 0) || (memberId == 0 && date == null));
-            return ModelFactory.CreateTithesViewModelList(tithe, db.MEMBERSHIP);
+            return ModelFactory.CreateTithesViewModelList(tithe);
         }
 
         public IEnumerable<TithesViewModel> GetTithingActivityByDateRange(DateTime startDate, DateTime endDate)
         {
             var tithe = db.TITHES.Where(t => t.TITHE_DATE >= startDate && t.TITHE_DATE <= endDate);
-            return ModelFactory.CreateTithesViewModelList(tithe, db.MEMBERSHIP);
+            return ModelFactory.CreateTithesViewModelList(tithe);
+        }
+
+        public object GetTithingActivityByFamilyId(int familyId)
+        {
+            return ModelFactory.CreateTithesViewModelList(db.TITHES.Include(m => m.MEMBERSHIP).Where(m => m.MEMBERSHIP.FAMILY_ID == familyId));
         }
 
         public IEnumerable<OfferingsViewModel> GetOfferings(DateTime? date)

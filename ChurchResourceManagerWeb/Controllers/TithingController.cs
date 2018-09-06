@@ -145,6 +145,20 @@ namespace ChurchResourceManagerWeb.Controllers
         }
 
         [HttpGet]
+        public JsonResult GetTithingActivityByFamilyId(int familyId)
+        {
+            try
+            {
+                return Json(Repo.GetTithingActivityByFamilyId(familyId), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        [HttpGet]
         public JsonResult GetTithingActivity()
         {
             try

@@ -19,6 +19,7 @@
             getTodaysTithingActivity: getTodaysTithingActivity,
             getTithingActivity: getTithingActivity,
             getTithingActivityByDateRange: getTithingActivityByDateRange,
+            getTithingActivityByFamilyId: getTithingActivityByFamilyId,
             updateTitheGrids: updateTitheGrids,
             addToTotal: addToTotal
         };
@@ -52,7 +53,7 @@
         }
 
 
-        //get tithing acitvity
+        //get tithing activity
         function getMemberTithes(memberId, date) {
             return $http({
                 method: "GET",
@@ -267,6 +268,26 @@
         }
 
         function onGetTithingActivityByDateRangeError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Getting Tithing Activity"));
+        }
+
+        function getTithingActivityByFamilyId(familyId) {
+            return $http({
+                method: "GET",
+                url: "/Tithing/GetTithingActivityByFamilyId/",
+                params: {
+                    familyId: familyId
+                }
+            })
+                .then(onGetTithingActivityByFamilyIdComplete)
+                .catch(onGetTithingActivityByFamilyIdError);
+        }
+
+        function onGetTithingActivityByFamilyIdComplete(response) {
+            return response;
+        }
+
+        function onGetTithingActivityByFamilyIdError(reason) {
             return $q.reject(utilityService.httpError(reason, "Error Getting Tithing Activity"));
         }
     }

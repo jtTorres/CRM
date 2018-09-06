@@ -16,7 +16,8 @@
             <div class="row">
                 <div class="col-xs-2">
                     <p class="input-group">
-                        <input id="txtFromDt" name="txtFromDt" type="text" class="form-control" ng-model="rtc.fromDate" uib-datepicker-popup="{{rtc.dateFormat}}" is-open="rtc.isOpenFromDate" readonly />
+                        <input id="txtFromDt" name="txtFromDt" type="text" class="form-control" ng-model="rtc.fromDate" uib-datepicker-popup="{{rtc.dateFormat}}" is-open="rtc.isOpenFromDate" ui-mask="99/99/9999" ui-mask-placeholder
+                               model-view-value="true" placeholder="Date (mm/dd/yyyy)" />
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default" ng-click="rtc.openFromDate()"><i class="glyphicon glyphicon-calendar"></i></button>
                         </span>
@@ -24,7 +25,8 @@
                 </div>
                 <div class="col-xs-2">
                     <p class="input-group">
-                        <input id="txtToDt" name="txtToDt" type="text" class="form-control" ng-model="rtc.toDate" uib-datepicker-popup="{{rtc.dateFormat}}" is-open="rtc.isOpenToDate" readonly />
+                        <input id="txtToDt" name="txtToDt" type="text" class="form-control" ng-model="rtc.toDate" uib-datepicker-popup="{{rtc.dateFormat}}" is-open="rtc.isOpenToDate" ui-mask="99/99/9999" ui-mask-placeholder
+                               model-view-value="true" placeholder="Date (mm/dd/yyyy)" />
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-default" ng-click="rtc.openToDate()"><i class="glyphicon glyphicon-calendar"></i></button>
                         </span>
@@ -41,11 +43,17 @@
             <div class="row">
                 <div class="col-xs-3">
                     <div class="form-group">
-                        <input id="txtFamilyName" name="txtFamilyName" type="text" class="form-control" ng-model="rtc.familyName" placeholder="Family Name" />
+                        <input id="txtFamilyName"
+                               name="txtFamilyName"
+                               type="text"
+                               class="form-control"
+                               ng-model="rtc.SelectedFamily"
+                               placeholder="Family Name"
+                               uib-typeahead="member as member.FamilyKey for member in rtc.allMembership | filter: {FamilyKey:$viewValue} | limitTo: 8" />
                     </div>
                 </div>
                 <div class="col-xs-1">
-                    <button class="btn btn-default">Go!</button>
+                    <button class="btn btn-default" ng-click="rtc.onGoButton('Family', null, null, rtc.SelectedFamily.FamilyId)">Go!</button>
                 </div>
             </div>
         </uib-tab>
@@ -53,13 +61,24 @@
             <div class="row">
                 <div class="col-xs-3">
                     <div class="form-group">
-                        <input id="txtMemberName" name="txtMemberName" type="text" class="form-control" ng-model="rtc.memberName" placeholder="Member Name" />
+                        <input id="txtMemberName"
+                               name="txtMemberName"
+                               type="text"
+                               class="form-control"
+                               ng-model="rtc.SelectedMember"
+                               placeholder="Member Name"
+                               uib-typeahead="member as member.MemberKey for member in rtc.allMembership | filter: {MemberKey:$viewValue} | limitTo: 8" />
                     </div>
                 </div>
                 <div class="col-xs-1">
-                    <button class="btn btn-default">Go!</button>
+                    <button class="btn btn-default" ng-click="rtc.onGoButton('Member', null, null, null, rtc.SelectedMember.MemberId)">Go!</button>
                 </div>
             </div>
         </uib-tab>
     </uib-tabset>
+    <div class="row" ng-show="rtc.noResultsFound">
+        <div class="col-md-12 col-md-push-5">
+            <h4>No Results Found</h4>
+        </div>
+    </div>
 </div>

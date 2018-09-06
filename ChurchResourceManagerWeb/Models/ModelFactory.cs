@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Web;
 
 namespace ChurchResourceManagerWeb.Models
 {
@@ -170,23 +168,23 @@ namespace ChurchResourceManagerWeb.Models
         #endregion
 
         #region List Creations
-        public IEnumerable<TithesViewModel> CreateTithesViewModelList(IQueryable<TITHES> tithe, IQueryable<MEMBERSHIP> member)
+        public IEnumerable<TithesViewModel> CreateTithesViewModelList(IQueryable<TITHES> tithe)
         {
-            return (from t in tithe
-                    join m in member on t.MEMBER_ID equals m.MEMBER_ID
-                    select new TithesViewModel
-                    {
-                        TitheId = t.TITHE_ID,
-                        MemberId = m.MEMBER_ID,
-                        FirstName = m.FIRST_NAME,
-                        LastName = m.LAST_NAME,
-                        DonationType = t.DONATION_TYPE_ID,
-                        TitheDateDateTime = t.TITHE_DATE,
-                        IsCheck = t.IS_CHECK,
-                        CheckNumber = t.CHECK_NUMBER ?? 0,
-                        TitheAmount = t.TITHE_AMOUNT,
-                        Comments = t.COMMENTS
-                    }).ToList();
+
+            return tithe.Include(m => m.MEMBERSHIP).Select(t => new TithesViewModel
+            {
+                TitheId = t.TITHE_ID,
+                MemberId = t.MEMBER_ID,
+                FirstName = t.MEMBERSHIP.FIRST_NAME,
+                LastName = t.MEMBERSHIP.LAST_NAME,
+                DonationType = t.DONATION_TYPE_ID,
+                TitheDateDateTime = t.TITHE_DATE,
+                IsCheck = t.IS_CHECK,
+                CheckNumber = t.CHECK_NUMBER ?? 0,
+                TitheAmount = t.TITHE_AMOUNT,
+                Comments = t.COMMENTS
+
+            }).ToList();
         }
 
         public IEnumerable<MemberSearchViewModel> CreateMemberSearchViewModelList(IQueryable<MEMBERSHIP> membership, IQueryable<FAMILIES> family, IQueryable<MEMBERSHIP_STATUS> membershipStatus)

@@ -332,7 +332,6 @@
     <Content Include="app\Components\Shared\pageHeader.component.js" />
     <Content Include="app\Components\Shared\runningTotal.component.js" />
     <Content Include="app\Components\submitTransaction.component.js" />
-    <Content Include="app\Components\tithesReporting.component.js" />
     <Content Include="app\Components\tithesRunningTotal.component.js" />
     <Content Include="app\Components\tithingActivity.component.js" />
     <Content Include="app\Components\tithingActivityByMemberGrid.component.js" />
@@ -1314,7 +1313,6 @@
     <Content Include="Views\Membership\_memberEntryCompleteModal.cshtml" />
     <Content Include="Views\Dashboard\_dashboard.cshtml" />
     <Content Include="Views\Reporting\TithingReport.cshtml" />
-    <Content Include="Views\Reporting\_tithesReport.cshtml" />
     <Content Include="Views\Reporting\_reportingTabs.cshtml" />
     <None Include="Views\Test\SpecRunner.cshtml" />
     <Content Include="Scripts\toastr.js" />

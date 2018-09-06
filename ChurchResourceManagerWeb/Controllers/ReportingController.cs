@@ -19,10 +19,6 @@ namespace ChurchResourceManagerWeb.Controllers
         {
             return PartialView("_reportingTabs");
         }
-        public ActionResult TithesReport()
-        {
-            return PartialView("_tithesReport");
-        }
         #endregion
     }
 }

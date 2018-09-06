@@ -10,7 +10,8 @@
                 controllerAs: "rtc",
                 bindings: {
                     reportType: "@",
-                    goButton: "&"
+                    goButton: "&",
+                    noResultsFound: "<"
                 }
             });
 

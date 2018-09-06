@@ -1,7 +1,7 @@
 ﻿<page-header page-title="Tithing Report"></page-header>
 
 <div ng-controller="tithesReportingController as trc">
-    <reporting-tabs report-type="Tithing" go-button="trc.getTithingActivity(searchType, startDate, endDate, familyId, memberId)"></reporting-tabs>
+    <reporting-tabs report-type="Tithing" go-button="trc.getTithingActivity(searchType, startDate, endDate, familyId, memberId)" no-results-found="trc.noResults"></reporting-tabs>
 
     <div ng-show="trc.tithingActivity.length > 0">
         <tithing-activity panel-settings="trc.tithingActivityPanelSettings"
