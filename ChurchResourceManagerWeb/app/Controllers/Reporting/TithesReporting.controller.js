@@ -12,6 +12,7 @@
 
         vm.getTithingActivity = getTithingActivity;
         vm.noResults = false;
+        vm.runningTotal = { data: "0" };
         vm.tithingActivityPanelSettings = {
             panelHeading: "Tithing Activity",
             isOpen: false
@@ -40,8 +41,14 @@
         function searchComplete(response) {
             vm.noResults = false;
             vm.tithingActivity = response.data;
-            if (response.data.length > 0)
+            if (response.data.length > 0) {
                 vm.tithingActivityPanelSettings.isOpen = true;
+                var totals = 0;
+                angular.forEach(vm.tithingActivity, function (record, key, obj) {
+                    totals = record.TitheAmount + totals;
+                });
+                vm.runningTotal.data = totals;
+            }
             else
                 vm.noResults = true;
         }
