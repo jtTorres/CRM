@@ -357,6 +357,7 @@
     <Content Include="app\Controllers\Offerings\Offering.controller.js" />
     <Content Include="app\Controllers\Offerings\Offering.controller.spec.js" />
     <Content Include="app\Controllers\Offerings\OfferingActivity.controller.js" />
+    <Content Include="app\Controllers\Reporting\MembershipReporting.controller.js" />
     <Content Include="app\Controllers\Reporting\ReportingTabs.controller.js" />
     <Content Include="app\Controllers\Reporting\TithesReporting.controller.js" />
     <Content Include="app\Controllers\Shared\pageHeader.controller.js" />
@@ -1314,6 +1315,9 @@
     <Content Include="Views\Dashboard\_dashboard.cshtml" />
     <Content Include="Views\Reporting\TithingReport.cshtml" />
     <Content Include="Views\Reporting\_reportingTabs.cshtml" />
+    <Content Include="Views\Reporting\MembershipReport.cshtml" />
+    <Content Include="Views\Reporting\OfferingReport.cshtml" />
+    <Content Include="Views\Reporting\TransactionsReport.cshtml" />
     <None Include="Views\Test\SpecRunner.cshtml" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />

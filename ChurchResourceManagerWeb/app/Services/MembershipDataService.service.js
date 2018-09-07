@@ -22,6 +22,8 @@
             getStateList: getStateList,
             getEmptyMemberInfo: getEmptyMemberInfo,
             getMemberSearch: getMemberSearch,
+            getMembershipByFamilyId: getMembershipByFamilyId,
+            getMembershipByMemberId: getMembershipByMemberId,
             getMemberCount: getMemberCount,
             updateFamily: updateFamily,
             updateAddress: updateAddress,
@@ -268,7 +270,7 @@
         function getMemberCount() {
             return $http({
                 method: "GET",
-                url: "Dashboard/GetMemberCount/"
+                url: "/Dashboard/GetMemberCount/"
             })
                 .then(onGetMemberCountSuccess)
                 .catch(onGetMemberError);
@@ -280,6 +282,46 @@
 
         function onGetMemberError(reason) {
             return $q.reject(utilityService.httpError(reason, "Error Getting Member Counts"));
+        }
+
+        function getMembershipByFamilyId(familyId) {
+            return $http({
+                method: "GET",
+                url: "/Membership/GetMembershipByFamilyId/",
+                params: {
+                    familyId: familyId
+                }
+            })
+                .then(onGetMembershipByFamilyIdSuccess)
+                .catch(onGetMembershipByFamilyIdError);
+        }
+
+        function onGetMembershipByFamilyIdSuccess(response) {
+            return response;
+        }
+
+        function onGetMembershipByFamilyIdError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Getting Membership"));
+        }
+
+        function getMembershipByMemberId(memberId) {
+            return $http({
+                    method: "GET",
+                    url: "/Membership/GetMembershipByMemberId/",
+                    params: {
+                        memberId: memberId
+                    }
+                })
+                .then(onGetMembershipByMemberIdSuccess)
+                .catch(onGetMembershipByMemberIdError);
+        }
+
+        function onGetMembershipByMemberIdSuccess(response) {
+            return response;
+        }
+
+        function onGetMembershipByMemberIdError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Getting Membership"));
         }
     }
 

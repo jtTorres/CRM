@@ -180,6 +180,34 @@ namespace ChurchResourceManagerWeb.Controllers
         }
 
         [HttpGet]
+        public JsonResult GetMembershipByFamilyId(int familyId)
+        {
+            try
+            {
+                return Json(Repo.GetMemberSearchByFamilyId(familyId), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public JsonResult GetMembershipByMemberId(int memberId)
+        {
+            try
+            {
+                return Json(Repo.GetMemberSearchByMemberId(memberId), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        [HttpGet]
         public JsonResult EditMembershipInfo(int familyId)
         {
             try

@@ -41,6 +41,8 @@
                     vm.allMembership = response.data;
                 });
         }
+
+
     }
 
 })();

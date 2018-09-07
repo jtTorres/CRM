@@ -13,6 +13,21 @@ namespace ChurchResourceManagerWeb.Controllers
             return View();
         }
 
+        public ActionResult MembershipReport()
+        {
+            return View();
+        }
+
+        public ActionResult OfferingReport()
+        {
+            return View();
+        }
+
+        public ActionResult TransactionsReport()
+        {
+            return View();
+        }
+
         #region PartialViews for Components
 
         public ActionResult ReportingTabs()

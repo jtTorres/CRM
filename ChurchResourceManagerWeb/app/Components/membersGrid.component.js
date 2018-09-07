@@ -11,7 +11,8 @@
                 bindings: {
                     members: "<",
                     openEditModal: "&",
-                    getMemberSearchData: "&"
+                    getMemberSearchData: "&",
+                    showEditDelete: "@"
                 }
             });
 

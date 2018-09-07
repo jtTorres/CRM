@@ -310,6 +310,16 @@ namespace ChurchResourceManagerWeb.Models
             return ModelFactory.CreateMemberSearchViewModelList(db.MEMBERSHIP, db.FAMILIES, db.MEMBERSHIP_STATUS);
         }
 
+        public IEnumerable<MemberSearchViewModel> GetMemberSearchByFamilyId(int familyId)
+        {
+            return ModelFactory.CreateMemberSearchViewModelList(db.MEMBERSHIP.Where(f => f.FAMILY_ID == familyId), db.FAMILIES.Where(f => f.FAMILY_ID == familyId), db.MEMBERSHIP_STATUS);
+        }
+
+        public IEnumerable<MemberSearchViewModel> GetMemberSearchByMemberId(int memberId)
+        {
+            return ModelFactory.CreateMemberSearchViewModelList(db.MEMBERSHIP.Where(f => f.MEMBER_ID == memberId), db.FAMILIES, db.MEMBERSHIP_STATUS);
+        }
+
         public IEnumerable<TithesViewModel> GetMemberTithes(int memberId, DateTime? date)
         {
 
