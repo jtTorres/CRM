@@ -32,6 +32,7 @@
         }
 
         function onGoButton(searchType, startDate, endDate, familyId, memberId) {
+            searchType = getAdditionalDateRangeOptions(searchType);
             vm.goButton({ searchType: searchType, startDate: startDate, endDate: endDate, familyId: familyId, memberId: memberId });
         }
 
@@ -40,6 +41,12 @@
                 .then(function (response) {
                     vm.allMembership = response.data;
                 });
+        }
+
+        function getAdditionalDateRangeOptions(searchType) {
+            if (searchType === "DateRange" && vm.radioButtons.selected)
+                searchType = vm.radioButtons.selected;
+            return searchType;
         }
 
 

@@ -25,6 +25,17 @@
                     membershipDataService.getMembershipByMemberId(memberId)
                         .then(searchComplete);
                     break;
+                case "MembershipDate":
+                    membershipDataService.getMembershipByMembershipDate(startDate, endDate)
+                        .then(searchComplete);
+                case "ExitDate":
+                    membershipDataService.getMembershipByExitDate(startDate, endDate)
+                        .then(searchComplete);
+                    break;
+                case "DateOfBirth":
+                    membershipDataService.getMembershipByDateOfBirth(startDate, endDate)
+                        .then(searchComplete);
+                    break;
                 default:
                     break;
             }

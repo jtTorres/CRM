@@ -22,7 +22,10 @@
             getStateList: getStateList,
             getEmptyMemberInfo: getEmptyMemberInfo,
             getMemberSearch: getMemberSearch,
+            getMembershipByDateOfBirth: getMembershipByDateOfBirth,
+            getMembershipByExitDate: getMembershipByExitDate,
             getMembershipByFamilyId: getMembershipByFamilyId,
+            getMembershipByMembershipDate: getMembershipByMembershipDate,
             getMembershipByMemberId: getMembershipByMemberId,
             getMemberCount: getMemberCount,
             updateFamily: updateFamily,
@@ -306,12 +309,12 @@
 
         function getMembershipByMemberId(memberId) {
             return $http({
-                    method: "GET",
-                    url: "/Membership/GetMembershipByMemberId/",
-                    params: {
-                        memberId: memberId
-                    }
-                })
+                method: "GET",
+                url: "/Membership/GetMembershipByMemberId/",
+                params: {
+                    memberId: memberId
+                }
+            })
                 .then(onGetMembershipByMemberIdSuccess)
                 .catch(onGetMembershipByMemberIdError);
         }
@@ -321,6 +324,69 @@
         }
 
         function onGetMembershipByMemberIdError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Getting Membership"));
+        }
+
+        function getMembershipByExitDate(startDate, endDate) {
+            return $http({
+                method: "GET",
+                url: "/Membership/GetMembershipByExitDate/",
+                params: {
+                    startDate: startDate,
+                    endDate: endDate
+                }
+            })
+                .then(onGetMembershipByExitDateSuccess)
+                .catch(onGetMembershipByExitDateError);
+        }
+
+        function onGetMembershipByExitDateSuccess(response) {
+            return response;
+        }
+
+        function onGetMembershipByExitDateError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Getting Membership"));
+        }
+
+        function getMembershipByDateOfBirth(startDate, endDate) {
+            return $http({
+                method: "GET",
+                url: "/Membership/GetMembershipByDateOfBirth/",
+                params: {
+                    startDate: startDate,
+                    endDate: endDate
+                }
+            })
+                .then(onGetMembershipByDateOfBirthSuccess)
+                .catch(onGetMembershipByDateOfBirthError);
+        }
+
+        function onGetMembershipByDateOfBirthSuccess(response) {
+            return response;
+        }
+
+        function onGetMembershipByDateOfBirthError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Getting Membership"));
+        }
+
+        function getMembershipByMembershipDate(startDate, endDate) {
+            return $http({
+                method: "GET",
+                url: "/Membership/GetMembershipByMembershipDate/",
+                params: {
+                    startDate: startDate,
+                    endDate: endDate
+                }
+            })
+                .then(onGetMembershipByMembershipDateSuccess)
+                .catch(onGetMembershipByMembershipDateError);
+        }
+
+        function onGetMembershipByMembershipDateSuccess(response) {
+            return response;
+        }
+
+        function onGetMembershipByMembershipDateError(reason) {
             return $q.reject(utilityService.httpError(reason, "Error Getting Membership"));
         }
     }

@@ -208,6 +208,48 @@ namespace ChurchResourceManagerWeb.Controllers
         }
 
         [HttpGet]
+        public JsonResult GetMembershipByExitDate(DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                return Json(Repo.GetMemberSearchByExitDate(startDate, endDate), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public JsonResult GetMembershipByDateOfBirth(DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                return Json(Repo.GetMemberSearchByDateOfBirth(startDate, endDate), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public JsonResult GetMembershipByMembershipDate(DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                return Json(Repo.GetMemberSearchByMembershipDate(startDate, endDate), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        [HttpGet]
         public JsonResult EditMembershipInfo(int familyId)
         {
             try

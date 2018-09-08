@@ -320,6 +320,21 @@ namespace ChurchResourceManagerWeb.Models
             return ModelFactory.CreateMemberSearchViewModelList(db.MEMBERSHIP.Where(f => f.MEMBER_ID == memberId), db.FAMILIES, db.MEMBERSHIP_STATUS);
         }
 
+        public IEnumerable<MemberSearchViewModel> GetMemberSearchByExitDate(DateTime startDate, DateTime endDate)
+        {
+            return ModelFactory.CreateMemberSearchViewModelList(db.MEMBERSHIP.Where(e => e.EXIT_DATE >= startDate && e.EXIT_DATE <= endDate), db.FAMILIES, db.MEMBERSHIP_STATUS);
+        }
+
+        public IEnumerable<MemberSearchViewModel> GetMemberSearchByDateOfBirth(DateTime startDate, DateTime endDate)
+        {
+            return ModelFactory.CreateMemberSearchViewModelList(db.MEMBERSHIP.Where(d => d.DOB >= startDate && d.DOB <= endDate), db.FAMILIES, db.MEMBERSHIP_STATUS);
+        }
+
+        public IEnumerable<MemberSearchViewModel> GetMemberSearchByMembershipDate(DateTime startDate, DateTime endDate)
+        {
+            return ModelFactory.CreateMemberSearchViewModelList(db.MEMBERSHIP.Where(e => e.EFFECTIVE_DATE >= startDate && e.EFFECTIVE_DATE <= endDate), db.FAMILIES, db.MEMBERSHIP_STATUS);
+        }
+
         public IEnumerable<TithesViewModel> GetMemberTithes(int memberId, DateTime? date)
         {
 

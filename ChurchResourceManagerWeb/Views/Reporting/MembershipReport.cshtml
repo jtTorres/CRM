@@ -9,7 +9,7 @@
             <reporting-tabs report-type="Membership" go-button="mrc.getMembership(searchType, startDate, endDate, familyId, memberId)" no-results-found="mrc.noResults"></reporting-tabs>
 
             <div ng-show="mrc.members.length > 0">
-                <members-grid members="mrc.members" show-edit-delete="true"></members-grid>
+                <members-grid members="mrc.members" show-edit-delete="false"></members-grid>
             </div>
         </div>
 

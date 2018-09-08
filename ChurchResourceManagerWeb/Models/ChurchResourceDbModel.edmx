@@ -94,6 +94,7 @@
           <Property Name="MARITAL_STATUS_ID" Type="tinyint" />
           <Property Name="GROUP_ID" Type="tinyint" />
           <Property Name="PREFERRERD_CONTACT_METHOD" Type="tinyint" />
+          <Property Name="EFFECTIVE_DATE" Type="date" Nullable="false" />
           <Property Name="EXIT_DATE" Type="date" />
           <Property Name="MEMBERSHIP_STATUS_ID" Type="tinyint" />
           <Property Name="LAST_MODIFIED_DATE" Type="datetime" Nullable="false" />
@@ -577,6 +578,7 @@
           <Property Name="RELATIONSHIP_TYPE_ID" Type="Byte" />
           <Property Name="MEMBERSHIP_STATUS_ID" Type="Byte" />
           <NavigationProperty Name="MEMBERSHIP_STATUS" Relationship="ChurchResourceDbModel.fk_MEMBERSHIP_to_MEMBERSHIP_STATUS_MEMBERSHIP_STATUS_ID" FromRole="MEMBERSHIP" ToRole="MEMBERSHIP_STATUS" />
+          <Property Name="EFFECTIVE_DATE" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="OFFERINGS">
           <Key>
@@ -896,6 +898,7 @@
           <EntitySetMapping Name="MEMBERSHIP">
             <EntityTypeMapping TypeName="ChurchResourceDbModel.MEMBERSHIP">
               <MappingFragment StoreEntitySet="MEMBERSHIP">
+                <ScalarProperty Name="EFFECTIVE_DATE" ColumnName="EFFECTIVE_DATE" />
                 <ScalarProperty Name="MEMBERSHIP_STATUS_ID" ColumnName="MEMBERSHIP_STATUS_ID" />
                 <ScalarProperty Name="RELATIONSHIP_TYPE_ID" ColumnName="RELATIONSHIP_TYPE_ID" />
                 <ScalarProperty Name="LAST_MODIFIED_DATE" ColumnName="LAST_MODIFIED_DATE" />
