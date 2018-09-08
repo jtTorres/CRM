@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace ChurchResourceManagerWeb.Models
 {
@@ -21,5 +18,6 @@ namespace ChurchResourceManagerWeb.Models
         }
         public string Gender { get; set; }
         public string MembershipStatus { get; set; }
+        public byte MembershipStatusId { get; set; }
     }
 }

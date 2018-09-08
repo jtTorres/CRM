@@ -48,8 +48,6 @@
                 searchType = vm.radioButtons.selected;
             return searchType;
         }
-
-
     }
 
 })();

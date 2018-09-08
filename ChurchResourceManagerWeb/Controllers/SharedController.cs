@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using ChurchResourceManagerWeb.Models;
+using System;
 using System.Web.Mvc;
 using System.Web.UI;
-using ChurchResourceManagerWeb.Models;
 
 namespace ChurchResourceManagerWeb.Controllers
 {
@@ -20,6 +17,11 @@ namespace ChurchResourceManagerWeb.Controllers
         public ActionResult PageHeader()
         {
             return PartialView("_pageHeader");
+        }
+
+        public ActionResult MembershipStatCards()
+        {
+            return PartialView("_membershipStatCards");
         }
 
         [HttpGet]

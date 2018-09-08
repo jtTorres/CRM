@@ -8,6 +8,8 @@
         <div ng-controller="membershipReportingController as mrc">
             <reporting-tabs report-type="Membership" go-button="mrc.getMembership(searchType, startDate, endDate, familyId, memberId)" no-results-found="mrc.noResults"></reporting-tabs>
 
+            <membership-stat-cards total-count="mrc.totalCount" active-count="mrc.activeCount" terminated-count="mrc.terminatedCount" no-results-found="mrc.noResults"></membership-stat-cards>
+
             <div ng-show="mrc.members.length > 0">
                 <members-grid members="mrc.members" show-edit-delete="false"></members-grid>
             </div>

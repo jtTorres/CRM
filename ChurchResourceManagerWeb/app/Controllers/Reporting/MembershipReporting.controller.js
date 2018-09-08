@@ -10,8 +10,10 @@
     function membershipReportingController(membershipDataService) {
 
         var vm = this;
-
+        vm.activeCount = 0;
         vm.getMembership = getMembership;
+        vm.terminatedCount = 0;
+        vm.totalCount = 0;
 
         //////////////////
 
@@ -47,6 +49,27 @@
             if (response.data.length === 0) {
                 vm.noResults = true;
             }
+            calculateMembershipStats(vm.members);
+        }
+
+        function calculateMembershipStats(membership) {
+            vm.totalCount = membership.length;
+            vm.activeCount = 0;
+            vm.terminatedCount = 0;
+
+            angular.forEach(membership, function (record, key, obj) {
+
+                switch (record.MembershipStatusId) {
+                    case 1: //Active
+                        vm.activeCount++;
+                        break;
+                    case 5: //Terminated
+                        vm.terminatedCount++;
+                        break;
+                    default:
+                        break;
+                }
+            });
         }
 
     }

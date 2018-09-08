@@ -202,7 +202,8 @@ namespace ChurchResourceManagerWeb.Models
                         LastName = m.LAST_NAME,
                         Dob = m.DOB.ToString(),
                         Gender = m.GENDER,
-                        MembershipStatus = ms.DESCRIPTION
+                        MembershipStatus = ms.DESCRIPTION,
+                        MembershipStatusId = (byte)m.MEMBERSHIP_STATUS_ID
                     }).ToList();
         }
 

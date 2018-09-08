@@ -329,6 +329,7 @@
     <Content Include="app\Components\offeringActivity.component.js" />
     <Content Include="app\Components\offeringActivity.component.spec.js" />
     <Content Include="app\Components\reportingTabs.component.js" />
+    <Content Include="app\Components\Shared\membershipStatCards.component.js" />
     <Content Include="app\Components\Shared\pageHeader.component.js" />
     <Content Include="app\Components\Shared\runningTotal.component.js" />
     <Content Include="app\Components\submitTransaction.component.js" />
@@ -360,6 +361,7 @@
     <Content Include="app\Controllers\Reporting\MembershipReporting.controller.js" />
     <Content Include="app\Controllers\Reporting\ReportingTabs.controller.js" />
     <Content Include="app\Controllers\Reporting\TithesReporting.controller.js" />
+    <Content Include="app\Controllers\Shared\membershipStatCards.controller.js" />
     <Content Include="app\Controllers\Shared\pageHeader.controller.js" />
     <Content Include="app\Controllers\Shared\runningTotals.controller.js" />
     <Content Include="app\Controllers\Tithing\AddTithes.controller.js" />
@@ -1318,6 +1320,7 @@
     <Content Include="Views\Reporting\MembershipReport.cshtml" />
     <Content Include="Views\Reporting\OfferingReport.cshtml" />
     <Content Include="Views\Reporting\TransactionsReport.cshtml" />
+    <Content Include="Views\Shared\_membershipStatCards.cshtml" />
     <None Include="Views\Test\SpecRunner.cshtml" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
