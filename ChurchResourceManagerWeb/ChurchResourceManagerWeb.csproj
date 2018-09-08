@@ -358,6 +358,7 @@
     <Content Include="app\Controllers\Offerings\Offering.controller.js" />
     <Content Include="app\Controllers\Offerings\Offering.controller.spec.js" />
     <Content Include="app\Controllers\Offerings\OfferingActivity.controller.js" />
+    <Content Include="app\Controllers\Reporting\OfferingsRerporting.controller.js" />
     <Content Include="app\Controllers\Reporting\MembershipReporting.controller.js" />
     <Content Include="app\Controllers\Reporting\ReportingTabs.controller.js" />
     <Content Include="app\Controllers\Reporting\TithesReporting.controller.js" />

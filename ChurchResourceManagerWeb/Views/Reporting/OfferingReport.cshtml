@@ -1,1 +1,22 @@
 ﻿<page-header page-title="Offering Report"></page-header>
+
+<div class="row">
+    <div class="col-md-12">
+        <div ng-controller="offeringsReportingController as orc">
+            <div class="col-md-12">
+                <reporting-tabs report-type="Offering" go-button="orc.getOfferingActivity(searchType, startDate, endDate, familyId, memberId)" no-results-found="orc.noResults"></reporting-tabs>
+            </div>
+
+            <running-totals ng-hide="orc.noResults" running-total="orc.runningTotal"></running-totals>
+
+            <div ng-show="orc.offeringActivity.length > 0">
+                <offering-activity panel-settings="orc.offeringActivityPanelSettings"
+                                   offering-activity="orc.offeringActivity"
+                                   include-date-column="true"
+                                   show-edit-delete="false">
+                </offering-activity>
+            </div>
+
+        </div>
+    </div>
+</div>

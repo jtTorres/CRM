@@ -359,6 +359,11 @@ namespace ChurchResourceManagerWeb.Models
             return ModelFactory.CreateOfferingsViewModelList(offering);
         }
 
+        public IEnumerable<OfferingsViewModel> GetOfferingsByDateRange(DateTime startDate, DateTime endDate)
+        {
+            return ModelFactory.CreateOfferingsViewModelList(db.OFFERINGS.Where(d => d.OFFERING_DATE >= startDate && d.OFFERING_DATE <= endDate));
+        }
+
         public string GetTithesRunningTotal(DateTime date)
         {
             var amount = db.TITHES.Where(t => t.TITHE_DATE == date);

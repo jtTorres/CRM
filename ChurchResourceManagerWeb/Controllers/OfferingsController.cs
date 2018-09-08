@@ -106,6 +106,20 @@ namespace ChurchResourceManagerWeb.Controllers
             }
         }
 
+        [HttpGet]
+        public JsonResult GetOfferingActivityByDateRange(DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                return Json(Repo.GetOfferingsByDateRange(startDate, endDate), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
         [HttpPost]
         public JsonResult UpdateOffering(OfferingsViewModel offering)
         {

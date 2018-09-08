@@ -5,9 +5,9 @@
     angular.module("app")
         .controller("reportingTabsController", reportingTabsController);
 
-    reportingTabsController.$inject = ["membershipDataService"];
+    reportingTabsController.$inject = ["membershipDataService", "utilityService"];
 
-    function reportingTabsController(membershipDataService) {
+    function reportingTabsController(membershipDataService, utilityService) {
 
         var vm = this;
         vm.onGoButton = onGoButton;
@@ -44,7 +44,7 @@
         }
 
         function getAdditionalDateRangeOptions(searchType) {
-            if (searchType === "DateRange" && vm.radioButtons.selected)
+            if (searchType === "DateRange" && !utilityService.isUndefinedOrNull(vm.radioButtons))
                 searchType = vm.radioButtons.selected;
             return searchType;
         }

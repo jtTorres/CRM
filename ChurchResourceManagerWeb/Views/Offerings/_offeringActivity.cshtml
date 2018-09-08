@@ -8,7 +8,7 @@
                             <th ng-show="oac.includeDateColumn === 'true'">Date</th>
                             <th>Amount</th>
                             <th>Comments</th>
-                            <th width="6%"></th> <!--empty space for edit/delete-->
+                            <th  ng-show="tac.showEditDelete === 'true'" width="6%"></th> <!--empty space for edit/delete-->
                         </tr>
                         <tr class="list-group" id="searchRow" name="searchRow">
                             <td ng-show="oac.includeDateColumn === 'true'">
@@ -27,7 +27,7 @@
                             <td ng-show="oac.includeDateColumn === 'true'">{{offering.OfferingDate}}</td>
                             <td>{{offering.OfferingAmount | currency}}</td>
                             <td>{{offering.Comments}}</td>
-                            <td>
+                            <td  ng-show="tac.showEditDelete === 'true'">
                                 <span ng-click="oac.editOffering(offering, $index)" uib-tooltip="Click to Edit" class="glyphicon glyphicon-pencil clickable"></span>
                                 |
                                 <span ng-click="oac.deleteOffering(offering.OfferingId)" uib-tooltip="Click to Delete" class="glyphicon glyphicon-remove clickable"></span>

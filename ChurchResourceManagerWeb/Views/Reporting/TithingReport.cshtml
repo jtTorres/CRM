@@ -7,13 +7,11 @@
                 <reporting-tabs report-type="Tithing" go-button="trc.getTithingActivity(searchType, startDate, endDate, familyId, memberId)" no-results-found="trc.noResults"></reporting-tabs>
             </div>
 
-            <running-totals running-total="trc.runningTotal"></running-totals>
+            <running-totals ng-hide="trc.noResults" running-total="trc.runningTotal"></running-totals>
 
                 <div ng-show="trc.tithingActivity.length > 0">
                     <tithing-activity panel-settings="trc.tithingActivityPanelSettings"
                                       tithing-activity="trc.tithingActivity"
-                                      open-edit-modal="tc.openEditTitheModal(tithe, index, grid)"
-                                      open-delete-modal="tc.openDeleteTitheModal(titheId, memberId)"
                                       include-date-column="true"
                                       show-edit-delete="false">
                     </tithing-activity>

@@ -11,6 +11,7 @@
             addOffering: addOffering,
             updateOffering: updateOffering,
             deleteOffering: deleteOffering,
+            getOfferingActivityByDateRange: getOfferingActivityByDateRange,
             getRunningTotals: getRunningTotals,
             getActivity: getActivity
         };
@@ -109,6 +110,28 @@
         }
 
         function onGetTodaysActivityError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Getting Activity"));
+        }
+
+        function getOfferingActivityByDateRange(startDate, endDate) {
+            return $http({
+                method: "GET",
+                url: "/Offerings/GetOfferingActivityByDateRange/",
+                params: {
+                    startDate: startDate,
+                    endDate: endDate
+
+                }
+            })
+                .then(onGetOfferingActivityByDateRangeComplete)
+                .catch(onGetOfferingActivityByDateRangeError);
+        }
+
+        function onGetOfferingActivityByDateRangeComplete(response) {
+            return response;
+        }
+
+        function onGetOfferingActivityByDateRangeError(reason) {
             return $q.reject(utilityService.httpError(reason, "Error Getting Activity"));
         }
     }
