@@ -352,14 +352,15 @@ namespace ChurchResourceManagerWeb.Models
 
         public IEnumerable<TransactionsViewModel> CreateTransactionsViewModelList(IQueryable<TRANSACTIONS> transaction)
         {
-            return transaction.Select(t => new TransactionsViewModel
+            return transaction.Include(tt => tt.TRANSACTION_TYPES.DESCRIPTION).Select(t => new TransactionsViewModel
             {
                 TransactionId = t.TRANSACTION_ID,
+                TransactionType = t.TRANSACTION_TYPES.DESCRIPTION,
                 TransactionTypeId = t.TRANSACTION_TYPE_ID,
                 TransactionDateTime = t.TRANSACTION_DATE,
                 TransactionAmount = t.TRANSACTION_AMOUNT,
                 CheckNumber = (short)t.CHECK_NUMBER,
-                BankPostedDateTime = Convert.ToDateTime(t.BANK_POSTED_DATE),
+                BankPostedDateTime = t.BANK_POSTED_DATE,
                 IsDebit = t.IS_DEBIT,
                 Comments = t.COMMENTS
             }).ToList();

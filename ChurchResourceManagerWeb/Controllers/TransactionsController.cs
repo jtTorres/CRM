@@ -126,5 +126,33 @@ namespace ChurchResourceManagerWeb.Controllers
                 throw;
             }
         }
+
+        [HttpGet]
+        public JsonResult GetTransactionsByTransactionDate(DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                return Json(Repo.GetTransactionsByTransactionDate(startDate, endDate), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public JsonResult GetTransactionsByBankPostedDate(DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                return Json(Repo.GetTransactionsByBankPostedDate(startDate, endDate), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
     }
 }

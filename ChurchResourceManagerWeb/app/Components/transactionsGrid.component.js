@@ -12,7 +12,8 @@
                     transactions: "<",
                     openEditModal: "&",
                     openDeleteModal: "&",
-                    getTransactions: "&"
+                    getTransactions: "&",
+                    showEditDelete: "@"
                 }
             });
 

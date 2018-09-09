@@ -484,6 +484,16 @@ namespace ChurchResourceManagerWeb.Models
             return db.TRANSACTIONS.Find(transactionId);
         }
 
+        public IEnumerable<TransactionsViewModel> GetTransactionsByTransactionDate(DateTime startDate, DateTime endDate)
+        {
+            return ModelFactory.CreateTransactionsViewModelList(db.TRANSACTIONS.Where(t => t.TRANSACTION_DATE >= startDate && t.TRANSACTION_DATE <= endDate));
+        }
+
+        public IEnumerable<TransactionsViewModel> GetTransactionsByBankPostedDate(DateTime startDate, DateTime endDate)
+        {
+            return ModelFactory.CreateTransactionsViewModelList(db.TRANSACTIONS.Where(t => t.BANK_POSTED_DATE >= startDate && t.BANK_POSTED_DATE <= endDate));
+        }
+
         public int GetMemberCounts()
         {
             return db.MEMBERSHIP.Count(m => m.MEMBERSHIP_STATUS_ID == 1);

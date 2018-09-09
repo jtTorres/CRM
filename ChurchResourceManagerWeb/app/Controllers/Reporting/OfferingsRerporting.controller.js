@@ -42,12 +42,12 @@
             calculateOfferingStats(vm.offeringActivity);
         }
 
-        function calculateOfferingStats(membership) {
-            vm.totalCount = membership.length;
+        function calculateOfferingStats(offerings) {
+            vm.totalCount = offerings.length;
             vm.activeCount = 0;
             vm.terminatedCount = 0;
             var totals = 0;
-            angular.forEach(membership, function (record, key, obj) {
+            angular.forEach(offerings, function (record, key, obj) {
                 totals = record.OfferingAmount + totals;
             });
             vm.runningTotal.data = totals;

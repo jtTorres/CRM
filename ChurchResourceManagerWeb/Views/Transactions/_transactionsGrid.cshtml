@@ -12,7 +12,7 @@
                             <th>Bank Posted Date</th>
                             <th>Is Debit</th>
                             <th>Comments</th>
-                            <th></th>
+                            <th ng-show="tgc.showEditDelete === 'true'"></th>
                         </tr>
                         <tr>
                             <td>
@@ -47,7 +47,7 @@
                             <td>{{transaction.BankPostedDate}}</td>
                             <td>{{transaction.IsDebitString}}</td>
                             <td>{{transaction.Comments}}</td>
-                            <td>
+                            <td ng-show="tgc.showEditDelete === 'true'">
                                 <span ng-click="tgc.edit(transaction)" uib-tooltip="Click to Edit" class="glyphicon glyphicon-pencil clickable"></span>
                                 |
                                 <span ng-click="tgc.deleteTransaction(transaction.TransactionId)" uib-tooltip="Click to Delete" class="glyphicon glyphicon-remove clickable"></span>

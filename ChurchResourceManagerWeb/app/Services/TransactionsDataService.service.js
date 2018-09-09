@@ -13,7 +13,9 @@
             getTransaction: getTransaction,
             updateTransaction: updateTransaction,
             deleteTransaction: deleteTransaction,
-            getExpensesRunningTotal: getExpensesRunningTotal
+            getExpensesRunningTotal: getExpensesRunningTotal,
+            getTransactionsByBankPostedDate: getTransactionsByBankPostedDate,
+            getTransactionsByTransactionDate: getTransactionsByTransactionDate
         };
 
         function submitTransaction(transaction) {
@@ -133,6 +135,48 @@
 
         function onGetExpensesRunningTotalError(reason) {
             return $q.reject(utilityService.httpError(reason, "Error Getting Expenses"));
+        }
+
+        function getTransactionsByTransactionDate(startDate, endDate) {
+            return $http({
+                method: "GET",
+                url: "/Transactions/GetTransactionsByTransactionDate/",
+                params: {
+                    startDate: startDate,
+                    endDate: endDate
+                }
+            })
+                .then(onGetTransactionsByTransactionDateSuccess)
+                .catch(onGetTransactionsByTransactionDateError);
+        }
+
+        function onGetTransactionsByTransactionDateSuccess(response) {
+            return response;
+        }
+
+        function onGetTransactionsByTransactionDateError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Getting Transactions"));
+        }
+
+        function getTransactionsByBankPostedDate(startDate, endDate) {
+            return $http({
+                method: "GET",
+                url: "/Transactions/GetTransactionsByBankPostedDate/",
+                params: {
+                    startDate: startDate,
+                    endDate: endDate
+                }
+            })
+                .then(onGetTransactionsByBankPostedDateSuccess)
+                .catch(onGetTransactionsByBankPostedDateError);
+        }
+
+        function onGetTransactionsByBankPostedDateSuccess(response) {
+            return response;
+        }
+
+        function onGetTransactionsByBankPostedDateError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Getting Transactions"));
         }
 
     }

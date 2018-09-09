@@ -362,6 +362,7 @@
     <Content Include="app\Controllers\Reporting\MembershipReporting.controller.js" />
     <Content Include="app\Controllers\Reporting\ReportingTabs.controller.js" />
     <Content Include="app\Controllers\Reporting\TithesReporting.controller.js" />
+    <Content Include="app\Controllers\Reporting\TransactionsReporting.controller.js" />
     <Content Include="app\Controllers\Shared\membershipStatCards.controller.js" />
     <Content Include="app\Controllers\Shared\pageHeader.controller.js" />
     <Content Include="app\Controllers\Shared\runningTotals.controller.js" />
