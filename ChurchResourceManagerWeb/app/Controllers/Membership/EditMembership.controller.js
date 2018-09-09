@@ -14,6 +14,7 @@
         vm.doSave = doSave;
         vm.findActiveIndex = findActiveIndex;
         vm.enableDisableContactInfo = enableDisableContactInfo;
+        vm.addRelative = addRelative;
         //////////////////
 
         var enums = enumsDataService.enums;
@@ -66,6 +67,10 @@
             for (var i = 0; i < membership.length; i++) {
                 vm.contactInfo[i].Name = `${membership[i].FirstName} ${membership[i].LastName}`;
             }
+        }
+
+        function addRelative() {
+            vm.resolve.addMore.addRelative();
         }
 
     }

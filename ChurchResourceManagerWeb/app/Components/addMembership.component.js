@@ -16,7 +16,8 @@
                     stateList: "<",
                     memberGroups: "<",
                     memberInfo: "<",
-                    beingEdited: "<"
+                    beingEdited: "<",
+                    addRelative: "&"
                 }
             });
 

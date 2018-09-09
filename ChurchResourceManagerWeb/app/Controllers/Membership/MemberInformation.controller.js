@@ -11,7 +11,7 @@
 
         vm.edit = edit;
         vm.followLastCurrentActiveIndex = followLastCurrentActiveIndex;
-        vm.onAddRelative = onAddRelative;
+        vm.doAddRelative = doAddRelative;
         vm.onRemoveRelative = onRemoveRelative;
         vm.submit = submit;
         /////////////////////////
@@ -34,8 +34,9 @@
             return vm.onFindActiveIndex({ currentIndex: currentIndex, arrayCount: arrayCount });
         }
 
-        function onAddRelative() {
+        function doAddRelative() {
             $scope.$emit("memberInfoAddRelative");
+            vm.onAddRelative();
         }
 
         function onRemoveRelative(index) {

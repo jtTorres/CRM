@@ -207,6 +207,7 @@
             var emptyContactInfoCopy = angular.copy(vm.emptyContactInfo);
 
             vm.memberInfoArray.push(emptyMemberInfoCopy);
+            vm.membershipToEdit.Membership.push(emptyMemberInfoCopy);
             vm.contactInfo.push(emptyContactInfoCopy);
         }
 
@@ -412,6 +413,11 @@
                             addRemoveInfo: {
                                 enableDisableContactInfo: function (info) {
                                     return enableDisableContactInfo(info);
+                                }
+                            },
+                            addMore: {
+                                addRelative: function () {
+                                    return addRelative();
                                 }
                             }
                         }

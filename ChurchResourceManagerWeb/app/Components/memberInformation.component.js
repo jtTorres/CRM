@@ -14,7 +14,8 @@
                     beingEdited: "<",
                     onEdit: "&",
                     onSubmit: "&",
-                    onFindActiveIndex: "&"
+                    onFindActiveIndex: "&",
+                    onAddRelative: "&"
                 }
             });
 

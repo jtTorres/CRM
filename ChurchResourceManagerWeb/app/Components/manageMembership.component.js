@@ -22,7 +22,8 @@
                     onFindActiveIndex: "&",
                     accordionSettings: "<",
                     isEditMode: "<",
-                    enableDisableContactInfo: "&"
+                    enableDisableContactInfo: "&",
+                    onAddRelative: "&"
                 }
             });
 

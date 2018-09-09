@@ -193,6 +193,11 @@ namespace ChurchResourceManagerWeb.Models
             {
                 foreach (var memberInfo in membership)
                 {
+                    if (memberInfo.MemberId == 0)
+                    {
+                        AddNewMember(memberInfo, membership[0]);
+                        break;
+                    }
                     db.Entry(GetMembershipById(memberInfo.MemberId)).CurrentValues.SetValues(ModelFactory.CreateMembership(memberInfo));
                     SaveAll();
                 }
@@ -204,6 +209,17 @@ namespace ChurchResourceManagerWeb.Models
                 Console.WriteLine(ex);
                 throw;
             }
+        }
+
+        private void AddNewMember(MembershipViewModel newMember, MembershipViewModel parentRecord)
+        {
+            newMember.LocationId = parentRecord.LocationId;
+            newMember.FamilyId = parentRecord.FamilyId;
+
+            var memberToAdd = new List<MembershipViewModel> { newMember };
+
+            AddMembership(memberToAdd.ToArray());
+
         }
 
         public bool UpdateFamily(FamiliesViewModel family)
