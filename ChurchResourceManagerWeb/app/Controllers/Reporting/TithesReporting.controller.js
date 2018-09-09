@@ -11,13 +11,18 @@
         var vm = this;
 
         vm.getTithingActivity = getTithingActivity;
-        vm.noResults = false;
-        vm.runningTotal = { data: "0" };
+        vm.reset = reset;
         vm.tithingActivityPanelSettings = {
             panelHeading: "Tithing Activity",
             isOpen: false
         };
         //////////////////////////////
+
+        activate();
+
+        function activate() {
+            reset();
+        }
 
         function getTithingActivity(searchType, startDate, endDate, familyId, memberId) {
             switch (searchType) {
@@ -51,6 +56,12 @@
             }
             else
                 vm.noResults = true;
+        }
+
+        function reset() {
+            vm.tithingActivity = [];
+            vm.noResults = false;
+            vm.runningTotal = { data: "0" };
         }
     }
 

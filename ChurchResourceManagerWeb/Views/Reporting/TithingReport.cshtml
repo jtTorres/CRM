@@ -4,7 +4,7 @@
     <div class="col-md-12">
         <div ng-controller="tithesReportingController as trc">
             <div class="col-md-12">
-                <reporting-tabs report-type="Tithing" go-button="trc.getTithingActivity(searchType, startDate, endDate, familyId, memberId)" no-results-found="trc.noResults"></reporting-tabs>
+                <reporting-tabs report-type="Tithing" go-button="trc.getTithingActivity(searchType, startDate, endDate, familyId, memberId)" no-results-found="trc.noResults" reset-tabs="trc.reset()"></reporting-tabs>
             </div>
 
             <running-totals ng-hide="trc.noResults" running-total="trc.runningTotal"></running-totals>

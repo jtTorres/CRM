@@ -12,8 +12,14 @@
 
         vm.getTransactions = getTransactions;
         vm.runningTotal = { data: "0" };
+        vm.reset = reset;
         /////////////////////
 
+        activate();
+
+        function activate() {
+            reset();
+        }
 
         function getTransactions(searchType, startDate, endDate, familyId, memberId) {
             switch (searchType) {
@@ -40,14 +46,17 @@
         }
 
         function calculateTransactionStats(transactions) {
-            vm.totalCount = transactions.length;
-            vm.activeCount = 0;
-            vm.terminatedCount = 0;
             var totals = 0;
             angular.forEach(transactions, function (record, key, obj) {
                 totals = record.TransactionAmount + totals;
             });
             vm.runningTotal.data = totals;
+        }
+
+        function reset() {
+            vm.transactions = [];
+            vm.noResults = false;
+            vm.runningTotal = { data: "0" };
         }
 
     }

@@ -10,12 +10,15 @@
     function membershipReportingController(membershipDataService) {
 
         var vm = this;
-        vm.activeCount = 0;
         vm.getMembership = getMembership;
-        vm.terminatedCount = 0;
-        vm.totalCount = 0;
-
+        vm.reset = reset;
         //////////////////
+
+        activate();
+
+        function activate() {
+            reset();
+        }
 
         function getMembership(searchType, startDate, endDate, familyId, memberId) {
             switch (searchType) {
@@ -70,6 +73,14 @@
                         break;
                 }
             });
+        }
+
+        function reset() {
+            vm.noResults = undefined;
+            vm.members = [];
+            vm.activeCount = 0;
+            vm.terminatedCount = 0;
+            vm.totalCount = 0;
         }
 
     }

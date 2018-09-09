@@ -1,15 +1,15 @@
 ﻿
 <div class="row">
     <uib-tabset active="0">
-        <uib-tab index="0" heading="Date Range">
+        <uib-tab index="0" heading="Date Range" ng-click="rtc.resetTabs()">
             <div class="row">
                 <div class="col-xs-6" style="padding-bottom: 1%;">
                     <div class="btn-group">
-                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'TransactionDate'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'TransactionDate'" ng-if="rtc.reportType === 'Transaction'">Transaction Date</label>
-                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'BankPostedDate'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'BankPostedDate'" ng-if="rtc.reportType === 'Transaction'">Bank Posted Date</label>
-                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'MembershipDate'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'MembershipDate'" ng-if="rtc.reportType === 'Membership'">Membership Date</label>
-                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'ExitDate'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'ExitDate'" ng-if="rtc.reportType === 'Membership'">Exit Date</label>
-                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'DateOfBirth'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'DateOfBirth'" ng-if="rtc.reportType === 'Membership'">Date of Birth</label>
+                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'TransactionDate'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'TransactionDate'" ng-if="rtc.reportType === 'Transaction'" ng-click="rtc.resetTabs()">Transaction Date</label>
+                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'BankPostedDate'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'BankPostedDate'" ng-if="rtc.reportType === 'Transaction'" ng-click="rtc.resetTabs()">Bank Posted Date</label>
+                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'MembershipDate'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'MembershipDate'" ng-if="rtc.reportType === 'Membership'" ng-click="rtc.resetTabs()">Membership Date</label>
+                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'ExitDate'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'ExitDate'" ng-if="rtc.reportType === 'Membership'" ng-click="rtc.resetTabs()">Exit Date</label>
+                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'DateOfBirth'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'DateOfBirth'" ng-if="rtc.reportType === 'Membership'" ng-click="rtc.resetTabs()">Date of Birth</label>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                 </div>
             </div>
         </uib-tab>
-        <uib-tab index="1" heading="Family" ng-if="rtc.reportType === 'Membership' || rtc.reportType === 'Tithing'">
+        <uib-tab index="1" heading="Family" ng-if="rtc.reportType === 'Membership' || rtc.reportType === 'Tithing'" ng-click="rtc.resetTabs()">
             <div class="row">
                 <div class="col-xs-3">
                     <div class="form-group">
@@ -57,7 +57,7 @@
                 </div>
             </div>
         </uib-tab>
-        <uib-tab index="2" heading="Member" ng-if="rtc.reportType === 'Membership' || rtc.reportType === 'Tithing'">
+        <uib-tab index="2" heading="Member" ng-if="rtc.reportType === 'Membership' || rtc.reportType === 'Tithing'" ng-click="rtc.resetTabs()">
             <div class="row">
                 <div class="col-xs-3">
                     <div class="form-group">

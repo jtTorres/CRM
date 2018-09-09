@@ -11,15 +11,19 @@
         var vm = this;
 
         vm.getOfferingActivity = getOfferingActivity;
-        vm.noResults = false;
         vm.offeringActivityPanelSettings = {
             panelHeading: "Offering Activity",
             isOpen: false
         };
-        vm.runningTotal = { data: "0" };
+        vm.reset = reset;
 
         ///////////////////
 
+        activate();
+
+        function activate() {
+            reset();
+        }
 
         function getOfferingActivity(searchType, startDate, endDate, familyId, memberId) {
             switch (searchType) {
@@ -44,13 +48,17 @@
 
         function calculateOfferingStats(offerings) {
             vm.totalCount = offerings.length;
-            vm.activeCount = 0;
-            vm.terminatedCount = 0;
             var totals = 0;
             angular.forEach(offerings, function (record, key, obj) {
                 totals = record.OfferingAmount + totals;
             });
             vm.runningTotal.data = totals;
+        }
+
+        function reset() {
+            vm.noResults = false;
+            vm.offeringActivity = [];
+            vm.runningTotal = { data: "0" };
         }
 
     }

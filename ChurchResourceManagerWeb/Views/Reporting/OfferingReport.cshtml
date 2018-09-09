@@ -4,7 +4,7 @@
     <div class="col-md-12">
         <div ng-controller="offeringsReportingController as orc">
             <div class="col-md-12">
-                <reporting-tabs report-type="Offering" go-button="orc.getOfferingActivity(searchType, startDate, endDate, familyId, memberId)" no-results-found="orc.noResults"></reporting-tabs>
+                <reporting-tabs report-type="Offering" go-button="orc.getOfferingActivity(searchType, startDate, endDate, familyId, memberId)" no-results-found="orc.noResults" reset-tabs="orc.reset()"></reporting-tabs>
             </div>
 
             <running-totals ng-hide="orc.noResults" running-total="orc.runningTotal"></running-totals>

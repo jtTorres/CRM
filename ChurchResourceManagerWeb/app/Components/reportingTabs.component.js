@@ -11,7 +11,8 @@
                 bindings: {
                     reportType: "@",
                     goButton: "&",
-                    noResultsFound: "<"
+                    noResultsFound: "<",
+                    resetTabs: "&"
                 }
             });
 
