@@ -62,8 +62,8 @@ namespace ChurchResourceManagerWeb
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                "~/Content/toastr.css",
-                "~/Content/font-awesome.css"));
+                "~/Content/toastr.css"//,
+                /*"~/Content/font-awesome.css"*/));
 
             bundles.Add(new ScriptBundle("~/bundles/notifications").Include(
                 "~/Scripts/toastr.js"

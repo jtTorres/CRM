@@ -6,7 +6,7 @@ namespace ChurchResourceManagerWeb.Controllers
 {
 
     [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
-    [Authorize]
+    [AllowAnonymous]
     public class DashboardController : BaseController
     {
         // GET: Dashboard
