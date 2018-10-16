@@ -80,8 +80,12 @@
     <Build Include="dbo.ACTIVITIES.sql" />
     <Build Include="dbo.OFFERINGS.sql" />
     <Build Include="dbo.RELATIONSHIP_TYPES.sql" />
+    <Build Include="dbo.PAYMENT_ACCOUNTS.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.Populate_TABLES.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="ChurchResourceDb.refactorlog" />
   </ItemGroup>
 </Project>

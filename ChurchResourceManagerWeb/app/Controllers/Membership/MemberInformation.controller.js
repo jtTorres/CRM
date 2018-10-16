@@ -36,7 +36,7 @@
 
         function doAddRelative() {
             $scope.$emit("memberInfoAddRelative");
-            vm.onAddRelative();
+            //vm.onAddRelative();
         }
 
         function onRemoveRelative(index) {

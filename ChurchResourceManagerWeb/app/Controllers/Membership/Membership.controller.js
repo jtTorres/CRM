@@ -207,7 +207,8 @@
             var emptyContactInfoCopy = angular.copy(vm.emptyContactInfo);
 
             vm.memberInfoArray.push(emptyMemberInfoCopy);
-            vm.membershipToEdit.Membership.push(emptyMemberInfoCopy);
+            if (!utilityService.isUndefinedOrNull(vm.membershipToEdit))
+                vm.membershipToEdit.Membership.push(emptyMemberInfoCopy);
             vm.contactInfo.push(emptyContactInfoCopy);
         }
 

@@ -167,15 +167,11 @@ MERGE INTO dbo.TRANSACTION_TYPES AS TARGET
 USING
 (
 	VALUES
-	(1, 'Pastor Salary'),
-	(2, 'Church Supplies'),
-	(3, 'Pastor Expenses'),
-	(4, 'Utility Bills'),
-	(5, 'Rent'),
-	(6, 'Preacher Offerings'),
-	(7, 'Member Needs'),
-	(8, 'Tithes of Tithes'),
-	(9, 'Miscellaneous')
+( 1, 'CHECK' ), 
+( 2, 'ONLINE PAYMENT' ), 
+( 3, 'DEPOSIT' ), 
+( 4, 'ONLINE TRANSACTION' ), 
+( 5, 'OTHER' )
 )
 AS SOURCE (TRANSACTION_TYPE_ID, [DESCRIPTION])
 ON TARGET.TRANSACTION_TYPE_ID = SOURCE.TRANSACTION_TYPE_ID
