@@ -52,6 +52,7 @@
 
         function getDropdownSelection(transaction) {
             transaction.TransactionTypeId = transaction.SelectedTransactionType.Id;
+            transaction.PaymentAccountId = transaction.SelectedPaymentAccount.PaymentAccountId;
         }
 
         // #region Transactions Search
@@ -76,6 +77,10 @@
             enumsDataService.getTransactionTypes()
                 .then(function (response) {
                     vm.enums.TransactionTypes = response.data;
+                });
+            enumsDataService.getPaymentAccounts()
+                .then(function (response) {
+                    vm.enums.PaymentAccounts = response.data;
                 });
         }
         // #endregion

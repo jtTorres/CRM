@@ -19,7 +19,8 @@
             vm.transaction = vm.resolve.transactionToEdit;
             vm.enums = vm.resolve.enums;
             setTransactionTypeDdl();
-        }
+            setPaymentAccountsDdl();
+        };
 
         function doSave(transaction) {
             return vm.resolve.doSave.save(transaction)
@@ -34,6 +35,10 @@
 
         function setTransactionTypeDdl() {
             vm.transaction.SelectedTransactionType = vm.enums.TransactionTypes[vm.enums.TransactionTypes.findIndex(x => x.Id === vm.transaction.TransactionTypeId)];
+        }
+
+        function setPaymentAccountsDdl() {
+            vm.transaction.SelectedPaymentAccount = vm.enums.PaymentAccounts[vm.enums.PaymentAccounts.findIndex(x => x.PaymentAccountId === vm.transaction.PaymentAccountId)];
         }
 
     }

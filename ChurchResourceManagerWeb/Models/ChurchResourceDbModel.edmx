@@ -117,6 +117,13 @@
           <Property Name="OFFERING_AMOUNT" Type="smallmoney" Nullable="false" />
           <Property Name="COMMENTS" Type="varchar" MaxLength="1000" />
         </EntityType>
+        <EntityType Name="PAYMENT_ACCOUNTS">
+          <Key>
+            <PropertyRef Name="PAYMENT_ACCOUNT_ID" />
+          </Key>
+          <Property Name="PAYMENT_ACCOUNT_ID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PAYMENT_ACCOUNT" Type="varchar" MaxLength="80" Nullable="false" />
+        </EntityType>
         <EntityType Name="RELATIONSHIP_TYPES">
           <Key>
             <PropertyRef Name="RELATIONSHIP_TYPE_ID" />
@@ -150,6 +157,7 @@
           </Key>
           <Property Name="TRANSACTION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TRANSACTION_TYPE_ID" Type="tinyint" Nullable="false" />
+          <Property Name="PAYMENT_ACCOUNT_ID" Type="tinyint" Nullable="false" />
           <Property Name="TRANSACTION_DATE" Type="date" Nullable="false" />
           <Property Name="TRANSACTION_AMOUNT" Type="money" Nullable="false" />
           <Property Name="CHECK_NUMBER" Type="smallint" />
@@ -308,6 +316,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_TRANSACTIONS_to_PAYMENT_ACCOUNTS_PAYMENT_ACCOUNT_ID">
+          <End Role="PAYMENT_ACCOUNTS" Type="Self.PAYMENT_ACCOUNTS" Multiplicity="1" />
+          <End Role="TRANSACTIONS" Type="Self.TRANSACTIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PAYMENT_ACCOUNTS">
+              <PropertyRef Name="PAYMENT_ACCOUNT_ID" />
+            </Principal>
+            <Dependent Role="TRANSACTIONS">
+              <PropertyRef Name="PAYMENT_ACCOUNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_TRANSACTIONS_to_TRANSACTION_TYPES_TRANSACTION_TYPE_ID">
           <End Role="TRANSACTION_TYPES" Type="Self.TRANSACTION_TYPES" Multiplicity="1" />
           <End Role="TRANSACTIONS" Type="Self.TRANSACTIONS" Multiplicity="*" />
@@ -333,6 +353,7 @@
           <EntitySet Name="MEMBERSHIP" EntityType="Self.MEMBERSHIP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MEMBERSHIP_STATUS" EntityType="Self.MEMBERSHIP_STATUS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OFFERINGS" EntityType="Self.OFFERINGS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PAYMENT_ACCOUNTS" EntityType="Self.PAYMENT_ACCOUNTS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RELATIONSHIP_TYPES" EntityType="Self.RELATIONSHIP_TYPES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TITHES" EntityType="Self.TITHES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TRANSACTION_TYPES" EntityType="Self.TRANSACTION_TYPES" Schema="dbo" store:Type="Tables" />
@@ -385,6 +406,10 @@
           <AssociationSet Name="fk_TITHES_to_MEMBERSHIP_MEMBER_ID" Association="Self.fk_TITHES_to_MEMBERSHIP_MEMBER_ID">
             <End Role="MEMBERSHIP" EntitySet="MEMBERSHIP" />
             <End Role="TITHES" EntitySet="TITHES" />
+          </AssociationSet>
+          <AssociationSet Name="fk_TRANSACTIONS_to_PAYMENT_ACCOUNTS_PAYMENT_ACCOUNT_ID" Association="Self.fk_TRANSACTIONS_to_PAYMENT_ACCOUNTS_PAYMENT_ACCOUNT_ID">
+            <End Role="PAYMENT_ACCOUNTS" EntitySet="PAYMENT_ACCOUNTS" />
+            <End Role="TRANSACTIONS" EntitySet="TRANSACTIONS" />
           </AssociationSet>
           <AssociationSet Name="fk_TRANSACTIONS_to_TRANSACTION_TYPES_TRANSACTION_TYPE_ID" Association="Self.fk_TRANSACTIONS_to_TRANSACTION_TYPES_TRANSACTION_TYPE_ID">
             <End Role="TRANSACTION_TYPES" EntitySet="TRANSACTION_TYPES" />
@@ -464,6 +489,11 @@
           <AssociationSet Name="fk_MEMBERSHIP_to_MEMBERSHIP_STATUS_MEMBERSHIP_STATUS_ID" Association="ChurchResourceDbModel.fk_MEMBERSHIP_to_MEMBERSHIP_STATUS_MEMBERSHIP_STATUS_ID">
             <End Role="MEMBERSHIP_STATUS" EntitySet="MEMBERSHIP_STATUS" />
             <End Role="MEMBERSHIP" EntitySet="MEMBERSHIP" />
+          </AssociationSet>
+          <EntitySet Name="PAYMENT_ACCOUNTS" EntityType="ChurchResourceDbModel.PAYMENT_ACCOUNTS" />
+          <AssociationSet Name="fk_TRANSACTIONS_to_PAYMENT_ACCOUNTS_PAYMENT_ACCOUNT_ID" Association="ChurchResourceDbModel.fk_TRANSACTIONS_to_PAYMENT_ACCOUNTS_PAYMENT_ACCOUNT_ID">
+            <End Role="PAYMENT_ACCOUNTS" EntitySet="PAYMENT_ACCOUNTS" />
+            <End Role="TRANSACTIONS" EntitySet="TRANSACTIONS" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="ACTIVITIES">
@@ -626,6 +656,8 @@
           <Property Name="COMMENTS" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TRANSACTION_TYPES" Relationship="ChurchResourceDbModel.fk_TRANSACTIONS_to_TRANSACTION_TYPES_TRANSACTION_TYPE_ID" FromRole="TRANSACTIONS" ToRole="TRANSACTION_TYPES" />
           <Property Name="TRANSACTION_AMOUNT" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="PAYMENT_ACCOUNT_ID" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="PAYMENT_ACCOUNTS" Relationship="ChurchResourceDbModel.fk_TRANSACTIONS_to_PAYMENT_ACCOUNTS_PAYMENT_ACCOUNT_ID" FromRole="TRANSACTIONS" ToRole="PAYMENT_ACCOUNTS" />
         </EntityType>
         <EntityType Name="UTILITY_BILLS">
           <Key>
@@ -807,6 +839,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="PAYMENT_ACCOUNTS">
+          <Key>
+            <PropertyRef Name="PAYMENT_ACCOUNT_ID" />
+          </Key>
+          <Property Name="PAYMENT_ACCOUNT_ID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PAYMENT_ACCOUNT" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TRANSACTIONS" Relationship="ChurchResourceDbModel.fk_TRANSACTIONS_to_PAYMENT_ACCOUNTS_PAYMENT_ACCOUNT_ID" FromRole="PAYMENT_ACCOUNTS" ToRole="TRANSACTIONS" />
+        </EntityType>
+        <Association Name="fk_TRANSACTIONS_to_PAYMENT_ACCOUNTS_PAYMENT_ACCOUNT_ID">
+          <End Type="ChurchResourceDbModel.PAYMENT_ACCOUNTS" Role="PAYMENT_ACCOUNTS" Multiplicity="1" />
+          <End Type="ChurchResourceDbModel.TRANSACTIONS" Role="TRANSACTIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PAYMENT_ACCOUNTS">
+              <PropertyRef Name="PAYMENT_ACCOUNT_ID" />
+            </Principal>
+            <Dependent Role="TRANSACTIONS">
+              <PropertyRef Name="PAYMENT_ACCOUNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -953,6 +1005,7 @@
           <EntitySetMapping Name="TRANSACTIONS">
             <EntityTypeMapping TypeName="ChurchResourceDbModel.TRANSACTIONS">
               <MappingFragment StoreEntitySet="TRANSACTIONS">
+                <ScalarProperty Name="PAYMENT_ACCOUNT_ID" ColumnName="PAYMENT_ACCOUNT_ID" />
                 <ScalarProperty Name="TRANSACTION_AMOUNT" ColumnName="TRANSACTION_AMOUNT" />
                 <ScalarProperty Name="COMMENTS" ColumnName="COMMENTS" />
                 <ScalarProperty Name="IS_DEBIT" ColumnName="IS_DEBIT" />
@@ -985,6 +1038,14 @@
               <MappingFragment StoreEntitySet="MEMBERSHIP_STATUS">
                 <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
                 <ScalarProperty Name="MEMBERSHIP_STATUS_ID" ColumnName="MEMBERSHIP_STATUS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PAYMENT_ACCOUNTS">
+            <EntityTypeMapping TypeName="ChurchResourceDbModel.PAYMENT_ACCOUNTS">
+              <MappingFragment StoreEntitySet="PAYMENT_ACCOUNTS">
+                <ScalarProperty Name="PAYMENT_ACCOUNT" ColumnName="PAYMENT_ACCOUNT" />
+                <ScalarProperty Name="PAYMENT_ACCOUNT_ID" ColumnName="PAYMENT_ACCOUNT_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

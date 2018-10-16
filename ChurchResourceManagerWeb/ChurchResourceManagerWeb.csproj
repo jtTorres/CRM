@@ -277,6 +277,10 @@
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OfferingsViewModel.cs" />
+    <Compile Include="Models\PaymentAccountsViewModel.cs" />
+    <Compile Include="Models\PAYMENT_ACCOUNTS.cs">
+      <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\RelationshipTypesViewModel.cs" />
     <Compile Include="Models\RELATIONSHIP_TYPES.cs">
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>

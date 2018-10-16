@@ -22,7 +22,9 @@ namespace ChurchResourceManagerWeb.Models
         public bool IS_DEBIT { get; set; }
         public string COMMENTS { get; set; }
         public decimal TRANSACTION_AMOUNT { get; set; }
+        public byte PAYMENT_ACCOUNT_ID { get; set; }
     
         public virtual TRANSACTION_TYPES TRANSACTION_TYPES { get; set; }
+        public virtual PAYMENT_ACCOUNTS PAYMENT_ACCOUNTS { get; set; }
     }
 }

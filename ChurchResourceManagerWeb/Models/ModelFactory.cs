@@ -94,6 +94,7 @@ namespace ChurchResourceManagerWeb.Models
             {
                 TRANSACTION_ID = transaction.TransactionId,
                 TRANSACTION_TYPE_ID = transaction.TransactionTypeId,
+                PAYMENT_ACCOUNT_ID = transaction.PaymentAccountId,
                 TRANSACTION_DATE = Convert.ToDateTime(transaction.TransactionDate),
                 TRANSACTION_AMOUNT = transaction.TransactionAmount,
                 CHECK_NUMBER = transaction.CheckNumber,
@@ -157,6 +158,7 @@ namespace ChurchResourceManagerWeb.Models
             {
                 TransactionId = transaction.TRANSACTION_ID,
                 TransactionTypeId = transaction.TRANSACTION_TYPE_ID,
+                PaymentAccountId = transaction.PAYMENT_ACCOUNT_ID,
                 TransactionDateTime = transaction.TRANSACTION_DATE,
                 TransactionAmount = transaction.TRANSACTION_AMOUNT,
                 CheckNumber = transaction.CHECK_NUMBER ?? 0,
@@ -366,21 +368,28 @@ namespace ChurchResourceManagerWeb.Models
             }).ToList();
         }
 
+        public IEnumerable<PaymentAccountsViewModel> CreatePaymentAccountsViewModelList(IQueryable<PAYMENT_ACCOUNTS> paymentAccounts)
+        {
+            return paymentAccounts.Select(x => new PaymentAccountsViewModel { PaymentAccountId = x.PAYMENT_ACCOUNT_ID, PaymentAccount = x.PAYMENT_ACCOUNT });
+        }
+
         public IEnumerable<TransactionsViewModel> CreateTransactionsViewModelList(IQueryable<TRANSACTIONS> transactions, IQueryable<TRANSACTION_TYPES> transactionTypes)
         {
 
-            return transactions.Include(tt => tt.TRANSACTION_TYPES.DESCRIPTION).Select(t => new TransactionsViewModel
-            {
-                TransactionId = t.TRANSACTION_ID,
-                TransactionType = t.TRANSACTION_TYPES.DESCRIPTION,
-                TransactionTypeId = t.TRANSACTION_TYPE_ID,
-                TransactionDateTime = t.TRANSACTION_DATE,
-                TransactionAmount = t.TRANSACTION_AMOUNT,
-                CheckNumber = (short)t.CHECK_NUMBER,
-                BankPostedDateTime = t.BANK_POSTED_DATE,
-                IsDebit = t.IS_DEBIT,
-                Comments = t.COMMENTS
-            }).ToList();
+            return transactions.Include(tt => tt.TRANSACTION_TYPES.DESCRIPTION).Include(pa => pa.PAYMENT_ACCOUNTS.PAYMENT_ACCOUNT)
+                .Select(t => new TransactionsViewModel
+                {
+                    TransactionId = t.TRANSACTION_ID,
+                    TransactionType = t.TRANSACTION_TYPES.DESCRIPTION,
+                    PaymentAccount = t.PAYMENT_ACCOUNTS.PAYMENT_ACCOUNT,
+                    TransactionTypeId = t.TRANSACTION_TYPE_ID,
+                    TransactionDateTime = t.TRANSACTION_DATE,
+                    TransactionAmount = t.TRANSACTION_AMOUNT,
+                    CheckNumber = (short)t.CHECK_NUMBER,
+                    BankPostedDateTime = t.BANK_POSTED_DATE,
+                    IsDebit = t.IS_DEBIT,
+                    Comments = t.COMMENTS
+                }).ToList();
         }
 
         public IEnumerable<TransactionTypesViewModel> CreateTransactionTypesViewModelList(IQueryable<TRANSACTION_TYPES> transactionType)
@@ -404,5 +413,7 @@ namespace ChurchResourceManagerWeb.Models
                 CONTACT_INFO1 = contactInfoList.ContactInfo
             };
         }
+
+
     }
 }

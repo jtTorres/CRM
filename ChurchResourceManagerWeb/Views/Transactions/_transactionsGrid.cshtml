@@ -6,6 +6,7 @@
                     <thead>
                         <tr>
                             <th>Transaction Type</th>
+                            <th>Payment Account</th>
                             <th>Transaction Date</th>
                             <th>Amount</th>
                             <th>Check Number</th>
@@ -17,6 +18,9 @@
                         <tr>
                             <td>
                                 <input type="text" id="txtTransactionType" name="txtTransactionType" class="form-control" ng-model="search.TransactionType" />
+                            </td>
+                            <td>
+                                <input type="text" id="txtPaymentAccount" name="txtPaymentAccount" class="form-control" ng-model="search.PaymentAccount" />
                             </td>
                             <td>
                                 <input type="text" id="txtTransactionDate" name="txtTransactionDate" class="form-control" ng-model="search.TransactionDate" />
@@ -41,6 +45,7 @@
                     <tbody>
                         <tr class="text-left" ng-repeat="transaction in tgc.transactions | filter: search">
                             <td>{{transaction.TransactionType}}</td>
+                            <td>{{transaction.PaymentAccount}}</td>
                             <td>{{transaction.TransactionDate}}</td>
                             <td>{{transaction.TransactionAmount | currency}}</td>
                             <td>{{transaction.CheckNumber}}</td>

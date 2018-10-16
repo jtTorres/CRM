@@ -443,6 +443,11 @@ namespace ChurchResourceManagerWeb.Models
             return ModelFactory.CreateTransactionTypesViewModelList(db.TRANSACTION_TYPES);
         }
 
+        public IEnumerable<PaymentAccountsViewModel> GetPaymentAccounts()
+        {
+            return ModelFactory.CreatePaymentAccountsViewModelList(db.PAYMENT_ACCOUNTS);
+        }
+
         public MEMBERSHIP GetMembershipById(int memberId)
         {
             return db.MEMBERSHIP.Find(memberId);

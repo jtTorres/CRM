@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
 
@@ -86,6 +83,20 @@ namespace ChurchResourceManagerWeb.Controllers
             try
             {
                 return Json(Repo.GetTransactionTypes(), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public JsonResult GetPaymentAccounts()
+        {
+            try
+            {
+                return Json(Repo.GetPaymentAccounts(), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

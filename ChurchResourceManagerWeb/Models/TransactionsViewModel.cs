@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace ChurchResourceManagerWeb.Models
 {
@@ -9,7 +6,9 @@ namespace ChurchResourceManagerWeb.Models
     {
         public int TransactionId { get; set; }
         public byte TransactionTypeId { get; set; }
+        public byte PaymentAccountId { get; set; }
         public string TransactionType { get; set; }
+        public string PaymentAccount { get; set; }
         public DateTime TransactionDateTime { get; set; }
         public string TransactionDate
         {

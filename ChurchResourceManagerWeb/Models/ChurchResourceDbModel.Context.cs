@@ -42,5 +42,6 @@ namespace ChurchResourceManagerWeb.Models
         public virtual DbSet<UTILITY_BILLS> UTILITY_BILLS { get; set; }
         public virtual DbSet<RELATIONSHIP_TYPES> RELATIONSHIP_TYPES { get; set; }
         public virtual DbSet<MEMBERSHIP_STATUS> MEMBERSHIP_STATUS { get; set; }
+        public virtual DbSet<PAYMENT_ACCOUNTS> PAYMENT_ACCOUNTS { get; set; }
     }
 }
