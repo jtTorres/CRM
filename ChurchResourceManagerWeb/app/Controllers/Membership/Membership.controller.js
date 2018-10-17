@@ -29,7 +29,7 @@
         vm.emptyMemberInfo = {};
         vm.enableDisableContactInfo = enableDisableContactInfo;
         vm.enableDisableTab = enableDisableTab;
-        vm.Family = {}
+        vm.Family = {};
         vm.getMemberSearch = getMemberSearch;
         vm.findActiveIndex = findActiveIndex;
         vm.getEmptyMemberInfo = getEmptyMemberInfo;
@@ -461,6 +461,9 @@
             membershipDataService.getMemberSearch()
                 .then(function (response) {
                     vm.members = response.data;
+                })
+                .catch(function (reason) {
+                    vm.processFlow = operationFlowService.operationCompletion(reason.message, false);
                 });
         }
         // #endregion
