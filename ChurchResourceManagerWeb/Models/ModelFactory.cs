@@ -161,7 +161,7 @@ namespace ChurchResourceManagerWeb.Models
                 PaymentAccountId = transaction.PAYMENT_ACCOUNT_ID,
                 TransactionDateTime = transaction.TRANSACTION_DATE,
                 TransactionAmount = transaction.TRANSACTION_AMOUNT,
-                CheckNumber = transaction.CHECK_NUMBER ?? 0,
+                CheckNumber = transaction.CHECK_NUMBER,
                 BankPostedDateTime = transaction.BANK_POSTED_DATE,
                 IsDebit = transaction.IS_DEBIT,
                 Comments = transaction.COMMENTS
@@ -361,7 +361,7 @@ namespace ChurchResourceManagerWeb.Models
                 TransactionTypeId = t.TRANSACTION_TYPE_ID,
                 TransactionDateTime = t.TRANSACTION_DATE,
                 TransactionAmount = t.TRANSACTION_AMOUNT,
-                CheckNumber = (short)t.CHECK_NUMBER,
+                CheckNumber = t.CHECK_NUMBER,
                 BankPostedDateTime = t.BANK_POSTED_DATE,
                 IsDebit = t.IS_DEBIT,
                 Comments = t.COMMENTS
@@ -385,7 +385,7 @@ namespace ChurchResourceManagerWeb.Models
                     TransactionTypeId = t.TRANSACTION_TYPE_ID,
                     TransactionDateTime = t.TRANSACTION_DATE,
                     TransactionAmount = t.TRANSACTION_AMOUNT,
-                    CheckNumber = (short)t.CHECK_NUMBER,
+                    CheckNumber = t.CHECK_NUMBER,
                     BankPostedDateTime = t.BANK_POSTED_DATE,
                     IsDebit = t.IS_DEBIT,
                     Comments = t.COMMENTS

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace ChurchResourceManagerWeb.Models
 {
@@ -20,7 +21,7 @@ namespace ChurchResourceManagerWeb.Models
         public string Dob
         {
             get => DobDateTime.ToString("MM/dd/yyyy");
-            set => DobDateTime = Convert.ToDateTime(value);
+            set => DobDateTime = Convert.ToDateTime(string.IsNullOrEmpty(value) ? new DateTime().ToString(CultureInfo.InvariantCulture) : value);
         }
 
         public string Gender { get; set; }

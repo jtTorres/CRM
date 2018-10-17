@@ -148,7 +148,7 @@
           <Key>
             <PropertyRef Name="TRANSACTION_TYPE_ID" />
           </Key>
-          <Property Name="TRANSACTION_TYPE_ID" Type="tinyint" Nullable="false" />
+          <Property Name="TRANSACTION_TYPE_ID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DESCRIPTION" Type="varchar" MaxLength="80" Nullable="false" />
         </EntityType>
         <EntityType Name="TRANSACTIONS">
@@ -160,7 +160,7 @@
           <Property Name="PAYMENT_ACCOUNT_ID" Type="tinyint" Nullable="false" />
           <Property Name="TRANSACTION_DATE" Type="date" Nullable="false" />
           <Property Name="TRANSACTION_AMOUNT" Type="money" Nullable="false" />
-          <Property Name="CHECK_NUMBER" Type="smallint" />
+          <Property Name="CHECK_NUMBER" Type="varchar" MaxLength="20" />
           <Property Name="BANK_POSTED_DATE" Type="date" />
           <Property Name="IS_DEBIT" Type="bit" Nullable="false" />
           <Property Name="COMMENTS" Type="varchar" MaxLength="255" Nullable="false" />
@@ -650,7 +650,7 @@
           <Property Name="TRANSACTION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TRANSACTION_TYPE_ID" Type="Byte" Nullable="false" />
           <Property Name="TRANSACTION_DATE" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="CHECK_NUMBER" Type="Int16" />
+          <Property Name="CHECK_NUMBER" Type="String" />
           <Property Name="BANK_POSTED_DATE" Type="DateTime" Precision="0" />
           <Property Name="IS_DEBIT" Type="Boolean" Nullable="false" />
           <Property Name="COMMENTS" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />

@@ -17,7 +17,7 @@ namespace ChurchResourceManagerWeb.Models
         }
         public decimal TransactionAmount { get; set; }
         public string TransactionAmountString => TransactionAmount.ToString("C");
-        public short CheckNumber { get; set; }
+        public string CheckNumber { get; set; }
         public DateTime? BankPostedDateTime { get; set; }
         public string BankPostedDate
         {

@@ -17,7 +17,7 @@ namespace ChurchResourceManagerWeb.Models
         public int TRANSACTION_ID { get; set; }
         public byte TRANSACTION_TYPE_ID { get; set; }
         public System.DateTime TRANSACTION_DATE { get; set; }
-        public Nullable<short> CHECK_NUMBER { get; set; }
+        public string CHECK_NUMBER { get; set; }
         public Nullable<System.DateTime> BANK_POSTED_DATE { get; set; }
         public bool IS_DEBIT { get; set; }
         public string COMMENTS { get; set; }
