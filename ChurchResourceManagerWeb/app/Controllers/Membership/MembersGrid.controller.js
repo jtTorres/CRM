@@ -16,10 +16,6 @@
         activate();
 
         function activate() {
-            //membershipDataService.getMemberSearch()
-            //    .then(function (response) {
-            //        vm.members = response.data;
-            //    });
             vm.getMemberSearchData();
         }
 

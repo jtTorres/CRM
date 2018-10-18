@@ -323,7 +323,7 @@ namespace ChurchResourceManagerWeb.Models
 
         public IEnumerable<MemberSearchViewModel> GetMemberSearch()
         {
-            return ModelFactory.CreateMemberSearchViewModelList(db.MEMBERSHIP, db.FAMILIES, db.MEMBERSHIP_STATUS);
+            return ModelFactory.CreateMemberSearchViewModelList(db.MEMBERSHIP, db.FAMILIES, db.MEMBERSHIP_STATUS).Take(25);
         }
 
         public IEnumerable<MemberSearchViewModel> GetMemberSearchByFamilyId(int familyId)
@@ -355,7 +355,7 @@ namespace ChurchResourceManagerWeb.Models
         {
 
             var tithe = db.TITHES.Where(t => (t.TITHE_DATE == date && memberId == 0) || (t.MEMBER_ID == memberId && memberId > 0) || (memberId == 0 && date == null));
-            return ModelFactory.CreateTithesViewModelList(tithe);
+            return ModelFactory.CreateTithesViewModelList(tithe).Take(25);
         }
 
         public IEnumerable<TithesViewModel> GetTithingActivityByDateRange(DateTime startDate, DateTime endDate)
@@ -372,7 +372,7 @@ namespace ChurchResourceManagerWeb.Models
         public IEnumerable<OfferingsViewModel> GetOfferings(DateTime? date)
         {
             var offering = db.OFFERINGS.Where(o => date != null ? o.OFFERING_DATE == date : date == null);
-            return ModelFactory.CreateOfferingsViewModelList(offering);
+            return ModelFactory.CreateOfferingsViewModelList(offering).Take(25);
         }
 
         public IEnumerable<OfferingsViewModel> GetOfferingsByDateRange(DateTime startDate, DateTime endDate)
@@ -492,7 +492,7 @@ namespace ChurchResourceManagerWeb.Models
 
         public IEnumerable<TransactionsViewModel> GetTransactions()
         {
-            return ModelFactory.CreateTransactionsViewModelList(db.TRANSACTIONS, db.TRANSACTION_TYPES);
+            return ModelFactory.CreateTransactionsViewModelList(db.TRANSACTIONS, db.TRANSACTION_TYPES).Take(25);
         }
 
         public TransactionsViewModel GetTransactionViewModelById(int transactionId)
