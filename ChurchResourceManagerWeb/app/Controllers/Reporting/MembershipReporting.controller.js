@@ -21,6 +21,9 @@
         }
 
         function getMembership(searchType, startDate, endDate, familyId, memberId) {
+            if (startDate === undefined)
+                startDate = new Date(1900, 1, 1);
+
             switch (searchType) {
                 case "Family":
                     membershipDataService.getMembershipByFamilyId(familyId)
@@ -33,6 +36,7 @@
                 case "MembershipDate":
                     membershipDataService.getMembershipByMembershipDate(startDate, endDate)
                         .then(searchComplete);
+                    break;
                 case "ExitDate":
                     membershipDataService.getMembershipByExitDate(startDate, endDate)
                         .then(searchComplete);
