@@ -5,9 +5,9 @@
     angular.module("app")
         .controller("membershipReportingController", membershipReportingController);
 
-    membershipReportingController.$inject = ["membershipDataService"];
+    membershipReportingController.$inject = ["membershipDataService", "operationFlowService"];
 
-    function membershipReportingController(membershipDataService) {
+    function membershipReportingController(membershipDataService, operationFlowService) {
 
         var vm = this;
         vm.getMembership = getMembership;
@@ -21,6 +21,7 @@
         }
 
         function getMembership(searchType, startDate, endDate, familyId, memberId) {
+            reset();
             if (startDate === undefined)
                 startDate = new Date(1900, 1, 1);
 
@@ -46,6 +47,8 @@
                         .then(searchComplete);
                     break;
                 default:
+                    operationFlowService.operationCompletion("Please select a search type!", false);
+                    vm.invalidReportType = true;
                     break;
             }
         }
@@ -85,6 +88,7 @@
             vm.activeCount = 0;
             vm.terminatedCount = 0;
             vm.totalCount = 0;
+            vm.invalidReportType = false;
         }
 
     }

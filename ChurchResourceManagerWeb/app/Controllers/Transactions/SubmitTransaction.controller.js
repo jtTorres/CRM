@@ -10,6 +10,8 @@
         var vm = this;
 
         vm.clearForm = clearForm;
+        vm.dateFormat = "MM/dd/yyyy";
+        vm.openTransactionDate = openTransactionDate;
         vm.submit = submit;
 
         /////////////////////////
@@ -29,6 +31,10 @@
 
         function clearForm() {
             vm.onClearForm({ form: vm.transactionsForm });
+        }
+
+        function openTransactionDate() {
+            vm.isOpenTransactionDate = true;
         }
 
         $scope.$on("reloadSubmitTransactions", clearForm);

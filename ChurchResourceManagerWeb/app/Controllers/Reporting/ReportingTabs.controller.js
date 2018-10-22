@@ -21,6 +21,7 @@
         activate();
         function activate() {
             getAllMembership();
+            console.log(vm.toDate);
         }
 
         function openFromDate() {

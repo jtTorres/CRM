@@ -14,8 +14,10 @@
         vm.addTithe = addTithe;
         vm.allMembership = {};
         vm.clearForm = clearForm;
+        vm.dateFormat = "MM/dd/yyyy";
         vm.MemberTithes = {};
         vm.onMemberSelected = onMemberSelected;
+        vm.openTitheDate = openTitheDate;
         vm.Tithe = {};
         /////////////////////////
 
@@ -33,8 +35,6 @@
 
         function addTithe(titheRecord, form) {
             if (!operationFlowService.isFormValid(form)) return;
-
-            //form.$setPristine();
 
             vm.onSave({ tithe: titheRecord })
                 .then(onSaveSuccess);
@@ -61,8 +61,17 @@
         }
 
         function clearForm() {
-            vm.Tithe = utilityService.clearObject(vm.Tithe);
+            //vm.Tithe = utilityService.clearObject(vm.Tithe);
+            vm.Tithe.selectedMember = undefined;
+            vm.Tithe.IsCheck = false;
+            vm.Tithe.CheckNumber = undefined;
+            vm.Tithe.TitheAmount = undefined;
+            vm.Tithe.Comments = undefined;
             operationFlowService.resetForm(vm.addTithesForm);
+        }
+
+        function openTitheDate() {
+            vm.isOpenTitheDate = true;
         }
 
         $scope.$on("reloadAddTithes", clearForm);

@@ -12,7 +12,8 @@
                     reportType: "@",
                     goButton: "&",
                     noResultsFound: "<",
-                    resetTabs: "&"
+                    resetTabs: "&",
+                    invalidReportType: "<"
                 }
             });
 

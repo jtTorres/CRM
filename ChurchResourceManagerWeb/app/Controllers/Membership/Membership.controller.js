@@ -51,7 +51,7 @@
 
         function activate() {
             console.log("Activated Membership Controller");
-
+            console.log(vm.members);
             getEmptyMemberInfo();
             getAllEnums();
             setAccordionDefaults();
@@ -425,7 +425,15 @@
                     });
 
                     modalInstance.result
-                        .then(function (stuff) {
+                        .then(function (editedMembers) {
+                            // TODO: When editing is done, find the one that is being edited in vm.members and replace it with the one coming from the result
+
+                            angular.forEach(editedMembers, function (member, key, obj) {
+                                utilityService.updateArray(vm.members, member, "MemberId");
+                            });
+
+
+
                             getMemberSearch();
                         })
                         .catch(function (reason) { //this will run if the user clicks out of the modal without click x button

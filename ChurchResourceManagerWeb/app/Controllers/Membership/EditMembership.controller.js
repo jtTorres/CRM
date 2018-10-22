@@ -59,7 +59,7 @@
         }
 
         function dismiss() {
-            vm.close({ $value: "stuff" });
+            vm.close({ $value: vm.memberInfoArray });
             console.log("YO!");
         }
 

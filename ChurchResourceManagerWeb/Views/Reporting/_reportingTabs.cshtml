@@ -11,6 +11,10 @@
                         <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'ExitDate'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'ExitDate'" ng-if="rtc.reportType === 'Membership'" ng-click="rtc.resetTabs()">Exit Date</label>
                         <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'DateOfBirth'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'DateOfBirth'" ng-if="rtc.reportType === 'Membership'" ng-click="rtc.resetTabs()">Date of Birth</label>
                     </div>
+                    <span class="text-danger" ng-show="rtc.invalidReportType">
+                        <i class="fas fa-arrow-left"></i>
+                        <i class="fas fa-arrow-left"></i>
+                    </span>
                 </div>
             </div>
             <div class="row">

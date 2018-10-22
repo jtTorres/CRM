@@ -13,6 +13,8 @@
 
         vm.addOffering = addOffering;
         vm.clearForm = clearForm;
+        vm.dateFormat = "MM/dd/yyyy";
+        vm.openOfferingDate = openOfferingDate;
         //////////////////////
 
         activate();
@@ -38,8 +40,14 @@
         }
 
         function clearForm() {
-            vm.Offering = utilityService.clearObject(vm.Offering);
+            //vm.Offering = utilityService.clearObject(vm.Offering);
+            vm.Offering.OfferingAmount = undefined;
+            vm.Offering.Comments = undefined;
             operationFlowService.resetForm(vm.addOfferingsForm);
+        }
+
+        function openOfferingDate() {
+            vm.isOpenOfferingDate = true;
         }
 
         $scope.$on("reloadAddOfferings", clearForm);

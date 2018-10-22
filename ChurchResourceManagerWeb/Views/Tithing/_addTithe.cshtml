@@ -23,16 +23,13 @@
     <!--Date-->
     <div class="col-xs-10">
         <div class="form-group">
-            <input id="dateTxtBx"
-                   name="dateTxtBx"
-                   class="form-control"
-                   type="text"
-                   placeholder="Date (mm/dd/yyyy)"
-                   ng-model="atc.Tithe.TitheDate"
-                   ui-mask="99/99/9999"
-                   ui-mask-placeholder
-                   model-view-value="true"
-                   required />
+            <p class="input-group">
+                <input id="dateTxtBx" name="dateTxtBx" type="text" class="form-control" ng-model="atc.Tithe.TitheDate" uib-datepicker-popup="{{atc.dateFormat}}" is-open="atc.isOpenTitheDate" ui-mask="99/99/9999" ui-mask-placeholder
+                       model-view-value="true" placeholder="Date (mm/dd/yyyy)" required />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="atc.openTitheDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
             <div class="help-block-error" ng-messages="atc.addTithesForm.dateTxtBx.$error" ng-if="atc.addTithesForm.dateTxtBx.$touched">
                 <div ng-messages-include="message-template"></div>
             </div>
