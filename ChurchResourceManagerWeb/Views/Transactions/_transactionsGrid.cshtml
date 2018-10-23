@@ -2,20 +2,24 @@
     <div uib-accordion>
         <div uib-accordion-group class="panel panel-default" heading="Transactions" is-open="true">
             <div class="table-responsive">
-                <table class="table table-striped table-hover" style="width: auto;">
+                <table class="table table-striped table-hover">
                     <thead>
                         <tr>
+                            <th width="6%">Transaction Id</th>
                             <th>Transaction Type</th>
                             <th>Payment Account</th>
                             <th>Transaction Date</th>
                             <th>Amount</th>
-                            <th>Check Number</th>
+                            <th width="8%">Check Number</th>
                             <th>Bank Posted Date</th>
-                            <th>Is Debit</th>
+                            <th width="5%">Is Debit</th>
                             <th>Comments</th>
                             <th ng-show="tgc.showEditDelete === 'true'"></th>
                         </tr>
                         <tr>
+                            <td>
+                                <input type="text" id="txtTransactionId" name="txtTransactionId" class="form-control" ng-model="search.TransactionId" />
+                            </td>
                             <td>
                                 <input type="text" id="txtTransactionType" name="txtTransactionType" class="form-control" ng-model="search.TransactionType" />
                             </td>
@@ -44,6 +48,7 @@
                     </thead>
                     <tbody>
                         <tr class="text-left" ng-repeat="transaction in tgc.transactions | filter: search">
+                            <td>{{transaction.TransactionId}}</td>
                             <td>{{transaction.TransactionType}}</td>
                             <td>{{transaction.PaymentAccount}}</td>
                             <td>{{transaction.TransactionDate}}</td>

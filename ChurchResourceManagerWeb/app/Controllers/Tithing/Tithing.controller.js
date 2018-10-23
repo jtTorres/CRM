@@ -30,9 +30,6 @@
         function activate() {
             return getAllMembership()
                 .then(function () {
-                    //setActivityByMemberPanelDefaults();
-                    //setTithingActivityPanelDefaults();
-                    //getTithesRunningTotal();
                     setDefaults();
                     console.log("Activated Tithing Controller");
                 });
@@ -77,7 +74,6 @@
             modalInstance.result
                 .then(function (titheToEdit) {
                     getMemberTithes(titheToEdit.MemberId);
-                    //getTithingActivity(vm.tithingActivityType);
                 });
         }
 

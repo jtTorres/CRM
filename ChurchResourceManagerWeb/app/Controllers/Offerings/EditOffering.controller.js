@@ -15,10 +15,11 @@
         vm.updateOffering = updateOffering;
         ///////////////////////////////////
 
-        vm.$onInit = function () {
+        vm.$onInit = function() {
             vm.Offering = vm.resolve.offeringToEdit;
+            vm.Offering.OfferingDate = new Date(vm.Offering.OfferingDate);
             vm.updateTotals = vm.resolve.addToTotal.updateTotals;
-        }
+        };
 
         function updateOffering(offering) {
             return vm.resolve.save.saveOffering(offering)

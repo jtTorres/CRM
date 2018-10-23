@@ -11,7 +11,7 @@
 
         vm.clearForm = clearForm;
         vm.dateFormat = "MM/dd/yyyy";
-        vm.openTransactionDate = openTransactionDate;
+        vm.openCalendar = openCalendar;
         vm.submit = submit;
 
         /////////////////////////
@@ -33,8 +33,16 @@
             vm.onClearForm({ form: vm.transactionsForm });
         }
 
-        function openTransactionDate() {
-            vm.isOpenTransactionDate = true;
+        function openCalendar(type) {
+            switch (type) {
+                case "TransactionDate":
+                    vm.isOpenTransactionDate = true;
+                    break;
+                case "BankPostedDate":
+                    vm.isOpenBankPostedDate = true;
+                    break;
+            }
+
         }
 
         $scope.$on("reloadSubmitTransactions", clearForm);

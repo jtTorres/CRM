@@ -14,7 +14,8 @@
                     offeringActivity: "<",
                     panelSettings: "<",
                     offeringActivityType: "@",
-                    includeDateColumn: "@"
+                    includeDateColumn: "@",
+                    showEditDelete: "@"
                 }
             });
 

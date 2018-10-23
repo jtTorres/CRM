@@ -7,7 +7,8 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th>Member ID</th>
+                            <th width="6%">Tithe Id</th>
+                            <th>Member Id</th>
                             <th>Name</th>
                             <th ng-show="tac.includeDateColumn === 'true'">Date</th>
                             <th>Amount</th>
@@ -16,6 +17,9 @@
                             <th ng-show="tac.showEditDelete === 'true'" width="6%"></th> <!--empty space for edit/delete-->
                         </tr>
                         <tr class="list-group" id="searchRow" name="searchRow">
+                            <td>
+                                <input type="text" id="txtTitheId" name="txtTitheId" class="form-control" ng-model="search.TitheId" />
+                            </td>
                             <td>
                                 <input type="text" id="txtMemberId" name="txtMemberId" class="form-control" ng-model="search.MemberId" />
                             </td>
@@ -38,6 +42,7 @@
                     </thead>
                     <tbody>
                         <tr class="text-left" ng-repeat="tithe in tac.tithingActivity | filter: search">
+                            <td>{{tithe.TitheId}}</td>
                             <td>{{tithe.MemberId}}</td>
                             <td>{{tithe.MemberName}}</td>
                             <td ng-show="tac.includeDateColumn === 'true'">{{tithe.TitheDate}}</td>

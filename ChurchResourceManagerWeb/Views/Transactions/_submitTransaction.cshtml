@@ -26,7 +26,7 @@
                     <input id="dateTxtBx" name="dateTxtBx" type="text" class="form-control" ng-model="stc.transaction.TransactionDate" uib-datepicker-popup="{{stc.dateFormat}}" is-open="stc.isOpenTransactionDate" ui-mask="99/99/9999" ui-mask-placeholder
                            model-view-value="true" placeholder="Date (mm/dd/yyyy)" required />
                     <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" ng-click="stc.openTransactionDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        <button type="button" class="btn btn-default" ng-click="stc.openCalendar('TransactionDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
                 </p>
                 <div class="help-block-error" ng-messages="stc.transactionsForm.dateTxtBx.$error" ng-if="stc.transactionsForm.dateTxtBx.$touched || stc.transactionsForm.$submitted">
@@ -59,15 +59,22 @@
             <!--Bank Posted Date-->
             <div class="form-group">
                 <label for="bankPostedDateTxtBx">Bank Posted Date</label>
-                <input id="bankPostedDateTxtBx"
-                       name="bankPostedDateTxtBx"
-                       class="form-control"
-                       type="text"
-                       placeholder="Date (mm/dd/yyyy)"
-                       ng-model="stc.transaction.BankPostedDate"
-                       ui-mask="99/99/9999"
-                       ui-mask-placeholder
-                       model-view-value="true" />
+                @*<input id="bankPostedDateTxtBx"
+                    name="bankPostedDateTxtBx"
+                    class="form-control"
+                    type="text"
+                    placeholder="Date (mm/dd/yyyy)"
+                    ng-model="stc.transaction.BankPostedDate"
+                    ui-mask="99/99/9999"
+                    ui-mask-placeholder
+                    model-view-value="true" />*@
+                <p class="input-group">
+                    <input id="bankPostedDateTxtBx" name="bankPostedDateTxtBx" type="text" class="form-control" ng-model="stc.transaction.BankPostedDate" uib-datepicker-popup="{{stc.dateFormat}}" is-open="stc.isOpenBankPostedDate" ui-mask="99/99/9999" ui-mask-placeholder
+                           model-view-value="true" placeholder="Date (mm/dd/yyyy)" required />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="stc.openCalendar('BankPostedDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </p>
             </div>
 
             <!--Is Debit-->

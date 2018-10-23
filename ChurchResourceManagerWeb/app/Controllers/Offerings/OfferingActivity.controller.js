@@ -15,9 +15,9 @@
         /////////////////////////////
 
 
-        vm.$onInit = function () {
+        vm.$onInit = function() {
             vm.getOfferingActivity({ offeringActivityType: vm.offeringActivityType });
-        }
+        };
 
         function editOffering(offering, index) {
             vm.openEditModal({ offering: offering, index: index });

@@ -17,6 +17,8 @@
 
         vm.$onInit = function () {
             vm.transaction = vm.resolve.transactionToEdit;
+            vm.transaction.TransactionDate = new Date(vm.transaction.TransactionDate);
+            vm.transaction.BankPostedDate = vm.transaction.BankPostedDate === null ? null : new Date(vm.transaction.BankPostedDate);
             vm.enums = vm.resolve.enums;
             setTransactionTypeDdl();
             setPaymentAccountsDdl();
