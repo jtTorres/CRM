@@ -373,7 +373,7 @@ namespace ChurchResourceManagerWeb.Models
         {
 
             var tithe = db.TITHES.Where(t => (t.TITHE_DATE == date && memberId == 0) || (t.MEMBER_ID == memberId && memberId > 0) || (memberId == 0 && date == null));
-            return ModelFactory.CreateTithesViewModelList(tithe).Take(25).OrderByDescending(t => t.TitheId);
+            return ModelFactory.CreateTithesViewModelList(tithe).OrderByDescending(t => t.TitheId).Take(25);
         }
 
         public IEnumerable<TithesViewModel> GetTithingActivityByDateRange(DateTime startDate, DateTime endDate)
@@ -390,13 +390,13 @@ namespace ChurchResourceManagerWeb.Models
         public IEnumerable<OfferingsViewModel> GetOfferings(DateTime? date)
         {
             var offering = db.OFFERINGS.Where(o => date != null ? o.OFFERING_DATE == date : date == null);
-            return ModelFactory.CreateOfferingsViewModelList(offering).Take(25).OrderByDescending(o => o.OfferingId);
+            return ModelFactory.CreateOfferingsViewModelList(offering).OrderByDescending(o => o.OfferingId).Take(25);
         }
 
         public IEnumerable<DonationsViewModel> GetDonations(DateTime? date)
         {
             var donation = db.DONATIONS.Where(d => date != null ? d.DONATION_DATE == date : date == null);
-            return ModelFactory.CreateDonationsViewModelList(donation).Take(25).OrderByDescending(d => d.DonationId);
+            return ModelFactory.CreateDonationsViewModelList(donation).OrderByDescending(d => d.DonationId).Take(25);
         }
 
         public IEnumerable<OfferingsViewModel> GetOfferingsByDateRange(DateTime startDate, DateTime endDate)
@@ -521,7 +521,7 @@ namespace ChurchResourceManagerWeb.Models
 
         public IEnumerable<TransactionsViewModel> GetTransactions()
         {
-            return ModelFactory.CreateTransactionsViewModelList(db.TRANSACTIONS, db.TRANSACTION_TYPES).Take(25).OrderByDescending(t => t.TransactionId);
+            return ModelFactory.CreateTransactionsViewModelList(db.TRANSACTIONS, db.TRANSACTION_TYPES).OrderByDescending(t => t.TransactionId).Take(25);
         }
 
         public TransactionsViewModel GetTransactionViewModelById(int transactionId)
