@@ -1,0 +1,13 @@
+﻿<page-header page-title="Donations Search"></page-header>
+
+<div ng-controller="donationController as dc">
+    <donation-activity get-donation-activity="dc.getDonationActivity(donationActivityType)"
+                       donation-activity-type="{{dc.activityType.All}}"
+                       panel-settings="dc.donationActivityPanelSettings"
+                       donation-activity="dc.donationActivity"
+                       open-edit-modal="dc.openEditDonationModal(donation, index)"
+                       open-delete-modal="dc.openDeleteDonationModal(donationId)"
+                       include-date-column="true"
+                       show-edit-delete="true">
+    </donation-activity>
+</div>

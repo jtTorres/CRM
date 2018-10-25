@@ -13,6 +13,7 @@
         vm.addMembershipLocationCheck = addMembershipLocationCheck;
         vm.addOfferingsLocationCheck = addOfferingsLocationCheck;
         vm.addTithesLocationCheck = addTithesLocationCheck;
+        vm.addDonationsLocationCheck = addDonationsLocationCheck;
         vm.checkActive = checkActive;
         vm.isActiveParentNav = isActiveParentNav;
         vm.openCloseNav = openCloseNav;
@@ -42,6 +43,10 @@
             operationFlowService.locationCheck("/Offerings/AddOfferings", "reloadAddOfferings");
         }
 
+        function addDonationsLocationCheck() {
+            operationFlowService.locationCheck("/Donations/AddDonations", "reloadAddDonations");
+        }
+
         function submitTransactionLocationCheck() {
             operationFlowService.locationCheck("/Transactions/SubmitTransactions", "reloadSubmitTransactions");
         }
@@ -67,6 +72,7 @@
                 ManageMembership: { active: false },
                 ManageTithes: { active: false },
                 ManageOfferings: { active: false },
+                ManageDonations: { active: false },
                 ManageTransactions: { active: false },
                 Reporting: { active: false }
             };

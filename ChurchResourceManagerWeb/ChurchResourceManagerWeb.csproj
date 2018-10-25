@@ -193,6 +193,7 @@
     <Compile Include="Controllers\ActivitySelector.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\DonationsController.cs" />
     <Compile Include="Controllers\EnumsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -238,6 +239,11 @@
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DatabaseContext.cs" />
+    <Compile Include="Models\DONATIONS.cs">
+      <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DonationsViewModel.cs" />
+    <Compile Include="Models\DonationTypesViewModel.cs" />
     <Compile Include="Models\DONATION_TYPES.cs">
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
     </Compile>
@@ -308,6 +314,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\Components\addDonation.component.js" />
     <Content Include="app\Components\addMembership.component.js" />
     <Content Include="app\Components\addOffering.component.js" />
     <Content Include="app\Components\addOffering.component.spec.js" />
@@ -317,8 +324,11 @@
     <Content Include="app\Components\contactInformation.component.js" />
     <Content Include="app\Components\contactInformationReadOnly.component.js" />
     <Content Include="app\Components\dashboard.component.js" />
+    <Content Include="app\Components\deleteDonationModal.component.js" />
     <Content Include="app\Components\deleteOffering.component.js" />
     <Content Include="app\Components\deleteTithe.component.js" />
+    <Content Include="app\Components\donationActivity.component.js" />
+    <Content Include="app\Components\editDonationModal.component.js" />
     <Content Include="app\Components\editMembershipModal.component.js" />
     <Content Include="app\Components\editOfferingModal.component.js" />
     <Content Include="app\Components\editTitheModal.component.js" />
@@ -343,6 +353,11 @@
     <Content Include="app\Components\transactionsGrid.component.js" />
     <Content Include="app\Components\deleteTransaction.component.js" />
     <Content Include="app\Controllers\Dashboard\Dashboard.controller.js" />
+    <Content Include="app\Controllers\Donations\AddDonation.controller.js" />
+    <Content Include="app\Controllers\Donations\DeleteDonation.controller.js" />
+    <Content Include="app\Controllers\Donations\Donation.controller.js" />
+    <Content Include="app\Controllers\Donations\DonationActivity.controller.js" />
+    <Content Include="app\Controllers\Donations\EditDonation.controller.js" />
     <Content Include="app\Controllers\Home\Home.controller.js" />
     <Content Include="app\Controllers\Home\Home.controller.spec.js" />
     <Content Include="app\Components\Shared\runningTotal.component.spec.js" />
@@ -389,6 +404,7 @@
     <Content Include="app\Core\stateLIst.service.js" />
     <Content Include="app\Directives\CustomValidators.directive.js" />
     <Content Include="app\Filters\Search.filter.js" />
+    <Content Include="app\Services\DonationsDataService.service.js" />
     <Content Include="app\Services\OfferingDataService.service.js" />
     <Content Include="app\Services\OfferingDataService.service.spec.js" />
     <Content Include="app\Services\TitheVars.service.js" />
@@ -1329,6 +1345,12 @@
     <Content Include="Views\Reporting\OfferingReport.cshtml" />
     <Content Include="Views\Reporting\TransactionsReport.cshtml" />
     <Content Include="Views\Shared\_membershipStatCards.cshtml" />
+    <Content Include="Views\Donations\AddDonations.cshtml" />
+    <Content Include="Views\Donations\_addDonation.cshtml" />
+    <Content Include="Views\Donations\DonationsSearch.cshtml" />
+    <Content Include="Views\Donations\_donationActivity.cshtml" />
+    <Content Include="Views\Donations\_editDonationModal.cshtml" />
+    <Content Include="Views\Donations\_deleteDonationModal.cshtml" />
     <None Include="Views\Test\SpecRunner.cshtml" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />

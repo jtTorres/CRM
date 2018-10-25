@@ -40,11 +40,12 @@ USING
 (
 	VALUES
 	(1, 'Tithes'),
-	(2, 'Offerings'),
+	(2, 'General Offering'),
 	(3, 'Special Offering'),
-	(4, 'Missions'),
-	(5, 'Member Needs'),
-	(6, 'Hall Rental')
+	(4, 'Hall Rental'),
+	(5, 'Pro-Templo'),
+	(6, 'Other'),
+	(7, 'Church Supplies')
 )
 AS SOURCE (DONATION_TYPE_ID, [DESCRIPTION])
 ON TARGET.DONATION_TYPE_ID = SOURCE.DONATION_TYPE_ID

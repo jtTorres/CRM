@@ -1,0 +1,71 @@
+﻿<form id="adc.addDonationForm" name="adc.addDonationForm" novalidate ng-submit="adc.addDonation(adc.donation, adc.addDonationForm)" autocomplete="off">
+    <!--Donation Type-->
+    <div class="col-xs-10">
+        <div class="form-group">
+            <select id="ddlDonationType" name="ddlDonationType" class="form-control" ng-model="adc.donation.SelectedDonationType" ng-options="t.Description for t in adc.enums.DonationTypes" required></select>
+            <div class="help-block-error" ng-messages="adc.addDonationForm.ddlDonationType.$error" ng-if="adc.addDonationForm.ddlDonationType.$touched">
+                <div ng-messages-include="message-template"></div>
+            </div>
+        </div>
+    </div>
+
+    <!--Date-->
+    <div class="col-xs-10">
+        <div class="form-group">
+            <p class="input-group">
+                <input id="dateTxtBx" name="dateTxtBx" type="text" class="form-control" ng-model="adc.donation.DonationDate" uib-datepicker-popup="{{adc.dateFormat}}" is-open="adc.isOpenDonationDate" ui-mask="99/99/9999" ui-mask-placeholder
+                       model-view-value="true" placeholder="Date (mm/dd/yyyy)" required />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="adc.openCalendar()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+            <div class="help-block-error" ng-messages="adc.addDonationForm.dateTxtBx.$error" ng-if="adc.addDonationForm.dateTxtBx.$touched || adc.addDonationForm.$submitted">
+                <div ng-messages-include="message-template"></div>
+            </div>
+        </div>
+    </div>
+
+    <!--Member Id-->
+    <div class="col-xs-10">
+        <div class="form-group">
+            <input id="memberIdTextBx"
+                   name="memberIdTextBx"
+                   class="form-control"
+                   type="text"
+                   placeholder="Name or Member Id"
+                   ng-model="adc.donation.selectedMember"
+                   uib-typeahead="member as member.MemberKey for member in adc.allMembership.data | filter: {MemberKey:$viewValue} | limitTo: 8"
+                   typeahead-on-select="adc.onMemberSelected($item, $model, $label)"
+                   required />
+            <div class="help-block-error" ng-messages="adc.addDonationForm.memberIdTextBx.$error" ng-if="adc.addDonationForm.memberIdTextBx.$touched">
+                <div ng-messages-include="message-template"></div>
+            </div>
+        </div>
+    </div>
+
+    <!--Amount-->
+    <div class="col-xs-10">
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon">$</span>
+                <input id="amountTxtBx" name="amountTxtBx" class="form-control" type="text" placeholder="Donation Amount (Ex. $0.00)" ng-model="adc.donation.DonationAmount" required />
+            </div>
+            <div class="help-block-error" ng-messages="adc.addDonationForm.amountTxtBx.$error" ng-if="adc.addDonationForm.amountTxtBx.$touched || adc.addDonationForm.$submitted">
+                <div ng-messages-include="message-template"></div>
+            </div>
+        </div>
+    </div>
+
+    <!--Comments-->
+    <div class="col-xs-10">
+        <div class="form-group">
+            <input id="commentsTxtBx" name="commentsTxtBx" class="form-control" type="text" placeholder="Notes or Comments" ng-model="adc.donation.Comments" />
+        </div>
+    </div>
+
+    <!--Submit and Clear Form Buttons-->
+    <div class="col-xs-10">
+        <button id="submitBtn" name="submitBtn" class="btn btn-default" type="submit">Save</button>
+        <button id="clearFormBtn" name="clearFormBtn" class="btn btn-default" type="button" ng-click="adc.clearForm()">Clear Form</button>
+    </div>
+</form>

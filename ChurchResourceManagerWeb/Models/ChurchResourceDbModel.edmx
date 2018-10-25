@@ -47,6 +47,17 @@
           <Property Name="DONATION_TYPE_ID" Type="tinyint" Nullable="false" />
           <Property Name="DESCRIPTION" Type="varchar" MaxLength="80" Nullable="false" />
         </EntityType>
+        <EntityType Name="DONATIONS">
+          <Key>
+            <PropertyRef Name="DONATION_ID" />
+          </Key>
+          <Property Name="DONATION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DONATION_DATE" Type="date" Nullable="false" />
+          <Property Name="DONATION_TYPE_ID" Type="tinyint" Nullable="false" />
+          <Property Name="MEMBER_ID" Type="int" />
+          <Property Name="DONATION_AMOUNT" Type="money" Nullable="false" />
+          <Property Name="COMMENTS" Type="varchar" MaxLength="255" />
+        </EntityType>
         <EntityType Name="FAMILIES">
           <Key>
             <PropertyRef Name="FAMILY_ID" />
@@ -148,7 +159,7 @@
           <Key>
             <PropertyRef Name="TRANSACTION_TYPE_ID" />
           </Key>
-          <Property Name="TRANSACTION_TYPE_ID" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TRANSACTION_TYPE_ID" Type="tinyint" Nullable="false" />
           <Property Name="DESCRIPTION" Type="varchar" MaxLength="80" Nullable="false" />
         </EntityType>
         <EntityType Name="TRANSACTIONS">
@@ -216,6 +227,30 @@
               <PropertyRef Name="MEMBER_ID" />
             </Principal>
             <Dependent Role="CONTACT_INFO">
+              <PropertyRef Name="MEMBER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DONATIONS_to_DONATION_TYPES_DONATION_TYPE_ID">
+          <End Role="DONATION_TYPES" Type="Self.DONATION_TYPES" Multiplicity="1" />
+          <End Role="DONATIONS" Type="Self.DONATIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONATION_TYPES">
+              <PropertyRef Name="DONATION_TYPE_ID" />
+            </Principal>
+            <Dependent Role="DONATIONS">
+              <PropertyRef Name="DONATION_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DONATIONS_to_MEMBERSHIP_MEMBER_ID">
+          <End Role="MEMBERSHIP" Type="Self.MEMBERSHIP" Multiplicity="0..1" />
+          <End Role="DONATIONS" Type="Self.DONATIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEMBERSHIP">
+              <PropertyRef Name="MEMBER_ID" />
+            </Principal>
+            <Dependent Role="DONATIONS">
               <PropertyRef Name="MEMBER_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -346,6 +381,7 @@
           <EntitySet Name="CONTACT_INFO" EntityType="Self.CONTACT_INFO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CONTACT_METHODS" EntityType="Self.CONTACT_METHODS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DONATION_TYPES" EntityType="Self.DONATION_TYPES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DONATIONS" EntityType="Self.DONATIONS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FAMILIES" EntityType="Self.FAMILIES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LOCATIONS" EntityType="Self.LOCATIONS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MARITAL_STATUS" EntityType="Self.MARITAL_STATUS" Schema="dbo" store:Type="Tables" />
@@ -374,6 +410,14 @@
           <AssociationSet Name="fk_CONTACT_INFO_to_MEMBERSHIP_MEMBER_ID" Association="Self.fk_CONTACT_INFO_to_MEMBERSHIP_MEMBER_ID">
             <End Role="MEMBERSHIP" EntitySet="MEMBERSHIP" />
             <End Role="CONTACT_INFO" EntitySet="CONTACT_INFO" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DONATIONS_to_DONATION_TYPES_DONATION_TYPE_ID" Association="Self.fk_DONATIONS_to_DONATION_TYPES_DONATION_TYPE_ID">
+            <End Role="DONATION_TYPES" EntitySet="DONATION_TYPES" />
+            <End Role="DONATIONS" EntitySet="DONATIONS" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DONATIONS_to_MEMBERSHIP_MEMBER_ID" Association="Self.fk_DONATIONS_to_MEMBERSHIP_MEMBER_ID">
+            <End Role="MEMBERSHIP" EntitySet="MEMBERSHIP" />
+            <End Role="DONATIONS" EntitySet="DONATIONS" />
           </AssociationSet>
           <AssociationSet Name="fk_MEMBERSHIP_to_FAMILIES_FAMILY_ID" Association="Self.fk_MEMBERSHIP_to_FAMILIES_FAMILY_ID">
             <End Role="FAMILIES" EntitySet="FAMILIES" />
@@ -495,6 +539,15 @@
             <End Role="PAYMENT_ACCOUNTS" EntitySet="PAYMENT_ACCOUNTS" />
             <End Role="TRANSACTIONS" EntitySet="TRANSACTIONS" />
           </AssociationSet>
+          <EntitySet Name="DONATIONS" EntityType="ChurchResourceDbModel.DONATIONS" />
+          <AssociationSet Name="fk_DONATIONS_to_DONATION_TYPES_DONATION_TYPE_ID" Association="ChurchResourceDbModel.fk_DONATIONS_to_DONATION_TYPES_DONATION_TYPE_ID">
+            <End Role="DONATION_TYPES" EntitySet="DONATION_TYPES" />
+            <End Role="DONATIONS" EntitySet="DONATIONS" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DONATIONS_to_MEMBERSHIP_MEMBER_ID" Association="ChurchResourceDbModel.fk_DONATIONS_to_MEMBERSHIP_MEMBER_ID">
+            <End Role="MEMBERSHIP" EntitySet="MEMBERSHIP" />
+            <End Role="DONATIONS" EntitySet="DONATIONS" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ACTIVITIES">
           <Key>
@@ -544,6 +597,7 @@
           <Property Name="DONATION_TYPE_ID" Type="Byte" Nullable="false" />
           <Property Name="DESCRIPTION" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TITHES" Relationship="ChurchResourceDbModel.fk_TITHES_to_DONATION_TYPES_DONATION_TYPE_ID" FromRole="DONATION_TYPES" ToRole="TITHES" />
+          <NavigationProperty Name="DONATIONS" Relationship="ChurchResourceDbModel.fk_DONATIONS_to_DONATION_TYPES_DONATION_TYPE_ID" FromRole="DONATION_TYPES" ToRole="DONATIONS" />
         </EntityType>
         <EntityType Name="FAMILIES">
           <Key>
@@ -609,6 +663,7 @@
           <Property Name="MEMBERSHIP_STATUS_ID" Type="Byte" />
           <NavigationProperty Name="MEMBERSHIP_STATUS" Relationship="ChurchResourceDbModel.fk_MEMBERSHIP_to_MEMBERSHIP_STATUS_MEMBERSHIP_STATUS_ID" FromRole="MEMBERSHIP" ToRole="MEMBERSHIP_STATUS" />
           <Property Name="EFFECTIVE_DATE" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="DONATIONS" Relationship="ChurchResourceDbModel.fk_DONATIONS_to_MEMBERSHIP_MEMBER_ID" FromRole="MEMBERSHIP" ToRole="DONATIONS" />
         </EntityType>
         <EntityType Name="OFFERINGS">
           <Key>
@@ -650,7 +705,7 @@
           <Property Name="TRANSACTION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TRANSACTION_TYPE_ID" Type="Byte" Nullable="false" />
           <Property Name="TRANSACTION_DATE" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="CHECK_NUMBER" Type="String" />
+          <Property Name="CHECK_NUMBER" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="BANK_POSTED_DATE" Type="DateTime" Precision="0" />
           <Property Name="IS_DEBIT" Type="Boolean" Nullable="false" />
           <Property Name="COMMENTS" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
@@ -859,6 +914,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="DONATIONS">
+          <Key>
+            <PropertyRef Name="DONATION_ID" />
+          </Key>
+          <Property Name="DONATION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DONATION_DATE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DONATION_TYPE_ID" Type="Byte" Nullable="false" />
+          <Property Name="MEMBER_ID" Type="Int32" />
+          <Property Name="DONATION_AMOUNT" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="COMMENTS" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DONATION_TYPES" Relationship="ChurchResourceDbModel.fk_DONATIONS_to_DONATION_TYPES_DONATION_TYPE_ID" FromRole="DONATIONS" ToRole="DONATION_TYPES" />
+          <NavigationProperty Name="MEMBERSHIP" Relationship="ChurchResourceDbModel.fk_DONATIONS_to_MEMBERSHIP_MEMBER_ID" FromRole="DONATIONS" ToRole="MEMBERSHIP" />
+        </EntityType>
+        <Association Name="fk_DONATIONS_to_DONATION_TYPES_DONATION_TYPE_ID">
+          <End Type="ChurchResourceDbModel.DONATION_TYPES" Role="DONATION_TYPES" Multiplicity="1" />
+          <End Type="ChurchResourceDbModel.DONATIONS" Role="DONATIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONATION_TYPES">
+              <PropertyRef Name="DONATION_TYPE_ID" />
+            </Principal>
+            <Dependent Role="DONATIONS">
+              <PropertyRef Name="DONATION_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DONATIONS_to_MEMBERSHIP_MEMBER_ID">
+          <End Type="ChurchResourceDbModel.MEMBERSHIP" Role="MEMBERSHIP" Multiplicity="0..1" />
+          <End Type="ChurchResourceDbModel.DONATIONS" Role="DONATIONS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEMBERSHIP">
+              <PropertyRef Name="MEMBER_ID" />
+            </Principal>
+            <Dependent Role="DONATIONS">
+              <PropertyRef Name="MEMBER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1046,6 +1138,18 @@
               <MappingFragment StoreEntitySet="PAYMENT_ACCOUNTS">
                 <ScalarProperty Name="PAYMENT_ACCOUNT" ColumnName="PAYMENT_ACCOUNT" />
                 <ScalarProperty Name="PAYMENT_ACCOUNT_ID" ColumnName="PAYMENT_ACCOUNT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DONATIONS">
+            <EntityTypeMapping TypeName="ChurchResourceDbModel.DONATIONS">
+              <MappingFragment StoreEntitySet="DONATIONS">
+                <ScalarProperty Name="COMMENTS" ColumnName="COMMENTS" />
+                <ScalarProperty Name="DONATION_AMOUNT" ColumnName="DONATION_AMOUNT" />
+                <ScalarProperty Name="MEMBER_ID" ColumnName="MEMBER_ID" />
+                <ScalarProperty Name="DONATION_TYPE_ID" ColumnName="DONATION_TYPE_ID" />
+                <ScalarProperty Name="DONATION_DATE" ColumnName="DONATION_DATE" />
+                <ScalarProperty Name="DONATION_ID" ColumnName="DONATION_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

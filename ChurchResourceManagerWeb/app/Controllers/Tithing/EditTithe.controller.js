@@ -4,9 +4,9 @@
     angular.module("app")
         .controller("editTitheController", editTitheController);
 
-    editTitheController.$inject = ["uibDateParser"];
+    editTitheController.$inject = [];
 
-    function editTitheController(uibDateParser) {
+    function editTitheController() {
         var vm = this;
 
         // #region bindable members

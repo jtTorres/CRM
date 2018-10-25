@@ -1,0 +1,16 @@
+﻿<page-header page-title="Add Donations"></page-header>
+
+<div ng-controller="donationController as dc">
+    <div class="row">
+        <div class="col-xs-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Add Donation
+                </div>
+                <div class="panel-body">
+                    <add-donation donation="dc.donation" on-save="dc.doSave(donation)" on-clear-form="dc.doClearForm(form)" enums="dc.enums"></add-donation>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

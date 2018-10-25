@@ -105,5 +105,19 @@ namespace ChurchResourceManagerWeb.Controllers
             }
         }
 
+        [HttpGet]
+        public JsonResult GetDonationTypes()
+        {
+            try
+            {
+                return Json(Repo.GetDonationTypes(), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
     }
 }

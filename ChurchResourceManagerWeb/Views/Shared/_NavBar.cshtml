@@ -80,6 +80,20 @@
                             </li>
                         </ul>
                     </li>
+                    <li ng-click="hc.activateDeactivateParent('ManageDonations')">
+                        <a ng-href="#">
+                            <i class="fas fa-donate fa-fw"></i>
+                            Manage Donations<span class="arrow" ng-class="{'fa fa-angle-down': hc.isActiveParentNav('ManageDonations'), 'fa fa-angle-left': !hc.isActiveParentNav('ManageDonations')}"></span>
+                        </a>
+                        <ul ng-show="hc.openCloseNav('Donations/') || hc.isActiveParentNav('ManageDonations')" class="nav nav-second-level">
+                            <li ng-click="hc.addDonationsLocationCheck()">
+                                <a ng-class="{'active': hc.checkActive('AddDonations')}" ng-href="/Donations/AddDonations">Add Donations</a>
+                            </li>
+                            <li>
+                                <a ng-class="{'active': hc.checkActive('DonationsSearch')}" ng-href="/Donations/DonationsSearch">View Donations</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li ng-click="hc.activateDeactivateParent('ManageTransactions')">
                         <a ng-href="#">
                             <i class="fas fa-university fa-fw"></i>
@@ -108,6 +122,9 @@
                             </li>
                             <li>
                                 <a ng-class="{'active': hc.checkActive('OfferingReport')}" ng-href="/Reporting/OfferingReport">Offering</a>
+                            </li>
+                            <li>
+                                <a ng-class="{'active': hc.checkActive('DonationReport')}" ng-href="/Reporting/DonationReport">Donation</a>
                             </li>
                             <li>
                                 <a ng-class="{'active': hc.checkActive('Transactions')}" ng-href="/Reporting/TransactionsReport">Transactions</a>

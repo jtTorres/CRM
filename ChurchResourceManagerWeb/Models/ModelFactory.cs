@@ -104,6 +104,19 @@ namespace ChurchResourceManagerWeb.Models
             };
         }
 
+        public DONATIONS CreateDonation(DonationsViewModel donation)
+        {
+            return new DONATIONS
+            {
+                DONATION_ID = donation.DonationId,
+                DONATION_DATE = donation.DonationDateTime,
+                DONATION_TYPE_ID = donation.DonationTypeId,
+                MEMBER_ID = donation.MemberId,
+                DONATION_AMOUNT = donation.DonationAmount,
+                COMMENTS = donation.Comments
+            };
+        }
+
         #endregion
 
         #region ViewModel Creation
@@ -165,6 +178,21 @@ namespace ChurchResourceManagerWeb.Models
                 BankPostedDateTime = transaction.BANK_POSTED_DATE,
                 IsDebit = transaction.IS_DEBIT,
                 Comments = transaction.COMMENTS
+            };
+        }
+
+        public DonationsViewModel CreateDonationsViewModel(DONATIONS donation)
+        {
+            return new DonationsViewModel
+            {
+                DonationId = donation.DONATION_ID,
+                DonationDateTime = donation.DONATION_DATE,
+                DonationTypeId = donation.DONATION_TYPE_ID,
+                MemberId = donation.MEMBER_ID,
+                FirstName = donation.MEMBERSHIP.FIRST_NAME,
+                LastName = donation.MEMBERSHIP.LAST_NAME,
+                DonationAmount = donation.DONATION_AMOUNT,
+                Comments = donation.COMMENTS
             };
         }
         #endregion
@@ -373,6 +401,28 @@ namespace ChurchResourceManagerWeb.Models
             return paymentAccounts.Select(x => new PaymentAccountsViewModel { PaymentAccountId = x.PAYMENT_ACCOUNT_ID, PaymentAccount = x.PAYMENT_ACCOUNT });
         }
 
+        public IEnumerable<DonationTypesViewModel> CreateDonationTypesViewModelList(IQueryable<DONATION_TYPES> donationTypes)
+        {
+            return donationTypes.Select(x => new DonationTypesViewModel { Id = x.DONATION_TYPE_ID, Description = x.DESCRIPTION });
+        }
+
+        public IEnumerable<DonationsViewModel> CreateDonationsViewModelList(IQueryable<DONATIONS> donation)
+        {
+            return donation.Include(dt => dt.DONATION_TYPES.DESCRIPTION).Include(m => m.MEMBERSHIP)
+                .Select(x => new DonationsViewModel
+                {
+                    DonationId = x.DONATION_ID,
+                    DonationDateTime = x.DONATION_DATE,
+                    DonationTypeId = x.DONATION_TYPE_ID,
+                    DonationType = x.DONATION_TYPES.DESCRIPTION,
+                    MemberId = x.MEMBER_ID,
+                    FirstName = x.MEMBERSHIP.FIRST_NAME,
+                    LastName = x.MEMBERSHIP.LAST_NAME,
+                    DonationAmount = x.DONATION_AMOUNT,
+                    Comments = x.COMMENTS
+                });
+        }
+
         public IEnumerable<TransactionsViewModel> CreateTransactionsViewModelList(IQueryable<TRANSACTIONS> transactions, IQueryable<TRANSACTION_TYPES> transactionTypes)
         {
 
@@ -413,6 +463,7 @@ namespace ChurchResourceManagerWeb.Models
                 CONTACT_INFO1 = contactInfoList.ContactInfo
             };
         }
+
 
 
     }

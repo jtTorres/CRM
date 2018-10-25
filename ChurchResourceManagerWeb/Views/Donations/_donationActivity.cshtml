@@ -1,0 +1,56 @@
+﻿<div class="col-xs-12">
+    <div uib-accordion>
+        <div uib-accordion-group class="panel panel-default" heading="{{dac.panelSettings.panelHeading}}" is-open="dac.panelSettings.isOpen">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th width="10%">Donation Id</th>
+                            <th>Donation Type</th>
+                            <th ng-show="dac.includeDateColumn === 'true'">Date</th>
+                            <th>Member Name</th>
+                            <th>Amount</th>
+                            <th>Comments</th>
+                            <th ng-show="dac.showEditDelete === 'true'" width="6%"></th> <!--empty space for edit/delete-->
+                        </tr>
+                        <tr class="list-group" id="searchRow" name="searchRow">
+                            <td>
+                                <input type="text" id="txtDonationId" name="txtDonationId" class="form-control" ng-model="search.DonationId" />
+                            </td>
+                            <td>
+                                <input type="text" id="txtDonationType" name="txtDonationType" class="form-control" ng-model="search.DonationType" />
+                            </td>
+                            <td ng-show="dac.includeDateColumn === 'true'">
+                                <input type="text" id="txtDate" name="txtDate" class="form-control" ng-model="search.DonationDate" />
+                            </td>
+                            <td>
+                                <input type="text" id="txtMemberName" name="txtMemberName" class="form-control" ng-model="search.MemberName" />
+                            </td>
+                            <td>
+                                <input type="text" id="txtAmount" name="txtAmount" class="form-control" ng-model="search.DonationAmountString" />
+                            </td>
+                            <td>
+                                <input type="text" id="txtComments" name="txtComments" class="form-control" ng-model="search.Comments" />
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-left" ng-repeat="donation in dac.donationActivity | filter: search">
+                            <td>{{donation.DonationId}}</td>
+                            <td>{{donation.DonationType}}</td>
+                            <td ng-show="dac.includeDateColumn === 'true'">{{donation.DonationDate}}</td>
+                            <td>{{donation.MemberName}}</td>
+                            <td>{{donation.DonationAmount | currency}}</td>
+                            <td>{{donation.Comments}}</td>
+                            <td ng-show="dac.showEditDelete === 'true'">
+                                <span ng-click="dac.editDonation(donation, $index)" uib-tooltip="Click to Edit" class="glyphicon glyphicon-pencil clickable"></span>
+                                |
+                                <span ng-click="dac.deleteDonation(donation.DonationId)" uib-tooltip="Click to Delete" class="glyphicon glyphicon-remove clickable"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

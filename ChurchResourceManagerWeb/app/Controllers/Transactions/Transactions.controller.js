@@ -24,7 +24,7 @@
         }
 
         function onSaveSuccess(response) {
-            vm.processFlow = operationFlowService.operationCompletion("Offering Saved Successfully!", true);
+            vm.processFlow = operationFlowService.operationCompletion("Transaction Saved Successfully!", true);
         }
 
         function onSaveError(reason) {

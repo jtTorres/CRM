@@ -16,6 +16,7 @@
             memberGroups: {},
             transactionTypes: {},
             paymentAccounts: {},
+            donationTypes: {},
             genders: [
                 { Description: "Male", Id: "M" },
                 { Description: "Female", Id: "F" }
@@ -35,6 +36,7 @@
             getMemberGroups: getMemberGroups,
             getTransactionTypes: getTransactionTypes,
             getPaymentAccounts: getPaymentAccounts,
+            getDonationTypes: getDonationTypes,
 
             enums: enums,
             transactionInquiryTypes: transactionInquiryTypes
@@ -106,6 +108,15 @@
             return $http({
                 method: "GET",
                 url: "/Enums/GetPaymentAccounts/"
+            })
+                .then(onSuccess)
+                .catch(onFailure);
+        }
+
+        function getDonationTypes() {
+            return $http({
+                method: "GET",
+                url: "/Enums/GetDonationTypes/"
             })
                 .then(onSuccess)
                 .catch(onFailure);

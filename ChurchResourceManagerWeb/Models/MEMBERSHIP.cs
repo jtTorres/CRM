@@ -20,6 +20,7 @@ namespace ChurchResourceManagerWeb.Models
             this.ACTIVITIES = new HashSet<ACTIVITIES>();
             this.CONTACT_INFO = new HashSet<CONTACT_INFO>();
             this.TITHES = new HashSet<TITHES>();
+            this.DONATIONS = new HashSet<DONATIONS>();
         }
     
         public Nullable<int> FAMILY_ID { get; set; }
@@ -50,5 +51,7 @@ namespace ChurchResourceManagerWeb.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TITHES> TITHES { get; set; }
         public virtual MEMBERSHIP_STATUS MEMBERSHIP_STATUS { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DONATIONS> DONATIONS { get; set; }
     }
 }

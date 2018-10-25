@@ -149,6 +149,12 @@ namespace ChurchResourceManagerWeb.Models
             return SaveAll();
         }
 
+        public bool AddDonation(DonationsViewModel donation)
+        {
+            db.DONATIONS.Add(ModelFactory.CreateDonation(donation));
+            return SaveAll();
+        }
+
 
         #endregion
 
@@ -259,6 +265,12 @@ namespace ChurchResourceManagerWeb.Models
             return SaveAll();
         }
 
+        public bool UpdateDonation(DonationsViewModel donation)
+        {
+            db.Entry(GetDonationById(donation.DonationId)).CurrentValues.SetValues(ModelFactory.CreateDonation(donation));
+            return SaveAll();
+        }
+
         #endregion
 
         #region Delete Methods
@@ -282,6 +294,12 @@ namespace ChurchResourceManagerWeb.Models
         public bool DeleteTransaction(int transactionId)
         {
             db.Entry(GetTransactionById(transactionId)).State = EntityState.Deleted;
+            return SaveAll();
+        }
+
+        public bool DeleteDonation(int donationId)
+        {
+            db.Entry(GetDonationById(donationId)).State = EntityState.Deleted;
             return SaveAll();
         }
 
@@ -375,6 +393,12 @@ namespace ChurchResourceManagerWeb.Models
             return ModelFactory.CreateOfferingsViewModelList(offering).Take(25).OrderByDescending(o => o.OfferingId);
         }
 
+        public IEnumerable<DonationsViewModel> GetDonations(DateTime? date)
+        {
+            var donation = db.DONATIONS.Where(d => date != null ? d.DONATION_DATE == date : date == null);
+            return ModelFactory.CreateDonationsViewModelList(donation).Take(25).OrderByDescending(d => d.DonationId);
+        }
+
         public IEnumerable<OfferingsViewModel> GetOfferingsByDateRange(DateTime startDate, DateTime endDate)
         {
             return ModelFactory.CreateOfferingsViewModelList(db.OFFERINGS.Where(d => d.OFFERING_DATE >= startDate && d.OFFERING_DATE <= endDate));
@@ -448,6 +472,11 @@ namespace ChurchResourceManagerWeb.Models
             return ModelFactory.CreatePaymentAccountsViewModelList(db.PAYMENT_ACCOUNTS);
         }
 
+        public IEnumerable<DonationTypesViewModel> GetDonationTypes()
+        {
+            return ModelFactory.CreateDonationTypesViewModelList(db.DONATION_TYPES);
+        }
+
         public MEMBERSHIP GetMembershipById(int memberId)
         {
             return db.MEMBERSHIP.Find(memberId);
@@ -513,6 +542,16 @@ namespace ChurchResourceManagerWeb.Models
         public IEnumerable<TransactionsViewModel> GetTransactionsByBankPostedDate(DateTime startDate, DateTime endDate)
         {
             return ModelFactory.CreateTransactionsViewModelList(db.TRANSACTIONS.Where(t => t.BANK_POSTED_DATE >= startDate && t.BANK_POSTED_DATE <= endDate));
+        }
+
+        public DONATIONS GetDonationById(int donationId)
+        {
+            return db.DONATIONS.Find(donationId);
+        }
+
+        public DonationsViewModel GetDonationsViewModelById(int donationId)
+        {
+            return ModelFactory.CreateDonationsViewModel(db.DONATIONS.Find(donationId));
         }
 
         public int GetMemberCounts()
