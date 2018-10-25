@@ -129,5 +129,33 @@ namespace ChurchResourceManagerWeb.Controllers
                 throw;
             }
         }
+
+        [HttpGet]
+        public JsonResult GetDonationsByDonationDate(DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                return Json(Repo.GetDonationsByDateRange(startDate, endDate), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public JsonResult GetDonationsByMemberId(int memberId)
+        {
+            try
+            {
+                return Json(Repo.GetDonationsByMemberId(memberId), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
     }
 }

@@ -399,6 +399,16 @@ namespace ChurchResourceManagerWeb.Models
             return ModelFactory.CreateDonationsViewModelList(donation).OrderByDescending(d => d.DonationId).Take(25);
         }
 
+        public IEnumerable<DonationsViewModel> GetDonationsByDateRange(DateTime startDate, DateTime endDate)
+        {
+            return ModelFactory.CreateDonationsViewModelList(db.DONATIONS.Where(d => d.DONATION_DATE >= startDate && d.DONATION_DATE <= endDate));
+        }
+
+        public IEnumerable<DonationsViewModel> GetDonationsByMemberId(int memberId)
+        {
+            return ModelFactory.CreateDonationsViewModelList(db.DONATIONS.Where(m => m.MEMBER_ID == memberId));
+        }
+
         public IEnumerable<OfferingsViewModel> GetOfferingsByDateRange(DateTime startDate, DateTime endDate)
         {
             return ModelFactory.CreateOfferingsViewModelList(db.OFFERINGS.Where(d => d.OFFERING_DATE >= startDate && d.OFFERING_DATE <= endDate));

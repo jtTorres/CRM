@@ -13,7 +13,8 @@
                     goButton: "&",
                     noResultsFound: "<",
                     resetTabs: "&",
-                    invalidReportType: "<"
+                    invalidReportType: "<",
+                    selectedSearchType: "@"
                 }
             });
 

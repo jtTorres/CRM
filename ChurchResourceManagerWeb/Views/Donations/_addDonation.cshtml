@@ -35,11 +35,7 @@
                    placeholder="Name or Member Id"
                    ng-model="adc.donation.selectedMember"
                    uib-typeahead="member as member.MemberKey for member in adc.allMembership.data | filter: {MemberKey:$viewValue} | limitTo: 8"
-                   typeahead-on-select="adc.onMemberSelected($item, $model, $label)"
-                   required />
-            <div class="help-block-error" ng-messages="adc.addDonationForm.memberIdTextBx.$error" ng-if="adc.addDonationForm.memberIdTextBx.$touched">
-                <div ng-messages-include="message-template"></div>
-            </div>
+                   typeahead-on-select="adc.onMemberSelected($item, $model, $label)" />
         </div>
     </div>
 

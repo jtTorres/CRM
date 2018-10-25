@@ -101,6 +101,7 @@
             enumsDataService.getDonationTypes()
                 .then(function (response) {
                     vm.enums.DonationTypes = response.data;
+                    vm.enums.DonationTypes.splice(0, 2);
                 });
         }
         // #endregion

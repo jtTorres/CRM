@@ -10,6 +10,7 @@
                         <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'MembershipDate'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'MembershipDate'" ng-if="rtc.reportType === 'Membership'" ng-click="rtc.resetTabs()">Membership Date</label>
                         <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'ExitDate'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'ExitDate'" ng-if="rtc.reportType === 'Membership'" ng-click="rtc.resetTabs()">Exit Date</label>
                         <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'DateOfBirth'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'DateOfBirth'" ng-if="rtc.reportType === 'Membership'" ng-click="rtc.resetTabs()">Date of Birth</label>
+                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'DonationDate'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'DonationDate'" ng-if="rtc.reportType === 'Donation'" ng-click="rtc.resetTabs()">Donation Date</label>
                     </div>
                     <span class="text-danger" ng-show="rtc.invalidReportType">
                         <i class="fas fa-arrow-left"></i>
@@ -61,7 +62,7 @@
                 </div>
             </div>
         </uib-tab>
-        <uib-tab index="2" heading="Member" ng-if="rtc.reportType === 'Membership' || rtc.reportType === 'Tithing'" ng-click="rtc.resetTabs()">
+        <uib-tab index="2" heading="Member" ng-if="rtc.reportType === 'Membership' || rtc.reportType === 'Tithing' || rtc.reportType === 'Donation'" ng-click="rtc.resetTabs()">
             <div class="row">
                 <div class="col-xs-3">
                     <div class="form-group">

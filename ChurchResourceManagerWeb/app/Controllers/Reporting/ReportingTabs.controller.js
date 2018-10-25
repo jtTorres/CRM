@@ -21,7 +21,10 @@
         activate();
         function activate() {
             getAllMembership();
-            console.log(vm.toDate);
+            vm.radioButtons =
+                {
+                    selected: vm.selectedSearchType
+                };
         }
 
         function openFromDate() {

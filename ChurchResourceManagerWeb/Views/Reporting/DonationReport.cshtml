@@ -1,0 +1,19 @@
+﻿<page-header page-title="Donation Report"></page-header>
+
+<div class="row">
+    <div class="col-md-12">
+        <div ng-controller="donationsReportingController as drc">
+            <reporting-tabs report-type="Donation" go-button="drc.getDonationActivity(searchType, startDate, endDate, familyId, memberId)"
+                            no-results-found="drc.noResults" reset-tabs="drc.reset()" selected-search-type="DonationDate">
+            </reporting-tabs>
+
+            <div ng-show="drc.donationActivity.length > 0">
+                <donation-activity panel-settings="drc.donationActivityPanelSettings"
+                                   donation-activity="drc.donationActivity"
+                                   include-date-column="true"
+                                   show-edit-delete="true">
+                </donation-activity>
+            </div>
+        </div>
+    </div>
+</div>

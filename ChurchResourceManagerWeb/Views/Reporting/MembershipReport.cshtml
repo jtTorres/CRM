@@ -6,7 +6,9 @@
 <div class="row">
     <div class="col-md-12">
         <div ng-controller="membershipReportingController as mrc">
-            <reporting-tabs report-type="Membership" go-button="mrc.getMembership(searchType, startDate, endDate, familyId, memberId)" no-results-found="mrc.noResults" reset-tabs="mrc.reset()" invalid-report-type="mrc.invalidReportType"></reporting-tabs>
+            <reporting-tabs report-type="Membership" go-button="mrc.getMembership(searchType, startDate, endDate, familyId, memberId)" no-results-found="mrc.noResults"
+                            reset-tabs="mrc.reset()" invalid-report-type="mrc.invalidReportType" selected-search-type="MembershipDate">
+            </reporting-tabs>
 
             <membership-stat-cards total-count="mrc.totalCount" active-count="mrc.activeCount" terminated-count="mrc.terminatedCount" no-results-found="mrc.noResults"></membership-stat-cards>
 

@@ -13,7 +13,9 @@
             deleteDonation: deleteDonation,
             getActivity: getActivity,
             getDonation: getDonation,
-            getDonations: getDonations
+            getDonations: getDonations,
+            getDonationsByDonationDate: getDonationsByDonationDate,
+            getDonationsByMemberId: getDonationsByMemberId
         };
 
         function addDonation(donation) {
@@ -121,6 +123,47 @@
         }
 
         function onGetDonationsError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Getting Donation"));
+        }
+
+        function getDonationsByDonationDate(startDate, endDate) {
+            return $http({
+                method: "GET",
+                url: "/Donations/GetDonationsByDonationDate/",
+                params: {
+                    startDate: startDate,
+                    endDate: endDate
+                }
+            })
+                .then(onGetDonationsByDonationDateComplete)
+                .catch(onGetDonationsByDonationDateError);
+        }
+
+        function onGetDonationsByDonationDateComplete(response) {
+            return response;
+        }
+
+        function onGetDonationsByDonationDateError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Getting Donation"));
+        }
+
+        function getDonationsByMemberId(memberId) {
+            return $http({
+                method: "GET",
+                url: "/Donations/GetDonationsByMemberId/",
+                params: {
+                    memberId: memberId
+                }
+            })
+                .then(onGetDonationsByMemberIdComplete)
+                .catch(onGetDonationsByMemberIdError);
+        }
+
+        function onGetDonationsByMemberIdComplete(response) {
+            return response;
+        }
+
+        function onGetDonationsByMemberIdError(reason) {
             return $q.reject(utilityService.httpError(reason, "Error Getting Donation"));
         }
 
