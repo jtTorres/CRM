@@ -16,6 +16,7 @@
             updateTithe: updateTithe,
             deleteTithe: deleteTithe,
             getTithesRunningTotal: getTithesRunningTotal,
+            getTithesRunningTotalByDateRange: getTithesRunningTotalByDateRange,
             getTodaysTithingActivity: getTodaysTithingActivity,
             getTithingActivity: getTithingActivity,
             getTithingActivityByDateRange: getTithingActivityByDateRange,
@@ -142,6 +143,26 @@
             return $q.reject(utilityService.httpError(reason, "Error Getting Tithes Running Total"));
         }
 
+        function getTithesRunningTotalByDateRange(startDate, endDate) {
+            return $http({
+                    method: "GET",
+                    url: "/Tithing/GetTithesRunningTotalByDateRange/",
+                    params: { date: date }
+                })
+                .then(onGetTithesRunningTotalByDateRangeComplete)
+                .catch(onGetTithesRunningTotalByDateRangeError);
+        }
+
+        // get success response
+        function onGetTithesRunningTotalByDateRangeComplete(response) {
+            return response;
+        }
+
+        // get error response
+        function onGetTithesRunningTotalByDateRangeError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Getting Tithes Running Total"));
+        }
+
         function getTodaysTithingActivity() {
             return $http({
                 method: "GET",
@@ -250,13 +271,14 @@
             }
         }
 
-        function getTithingActivityByDateRange(startDate, endDate) {
+        function getTithingActivityByDateRange(startDate, endDate, entity) {
             return $http({
                 method: "GET",
-                url: "/Tithing/GetTithingActivityByDateRange/",
+                url: "/Shared/GetRunningTotalsByDateRange/",
                 params: {
                     startDate: startDate,
-                    endDate: endDate
+                    endDate: endDate,
+                    entity: entity
                 }
             })
                 .then(onGetTithingActivityByDateRangeComplete)

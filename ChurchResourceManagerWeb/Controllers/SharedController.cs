@@ -39,6 +39,20 @@ namespace ChurchResourceManagerWeb.Controllers
         }
 
         [HttpGet]
+        public JsonResult GetRunningTotalsByDateRange(DateTime startDate, DateTime endDate, EntitySelector.Entity entity)
+        {
+            try
+            {
+                return Json(Repo.GetRunningTotalsByDateRange(startDate, endDate, entity), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        [HttpGet]
         public JsonResult GetEntityActivityReport(ActivitySelector.ActivityReportType activity)
         {
             try

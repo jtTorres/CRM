@@ -420,10 +420,28 @@ namespace ChurchResourceManagerWeb.Models
             return amount.Any() ? amount.Sum(a => a.TITHE_AMOUNT).ToString(CultureInfo.CurrentCulture) : "0";
         }
 
+        public string GetTithesRunningTotalByDateRange(DateTime startDate, DateTime endDate)
+        {
+            var amount = db.TITHES.Where(t => t.TITHE_DATE >= startDate && t.TITHE_DATE <= endDate);
+            return amount.Any() ? amount.Sum(a => a.TITHE_AMOUNT).ToString(CultureInfo.CurrentCulture) : "0";
+        }
+
         public string GetOfferingsRunningTotal(DateTime date)
         {
             var amount = db.OFFERINGS.Where(o => o.OFFERING_DATE == date);
             return amount.Any() ? amount.Sum(a => a.OFFERING_AMOUNT).ToString(CultureInfo.CurrentCulture) : "0";
+        }
+
+        public string GetOfferingsRunningTotalByDateRange(DateTime startDate, DateTime endDate)
+        {
+            var amount = db.OFFERINGS.Where(o => o.OFFERING_DATE >= startDate && o.OFFERING_DATE <= endDate);
+            return amount.Any() ? amount.Sum(a => a.OFFERING_AMOUNT).ToString(CultureInfo.CurrentCulture) : "0";
+        }
+
+        public string GetDonationsRunningTotalByDateRange(DateTime startDate, DateTime endDate)
+        {
+            var amount = db.DONATIONS.Where(d => d.DONATION_DATE >= startDate && d.DONATION_DATE <= endDate);
+            return amount.Any() ? amount.Sum(a => a.DONATION_AMOUNT).ToString(CultureInfo.CurrentCulture) : "0";
         }
 
         public object GetEmptyMemberInfo()
@@ -603,6 +621,22 @@ namespace ChurchResourceManagerWeb.Models
                     return null;
             }
         }
+
+        public string GetRunningTotalsByDateRange(DateTime startDate, DateTime endDate, EntitySelector.Entity entity)
+        {
+            switch (entity)
+            {
+                case EntitySelector.Entity.Tithe:
+                    return GetTithesRunningTotalByDateRange(startDate, endDate);
+                case EntitySelector.Entity.Offering:
+                    return GetOfferingsRunningTotalByDateRange(startDate, endDate);
+                case EntitySelector.Entity.Donation:
+                    return GetDonationsRunningTotalByDateRange(startDate, endDate);
+                default:
+                    return null;
+            }
+        }
+
         #endregion
 
         public bool SaveAll()

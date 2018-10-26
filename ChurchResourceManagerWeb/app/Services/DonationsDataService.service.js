@@ -15,7 +15,8 @@
             getDonation: getDonation,
             getDonations: getDonations,
             getDonationsByDonationDate: getDonationsByDonationDate,
-            getDonationsByMemberId: getDonationsByMemberId
+            getDonationsByMemberId: getDonationsByMemberId,
+            getRunningTotalsByDateRange: getRunningTotalsByDateRange
         };
 
         function addDonation(donation) {
@@ -165,6 +166,28 @@
 
         function onGetDonationsByMemberIdError(reason) {
             return $q.reject(utilityService.httpError(reason, "Error Getting Donation"));
+        }
+
+        function getRunningTotalsByDateRange(startDate, endDate, entity) {
+            return $http({
+                    method: "GET",
+                    url: "/Shared/GetRunningTotalsByDateRange/",
+                    params: {
+                        startDate: startDate,
+                        endDate: endDate,
+                        entity: entity
+                    }
+                })
+                .then(onGetRunningTotalsByDateRangeComplete)
+                .catch(onRunningTotalsByDateRangeError);
+        }
+
+        function onGetRunningTotalsByDateRangeComplete(response) {
+            return response;
+        }
+
+        function onRunningTotalsByDateRangeError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Getting Running Totals"));
         }
 
     }

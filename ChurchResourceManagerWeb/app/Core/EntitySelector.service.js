@@ -11,12 +11,13 @@
 
         const entityType = {
             Tithe: 1,
-            Offering: 2
+            Offering: 2,
+            Donation: 3
         };
 
         return {
             entityType: entityType
-        }
+        };
     }
 
 })();

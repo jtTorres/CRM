@@ -9,6 +9,7 @@
                 controllerAs: "rtc",
                 bindings: {
                     runningTotal: "<",
+                    title: "@",
                     getTithesRunningTotal: "&"
                 }
             });

@@ -378,6 +378,7 @@
     <Content Include="app\Controllers\Offerings\Offering.controller.spec.js" />
     <Content Include="app\Controllers\Offerings\OfferingActivity.controller.js" />
     <Content Include="app\Controllers\Reporting\DonationsReporting.controller.js" />
+    <Content Include="app\Controllers\Reporting\FinancialSummary.controller.js" />
     <Content Include="app\Controllers\Reporting\OfferingsRerporting.controller.js" />
     <Content Include="app\Controllers\Reporting\MembershipReporting.controller.js" />
     <Content Include="app\Controllers\Reporting\ReportingTabs.controller.js" />
@@ -1353,6 +1354,7 @@
     <Content Include="Views\Donations\_editDonationModal.cshtml" />
     <Content Include="Views\Donations\_deleteDonationModal.cshtml" />
     <Content Include="Views\Reporting\DonationReport.cshtml" />
+    <Content Include="Views\Reporting\FinancialSummary.cshtml" />
     <None Include="Views\Test\SpecRunner.cshtml" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />

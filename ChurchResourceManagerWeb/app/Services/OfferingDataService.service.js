@@ -13,6 +13,7 @@
             deleteOffering: deleteOffering,
             getOfferingActivityByDateRange: getOfferingActivityByDateRange,
             getRunningTotals: getRunningTotals,
+            getRunningTotalsByDateRange: getRunningTotalsByDateRange,
             getActivity: getActivity
         };
 
@@ -89,6 +90,28 @@
         }
 
         function onRunningTotalsError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Getting Running Totals"));
+        }
+
+        function getRunningTotalsByDateRange(startDate, endDate, entity) {
+            return $http({
+                method: "GET",
+                url: "/Shared/GetRunningTotalsByDateRange/",
+                params: {
+                    startDate: startDate,
+                    endDate: endDate,
+                    entity: entity
+                }
+            })
+                .then(onGetRunningTotalsByDateRangeComplete)
+                .catch(onRunningTotalsByDateRangeError);
+        }
+
+        function onGetRunningTotalsByDateRangeComplete(response) {
+            return response;
+        }
+
+        function onRunningTotalsByDateRangeError(reason) {
             return $q.reject(utilityService.httpError(reason, "Error Getting Running Totals"));
         }
 
