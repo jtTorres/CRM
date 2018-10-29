@@ -14,14 +14,14 @@ namespace ChurchResourceManagerWeb
                         "~/Scripts/jquery.validate*"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
-                //"~/Scripts/angular.js",
                 "~/Scripts/angular.min.js",
-                "~/Scripts/angular-messages.js",
+                "~/Scripts/angular-messages.min.js",
                 "~/Scripts/angular-ui/ui-bootstrap-tpls.min.js",
                 "~/Scripts/angular-sanitize.min.js",
                 "~/Scripts/mg/packages/angular-ui/mask.min.js",
                 "~/Scripts/angular-animate.min.js",
-                "~/Scripts/angular-cookies.min.js"
+                "~/Scripts/angular-cookies.min.js",
+                "~/Scripts/angular-spinner.min.js"
                 ));
 
 
@@ -29,7 +29,6 @@ namespace ChurchResourceManagerWeb
             bundles.Add(new ScriptBundle("~/bundles/ChurchResourceManagerApp")
                 .Include("~/app/app.js")
                 .IncludeDirectory("~/app/Controllers/", "*.controller.js", true)
-                //.Include("~/app/Core/Utility.service.js")
                 .IncludeDirectory("~/app/Core/", "*.service.js", false)
                 .IncludeDirectory("~/app/Components/", "*.component.js", true)
                 .IncludeDirectory("~/app/Directives/", "*.directive.js", true)
@@ -62,8 +61,7 @@ namespace ChurchResourceManagerWeb
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                "~/Content/toastr.css"//,
-                /*"~/Content/font-awesome.css"*/));
+                "~/Content/toastr.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/notifications").Include(
                 "~/Scripts/toastr.js"

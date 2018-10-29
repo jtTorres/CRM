@@ -5,7 +5,7 @@
             <div class="form-group">
                 <label for="ddlTransactionType">Transaction Type</label>
                 <select id="ddlTransactionType" name="ddlTransactionType" class="form-control" ng-model="stc.transaction.SelectedTransactionType" ng-options="t.Description for t in stc.enums.TransactionTypes" required></select>
-                <div class="help-block-error" ng-messages="stc.transactionsForm.ddlTransactionType.$error" ng-if="stc.transactionsForm.ddlTransactionType.$touched">
+                <div class="help-block-error" ng-messages="stc.transactionsForm.ddlTransactionType.$error" ng-if="stc.transactionsForm.ddlTransactionType.$touched || stc.transactionsForm.$submitted">
                     <div ng-messages-include="message-template"></div>
                 </div>
             </div>
@@ -14,7 +14,7 @@
             <div class="form-group">
                 <label for="ddlPaymentAccounts">Payment Account</label>
                 <select id="ddlPaymentAccounts" name="ddlPaymentAccounts" class="form-control" ng-model="stc.transaction.SelectedPaymentAccount" ng-options="t.PaymentAccount for t in stc.enums.PaymentAccounts" required></select>
-                <div class="help-block-error" ng-messages="stc.transactionsForm.ddlPaymentAccounts.$error" ng-if="stc.transactionsForm.ddlPaymentAccounts.$touched">
+                <div class="help-block-error" ng-messages="stc.transactionsForm.ddlPaymentAccounts.$error" ng-if="stc.transactionsForm.ddlPaymentAccounts.$touched || stc.transactionsForm.$submitted">
                     <div ng-messages-include="message-template"></div>
                 </div>
             </div>
@@ -59,18 +59,9 @@
             <!--Bank Posted Date-->
             <div class="form-group">
                 <label for="bankPostedDateTxtBx">Bank Posted Date</label>
-                @*<input id="bankPostedDateTxtBx"
-                    name="bankPostedDateTxtBx"
-                    class="form-control"
-                    type="text"
-                    placeholder="Date (mm/dd/yyyy)"
-                    ng-model="stc.transaction.BankPostedDate"
-                    ui-mask="99/99/9999"
-                    ui-mask-placeholder
-                    model-view-value="true" />*@
                 <p class="input-group">
                     <input id="bankPostedDateTxtBx" name="bankPostedDateTxtBx" type="text" class="form-control" ng-model="stc.transaction.BankPostedDate" uib-datepicker-popup="{{stc.dateFormat}}" is-open="stc.isOpenBankPostedDate" ui-mask="99/99/9999" ui-mask-placeholder
-                           model-view-value="true" placeholder="Date (mm/dd/yyyy)" required />
+                           model-view-value="true" placeholder="Date (mm/dd/yyyy)" />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="stc.openCalendar('BankPostedDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
@@ -96,8 +87,8 @@
 
             <!--Submit and Clear Form Buttons-->
             <div style="padding-top: 10%; padding-bottom: 10%;">
-                <button id="submitBtn" name="submitBtn" class="btn btn-default" type="submit">Save</button>
                 <button id="clearFormBtn" name="clearFormBtn" class="btn btn-default" type="button" ng-click="stc.clearForm(stc.transactionsForm)">Clear Form</button>
+                <button id="submitBtn" name="submitBtn" class="btn btn-primary" type="submit">Save</button>
             </div>
         </div>
     </form>

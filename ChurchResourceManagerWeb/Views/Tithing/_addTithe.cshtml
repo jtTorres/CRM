@@ -11,8 +11,8 @@
                    ng-model="atc.Tithe.selectedMember"
                    uib-typeahead="member as member.MemberKey for member in atc.allMembership.data | filter: {MemberKey:$viewValue} | limitTo: 8"
                    typeahead-on-select="atc.onMemberSelected($item, $model, $label)"
-                   required />
-            <div class="help-block-error" ng-messages="atc.addTithesForm.memberIdTextBx.$error" ng-if="atc.addTithesForm.memberIdTextBx.$touched">
+                   required autofocus />
+            <div class="help-block-error" ng-messages="atc.addTithesForm.memberIdTextBx.$error" ng-if="atc.addTithesForm.memberIdTextBx.$touched || atc.addTithesForm.$submitted">
                 <!--"message-template can be found in _layout.cshtml in a script" since all views will have the layout, this allows the code to be shared accross all views while only declaring it once-->
                 <!--eventually look into making the errors dynamic https://www.sitepoint.com/closer-look-angulars-ngmessages-module/-->
                 <div ng-messages-include="message-template"></div>
@@ -30,7 +30,7 @@
                     <button type="button" class="btn btn-default" ng-click="atc.openTitheDate()"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
             </p>
-            <div class="help-block-error" ng-messages="atc.addTithesForm.dateTxtBx.$error" ng-if="atc.addTithesForm.dateTxtBx.$touched">
+            <div class="help-block-error" ng-messages="atc.addTithesForm.dateTxtBx.$error" ng-if="atc.addTithesForm.dateTxtBx.$touched || atc.addTithesForm.$submitted">
                 <div ng-messages-include="message-template"></div>
             </div>
         </div>
@@ -43,7 +43,7 @@
             <label for="checkNumberTxtBx">Check Number</label>
             <input id="checkNumberTxtBx" name="checkNumberTxtBx" class="form-control" type="text" placeholder="Check Number" ng-model="atc.Tithe.CheckNumber"
                    ng-show="atc.Tithe.IsCheck" ng-required="atc.Tithe.IsCheck" />
-            <div class="help-block-error" ng-messages="atc.addTithesForm.checkNumberTxtBx.$error" ng-if="atc.addTithesForm.checkNumberTxtBx.$touched">
+            <div class="help-block-error" ng-messages="atc.addTithesForm.checkNumberTxtBx.$error" ng-if="atc.addTithesForm.checkNumberTxtBx.$touched || atc.addTithesForm.$submitted">
                 <div ng-messages-include="message-template"></div>
             </div>
         </div>
@@ -56,7 +56,7 @@
                 <span class="input-group-addon">$</span>
                 <input id="amountTxtBx" name="amountTxtBx" class="form-control" type="number" placeholder="Tithe Amount (Ex. $0.00)" ng-model="atc.Tithe.TitheAmount" required />
             </div>
-            <div class="help-block-error" ng-messages="atc.addTithesForm.amountTxtBx.$error" ng-if="atc.addTithesForm.amountTxtBx.$touched">
+            <div class="help-block-error" ng-messages="atc.addTithesForm.amountTxtBx.$error" ng-if="atc.addTithesForm.amountTxtBx.$touched || atc.addTithesForm.$submitted">
                 <div ng-messages-include="message-template"></div>
             </div>
         </div>
@@ -71,7 +71,10 @@
 
     <!--Submit and Clear Form Buttons-->
     <div class="col-xs-10">
-        <button id="submitBtn" name="submitBtn" class="btn btn-default" type="submit">Save</button>
         <button id="clearFormBtn" name="clearFormBtn" class="btn btn-default" type="button" ng-click="atc.clearForm()">Clear Form</button>
+        <button id="submitBtn" name="submitBtn" class="btn btn-primary" type="submit">Save</button>
     </div>
+
+    <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>
+
 </form>

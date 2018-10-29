@@ -502,6 +502,8 @@
     <Content Include="Scripts\angular-sanitize.js" />
     <Content Include="Scripts\angular-sanitize.min.js" />
     <Content Include="Scripts\angular-scenario.js" />
+    <Content Include="Scripts\angular-spinner.js" />
+    <Content Include="Scripts\angular-spinner.min.js" />
     <Content Include="Scripts\angular-touch.js" />
     <Content Include="Scripts\angular-touch.min.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
@@ -1289,6 +1291,7 @@
     <Content Include="Content\variables.less" />
     <None Include="Properties\PublishProfiles\ChurchResourceManagerWeb - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Scripts\angular-spinner.js.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Jasmine\jasmine-jquery.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -1314,6 +1317,8 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\spin.js" />
+    <Content Include="Scripts\spin.min.js" />
     <Content Include="Views\Offerings\Home.cshtml" />
     <Content Include="Views\Offerings\AddOfferings.cshtml" />
     <Content Include="Views\Offerings\_addOffering.cshtml" />

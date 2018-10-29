@@ -1,15 +1,15 @@
 ﻿<page-header page-title="Transactions Report"></page-header>
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-xs-12">
         <div ng-controller="transactionsReportingController as trc">
-            <div class="col-md-12">
+            <div class="col-xs-12">
                 <reporting-tabs report-type="Transaction" go-button="trc.getTransactions(searchType, startDate, endDate, familyId, memberId)"
                                 no-results-found="trc.noResults" reset-tabs="trc.reset()" selected-search-type="TransactionDate">
                 </reporting-tabs>
             </div>
 
-            <running-totals ng-hide="trc.noResults" running-total="trc.runningTotal"></running-totals>
+            <running-totals ng-hide="trc.noResults" running-total="trc.runningTotal" title="Transaction"></running-totals>
 
             <div ng-show="trc.transactions.length > 0">
                 <transactions-grid transactions="trc.transactions" show-edit-delete="false"></transactions-grid>

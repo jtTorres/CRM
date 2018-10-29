@@ -6,9 +6,9 @@
         //register the service with angular
         .factory("utilityService", utilityService);
 
-    utilityService.$inject = ["$anchorScroll", "$location"];
+    utilityService.$inject = ["$anchorScroll", "$location", "$window"];
 
-    function utilityService($anchorScroll, $location) {
+    function utilityService($anchorScroll, $location, $window) {
 
 
         return {
@@ -21,14 +21,15 @@
             updateArray: updateArray,
             deleteArray: deleteArray,
             getArrayIndexOf: getArrayIndexOf,
-            scrollTop: scrollTop
+            scrollTop: scrollTop,
+            setFocus: setFocus
         };
 
         function httpError(reason, errorMessage) {
             var error = {
                 message: errorMessage,
                 reason: reason
-            }
+            };
 
             return error;
         }
@@ -94,6 +95,10 @@
         function scrollTop(location) {
             $location.hash(location);
             $anchorScroll();
+        }
+
+        function setFocus(elementId) {
+            $window.document.getElementById(elementId).focus();
         }
     }
 

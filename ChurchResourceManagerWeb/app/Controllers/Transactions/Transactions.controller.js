@@ -25,10 +25,12 @@
 
         function onSaveSuccess(response) {
             vm.processFlow = operationFlowService.operationCompletion("Transaction Saved Successfully!", true);
+            doClearForm();
         }
 
         function onSaveError(reason) {
             vm.processFlow = operationFlowService.operationCompletion(reason.message, false);
+            return;
         }
 
         function doSave(transaction) {

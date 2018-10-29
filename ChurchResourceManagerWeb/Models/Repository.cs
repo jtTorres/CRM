@@ -21,14 +21,12 @@ namespace ChurchResourceManagerWeb.Models
             try
             {
                 db.TITHES.Add(ModelFactory.CreateTithe(tithe));
-                //db.TITHES.Add(tithe);
                 return true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 throw;
-                //return false;
             }
 
         }
@@ -44,7 +42,6 @@ namespace ChurchResourceManagerWeb.Models
             {
                 Console.WriteLine(ex);
                 throw;
-                //return false;
             }
         }
 
@@ -102,7 +99,6 @@ namespace ChurchResourceManagerWeb.Models
             {
                 Console.WriteLine(ex);
                 throw;
-                //return false;
             }
         }
 
@@ -276,7 +272,6 @@ namespace ChurchResourceManagerWeb.Models
         #region Delete Methods
         public bool DeleteTithe(int titheId)
         {
-            //var titheRecord = db.TITHES.FirstOrDefault(t => t.TITHE_ID == titheId);
             var titheRecord = GetTitheById(titheId);
 
             db.Entry(titheRecord).State = EntityState.Deleted;
@@ -341,7 +336,7 @@ namespace ChurchResourceManagerWeb.Models
 
         public IEnumerable<MemberSearchViewModel> GetMemberSearch()
         {
-            return ModelFactory.CreateMemberSearchViewModelList(db.MEMBERSHIP, db.FAMILIES, db.MEMBERSHIP_STATUS).Take(25);
+            return ModelFactory.CreateMemberSearchViewModelList(db.MEMBERSHIP, db.FAMILIES, db.MEMBERSHIP_STATUS);
         }
 
         public IEnumerable<MemberSearchViewModel> GetMemberSearchByFamilyId(int familyId)
@@ -373,7 +368,7 @@ namespace ChurchResourceManagerWeb.Models
         {
 
             var tithe = db.TITHES.Where(t => (t.TITHE_DATE == date && memberId == 0) || (t.MEMBER_ID == memberId && memberId > 0) || (memberId == 0 && date == null));
-            return ModelFactory.CreateTithesViewModelList(tithe).OrderByDescending(t => t.TitheId).Take(25);
+            return ModelFactory.CreateTithesViewModelList(tithe).OrderByDescending(t => t.TitheId);
         }
 
         public IEnumerable<TithesViewModel> GetTithingActivityByDateRange(DateTime startDate, DateTime endDate)
@@ -390,13 +385,13 @@ namespace ChurchResourceManagerWeb.Models
         public IEnumerable<OfferingsViewModel> GetOfferings(DateTime? date)
         {
             var offering = db.OFFERINGS.Where(o => date != null ? o.OFFERING_DATE == date : date == null);
-            return ModelFactory.CreateOfferingsViewModelList(offering).OrderByDescending(o => o.OfferingId).Take(25);
+            return ModelFactory.CreateOfferingsViewModelList(offering).OrderByDescending(o => o.OfferingId);
         }
 
         public IEnumerable<DonationsViewModel> GetDonations(DateTime? date)
         {
             var donation = db.DONATIONS.Where(d => date != null ? d.DONATION_DATE == date : date == null);
-            return ModelFactory.CreateDonationsViewModelList(donation).OrderByDescending(d => d.DonationId).Take(25);
+            return ModelFactory.CreateDonationsViewModelList(donation).OrderByDescending(d => d.DonationId);
         }
 
         public IEnumerable<DonationsViewModel> GetDonationsByDateRange(DateTime startDate, DateTime endDate)
@@ -549,7 +544,7 @@ namespace ChurchResourceManagerWeb.Models
 
         public IEnumerable<TransactionsViewModel> GetTransactions()
         {
-            return ModelFactory.CreateTransactionsViewModelList(db.TRANSACTIONS, db.TRANSACTION_TYPES).OrderByDescending(t => t.TransactionId).Take(25);
+            return ModelFactory.CreateTransactionsViewModelList(db.TRANSACTIONS, db.TRANSACTION_TYPES).OrderByDescending(t => t.TransactionId);
         }
 
         public TransactionsViewModel GetTransactionViewModelById(int transactionId)

@@ -3,7 +3,7 @@
     <div class="col-xs-10">
         <div class="form-group">
             <select id="ddlDonationType" name="ddlDonationType" class="form-control" ng-model="adc.donation.SelectedDonationType" ng-options="t.Description for t in adc.enums.DonationTypes" required></select>
-            <div class="help-block-error" ng-messages="adc.addDonationForm.ddlDonationType.$error" ng-if="adc.addDonationForm.ddlDonationType.$touched">
+            <div class="help-block-error" ng-messages="adc.addDonationForm.ddlDonationType.$error" ng-if="adc.addDonationForm.ddlDonationType.$touched || adc.addDonationForm.$submitted">
                 <div ng-messages-include="message-template"></div>
             </div>
         </div>
@@ -61,7 +61,7 @@
 
     <!--Submit and Clear Form Buttons-->
     <div class="col-xs-10">
-        <button id="submitBtn" name="submitBtn" class="btn btn-default" type="submit">Save</button>
         <button id="clearFormBtn" name="clearFormBtn" class="btn btn-default" type="button" ng-click="adc.clearForm()">Clear Form</button>
+        <button id="submitBtn" name="submitBtn" class="btn btn-primary" type="submit">Save</button>
     </div>
 </form>

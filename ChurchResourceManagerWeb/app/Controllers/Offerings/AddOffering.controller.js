@@ -32,6 +32,7 @@
 
         function onSaveSuccess() {
             clearForm();
+            utilityService.setFocus("dateTxtBx");
         }
 
         function setOfferingFromBinding() {

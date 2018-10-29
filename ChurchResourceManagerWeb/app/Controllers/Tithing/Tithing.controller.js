@@ -5,9 +5,9 @@
     angular.module("app")
         .controller("tithingController", tithingController);
 
-    tithingController.$inject = ["tithingDataService", "membershipDataService", "$uibModal", "titheVars", "utilityService", "operationFlowService", "$scope"];
+    tithingController.$inject = ["tithingDataService", "membershipDataService", "$uibModal", "titheVars", "utilityService", "operationFlowService", "$scope", "usSpinnerService"];
 
-    function tithingController(tithingDataService, membershipDataService, $uibModal, titheVars, utilityService, operationFlowService, $scope) {
+    function tithingController(tithingDataService, membershipDataService, $uibModal, titheVars, utilityService, operationFlowService, $scope, usSpinnerService) {
 
         var vm = this;
 
@@ -90,6 +90,7 @@
         }
 
         function doSaveTithe(titheRecord) {
+            usSpinnerService.spin("spinner-1");
             if (utilityService.isUndefinedOrNull(titheRecord.TitheId)) {
                 return tithingDataService.addTithe(titheRecord)
                     .then(onAddTitheSuccess)
@@ -103,6 +104,7 @@
         }
 
         function onAddTitheSuccess(response) {
+            usSpinnerService.stop("spinner-1");
             vm.processFlow = operationFlowService.operationCompletion("Tithe Saved Successfully!", true);
             getTithesRunningTotal();
             getTithingActivity(vm.tithingActivityType);

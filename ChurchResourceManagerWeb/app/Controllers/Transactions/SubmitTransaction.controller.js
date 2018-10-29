@@ -26,11 +26,12 @@
             if (!operationFlowService.isFormValid(form)) return;
 
             vm.onSubmit({ transaction: transaction })
-                .then(clearForm(vm.transactionsForm));
+                .then(clearForm);
         }
 
         function clearForm() {
             vm.onClearForm({ form: vm.transactionsForm });
+            operationFlowService.resetForm(vm.transactionsForm);
         }
 
         function openCalendar(type) {

@@ -44,6 +44,7 @@
             clearForm();
             vm.clearTithingActivity();
             vm.setMemberActivityPanelDefaults();
+            utilityService.setFocus("memberIdTextBx");
         }
 
         function onMemberSelected(item, model, label) {

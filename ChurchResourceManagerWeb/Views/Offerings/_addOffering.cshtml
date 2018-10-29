@@ -4,7 +4,7 @@
         <div class="form-group">
             <p class="input-group">
                 <input id="dateTxtBx" name="dateTxtBx" type="text" class="form-control" ng-model="aoc.Offering.OfferingDate" uib-datepicker-popup="{{aoc.dateFormat}}" is-open="aoc.isOpenOfferingDate" ui-mask="99/99/9999" ui-mask-placeholder
-                       model-view-value="true" placeholder="Date (mm/dd/yyyy)" required />
+                       model-view-value="true" placeholder="Date (mm/dd/yyyy)" required autofocus />
                 <span class="input-group-btn">
                     <button type="button" class="btn btn-default" ng-click="aoc.openOfferingDate()"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
@@ -37,8 +37,8 @@
 
     <!--Submit and Clear Form Buttons-->
     <div class="col-xs-10">
-        <button id="submitBtn" name="submitBtn" class="btn btn-default" type="submit">Save</button>
         <button id="clearFormBtn" name="clearFormBtn" class="btn btn-default" type="button" ng-click="aoc.clearForm()">Clear Form</button>
+        <button id="submitBtn" name="submitBtn" class="btn btn-primary" type="submit">Save</button>
     </div>
 
 </form>
