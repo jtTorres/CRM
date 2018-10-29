@@ -10,7 +10,9 @@
                             reset-tabs="mrc.reset()" invalid-report-type="mrc.invalidReportType" selected-search-type="MembershipDate">
             </reporting-tabs>
 
-            <membership-stat-cards total-count="mrc.totalCount" active-count="mrc.activeCount" terminated-count="mrc.terminatedCount" no-results-found="mrc.noResults"></membership-stat-cards>
+            <membership-stat-cards total-count="mrc.totalCount" active-count="mrc.activeCount" terminated-count="mrc.terminatedCount" no-results-found="mrc.noResults" male-count="mrc.maleCount"
+                                   female-count="mrc.femaleCount" adults-count="mrc.adultsCount" youth-count="mrc.youthCount" children-count="mrc.childrenCount">
+            </membership-stat-cards>
 
             <div ng-show="mrc.members.length > 0">
                 <members-grid members="mrc.members" show-edit-delete="false"></members-grid>

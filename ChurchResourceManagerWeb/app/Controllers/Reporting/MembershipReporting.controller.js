@@ -66,6 +66,11 @@
             vm.totalCount = membership.length;
             vm.activeCount = 0;
             vm.terminatedCount = 0;
+            vm.maleCount = 0;
+            vm.femaleCount = 0;
+            vm.adultsCount = 0;
+            vm.youthCount = 0;
+            vm.childrenCount = 0;
 
             angular.forEach(membership, function (record, key, obj) {
 
@@ -79,6 +84,27 @@
                     default:
                         break;
                 }
+
+                switch (record.Gender) {
+                    case "M":
+                        vm.maleCount++;
+                        break;
+                    default:
+                        vm.femaleCount++;
+                        break;
+                }
+
+                switch (record.GroupId) {
+                    case 1:
+                        vm.adultsCount++;
+                        break;
+                    case 2:
+                        vm.youthCount++;
+                        break;
+                    case 3:
+                        vm.childrenCount++;
+                        break;
+                }
             });
         }
 
@@ -88,6 +114,11 @@
             vm.activeCount = 0;
             vm.terminatedCount = 0;
             vm.totalCount = 0;
+            vm.maleCount = 0;
+            vm.femaleCount = 0;
+            vm.adultsCount = 0;
+            vm.youthCount = 0;
+            vm.childrenCount = 0;
             vm.invalidReportType = false;
         }
 

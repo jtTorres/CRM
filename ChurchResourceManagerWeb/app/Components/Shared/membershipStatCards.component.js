@@ -11,7 +11,12 @@
                     totalCount: "<",
                     activeCount: "<",
                     terminatedCount: "<",
-                    noResultsFound: "<"
+                    noResultsFound: "<",
+                    maleCount: "<",
+                    femaleCount: "<",
+                    adultsCount: "<",
+                    youthCount: "<",
+                    childrenCount: "<"
                 }
             });
 
