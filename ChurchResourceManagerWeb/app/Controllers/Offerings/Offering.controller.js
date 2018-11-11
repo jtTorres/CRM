@@ -5,9 +5,9 @@
     angular.module("app")
         .controller("offeringController", offeringController);
 
-    offeringController.$inject = ["utilityService", "offeringDataService", "operationFlowService", "entitySelectorService", "activitySelectorService", "$uibModal", "$scope"];
+    offeringController.$inject = ["utilityService", "offeringDataService", "operationFlowService", "entitySelectorService", "activitySelectorService", "$uibModal", "$scope", "usSpinnerService"];
 
-    function offeringController(utilityService, offeringDataService, operationFlowService, entitySelectorService, activitySelectorService, $uibModal, $scope) {
+    function offeringController(utilityService, offeringDataService, operationFlowService, entitySelectorService, activitySelectorService, $uibModal, $scope, usSpinnerService) {
         var vm = this;
 
         vm.activityType = activitySelectorService.activityReportType;
@@ -62,11 +62,12 @@
         // #region Offering Activity Component
 
         function getOfferingActivity(activityType) {
-
+            usSpinnerService.spin("spinner-2");
             vm.activityType = activityType;
 
             offeringDataService.getActivity(activityType)
                 .then(function (response) {
+                    usSpinnerService.stop("spinner-2");
                     vm.offeringActivity = response.data;
                     setOfferingActivityPanelDefaults(activityType, response.data.length);
                 });

@@ -4,9 +4,9 @@
     angular.module("app")
         .controller("donationController", donationController);
 
-    donationController.$inject = ["utilityService", "donationsDataService", "operationFlowService", "$uibModal", "enumsDataService", "membershipDataService", "$scope", "activitySelectorService"];
+    donationController.$inject = ["utilityService", "donationsDataService", "operationFlowService", "$uibModal", "enumsDataService", "membershipDataService", "$scope", "activitySelectorService", "usSpinnerService"];
 
-    function donationController(utilityService, donationsDataService, operationFlowService, $uibModal, enumsDataService, membershipDataService, $scope, activitySelectorService) {
+    function donationController(utilityService, donationsDataService, operationFlowService, $uibModal, enumsDataService, membershipDataService, $scope, activitySelectorService, usSpinnerService) {
         var vm = this;
 
         vm.activityType = activitySelectorService.activityReportType;
@@ -69,11 +69,10 @@
         // #region Donation Activity Component
 
         function getDonationActivity(activityType) {
-
-            //vm.activityType = activityType;
-
+            usSpinnerService.spin("spinner-3");
             donationsDataService.getActivity(vm.activityType)
                 .then(function (response) {
+                    usSpinnerService.stop("spinner-3");
                     vm.donationActivity = response.data;
                     setDonationActivityPanelDefaults(vm.activityType, response.data.length);
                 });

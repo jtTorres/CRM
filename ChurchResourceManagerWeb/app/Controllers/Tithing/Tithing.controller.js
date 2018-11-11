@@ -28,9 +28,9 @@
         activate();
 
         function activate() {
+            setDefaults();
             return getAllMembership()
                 .then(function () {
-                    setDefaults();
                     console.log("Activated Tithing Controller");
                 });
         }
@@ -127,7 +127,7 @@
 
         function setTithingActivityPanelDefaults() {
             vm.tithingActivityPanelSettings = {
-                panelHeading: "Today's Tithing Activity",
+                panelHeading: "Tithing Activity",
                 isOpen: false
             };
         }
@@ -186,10 +186,12 @@
 
         // #region TithingActivity
         function getTithingActivity(tithingActivityType) {
+            usSpinnerService.spin("spinner-1");
             vm.tithingActivityType = tithingActivityType;
 
             getTithingActivityByType(tithingActivityType)
                 .then(function (response) {
+                    usSpinnerService.stop("spinner-1");
                     vm.tithingActivity = response.data;
                     updateTithingActivityPanelHeader(tithingActivityType, response.data.length);
                 })

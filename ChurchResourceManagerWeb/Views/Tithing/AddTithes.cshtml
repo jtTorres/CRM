@@ -2,30 +2,31 @@
 
 
 <div ng-controller="tithingController as tc">
-        <div class="row">
-            <div class="col-xs-5">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Add Tithes
-                    </div>
-                    <div class="panel-body">
-                        <add-tithe on-save="tc.doSaveTithe(tithe)" clear-tithing-activity="tc.clearActivity()" get-member-tithes="tc.getMemberTithes(memberId)" set-member-activity-panel-defaults="tc.setActivityByMemberPanelDefaults()"></add-tithe>
-                    </div>
+    <div class="row">
+        <div class="col-xs-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Add Tithes
+                </div>
+                <div class="panel-body">
+                    <add-tithe on-save="tc.doSaveTithe(tithe)" clear-tithing-activity="tc.clearActivity()" get-member-tithes="tc.getMemberTithes(memberId)" set-member-activity-panel-defaults="tc.setActivityByMemberPanelDefaults()"></add-tithe>
                 </div>
             </div>
-            <tithes-running-totals tithes-running-total="tc.tithesRunningTotal"></tithes-running-totals>
-            <tithing-activity-by-member-grid panel-settings="tc.activityByMemberPanelSettings" open-edit-modal="tc.openEditTitheModal(tithe, index, grid)" open-delete-modal="tc.openDeleteTitheModal(titheId, memberId)"></tithing-activity-by-member-grid>
         </div>
+        <tithes-running-totals tithes-running-total="tc.tithesRunningTotal"></tithes-running-totals>
+        <tithing-activity-by-member-grid panel-settings="tc.activityByMemberPanelSettings" open-edit-modal="tc.openEditTitheModal(tithe, index, grid)" open-delete-modal="tc.openDeleteTitheModal(titheId, memberId)"></tithing-activity-by-member-grid>
+    </div>
 
     <!--Tithing Activity-->
     <div style="padding-top: 10px;">
-        <tithing-activity
-            get-tithing-activity="tc.getTithingActivity(tithingActivityType)"
-            tithing-activity-type="today"
-            panel-settings="tc.tithingActivityPanelSettings"
-            tithing-activity="tc.tithingActivity"
-            open-edit-modal="tc.openEditTitheModal(tithe, index, grid)"
-            open-delete-modal="tc.openDeleteTitheModal(titheId, memberId)">
+        <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>
+        <tithing-activity get-tithing-activity="tc.getTithingActivity(tithingActivityType)"
+                          tithing-activity-type="today"
+                          panel-settings="tc.tithingActivityPanelSettings"
+                          tithing-activity="tc.tithingActivity"
+                          open-edit-modal="tc.openEditTitheModal(tithe, index, grid)"
+                          open-delete-modal="tc.openDeleteTitheModal(titheId, memberId)"
+                          show-edit-delete="true">
         </tithing-activity>
     </div>
 

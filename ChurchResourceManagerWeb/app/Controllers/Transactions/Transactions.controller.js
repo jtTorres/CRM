@@ -4,9 +4,9 @@
     angular.module("app")
         .controller("transactionsController", transactionsController);
 
-    transactionsController.$inject = ["utilityService", "transactionsDataService", "operationFlowService", "$uibModal", "enumsDataService"];
+    transactionsController.$inject = ["utilityService", "transactionsDataService", "operationFlowService", "$uibModal", "enumsDataService", "usSpinnerService"];
 
-    function transactionsController(utilityService, transactionsDataService, operationFlowService, $uibModal, enumsDataService) {
+    function transactionsController(utilityService, transactionsDataService, operationFlowService, $uibModal, enumsDataService, usSpinnerService) {
         var vm = this;
 
         vm.doClearForm = doClearForm;
@@ -59,8 +59,10 @@
 
         // #region Transactions Search
         function getTransactions() {
+            usSpinnerService.spin("spinner-4");
             transactionsDataService.getTransactions()
                 .then(function (response) {
+                    usSpinnerService.stop("spinner-4");
                     vm.transactions = response.data;
                 });
         }
