@@ -2,11 +2,9 @@
 using System;
 using System.Linq;
 using System.Web.Mvc;
-using System.Web.UI;
 
 namespace ChurchResourceManagerWeb.Controllers
 {
-    [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
     [AllowAnonymous]
     public class TithingController : BaseController
     {
@@ -18,7 +16,6 @@ namespace ChurchResourceManagerWeb.Controllers
         }
 
         [HttpGet]
-        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
         public ActionResult AddTithes()
         {
             return View();
