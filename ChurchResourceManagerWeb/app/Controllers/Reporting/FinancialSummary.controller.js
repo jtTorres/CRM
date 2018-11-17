@@ -4,9 +4,9 @@
     angular.module("app")
         .controller("financialSummaryController", financialSummaryController);
 
-    financialSummaryController.$inject = ["offeringDataService", "tithingDataService", "donationsDataService", "entitySelectorService"];
+    financialSummaryController.$inject = ["offeringDataService", "tithingDataService", "donationsDataService", "entitySelectorService", "usSpinnerService"];
 
-    function financialSummaryController(offeringDataService, tithingDataService, donationsDataService, entitySelectorService) {
+    function financialSummaryController(offeringDataService, tithingDataService, donationsDataService, entitySelectorService, usSpinnerService) {
         var vm = this;
         vm.getTotals = getTotals;
 
@@ -19,6 +19,8 @@
         }
 
         function getTotals(searchType, startDate, endDate, familyId, memberId) {
+            usSpinnerService.spin("spinner-FS");
+
             tithingDataService.getTithingActivityByDateRange(startDate, endDate, entitySelectorService.entityType.Tithe)
                 .then(getTithingTotalsComplete);
 
@@ -31,14 +33,17 @@
 
         function getTithingTotalsComplete(response) {
             vm.tithingRunningTotal = response;
+            usSpinnerService.stop("spinner-FS");
         }
 
         function getOfferingTotalsComplete(response) {
             vm.offeringRunningTotal = response;
+            usSpinnerService.stop("spinner-FS");
         }
 
         function getDonationTotalsComplete(response) {
             vm.donationRunningTotal = response;
+            usSpinnerService.stop("spinner-FS");
         }
     }
 

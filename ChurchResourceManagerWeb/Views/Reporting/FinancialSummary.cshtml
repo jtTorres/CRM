@@ -6,11 +6,12 @@
             <reporting-tabs report-type="Summary" go-button="fsc.getTotals(searchType, startDate, endDate, familyId, memberId)" no-results-found="fsc.noResults"
                             reset-tabs="fsc.reset()">
             </reporting-tabs>
-            
-            <br/>
+
+            <br />
             <running-totals running-total="fsc.tithingRunningTotal" title="Tithes"></running-totals>
             <running-totals running-total="fsc.offeringRunningTotal" title="Offering"></running-totals>
-            <running-totals running-total="fsc.donationRunningTotal" title="Donation"></running-totals>
+            @*<running-totals running-total="fsc.donationRunningTotal" title="Donation"></running-totals>*@
         </div>
     </div>
+    <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-FS"></span>
 </div>
