@@ -33,7 +33,8 @@
             enumsDataService.getDonationTypes()
                 .then(function (response) {
                     vm.enums.DonationTypes = response.data;
-                    vm.enums.DonationTypes.splice(0, 1);
+                    const titheIndex = vm.enums.DonationTypes.findIndex(x => x.Description === "Tithes");
+                    vm.enums.DonationTypes.splice(titheIndex, 1);
                 });
         }
 

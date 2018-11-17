@@ -462,42 +462,42 @@ namespace ChurchResourceManagerWeb.Models
 
         public IEnumerable<ContactMethodsViewModel> GetContactMethods()
         {
-            return ModelFactory.CreateContactMethodsList(db.CONTACT_METHODS);
+            return ModelFactory.CreateContactMethodsList(db.CONTACT_METHODS).OrderBy(x => x.Description);
         }
 
         public IEnumerable<MembershipStatusViewModel> GetMembershipStatuses()
         {
-            return ModelFactory.CreateMembershipStatusList(db.MEMBERSHIP_STATUS);
+            return ModelFactory.CreateMembershipStatusList(db.MEMBERSHIP_STATUS).OrderBy(x => x.Description);
         }
 
         public IEnumerable<RelationshipTypesViewModel> GetRelationshipTypes()
         {
-            return ModelFactory.CreateRelationshipTypesList(db.RELATIONSHIP_TYPES);
+            return ModelFactory.CreateRelationshipTypesList(db.RELATIONSHIP_TYPES).OrderBy(x => x.Description);
         }
 
         public IEnumerable<MaritalStatusesViewModel> GetMaritalStatuses()
         {
-            return ModelFactory.CreateMaritalStatusList(db.MARITAL_STATUS);
+            return ModelFactory.CreateMaritalStatusList(db.MARITAL_STATUS).OrderBy(x => x.Description);
         }
 
         public IEnumerable<MemberGroupsViewModel> GetMemberGroups()
         {
-            return ModelFactory.CreateMemberGroupsViewModel(db.MEMBER_GROUPS);
+            return ModelFactory.CreateMemberGroupsViewModel(db.MEMBER_GROUPS).OrderBy(x => x.Description);
         }
 
         public IEnumerable<TransactionTypesViewModel> GetTransactionTypes()
         {
-            return ModelFactory.CreateTransactionTypesViewModelList(db.TRANSACTION_TYPES);
+            return ModelFactory.CreateTransactionTypesViewModelList(db.TRANSACTION_TYPES).OrderBy(x => x.Description);
         }
 
         public IEnumerable<PaymentAccountsViewModel> GetPaymentAccounts()
         {
-            return ModelFactory.CreatePaymentAccountsViewModelList(db.PAYMENT_ACCOUNTS);
+            return ModelFactory.CreatePaymentAccountsViewModelList(db.PAYMENT_ACCOUNTS).OrderBy(x => x.PaymentAccount);
         }
 
         public IEnumerable<DonationTypesViewModel> GetDonationTypes()
         {
-            return ModelFactory.CreateDonationTypesViewModelList(db.DONATION_TYPES);
+            return ModelFactory.CreateDonationTypesViewModelList(db.DONATION_TYPES).OrderBy(x => x.Description);
         }
 
         public MEMBERSHIP GetMembershipById(int memberId)
