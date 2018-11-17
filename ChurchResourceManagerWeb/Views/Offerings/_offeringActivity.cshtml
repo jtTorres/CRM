@@ -6,6 +6,7 @@
                     <thead>
                         <tr>
                             <th width="10%">Offering Id</th>
+                            <th>Offering Type</th>
                             <th ng-show="oac.includeDateColumn === 'true'">Date</th>
                             <th>Amount</th>
                             <th>Comments</th>
@@ -14,6 +15,9 @@
                         <tr class="list-group" id="searchRow" name="searchRow">
                             <td>
                                 <input type="text" id="txtOfferingId" name="txtOfferingId" class="form-control" ng-model="search.OfferingId" />
+                            </td>
+                            <td>
+                                <input type="text" id="txtOfferingType" name="txtOfferingType" class="form-control" ng-model="search.DonationType" />
                             </td>
                             <td ng-show="oac.includeDateColumn === 'true'">
                                 <input type="text" id="txtDate" name="txtDate" class="form-control" ng-model="search.OfferingDate" />
@@ -29,6 +33,7 @@
                     <tbody>
                         <tr class="text-left" ng-repeat="offering in oac.offeringActivity | filter: search">
                             <td>{{offering.OfferingId}}</td>
+                            <td>{{offering.DonationType}}</td>
                             <td ng-show="oac.includeDateColumn === 'true'">{{offering.OfferingDate}}</td>
                             <td>{{offering.OfferingAmount | currency}}</td>
                             <td>{{offering.Comments}}</td>

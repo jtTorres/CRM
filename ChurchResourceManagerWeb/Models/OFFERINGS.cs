@@ -19,5 +19,7 @@ namespace ChurchResourceManagerWeb.Models
         public byte DONATION_TYPE_ID { get; set; }
         public decimal OFFERING_AMOUNT { get; set; }
         public string COMMENTS { get; set; }
+    
+        public virtual DONATION_TYPES DONATION_TYPES { get; set; }
     }
 }

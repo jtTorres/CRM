@@ -29,7 +29,7 @@ namespace ChurchResourceManagerWeb.Models
             {
                 OFFERING_ID = offering.OfferingId,
                 OFFERING_DATE = Convert.ToDateTime(offering.OfferingDate),
-                DONATION_TYPE_ID = offering.DonationType,
+                DONATION_TYPE_ID = offering.DonationTypeId,
                 OFFERING_AMOUNT = offering.OfferingAmount,
                 COMMENTS = offering.Comments
             };
@@ -240,13 +240,15 @@ namespace ChurchResourceManagerWeb.Models
         public IEnumerable<OfferingsViewModel> CreateOfferingsViewModelList(IQueryable<OFFERINGS> offering)
         {
 
-            return offering.Select(o => new OfferingsViewModel
-            {
-                OfferingId = o.OFFERING_ID,
-                OfferingDateTime = o.OFFERING_DATE,
-                OfferingAmount = o.OFFERING_AMOUNT,
-                Comments = o.COMMENTS
-            }).ToList();
+            return offering.Include(dt => dt.DONATION_TYPES.DESCRIPTION)
+                .Select(o => new OfferingsViewModel
+                {
+                    OfferingId = o.OFFERING_ID,
+                    DonationType = o.DONATION_TYPES.DESCRIPTION,
+                    OfferingDateTime = o.OFFERING_DATE,
+                    OfferingAmount = o.OFFERING_AMOUNT,
+                    Comments = o.COMMENTS
+                }).ToList();
         }
 
         public List<ContactInfoViewModel> CreateContactInfoViewModelList(ContactInfoViewModel contact)

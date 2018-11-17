@@ -5,9 +5,9 @@
     angular.module("app")
         .controller("offeringController", offeringController);
 
-    offeringController.$inject = ["utilityService", "offeringDataService", "operationFlowService", "entitySelectorService", "activitySelectorService", "$uibModal", "$scope", "usSpinnerService"];
+    offeringController.$inject = ["utilityService", "offeringDataService", "operationFlowService", "entitySelectorService", "activitySelectorService", "$uibModal", "$scope", "usSpinnerService", "enumsDataService"];
 
-    function offeringController(utilityService, offeringDataService, operationFlowService, entitySelectorService, activitySelectorService, $uibModal, $scope, usSpinnerService) {
+    function offeringController(utilityService, offeringDataService, operationFlowService, entitySelectorService, activitySelectorService, $uibModal, $scope, usSpinnerService, enumsDataService) {
         var vm = this;
 
         vm.activityType = activitySelectorService.activityReportType;
@@ -15,6 +15,7 @@
         vm.offeringId = {};
 
         vm.doSaveOffering = doSaveOffering;
+        vm.enums = {};
         vm.getOfferingActivity = getOfferingActivity;
         vm.getOfferingRunningTotal = getOfferingRunningTotal;
         vm.openDeleteOfferingModal = openDeleteOfferingModal;
@@ -24,12 +25,22 @@
         activate();
         function activate() {
             setDefaults();
+            getEnums();
             console.log("Activated Offerings Controller");
+        }
+
+        function getEnums() {
+            enumsDataService.getDonationTypes()
+                .then(function (response) {
+                    vm.enums.DonationTypes = response.data;
+                    vm.enums.DonationTypes.splice(0, 1);
+                });
         }
 
         // #region Add Tithes Component
 
         function doSaveOffering(offeringRecord) {
+            getDropdownSelection(offeringRecord);
             if (utilityService.isUndefinedOrNull(offeringRecord.OfferingId)) {
                 return offeringDataService.addOffering(offeringRecord)
                     .then(onSaveSuccess)
@@ -50,6 +61,10 @@
 
         function onSaveError(reason) {
             vm.processFlow = operationFlowService.operationCompletion(reason.message, false);
+        }
+
+        function getDropdownSelection(offering) {
+            offering.DonationTypeId = offering.SelectedDonationType.Id;
         }
 
         function clearActivity() {

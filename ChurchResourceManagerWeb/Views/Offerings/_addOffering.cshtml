@@ -1,12 +1,19 @@
 ﻿<form id="aoc.addOfferingsForm" name="aoc.addOfferingsForm" novalidate ng-submit="aoc.addOffering(aoc.Offering, aoc.addOfferingsForm)" autocomplete="off">
-    <!--Offering-->
-    
+    <!--Offering Type-->
+    <div class="col-xs-10">
+        <div class="form-group">
+            <select id="ddlDonationType" name="ddlDonationType" class="form-control" ng-model="aoc.Offering.SelectedDonationType" ng-options="t.Description for t in aoc.enums.DonationTypes" required autofocus></select>
+            <div class="help-block-error" ng-messages="aoc.addOfferingsForm.ddlDonationType.$error" ng-if="aoc.addOfferingsForm.ddlDonationType.$touched || aoc.addOfferingsForm.$submitted">
+                <div ng-messages-include="message-template"></div>
+            </div>
+        </div>
+    </div>
     <!--Date-->
     <div class="col-xs-10">
         <div class="form-group">
             <p class="input-group">
                 <input id="dateTxtBx" name="dateTxtBx" type="text" class="form-control" ng-model="aoc.Offering.OfferingDate" uib-datepicker-popup="{{aoc.dateFormat}}" is-open="aoc.isOpenOfferingDate" ui-mask="99/99/9999" ui-mask-placeholder
-                       model-view-value="true" placeholder="Date (mm/dd/yyyy)" required autofocus />
+                       model-view-value="true" placeholder="Date (mm/dd/yyyy)" required />
                 <span class="input-group-btn">
                     <button type="button" class="btn btn-default" ng-click="aoc.openOfferingDate()"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>

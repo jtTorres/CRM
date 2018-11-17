@@ -327,6 +327,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_OFFERINGS_to_DONATION_TYPES_DONATION_TYPE_ID">
+          <End Role="DONATION_TYPES" Type="Self.DONATION_TYPES" Multiplicity="1" />
+          <End Role="OFFERINGS" Type="Self.OFFERINGS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONATION_TYPES">
+              <PropertyRef Name="DONATION_TYPE_ID" />
+            </Principal>
+            <Dependent Role="OFFERINGS">
+              <PropertyRef Name="DONATION_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_TITHES_to_DONATION_TYPES_DONATION_TYPE_ID">
           <End Role="DONATION_TYPES" Type="Self.DONATION_TYPES" Multiplicity="1" />
           <End Role="TITHES" Type="Self.TITHES" Multiplicity="*" />
@@ -443,6 +455,10 @@
             <End Role="RELATIONSHIP_TYPES" EntitySet="RELATIONSHIP_TYPES" />
             <End Role="RELATIONSHIP_TYPES1" EntitySet="RELATIONSHIP_TYPES" />
           </AssociationSet>
+          <AssociationSet Name="fk_OFFERINGS_to_DONATION_TYPES_DONATION_TYPE_ID" Association="Self.fk_OFFERINGS_to_DONATION_TYPES_DONATION_TYPE_ID">
+            <End Role="DONATION_TYPES" EntitySet="DONATION_TYPES" />
+            <End Role="OFFERINGS" EntitySet="OFFERINGS" />
+          </AssociationSet>
           <AssociationSet Name="fk_TITHES_to_DONATION_TYPES_DONATION_TYPE_ID" Association="Self.fk_TITHES_to_DONATION_TYPES_DONATION_TYPE_ID">
             <End Role="DONATION_TYPES" EntitySet="DONATION_TYPES" />
             <End Role="TITHES" EntitySet="TITHES" />
@@ -548,6 +564,10 @@
             <End Role="MEMBERSHIP" EntitySet="MEMBERSHIP" />
             <End Role="DONATIONS" EntitySet="DONATIONS" />
           </AssociationSet>
+          <AssociationSet Name="fk_OFFERINGS_to_DONATION_TYPES_DONATION_TYPE_ID" Association="ChurchResourceDbModel.fk_OFFERINGS_to_DONATION_TYPES_DONATION_TYPE_ID">
+            <End Role="DONATION_TYPES" EntitySet="DONATION_TYPES" />
+            <End Role="OFFERINGS" EntitySet="OFFERINGS" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ACTIVITIES">
           <Key>
@@ -598,6 +618,7 @@
           <Property Name="DESCRIPTION" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TITHES" Relationship="ChurchResourceDbModel.fk_TITHES_to_DONATION_TYPES_DONATION_TYPE_ID" FromRole="DONATION_TYPES" ToRole="TITHES" />
           <NavigationProperty Name="DONATIONS" Relationship="ChurchResourceDbModel.fk_DONATIONS_to_DONATION_TYPES_DONATION_TYPE_ID" FromRole="DONATION_TYPES" ToRole="DONATIONS" />
+          <NavigationProperty Name="OFFERINGS" Relationship="ChurchResourceDbModel.fk_OFFERINGS_to_DONATION_TYPES_DONATION_TYPE_ID" FromRole="DONATION_TYPES" ToRole="OFFERINGS" />
         </EntityType>
         <EntityType Name="FAMILIES">
           <Key>
@@ -674,6 +695,7 @@
           <Property Name="DONATION_TYPE_ID" Type="Byte" Nullable="false" />
           <Property Name="OFFERING_AMOUNT" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
           <Property Name="COMMENTS" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DONATION_TYPES" Relationship="ChurchResourceDbModel.fk_OFFERINGS_to_DONATION_TYPES_DONATION_TYPE_ID" FromRole="OFFERINGS" ToRole="DONATION_TYPES" />
         </EntityType>
         <EntityType Name="TITHES">
           <Key>
@@ -948,6 +970,18 @@
             </Principal>
             <Dependent Role="DONATIONS">
               <PropertyRef Name="MEMBER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_OFFERINGS_to_DONATION_TYPES_DONATION_TYPE_ID">
+          <End Type="ChurchResourceDbModel.DONATION_TYPES" Role="DONATION_TYPES" Multiplicity="1" />
+          <End Type="ChurchResourceDbModel.OFFERINGS" Role="OFFERINGS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DONATION_TYPES">
+              <PropertyRef Name="DONATION_TYPE_ID" />
+            </Principal>
+            <Dependent Role="OFFERINGS">
+              <PropertyRef Name="DONATION_TYPE_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

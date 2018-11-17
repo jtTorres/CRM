@@ -116,6 +116,5 @@ namespace ChurchResourceManagerWeb.Controllers
                 throw;
             }
         }
-
     }
 }

@@ -19,6 +19,7 @@ namespace ChurchResourceManagerWeb.Models
         {
             this.TITHES = new HashSet<TITHES>();
             this.DONATIONS = new HashSet<DONATIONS>();
+            this.OFFERINGS = new HashSet<OFFERINGS>();
         }
     
         public byte DONATION_TYPE_ID { get; set; }
@@ -28,5 +29,7 @@ namespace ChurchResourceManagerWeb.Models
         public virtual ICollection<TITHES> TITHES { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DONATIONS> DONATIONS { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OFFERINGS> OFFERINGS { get; set; }
     }
 }

@@ -1,19 +1,19 @@
 ﻿<page-header page-title="Add Offerings"></page-header>
 
 <div ng-controller="offeringController as oc">
-        <div class="row">
-            <div class="col-md-5">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Add Offerings
-                    </div>
-                    <div class="panel-body">
-                        <add-offering on-save="oc.doSaveOffering(offering)"></add-offering>
-                    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Add Offerings
+                </div>
+                <div class="panel-body">
+                    <add-offering on-save="oc.doSaveOffering(offering)" enums="oc.enums"></add-offering>
                 </div>
             </div>
-            <running-totals running-total="oc.runningTotal" offering-activity="oc.offeringActivity" title="Offering" ></running-totals>
         </div>
+        <running-totals running-total="oc.runningTotal" offering-activity="oc.offeringActivity" title="Offering"></running-totals>
+    </div>
 
     <!--Offering Activity-->
     <div style="padding-top: 10px;">

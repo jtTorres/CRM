@@ -10,7 +10,8 @@
                 controllerAs: "aoc",
                 bindings: {
                     onSave: "&",
-                    offering: "<"
+                    offering: "<",
+                    enums: "<"
                 }
             });
 })();
