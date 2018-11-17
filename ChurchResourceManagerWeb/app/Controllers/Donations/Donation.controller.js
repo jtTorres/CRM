@@ -23,16 +23,6 @@
         activate();
         function activate() {
             getEnums();
-            getAllMembership();
-        }
-
-        function getAllMembership() {
-            return membershipDataService.getAllMembership()
-                .then(function (response) {
-                    membershipDataService.allMembership.data = response.data;
-                    vm.allMembership = membershipDataService.allMembership;
-                    return vm.allMembership;
-                });
         }
 
         function onSaveSuccess(response) {

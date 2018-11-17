@@ -9,7 +9,7 @@
                    type="text"
                    placeholder="Name or Member Id"
                    ng-model="atc.Tithe.selectedMember"
-                   uib-typeahead="member as member.MemberKey for member in atc.allMembership.data | filter: {MemberKey:$viewValue} | limitTo: 8"
+                   uib-typeahead="member as member.MemberKey for member in atc.allMembership | filter: {MemberKey:$viewValue} | limitTo: 8"
                    typeahead-on-select="atc.onMemberSelected($item, $model, $label)"
                    required autofocus />
             <div class="help-block-error" ng-messages="atc.addTithesForm.memberIdTextBx.$error" ng-if="atc.addTithesForm.memberIdTextBx.$touched || atc.addTithesForm.$submitted">

@@ -189,8 +189,8 @@ namespace ChurchResourceManagerWeb.Models
                 DonationDateTime = donation.DONATION_DATE,
                 DonationTypeId = donation.DONATION_TYPE_ID,
                 MemberId = donation.MEMBER_ID,
-                FirstName = donation.MEMBERSHIP.FIRST_NAME,
-                LastName = donation.MEMBERSHIP.LAST_NAME,
+                FirstName = donation.MEMBERSHIP?.FIRST_NAME,
+                LastName = donation.MEMBERSHIP?.LAST_NAME,
                 DonationAmount = donation.DONATION_AMOUNT,
                 Comments = donation.COMMENTS
             };

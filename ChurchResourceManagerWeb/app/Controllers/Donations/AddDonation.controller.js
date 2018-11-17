@@ -25,7 +25,11 @@
         }
 
         function getAllMembership() {
-            vm.allMembership = membershipDataService.allMembership;
+            //vm.allMembership = membershipDataService.allMembership;
+            membershipDataService.getAllMembership()
+                .then(function (response) {
+                    vm.allMembership = response.data;
+                });
         }
 
         function onMemberSelected(item, model, label) {
@@ -36,6 +40,7 @@
 
         function addDonation(donation, form) {
             if (!operationFlowService.isFormValid(form)) return;
+            checkMemberSelection(donation);
 
             vm.onSave({ donation: donation })
                 .then(clearForm(vm.addDonationForm));
@@ -47,6 +52,13 @@
 
         function openCalendar() {
             vm.isOpenDonationDate = true;
+        }
+
+        function checkMemberSelection(donation) {
+            if (donation.selectedMember === "")
+                donation.MemberId = null;
+            donation.FirstName = null;
+            donation.LastName = null;
         }
 
         $scope.$on("reloadAddOffering", clearForm);

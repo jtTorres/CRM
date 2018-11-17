@@ -30,7 +30,11 @@
         }
 
         function getAllMembership() {
-            vm.allMembership = membershipDataService.allMembership;
+            //vm.allMembership = membershipDataService.allMembership;
+            membershipDataService.getAllMembership()
+                .then(function (response) {
+                    vm.allMembership = response.data;
+                });
         }
 
         function addTithe(titheRecord, form) {

@@ -34,7 +34,7 @@
                    type="text"
                    placeholder="Name or Member Id"
                    ng-model="adc.donation.selectedMember"
-                   uib-typeahead="member as member.MemberKey for member in adc.allMembership.data | filter: {MemberKey:$viewValue} | limitTo: 8"
+                   uib-typeahead="member as member.MemberKey for member in adc.allMembership | filter: {MemberKey:$viewValue} | limitTo: 8"
                    typeahead-on-select="adc.onMemberSelected($item, $model, $label)" />
         </div>
     </div>

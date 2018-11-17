@@ -29,10 +29,6 @@
 
         function activate() {
             setDefaults();
-            return getAllMembership()
-                .then(function () {
-                    console.log("Activated Tithing Controller");
-                });
         }
 
 
