@@ -49,7 +49,8 @@
 
         function getAdditionalDateRangeOptions(searchType) {
             if (searchType === "DateRange" && !utilityService.isUndefinedOrNull(vm.radioButtons))
-                searchType = vm.radioButtons.selected;
+                if (!utilityService.isUndefinedOrNull(vm.radioButtons.selected))
+                    searchType = vm.radioButtons.selected;
             return searchType;
         }
     }

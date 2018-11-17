@@ -20,6 +20,7 @@
             getTodaysTithingActivity: getTodaysTithingActivity,
             getTithingActivity: getTithingActivity,
             getTithingActivityByDateRange: getTithingActivityByDateRange,
+            getTithingTotalsByDateRange: getTithingTotalsByDateRange,
             getTithingActivityByFamilyId: getTithingActivityByFamilyId,
             updateTitheGrids: updateTitheGrids,
             addToTotal: addToTotal
@@ -145,10 +146,10 @@
 
         function getTithesRunningTotalByDateRange(startDate, endDate) {
             return $http({
-                    method: "GET",
-                    url: "/Tithing/GetTithesRunningTotalByDateRange/",
-                    params: { date: date }
-                })
+                method: "GET",
+                url: "/Tithing/GetTithesRunningTotalByDateRange/",
+                params: { date: date }
+            })
                 .then(onGetTithesRunningTotalByDateRangeComplete)
                 .catch(onGetTithesRunningTotalByDateRangeError);
         }
@@ -271,7 +272,7 @@
             }
         }
 
-        function getTithingActivityByDateRange(startDate, endDate, entity) {
+        function getTithingTotalsByDateRange(startDate, endDate, entity) {
             return $http({
                 method: "GET",
                 url: "/Shared/GetRunningTotalsByDateRange/",
@@ -279,6 +280,27 @@
                     startDate: startDate,
                     endDate: endDate,
                     entity: entity
+                }
+            })
+                .then(onGetTithingTotalsByDateRangeComplete)
+                .catch(onGetTithingTotalsByDateRangeError);
+        }
+
+        function onGetTithingTotalsByDateRangeComplete(response) {
+            return response;
+        }
+
+        function onGetTithingTotalsByDateRangeError(reason) {
+            return $q.reject(utilityService.httpError(reason, "Error Getting Tithing Activity"));
+        }
+
+        function getTithingActivityByDateRange(startDate, endDate) {
+            return $http({
+                method: "GET",
+                url: "/Tithing/GetTithingActivityByDateRange/",
+                params: {
+                    startDate: startDate,
+                    endDate: endDate
                 }
             })
                 .then(onGetTithingActivityByDateRangeComplete)

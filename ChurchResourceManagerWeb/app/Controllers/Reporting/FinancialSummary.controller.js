@@ -21,7 +21,7 @@
         function getTotals(searchType, startDate, endDate, familyId, memberId) {
             usSpinnerService.spin("spinner-FS");
 
-            tithingDataService.getTithingActivityByDateRange(startDate, endDate, entitySelectorService.entityType.Tithe)
+            tithingDataService.getTithingTotalsByDateRange(startDate, endDate, entitySelectorService.entityType.Tithe)
                 .then(getTithingTotalsComplete);
 
             offeringDataService.getRunningTotalsByDateRange(startDate, endDate, entitySelectorService.entityType.Offering)
