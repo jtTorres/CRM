@@ -16,12 +16,15 @@ namespace ChurchResourceManagerWeb.Models
         }
 
         #region Add Methods
-        public bool AddTithe(TithesViewModel tithe)
+        public TithesViewModel AddTithe(TithesViewModel tithe)
         {
             try
             {
-                db.TITHES.Add(ModelFactory.CreateTithe(tithe));
-                return true;
+                var titheRecord = ModelFactory.CreateTithe(tithe);
+                db.TITHES.Add(titheRecord);
+                SaveAll();
+
+                return GetMemberTitheByTitheId(titheRecord.TITHE_ID);
             }
             catch (Exception ex)
             {
@@ -155,11 +158,12 @@ namespace ChurchResourceManagerWeb.Models
         #endregion
 
         #region Update Methods
-        public bool UpdateTithe(TithesViewModel tithe)
+        public TithesViewModel UpdateTithe(TithesViewModel tithe)
         {
             db.Entry(GetTitheById(tithe.TitheId)).CurrentValues.SetValues(ModelFactory.CreateTithe(tithe));
+            SaveAll();
 
-            return SaveAll();
+            return tithe;
         }
 
         public bool UpdateOffering(OfferingsViewModel offering)
@@ -270,12 +274,13 @@ namespace ChurchResourceManagerWeb.Models
         #endregion
 
         #region Delete Methods
-        public bool DeleteTithe(int titheId)
+        public int DeleteTithe(int titheId)
         {
             var titheRecord = GetTitheById(titheId);
 
             db.Entry(titheRecord).State = EntityState.Deleted;
-            return SaveAll();
+            SaveAll();
+            return titheId;
         }
 
         public bool DeleteOffering(int offeringId)
@@ -369,6 +374,11 @@ namespace ChurchResourceManagerWeb.Models
 
             var tithe = db.TITHES.Where(t => (t.TITHE_DATE == date && memberId == 0) || (t.MEMBER_ID == memberId && memberId > 0) || (memberId == 0 && date == null));
             return ModelFactory.CreateTithesViewModelList(tithe).OrderByDescending(t => t.TitheId);
+        }
+
+        public TithesViewModel GetMemberTitheByTitheId(int titheId)
+        {
+            return ModelFactory.CreateTithesViewModel(db.TITHES.Where(t => t.TITHE_ID == titheId));
         }
 
         public IEnumerable<TithesViewModel> GetTithingActivityByDateRange(DateTime startDate, DateTime endDate)

@@ -30,7 +30,6 @@
         }
 
         function getAllMembership() {
-            //vm.allMembership = membershipDataService.allMembership;
             membershipDataService.getAllMembership()
                 .then(function (response) {
                     vm.allMembership = response.data;
@@ -80,7 +79,6 @@
         }
 
         $scope.$on("reloadAddTithes", clearForm);
-
     }
 
 })();

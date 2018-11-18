@@ -70,19 +70,15 @@ namespace ChurchResourceManagerWeb.Controllers
             {
                 // TODO: Take care of error handling so the user is aware when there's an error
 
-                // set default for DONATION_TYPE
-                //titheRecord.DONATION_TYPE_ID = 1; // Tithes
                 titheRecord.DonationType = 1; // Tithes
 
-                if (Repo.AddTithe(titheRecord) && Repo.SaveAll())
-                    return Json(new { Success = true });
+                return Json(Repo.AddTithe(titheRecord), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 throw ex;
             }
-            return Json(new { Success = false });
         }
 
         [HttpGet]
@@ -188,7 +184,7 @@ namespace ChurchResourceManagerWeb.Controllers
         {
             try
             {
-                return Json(new { success = Repo.UpdateTithe(tithe) }, JsonRequestBehavior.AllowGet);
+                return Json(Repo.UpdateTithe(tithe), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -202,7 +198,7 @@ namespace ChurchResourceManagerWeb.Controllers
         {
             try
             {
-                return Json(new { success = Repo.DeleteTithe(titheId) }, JsonRequestBehavior.AllowGet);
+                return Json(Repo.DeleteTithe(titheId), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

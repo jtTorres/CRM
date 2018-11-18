@@ -121,6 +121,24 @@ namespace ChurchResourceManagerWeb.Models
 
         #region ViewModel Creation
 
+        public TithesViewModel CreateTithesViewModel(IQueryable<TITHES> tithe)
+        {
+            return tithe.Include(m => m.MEMBERSHIP).Select(t => new TithesViewModel
+            {
+                TitheId = t.TITHE_ID,
+                MemberId = t.MEMBER_ID,
+                FirstName = t.MEMBERSHIP.FIRST_NAME,
+                LastName = t.MEMBERSHIP.LAST_NAME,
+                DonationType = t.DONATION_TYPE_ID,
+                TitheDateDateTime = t.TITHE_DATE,
+                IsCheck = t.IS_CHECK,
+                CheckNumber = t.CHECK_NUMBER ?? 0,
+                TitheAmount = t.TITHE_AMOUNT,
+                Comments = t.COMMENTS
+
+            }).First();
+        }
+
         public MembershipViewModel CreateMembershipViewModel(MEMBERSHIP membership)
         {
             return new MembershipViewModel
@@ -465,8 +483,6 @@ namespace ChurchResourceManagerWeb.Models
                 CONTACT_INFO1 = contactInfoList.ContactInfo
             };
         }
-
-
-
+        
     }
 }

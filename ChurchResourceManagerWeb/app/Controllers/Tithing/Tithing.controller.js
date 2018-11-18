@@ -24,21 +24,12 @@
         vm.setTithingActivityPanelDefaults = setTithingActivityPanelDefaults;
         // #endregion
 
+        var updateType = "";
         // init logic
         activate();
 
         function activate() {
             setDefaults();
-        }
-
-
-        function getAllMembership() {
-            return membershipDataService.getAllMembership()
-                .then(function (response) {
-                    membershipDataService.allMembership.data = response.data;
-                    vm.allMembership = membershipDataService.allMembership;
-                    return vm.allMembership;
-                });
         }
 
         function openEditTitheModal(tithe, index, grid) {
@@ -88,22 +79,23 @@
         function doSaveTithe(titheRecord) {
             usSpinnerService.spin("spinner-1");
             if (utilityService.isUndefinedOrNull(titheRecord.TitheId)) {
+                updateType = "Insert";
                 return tithingDataService.addTithe(titheRecord)
                     .then(onAddTitheSuccess)
                     .catch(onAddTitheError);
             } else {
+                updateType = "Update";
                 return tithingDataService.updateTithe(titheRecord)
                     .then(onAddTitheSuccess)
                     .catch(onAddTitheError);
             }
-
         }
 
         function onAddTitheSuccess(response) {
             usSpinnerService.stop("spinner-1");
-            vm.processFlow = operationFlowService.operationCompletion("Tithe Saved Successfully!", true);
             getTithesRunningTotal();
-            getTithingActivity(vm.tithingActivityType);
+            updateTithingActivityGrid(updateType, response.data);
+            vm.processFlow = operationFlowService.operationCompletion("Tithe Saved Successfully!", true);
         }
 
         function onAddTitheError(reason) {
@@ -145,7 +137,7 @@
 
         // #region Delete Tithe Modal Component
         function openDeleteTitheModal(titheId, memberId) {
-
+            updateType = "Delete";
             titheVars.titheToDelete = {
                 TitheId: titheId,
                 MemberId: memberId
@@ -169,7 +161,7 @@
                 .then(function (response) {
                     getTithesRunningTotal(new Date());
                     getMemberTithes(titheVars.titheToDelete.MemberId);
-                    getTithingActivity(vm.tithingActivityType);
+                    updateTithingActivityGrid(updateType, response.data);
                     vm.processFlow = operationFlowService.operationCompletion("Tithe Deleted Successfully", true);
                 })
                 .catch(function (reason) {
@@ -229,6 +221,28 @@
             setTithingActivityPanelDefaults();
             getTithesRunningTotal();
         }
+
+
+        function updateTithingActivityGrid(action, titheRecord) {
+            var titheIndex = -1;
+            switch (action) {
+                case "Insert":
+                    vm.tithingActivity.splice(0, 0, titheRecord);
+                    break;
+                case "Update":
+                    titheIndex = vm.tithingActivity.findIndex(x => x.TitheId === titheRecord.TitheId);
+                    vm.tithingActivity.splice(titheIndex, 1, titheRecord);
+                    break;
+                case "Delete":
+                    titheIndex = vm.tithingActivity.findIndex(x => x.TitheId === titheRecord);
+                    vm.tithingActivity.splice(titheIndex, 1);
+                    break;
+                default:
+                    break;
+            }
+            vm.tithingActivityPanelSettings.isOpen = vm.tithingActivity.length > 0 ? true : false;
+        }
+
 
         $scope.$on("reloadAddTithes", setDefaults);
     }
