@@ -18,11 +18,12 @@
             isUndefinedOrNull: isUndefinedOrNull,
             openModal: openModal,
             closeModal: closeModal,
-            updateArray: updateArray,
-            deleteArray: deleteArray,
+            updateArray: updateArray, // I think this is old
+            deleteArray: deleteArray, // I think this is old
             getArrayIndexOf: getArrayIndexOf,
             scrollTop: scrollTop,
-            setFocus: setFocus
+            setFocus: setFocus,
+            updateObjectArray: updateObjectArray
         };
 
         function httpError(reason, errorMessage) {
@@ -99,6 +100,25 @@
 
         function setFocus(elementId) {
             $window.document.getElementById(elementId).focus();
+        }
+
+        function updateObjectArray(action, objectRecord, objectToUpdate, objectProperty) {
+            var index = -1;
+            switch (action) {
+            case "Insert":
+                    objectToUpdate.splice(0, 0, objectRecord);
+                break;
+            case "Update":
+                    index = objectToUpdate.findIndex(x => x[objectProperty] === objectRecord[objectProperty]);
+                    objectToUpdate.splice(index, 1, objectRecord);
+                break;
+            case "Delete":
+                    index = objectToUpdate.findIndex(x => x[objectProperty] === objectRecord);
+                objectToUpdate.splice(index, 1);
+                break;
+            default:
+                break;
+            }
         }
     }
 

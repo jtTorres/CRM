@@ -51,15 +51,13 @@ namespace ChurchResourceManagerWeb.Controllers
         {
             try
             {
-                if (Repo.AddOffering(offeringRecord) && Repo.SaveAll())
-                    return Json(new { Success = true });
+                return Json(Repo.AddOffering(offeringRecord), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 throw;
             }
-            return Json(new { Success = false });
         }
 
         [HttpGet]
@@ -123,7 +121,7 @@ namespace ChurchResourceManagerWeb.Controllers
         {
             try
             {
-                return Json(new { success = Repo.UpdateOffering(offering) }, JsonRequestBehavior.AllowGet);
+                return Json(Repo.UpdateOffering(offering), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -137,7 +135,7 @@ namespace ChurchResourceManagerWeb.Controllers
         {
             try
             {
-                return Json(new { success = Repo.DeleteOffering(offeringId) }, JsonRequestBehavior.AllowGet);
+                return Json(Repo.DeleteOffering(offeringId), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

@@ -139,6 +139,20 @@ namespace ChurchResourceManagerWeb.Models
             }).First();
         }
 
+        public OfferingsViewModel CreateOfferingsViewModel(IQueryable<OFFERINGS> offering)
+        {
+            return offering.Include(dt => dt.DONATION_TYPES).Select(o => new OfferingsViewModel
+            {
+                OfferingId = o.OFFERING_ID,
+                OfferingDateTime = o.OFFERING_DATE,
+                DonationTypeId = o.DONATION_TYPES.DONATION_TYPE_ID,
+                DonationType = o.DONATION_TYPES.DESCRIPTION,
+                OfferingAmount = o.OFFERING_AMOUNT,
+                Comments = o.COMMENTS
+            }).First();
+
+        }
+
         public MembershipViewModel CreateMembershipViewModel(MEMBERSHIP membership)
         {
             return new MembershipViewModel
@@ -262,6 +276,7 @@ namespace ChurchResourceManagerWeb.Models
                 .Select(o => new OfferingsViewModel
                 {
                     OfferingId = o.OFFERING_ID,
+                    DonationTypeId = o.DONATION_TYPES.DONATION_TYPE_ID,
                     DonationType = o.DONATION_TYPES.DESCRIPTION,
                     OfferingDateTime = o.OFFERING_DATE,
                     OfferingAmount = o.OFFERING_AMOUNT,
@@ -483,6 +498,5 @@ namespace ChurchResourceManagerWeb.Models
                 CONTACT_INFO1 = contactInfoList.ContactInfo
             };
         }
-        
     }
 }

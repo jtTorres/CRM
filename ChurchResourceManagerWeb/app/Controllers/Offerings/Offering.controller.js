@@ -22,6 +22,8 @@
         vm.openEditOfferingModal = openEditOfferingModal;
         /////////////////////////////
 
+        var updateType = "";
+
         activate();
         function activate() {
             setDefaults();
@@ -30,11 +32,13 @@
         }
 
         function getEnums() {
+            usSpinnerService.spin("spinner-AddOfferings");
             enumsDataService.getDonationTypes()
                 .then(function (response) {
                     vm.enums.DonationTypes = response.data;
                     const titheIndex = vm.enums.DonationTypes.findIndex(x => x.Description === "Tithes");
                     vm.enums.DonationTypes.splice(titheIndex, 1);
+                    usSpinnerService.stop("spinner-AddOfferings");
                 });
         }
 
@@ -43,10 +47,12 @@
         function doSaveOffering(offeringRecord) {
             getDropdownSelection(offeringRecord);
             if (utilityService.isUndefinedOrNull(offeringRecord.OfferingId)) {
+                updateType = "Insert";
                 return offeringDataService.addOffering(offeringRecord)
                     .then(onSaveSuccess)
                     .catch(onSaveError);
             } else {
+                updateType = "Update";
                 return offeringDataService.updateOffering(offeringRecord)
                     .then(onSaveSuccess)
                     .catch(onSaveError);
@@ -56,7 +62,8 @@
         function onSaveSuccess(response) {
             vm.processFlow = operationFlowService.operationCompletion("Offering Saved Successfully!", true);
             getOfferingRunningTotal();
-            getOfferingActivity(vm.activityType);
+            //getOfferingActivity(vm.activityType);
+            updateOfferingActivityGrid(updateType, response.data);
             clearActivity();
         }
 
@@ -140,6 +147,9 @@
                     offeringToEdit: function () {
                         return offeringToEdit;
                     },
+                    enums: function () {
+                        return vm.enums;
+                    },
                     save: {
                         saveOffering: function (offeringRecord) {
                             return doSaveOffering(offeringRecord);
@@ -162,7 +172,7 @@
 
         // #region Delete Offering Modal Component
         function openDeleteOfferingModal(offeringId) {
-
+            updateType = "Delete";
             vm.offeringId = offeringId;
             var modalInstance = $uibModal.open({
                 animation: true,
@@ -180,10 +190,11 @@
 
         function deleteOffering(offeringId) {
             offeringDataService.deleteOffering(offeringId)
-                .then(function () {
+                .then(function (response) {
                     getOfferingRunningTotal();
-                    getOfferingActivity(vm.activityType);
+                    //getOfferingActivity(vm.activityType);
                     vm.processFlow = operationFlowService.operationCompletion("Offering Deleted Successfully", true);
+                    updateOfferingActivityGrid(updateType, response.data);
                 })
                 .catch(function (reason) {
                     vm.processFlow = operationFlowService.operationCompletion(reason.message, false);
@@ -197,6 +208,12 @@
             setOfferingActivityPanelDefaults();
             getOfferingRunningTotal();
         }
+
+        function updateOfferingActivityGrid(action, offeringRecord) {
+            utilityService.updateObjectArray(action, offeringRecord, vm.offeringActivity, "OfferingId");
+            vm.offeringActivityPanelSettings.isOpen = vm.offeringActivity.length > 0 ? true : false;
+        }
+
 
         $scope.$on("reloadAddOfferings", setDefaults);
     }

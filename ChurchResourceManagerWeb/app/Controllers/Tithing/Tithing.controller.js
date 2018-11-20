@@ -224,22 +224,7 @@
 
 
         function updateTithingActivityGrid(action, titheRecord) {
-            var titheIndex = -1;
-            switch (action) {
-                case "Insert":
-                    vm.tithingActivity.splice(0, 0, titheRecord);
-                    break;
-                case "Update":
-                    titheIndex = vm.tithingActivity.findIndex(x => x.TitheId === titheRecord.TitheId);
-                    vm.tithingActivity.splice(titheIndex, 1, titheRecord);
-                    break;
-                case "Delete":
-                    titheIndex = vm.tithingActivity.findIndex(x => x.TitheId === titheRecord);
-                    vm.tithingActivity.splice(titheIndex, 1);
-                    break;
-                default:
-                    break;
-            }
+            utilityService.updateObjectArray(action, titheRecord, vm.tithingActivity, "TitheId");
             vm.tithingActivityPanelSettings.isOpen = vm.tithingActivity.length > 0 ? true : false;
         }
 

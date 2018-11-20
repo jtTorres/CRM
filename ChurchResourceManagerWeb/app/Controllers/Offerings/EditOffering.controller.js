@@ -15,10 +15,12 @@
         vm.updateOffering = updateOffering;
         ///////////////////////////////////
 
-        vm.$onInit = function() {
+        vm.$onInit = function () {
             vm.Offering = vm.resolve.offeringToEdit;
             vm.Offering.OfferingDate = new Date(vm.Offering.OfferingDate);
             vm.updateTotals = vm.resolve.addToTotal.updateTotals;
+            vm.enums = vm.resolve.enums;
+            setDonationTypeDdl();
         };
 
         function updateOffering(offering) {
@@ -28,7 +30,9 @@
                 });
         }
 
-
+        function setDonationTypeDdl() {
+            vm.Offering.SelectedDonationType = vm.enums.DonationTypes[vm.enums.DonationTypes.findIndex(x => x.Id === vm.Offering.DonationTypeId)];
+        }
     }
 
 })();

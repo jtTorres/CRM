@@ -34,12 +34,14 @@ namespace ChurchResourceManagerWeb.Models
 
         }
 
-        public bool AddOffering(OfferingsViewModel offering)
+        public OfferingsViewModel AddOffering(OfferingsViewModel offering)
         {
             try
             {
-                db.OFFERINGS.Add(ModelFactory.CreateOffering(offering));
-                return true;
+                var offeringRecord = ModelFactory.CreateOffering(offering);
+                db.OFFERINGS.Add(offeringRecord);
+                SaveAll();
+                return GetOfferingsViewModelById(offeringRecord.OFFERING_ID);
             }
             catch (Exception ex)
             {
@@ -162,14 +164,14 @@ namespace ChurchResourceManagerWeb.Models
         {
             db.Entry(GetTitheById(tithe.TitheId)).CurrentValues.SetValues(ModelFactory.CreateTithe(tithe));
             SaveAll();
-
             return tithe;
         }
 
-        public bool UpdateOffering(OfferingsViewModel offering)
+        public OfferingsViewModel UpdateOffering(OfferingsViewModel offering)
         {
             db.Entry(GetOfferingById(offering.OfferingId)).CurrentValues.SetValues(ModelFactory.CreateOffering(offering));
-            return SaveAll();
+            SaveAll();
+            return offering;
         }
 
         public bool UpdateMembershipPreferredContactMethod(ContactInfoViewModel[] contactInfo)
@@ -283,12 +285,13 @@ namespace ChurchResourceManagerWeb.Models
             return titheId;
         }
 
-        public bool DeleteOffering(int offeringId)
+        public int DeleteOffering(int offeringId)
         {
             var offeringRecord = GetOfferingById(offeringId);
 
             db.Entry(offeringRecord).State = EntityState.Deleted;
-            return SaveAll();
+            SaveAll();
+            return offeringId;
         }
 
         public bool DeleteTransaction(int transactionId)
@@ -314,6 +317,11 @@ namespace ChurchResourceManagerWeb.Models
         public OFFERINGS GetOfferingById(int offeringId)
         {
             return db.OFFERINGS.FirstOrDefault(o => o.OFFERING_ID == offeringId);
+        }
+
+        public OfferingsViewModel GetOfferingsViewModelById(int offeringId)
+        {
+            return ModelFactory.CreateOfferingsViewModel(db.OFFERINGS.Where(o => o.OFFERING_ID == offeringId));
         }
         public IEnumerable<MembershipViewModel> GetAllMembership()
         {
