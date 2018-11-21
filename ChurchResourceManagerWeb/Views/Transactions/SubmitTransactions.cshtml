@@ -2,7 +2,8 @@
 
 <div ng-controller="transactionsController as tc">
     <div class="row">
-        <div class="col-xs-2">
+        <span us-spinner="{radius:30, width:8, length: 16}"></span>
+        <div class="col-xs-3">
             <submit-transaction transaction="tc.transaction" on-submit="tc.doSave(transaction)" , on-clear-form="tc.doClearForm(form)" enums="tc.enums"></submit-transaction>
         </div>
     </div>

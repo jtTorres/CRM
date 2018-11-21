@@ -46,7 +46,7 @@ namespace ChurchResourceManagerWeb.Controllers
         {
             try
             {
-                return Json(new { success = Repo.SubmitTransaction(transaction) });
+                return Json(Repo.SubmitTransaction(transaction), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -74,7 +74,7 @@ namespace ChurchResourceManagerWeb.Controllers
         {
             try
             {
-                return Json(Repo.GetTransactionViewModelById(transactionId), JsonRequestBehavior.AllowGet);
+                return Json(Repo.GetTransactionByIdViewModel(transactionId), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -88,7 +88,7 @@ namespace ChurchResourceManagerWeb.Controllers
         {
             try
             {
-                return Json(new { success = Repo.UpdateTransaction(transaction) });
+                return Json(Repo.UpdateTransaction(transaction), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -102,7 +102,7 @@ namespace ChurchResourceManagerWeb.Controllers
         {
             try
             {
-                return Json(new { Success = Repo.DeleteTransaction(transactionId) });
+                return Json(Repo.DeleteTransaction(transactionId), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

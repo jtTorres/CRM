@@ -144,10 +144,13 @@ namespace ChurchResourceManagerWeb.Models
             return true;
         }
 
-        public bool SubmitTransaction(TransactionsViewModel transaction)
+        public TransactionsViewModel SubmitTransaction(TransactionsViewModel transaction)
         {
-            db.TRANSACTIONS.Add(ModelFactory.CreateTransaction(transaction));
-            return SaveAll();
+            var transactionRecord = ModelFactory.CreateTransaction(transaction);
+            db.TRANSACTIONS.Add(transactionRecord);
+            SaveAll();
+
+            return GetTransactionByIdViewModel(transactionRecord.TRANSACTION_ID);
         }
 
         public DonationsViewModel AddDonation(DonationsViewModel donation)
@@ -264,10 +267,11 @@ namespace ChurchResourceManagerWeb.Models
             return SaveAll();
         }
 
-        public bool UpdateTransaction(TransactionsViewModel transaction)
+        public TransactionsViewModel UpdateTransaction(TransactionsViewModel transaction)
         {
             db.Entry(GetTransactionById(transaction.TransactionId)).CurrentValues.SetValues(ModelFactory.CreateTransaction(transaction));
-            return SaveAll();
+            SaveAll();
+            return transaction;
         }
 
         public DonationsViewModel UpdateDonation(DonationsViewModel donation)
@@ -299,10 +303,11 @@ namespace ChurchResourceManagerWeb.Models
             return offeringId;
         }
 
-        public bool DeleteTransaction(int transactionId)
+        public int DeleteTransaction(int transactionId)
         {
             db.Entry(GetTransactionById(transactionId)).State = EntityState.Deleted;
-            return SaveAll();
+            SaveAll();
+            return transactionId;
         }
 
         public int DeleteDonation(int donationId)
@@ -571,7 +576,7 @@ namespace ChurchResourceManagerWeb.Models
             return ModelFactory.CreateTransactionsViewModelList(db.TRANSACTIONS, db.TRANSACTION_TYPES).OrderByDescending(t => t.TransactionId);
         }
 
-        public TransactionsViewModel GetTransactionViewModelById(int transactionId)
+        public TransactionsViewModel GetTransactionByIdViewModel(int transactionId)
         {
             return ModelFactory.CreateTransactionsViewModel(db.TRANSACTIONS.Find(transactionId));
         }

@@ -30,7 +30,7 @@
         }
 
         function onSaveSuccess(response) {
-            updateOfferingActivityGrid(updateType, response.data);
+            updateDonationActivityGrid(updateType, response.data);
             vm.processFlow = operationFlowService.operationCompletion("Donation Saved Successfully!", true);
             usSpinnerService.stop();
         }
@@ -173,7 +173,7 @@
             updateType = "Delete";
             return donationsDataService.deleteDonation(donationId)
                 .then(function (response) {
-                    updateOfferingActivityGrid(updateType, response.data);
+                    updateDonationActivityGrid(updateType, response.data);
                     vm.processFlow = operationFlowService.operationCompletion("Donation Deleted Successfully", true);
                     usSpinnerService.stop();
                 })
@@ -213,7 +213,7 @@
             setDonationActivityPanelDefaults();
         }
 
-        function updateOfferingActivityGrid(action, donationRecord) {
+        function updateDonationActivityGrid(action, donationRecord) {
             utilityService.updateObjectArray(action, donationRecord, vm.donationActivity, "DonationId");
         }
 
