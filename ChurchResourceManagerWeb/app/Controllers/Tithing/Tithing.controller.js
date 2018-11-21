@@ -5,9 +5,9 @@
     angular.module("app")
         .controller("tithingController", tithingController);
 
-    tithingController.$inject = ["tithingDataService", "membershipDataService", "$uibModal", "titheVars", "utilityService", "operationFlowService", "$scope", "usSpinnerService"];
+    tithingController.$inject = ["tithingDataService", "$uibModal", "titheVars", "utilityService", "operationFlowService", "$scope", "usSpinnerService"];
 
-    function tithingController(tithingDataService, membershipDataService, $uibModal, titheVars, utilityService, operationFlowService, $scope, usSpinnerService) {
+    function tithingController(tithingDataService, $uibModal, titheVars, utilityService, operationFlowService, $scope, usSpinnerService) {
 
         var vm = this;
 
@@ -17,9 +17,11 @@
         vm.deleteTithe = deleteTithe;
         vm.getMemberTithes = getMemberTithes;
         vm.getTithingActivity = getTithingActivity;
+        vm.getTithingActivitySearch = getTithingActivitySearch;
         vm.getTithesRunningTotal = getTithesRunningTotal;
         vm.openEditTitheModal = openEditTitheModal;
         vm.openDeleteTitheModal = openDeleteTitheModal;
+        vm.resetSearch = resetSearch;
         vm.setActivityByMemberPanelDefaults = setActivityByMemberPanelDefaults;
         vm.setTithingActivityPanelDefaults = setTithingActivityPanelDefaults;
         // #endregion
@@ -227,6 +229,44 @@
             utilityService.updateObjectArray(action, titheRecord, vm.tithingActivity, "TitheId");
             vm.tithingActivityPanelSettings.isOpen = vm.tithingActivity.length > 0 ? true : false;
         }
+
+        // #region Tithes Search
+        function getTithingActivitySearch(searchType, startDate, endDate, familyId, memberId) {
+            usSpinnerService.spin("spinner-TR");
+            switch (searchType) {
+                case "DateRange":
+                    tithingDataService.getTithingActivityByDateRange(startDate, endDate)
+                        .then(searchComplete);
+                    break;
+                case "Family":
+                    tithingDataService.getTithingActivityByFamilyIdWithDateRange(familyId, startDate, endDate)
+                        .then(searchComplete);
+                    break;
+                case "Member":
+                    tithingDataService.getMemberTithesWithDateRange(memberId, startDate, endDate)
+                        .then(searchComplete);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        function searchComplete(response) {
+            vm.noResults = false;
+            vm.tithingActivity = response.data;
+            usSpinnerService.stop("spinner-TR");
+            if (response.data.length > 0) {
+                vm.tithingActivityPanelSettings.isOpen = true;
+            }
+            else
+                vm.noResults = true;
+        }
+
+        function resetSearch() {
+            vm.tithingActivity = [];
+            vm.noResults = false;
+        }
+        // #endregion
 
 
         $scope.$on("reloadAddTithes", setDefaults);

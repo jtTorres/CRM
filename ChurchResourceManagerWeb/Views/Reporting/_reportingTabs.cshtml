@@ -1,16 +1,16 @@
 ﻿
 <div class="row">
     <uib-tabset active="0">
-        <uib-tab index="0" heading="Date Range" ng-click="rtc.resetTabs()">
+        <uib-tab index="0" heading="Date Range" ng-click="rtc.onResetTabs()">
             <div class="row">
                 <div class="col-xs-6" style="padding-bottom: 1%;">
                     <div class="btn-group">
-                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'TransactionDate'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'TransactionDate'" ng-if="rtc.reportType === 'Transaction'" ng-click="rtc.resetTabs()">Transaction Date</label>
-                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'BankPostedDate'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'BankPostedDate'" ng-if="rtc.reportType === 'Transaction'" ng-click="rtc.resetTabs()">Bank Posted Date</label>
-                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'MembershipDate'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'MembershipDate'" ng-if="rtc.reportType === 'Membership'" ng-click="rtc.resetTabs()">Membership Date</label>
-                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'ExitDate'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'ExitDate'" ng-if="rtc.reportType === 'Membership'" ng-click="rtc.resetTabs()">Exit Date</label>
-                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'DateOfBirth'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'DateOfBirth'" ng-if="rtc.reportType === 'Membership'" ng-click="rtc.resetTabs()">Date of Birth</label>
-                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'DonationDate'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'DonationDate'" ng-if="rtc.reportType === 'Donation'" ng-click="rtc.resetTabs()">Donation Date</label>
+                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'TransactionDate'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'TransactionDate'" ng-if="rtc.reportType === 'Transaction'" ng-click="rtc.onResetTabs()">Transaction Date</label>
+                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'BankPostedDate'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'BankPostedDate'" ng-if="rtc.reportType === 'Transaction'" ng-click="rtc.onResetTabs()">Bank Posted Date</label>
+                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'MembershipDate'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'MembershipDate'" ng-if="rtc.reportType === 'Membership'" ng-click="rtc.onResetTabs()">Membership Date</label>
+                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'ExitDate'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'ExitDate'" ng-if="rtc.reportType === 'Membership'" ng-click="rtc.onResetTabs()">Exit Date</label>
+                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'DateOfBirth'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'DateOfBirth'" ng-if="rtc.reportType === 'Membership'" ng-click="rtc.onResetTabs()">Date of Birth</label>
+                        <label class="btn btn-default" ng-class="{'btn-info': rtc.radioButtons.selected === 'DonationDate'}" ng-model="rtc.radioButtons.selected" uib-btn-radio="'DonationDate'" ng-if="rtc.reportType === 'Donation'" ng-click="rtc.onResetTabs()">Donation Date</label>
                     </div>
                     <span class="text-danger" ng-show="rtc.invalidReportType">
                         <i class="fas fa-arrow-left"></i>
@@ -44,7 +44,7 @@
                 </div>
             </div>
         </uib-tab>
-        <uib-tab index="1" heading="Family" ng-if="rtc.reportType === 'Membership' || rtc.reportType === 'Tithing'" ng-click="rtc.resetTabs()">
+        <uib-tab index="1" heading="Family" ng-if="rtc.reportType === 'Membership' || rtc.reportType === 'Tithing'" ng-click="rtc.onResetTabs()">
             <div class="row">
                 <div class="col-xs-3">
                     <div class="form-group">
@@ -54,15 +54,46 @@
                                class="form-control"
                                ng-model="rtc.SelectedFamily"
                                placeholder="Family Name"
-                               uib-typeahead="member as member.FamilyKey for member in rtc.allMembership | filter: {FamilyKey:$viewValue} | limitTo: 8" />
+                               uib-typeahead="member as member.FamilyKey for member in rtc.allMembership | filter: {FamilyKey:$viewValue} | limitTo: 8 " />
                     </div>
                 </div>
+                <!--Is Date Range-->
+                <div class="form-group">
+                    <button id="isDateRangeCkBx" name="isDateRangeCkBx" type="button" class="btn btn-default" ng-class="{'btn-info': rtc.isDateRange}" ng-model="rtc.isDateRange"
+                            uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" ng-click="rtc.checkDateRange()">
+                        Add Date Range <i ng-class="{'glyphicon glyphicon-check': rtc.isDateRange}"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="row" ng-if="rtc.isDateRange">
+                <div class="col-xs-3">
+                    <p class="input-group">
+                        <input id="txtFromDt" name="txtFromDt" type="text" class="form-control" ng-model="rtc.fromDate" uib-datepicker-popup="{{rtc.dateFormat}}" is-open="rtc.isOpenFromDate" ui-mask="99/99/9999" ui-mask-placeholder
+                               model-view-value="true" placeholder="Date (mm/dd/yyyy)" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="rtc.openFromDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+                <div class="col-xs-3">
+                    <p class="input-group">
+                        <input id="txtToDt" name="txtToDt" type="text" class="form-control" ng-model="rtc.toDate" uib-datepicker-popup="{{rtc.dateFormat}}" is-open="rtc.isOpenToDate" ui-mask="99/99/9999" ui-mask-placeholder
+                               model-view-value="true" placeholder="Date (mm/dd/yyyy)" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="rtc.openToDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="col-xs-1">
-                    <button class="btn btn-default" ng-click="rtc.onGoButton('Family', null, null, rtc.SelectedFamily.FamilyId)">Go!</button>
+                    <button class="btn btn-default" ng-click="rtc.onGoButton('Family', rtc.fromDate, rtc.toDate, rtc.SelectedFamily.FamilyId)">Go!</button>
                 </div>
             </div>
         </uib-tab>
-        <uib-tab index="2" heading="Member" ng-if="rtc.reportType === 'Membership' || rtc.reportType === 'Tithing' || rtc.reportType === 'Donation'" ng-click="rtc.resetTabs()">
+        <uib-tab index="2" heading="Member" ng-if="rtc.reportType === 'Membership' || rtc.reportType === 'Tithing' || rtc.reportType === 'Donation'" ng-click="rtc.onResetTabs()">
             <div class="row">
                 <div class="col-xs-3">
                     <div class="form-group">
@@ -75,8 +106,38 @@
                                uib-typeahead="member as member.MemberKey for member in rtc.allMembership | filter: {MemberKey:$viewValue} | limitTo: 8" />
                     </div>
                 </div>
+                <!--Is Date Range-->
+                <div class="form-group">
+                    <button id="isDateRangeCkBx" name="isDateRangeCkBx" type="button" class="btn btn-default" ng-class="{'btn-info': rtc.isDateRange}" ng-model="rtc.isDateRange"
+                            uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" ng-click="rtc.checkDateRange()">
+                        Add Date Range <i ng-class="{'glyphicon glyphicon-check': rtc.isDateRange}"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="row" ng-if="rtc.isDateRange">
+                <div class="col-xs-3">
+                    <p class="input-group">
+                        <input id="txtFromDt" name="txtFromDt" type="text" class="form-control" ng-model="rtc.fromDate" uib-datepicker-popup="{{rtc.dateFormat}}" is-open="rtc.isOpenFromDate" ui-mask="99/99/9999" ui-mask-placeholder
+                               model-view-value="true" placeholder="Date (mm/dd/yyyy)" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="rtc.openFromDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+                <div class="col-xs-3">
+                    <p class="input-group">
+                        <input id="txtToDt" name="txtToDt" type="text" class="form-control" ng-model="rtc.toDate" uib-datepicker-popup="{{rtc.dateFormat}}" is-open="rtc.isOpenToDate" ui-mask="99/99/9999" ui-mask-placeholder
+                               model-view-value="true" placeholder="Date (mm/dd/yyyy)" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="rtc.openToDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-xs-1">
-                    <button class="btn btn-default" ng-click="rtc.onGoButton('Member', null, null, null, rtc.SelectedMember.MemberId)">Go!</button>
+                    <button class="btn btn-default" ng-click="rtc.onGoButton('Member', rtc.fromDate, rtc.toDate, null, rtc.SelectedMember.MemberId)">Go!</button>
                 </div>
             </div>
         </uib-tab>

@@ -1,14 +1,25 @@
 ﻿<page-header page-title="Tithes Search"></page-header>
 
-<div ng-controller="tithingController as tc">
-    <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-1"></span>
-    <tithing-activity get-tithing-activity="tc.getTithingActivity(tithingActivityType)"
-                      tithing-activity-type="all"
-                      panel-settings="tc.tithingActivityPanelSettings"
-                      tithing-activity="tc.tithingActivity"
-                      open-edit-modal="tc.openEditTitheModal(tithe, index, grid)"
-                      open-delete-modal="tc.openDeleteTitheModal(titheId, memberId)"
-                      include-date-column="true"
-                      show-edit-delete="true">
-    </tithing-activity>
+<div class="row">
+    <div class="col-md-12">
+        <div ng-controller="tithingController as tc">
+            <div class="col-md-12">
+                <reporting-tabs report-type="Tithing" go-button="tc.getTithingActivitySearch(searchType, startDate, endDate, familyId, memberId)" no-results-found="tc.noResults" reset-tabs="tc.resetSearch()"></reporting-tabs>
+            </div>
+            <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-TR"></span>
+            <div style="padding-top: 1%">
+                <div ng-if="tc.tithingActivity.length > 0">
+                    <tithing-activity @*get-tithing-activity="tc.getTithingActivity(tithingActivityType)"*@
+                                      @*tithing-activity-type="all"*@
+                                      panel-settings="tc.tithingActivityPanelSettings"
+                                      tithing-activity="tc.tithingActivity"
+                                      open-edit-modal="tc.openEditTitheModal(tithe, index, grid)"
+                                      open-delete-modal="tc.openDeleteTitheModal(titheId, memberId)"
+                                      include-date-column="true"
+                                      show-edit-delete="true">
+                    </tithing-activity>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

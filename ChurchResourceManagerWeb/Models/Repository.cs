@@ -395,6 +395,12 @@ namespace ChurchResourceManagerWeb.Models
             return ModelFactory.CreateTithesViewModelList(tithe).OrderByDescending(t => t.TitheId);
         }
 
+        public IEnumerable<TithesViewModel> GetMemberTithesWithDateRange(int memberId, DateTime? startDate, DateTime? endDate)
+        {
+
+            return startDate == null && endDate == null ? GetMemberTithes(memberId, null) : ModelFactory.CreateTithesViewModelList(db.TITHES.Where(t => t.TITHE_DATE >= startDate && t.TITHE_DATE <= endDate && t.MEMBER_ID == memberId && t.MEMBER_ID == memberId));
+        }
+
         public TithesViewModel GetMemberTitheByTitheId(int titheId)
         {
             return ModelFactory.CreateTithesViewModel(db.TITHES.Where(t => t.TITHE_ID == titheId));
@@ -406,9 +412,14 @@ namespace ChurchResourceManagerWeb.Models
             return ModelFactory.CreateTithesViewModelList(tithe);
         }
 
-        public object GetTithingActivityByFamilyId(int familyId)
+        public IEnumerable<TithesViewModel> GetTithingActivityByFamilyId(int familyId)
         {
             return ModelFactory.CreateTithesViewModelList(db.TITHES.Include(m => m.MEMBERSHIP).Where(m => m.MEMBERSHIP.FAMILY_ID == familyId));
+        }
+
+        public IEnumerable<TithesViewModel> GetTithingActivityByFamilyIdWithDateRange(int familyId, DateTime? startDate, DateTime? endDate)
+        {
+            return startDate == null && endDate == null ? GetTithingActivityByFamilyId(familyId) : ModelFactory.CreateTithesViewModelList(db.TITHES.Include(m => m.MEMBERSHIP).Where(m => m.MEMBERSHIP.FAMILY_ID == familyId && m.TITHE_DATE >= startDate && m.TITHE_DATE <= endDate));
         }
 
         public IEnumerable<OfferingsViewModel> GetOfferings(DateTime? date)

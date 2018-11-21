@@ -86,7 +86,21 @@ namespace ChurchResourceManagerWeb.Controllers
         {
             try
             {
-                return Json(Repo.GetMemberTithes(memberId, date).OrderByDescending(d => d.TitheDateDateTime).ThenByDescending(t => t.TitheId).Take(10), JsonRequestBehavior.AllowGet);
+                return Json(Repo.GetMemberTithes(memberId, date).OrderByDescending(d => d.TitheDateDateTime).ThenByDescending(t => t.TitheId), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public JsonResult GetMemberTithesWithDateRange(int memberId, DateTime? startDate, DateTime? endDate)
+        {
+            try
+            {
+                return Json(Repo.GetMemberTithesWithDateRange(memberId, startDate, endDate).OrderByDescending(d => d.TitheDateDateTime).ThenByDescending(t => t.TitheId), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -157,6 +171,20 @@ namespace ChurchResourceManagerWeb.Controllers
             try
             {
                 return Json(Repo.GetTithingActivityByFamilyId(familyId), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
+
+        [HttpGet]
+        public JsonResult GetTithingActivityByFamilyIdWithDateRange(int familyId, DateTime? startDate, DateTime? endDate)
+        {
+            try
+            {
+                return Json(Repo.GetTithingActivityByFamilyIdWithDateRange(familyId, startDate, endDate), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

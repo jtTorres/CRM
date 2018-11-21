@@ -13,6 +13,7 @@
         return {
             addTithe: addTithe,
             getMemberTithes: getMemberTithes,
+            getMemberTithesWithDateRange: getMemberTithesWithDateRange,
             updateTithe: updateTithe,
             deleteTithe: deleteTithe,
             getTithesRunningTotal: getTithesRunningTotal,
@@ -22,6 +23,7 @@
             getTithingActivityByDateRange: getTithingActivityByDateRange,
             getTithingTotalsByDateRange: getTithingTotalsByDateRange,
             getTithingActivityByFamilyId: getTithingActivityByFamilyId,
+            getTithingActivityByFamilyIdWithDateRange: getTithingActivityByFamilyIdWithDateRange,
             updateTitheGrids: updateTitheGrids,
             addToTotal: addToTotal
         };
@@ -78,6 +80,20 @@
         function onGetMemberTithesError(reason) {
             console.log(reason.data);
             return $q.reject(utilityService.httpError(reason, "Error Getting Member Tithes"));
+        }
+
+        function getMemberTithesWithDateRange(memberId, startDate, endDate) {
+            return $http({
+                method: "GET",
+                url: "/Tithing/GetMemberTithesWithDateRange/",
+                params: {
+                    memberId: memberId,
+                    startDate: startDate,
+                    endDate: endDate
+                }
+            })
+                .then(onGetMemberTithesComplete)
+                .catch(onGetMemberTithesError);
         }
 
         //Edit Selectded record
@@ -333,6 +349,20 @@
 
         function onGetTithingActivityByFamilyIdError(reason) {
             return $q.reject(utilityService.httpError(reason, "Error Getting Tithing Activity"));
+        }
+
+        function getTithingActivityByFamilyIdWithDateRange(familyId, startDate, endDate) {
+            return $http({
+                method: "GET",
+                url: "/Tithing/GetTithingActivityByFamilyIdWithDateRange/",
+                params: {
+                    familyId: familyId,
+                    startDate: startDate,
+                    endDate: endDate
+                }
+            })
+                .then(onGetTithingActivityByFamilyIdComplete)
+                .catch(onGetTithingActivityByFamilyIdError);
         }
     }
 
