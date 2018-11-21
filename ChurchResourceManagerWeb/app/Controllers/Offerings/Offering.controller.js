@@ -32,19 +32,19 @@
         }
 
         function getEnums() {
-            usSpinnerService.spin("spinner-AddOfferings");
+            usSpinnerService.spin("spinner-AO");
             enumsDataService.getDonationTypes()
                 .then(function (response) {
                     vm.enums.DonationTypes = response.data;
                     const titheIndex = vm.enums.DonationTypes.findIndex(x => x.Description === "Tithes");
                     vm.enums.DonationTypes.splice(titheIndex, 1);
-                    usSpinnerService.stop("spinner-AddOfferings");
                 });
         }
 
         // #region Add Tithes Component
 
         function doSaveOffering(offeringRecord) {
+            usSpinnerService.spin("spinner-AO");
             getDropdownSelection(offeringRecord);
             if (utilityService.isUndefinedOrNull(offeringRecord.OfferingId)) {
                 updateType = "Insert";
@@ -60,14 +60,15 @@
         }
 
         function onSaveSuccess(response) {
+            usSpinnerService.stop("spinner-AO");
             vm.processFlow = operationFlowService.operationCompletion("Offering Saved Successfully!", true);
             getOfferingRunningTotal();
-            //getOfferingActivity(vm.activityType);
             updateOfferingActivityGrid(updateType, response.data);
             clearActivity();
         }
 
         function onSaveError(reason) {
+            usSpinnerService.stop("spinner-AO");
             vm.processFlow = operationFlowService.operationCompletion(reason.message, false);
         }
 
@@ -85,12 +86,12 @@
         // #region Offering Activity Component
 
         function getOfferingActivity(activityType) {
-            usSpinnerService.spin("spinner-2");
+            usSpinnerService.spin("spinner-AO");
             vm.activityType = activityType;
 
             offeringDataService.getActivity(activityType)
                 .then(function (response) {
-                    usSpinnerService.stop("spinner-2");
+                    usSpinnerService.stop("spinner-AO");
                     vm.offeringActivity = response.data;
                     setOfferingActivityPanelDefaults(activityType, response.data.length);
                 });
@@ -189,12 +190,13 @@
         }
 
         function deleteOffering(offeringId) {
+            usSpinnerService.spin("spinner-AO");
             offeringDataService.deleteOffering(offeringId)
                 .then(function (response) {
                     getOfferingRunningTotal();
-                    //getOfferingActivity(vm.activityType);
                     vm.processFlow = operationFlowService.operationCompletion("Offering Deleted Successfully", true);
                     updateOfferingActivityGrid(updateType, response.data);
+                    usSpinnerService.stop("spinner-AO");
                 })
                 .catch(function (reason) {
                     vm.processFlow = operationFlowService.operationCompletion(reason.message, false);
