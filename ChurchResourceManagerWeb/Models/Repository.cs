@@ -150,10 +150,13 @@ namespace ChurchResourceManagerWeb.Models
             return SaveAll();
         }
 
-        public bool AddDonation(DonationsViewModel donation)
+        public DonationsViewModel AddDonation(DonationsViewModel donation)
         {
-            db.DONATIONS.Add(ModelFactory.CreateDonation(donation));
-            return SaveAll();
+            var donationRecord = ModelFactory.CreateDonation(donation);
+            db.DONATIONS.Add(donationRecord);
+            SaveAll();
+
+            return GetDonationsByIdViewModel(donationRecord.DONATION_ID);
         }
 
 
@@ -267,10 +270,12 @@ namespace ChurchResourceManagerWeb.Models
             return SaveAll();
         }
 
-        public bool UpdateDonation(DonationsViewModel donation)
+        public DonationsViewModel UpdateDonation(DonationsViewModel donation)
         {
             db.Entry(GetDonationById(donation.DonationId)).CurrentValues.SetValues(ModelFactory.CreateDonation(donation));
-            return SaveAll();
+            SaveAll();
+
+            return donation;
         }
 
         #endregion
@@ -300,10 +305,11 @@ namespace ChurchResourceManagerWeb.Models
             return SaveAll();
         }
 
-        public bool DeleteDonation(int donationId)
+        public int DeleteDonation(int donationId)
         {
             db.Entry(GetDonationById(donationId)).State = EntityState.Deleted;
-            return SaveAll();
+            SaveAll();
+            return donationId;
         }
 
         #endregion
@@ -590,7 +596,7 @@ namespace ChurchResourceManagerWeb.Models
             return db.DONATIONS.Find(donationId);
         }
 
-        public DonationsViewModel GetDonationsViewModelById(int donationId)
+        public DonationsViewModel GetDonationsByIdViewModel(int donationId)
         {
             return ModelFactory.CreateDonationsViewModel(db.DONATIONS.Find(donationId));
         }

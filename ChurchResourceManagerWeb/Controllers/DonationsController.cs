@@ -45,15 +45,13 @@ namespace ChurchResourceManagerWeb.Controllers
         {
             try
             {
-                if (Repo.AddDonation(donation))
-                    return Json(new { Success = true });
+                return Json(Repo.AddDonation(donation), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 throw;
             }
-            return Json(new { Success = false });
         }
 
         [HttpPost]
@@ -61,15 +59,13 @@ namespace ChurchResourceManagerWeb.Controllers
         {
             try
             {
-                if (Repo.UpdateDonation(donation))
-                    return Json(new { Success = true });
+                return Json(Repo.UpdateDonation(donation), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 throw;
             }
-            return Json(new { Success = false });
         }
 
         [HttpPost]
@@ -77,15 +73,13 @@ namespace ChurchResourceManagerWeb.Controllers
         {
             try
             {
-                if (Repo.DeleteDonation(donationId))
-                    return Json(new { Success = true });
+                return Json(Repo.DeleteDonation(donationId), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 throw;
             }
-            return Json(new { Success = false });
         }
 
         [HttpGet]
@@ -121,7 +115,7 @@ namespace ChurchResourceManagerWeb.Controllers
         {
             try
             {
-                return Json(Repo.GetDonationsViewModelById(donationId), JsonRequestBehavior.AllowGet);
+                return Json(Repo.GetDonationsByIdViewModel(donationId), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
