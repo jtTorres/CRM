@@ -220,7 +220,7 @@
 
         // #region Offerings Search
         function getOfferingActivitySearch(searchType, startDate, endDate, familyId, memberId) {
-            usSpinnerService.spin("spinner-OR");
+            usSpinnerService.spin("spinner-AO");
             switch (searchType) {
                 case "DateRange":
                     offeringDataService.getOfferingActivityByDateRange(startDate, endDate)
@@ -234,7 +234,7 @@
         function searchComplete(response) {
             vm.noResults = false;
             vm.offeringActivity = response.data;
-            usSpinnerService.stop("spinner-OR");
+            usSpinnerService.stop("spinner-AO");
             setOfferingActivityPanelDefaults("2", response.data.length);
             if (response.data.length === 0) {
                 vm.noResults = true;

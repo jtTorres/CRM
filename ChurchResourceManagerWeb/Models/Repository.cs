@@ -398,7 +398,7 @@ namespace ChurchResourceManagerWeb.Models
         public IEnumerable<TithesViewModel> GetMemberTithesWithDateRange(int memberId, DateTime? startDate, DateTime? endDate)
         {
 
-            return startDate == null && endDate == null ? GetMemberTithes(memberId, null) : ModelFactory.CreateTithesViewModelList(db.TITHES.Where(t => t.TITHE_DATE >= startDate && t.TITHE_DATE <= endDate && t.MEMBER_ID == memberId && t.MEMBER_ID == memberId));
+            return startDate == null && endDate == null ? GetMemberTithes(memberId, null) : ModelFactory.CreateTithesViewModelList(db.TITHES.Where(t => t.TITHE_DATE >= startDate && t.TITHE_DATE <= endDate && t.MEMBER_ID == memberId));
         }
 
         public TithesViewModel GetMemberTitheByTitheId(int titheId)
@@ -442,6 +442,11 @@ namespace ChurchResourceManagerWeb.Models
         public IEnumerable<DonationsViewModel> GetDonationsByMemberId(int memberId)
         {
             return ModelFactory.CreateDonationsViewModelList(db.DONATIONS.Where(m => m.MEMBER_ID == memberId));
+        }
+
+        public IEnumerable<DonationsViewModel> GetDonationsByMemberIdWithDateRange(int memberId, DateTime? startDate, DateTime? endDate)
+        {
+            return startDate == null && endDate == null ? GetDonationsByMemberId(memberId) : ModelFactory.CreateDonationsViewModelList(db.DONATIONS.Where(m => m.DONATION_DATE >= startDate && m.DONATION_DATE <= endDate && m.MEMBER_ID == memberId));
         }
 
         public IEnumerable<OfferingsViewModel> GetOfferingsByDateRange(DateTime startDate, DateTime endDate)

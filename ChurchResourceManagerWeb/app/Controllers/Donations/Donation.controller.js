@@ -15,8 +15,10 @@
         vm.enums = {};
         vm.getDonations = getDonations;
         vm.getDonationActivity = getDonationActivity;
+        vm.getDonationActivitySearch = getDonationActivitySearch;
         vm.openDeleteDonationModal = openDeleteDonationModal;
         vm.openEditDonationModal = openEditDonationModal;
+        vm.resetSearch = resetSearch;
         vm.donation = {};
         /////////////////////////
 
@@ -216,6 +218,39 @@
         function updateDonationActivityGrid(action, donationRecord) {
             utilityService.updateObjectArray(action, donationRecord, vm.donationActivity, "DonationId");
         }
+
+        // #region Donations Search
+        function getDonationActivitySearch(searchType, startDate, endDate, familyId, memberId) {
+            usSpinnerService.spin("spinner-AD");
+            switch (searchType) {
+                case "DonationDate":
+                    donationsDataService.getDonationsByDonationDate(startDate, endDate)
+                        .then(searchComplete);
+                    break;
+                case "Member":
+                    donationsDataService.getDonationsByMemberIdWithDateRange(memberId, startDate, endDate)
+                        .then(searchComplete);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        function searchComplete(response) {
+            vm.noResults = false;
+            vm.donationActivity = response.data;
+            usSpinnerService.stop("spinner-AD");
+            vm.donationActivityPanelSettings.isOpen = true;
+            if (response.data.length === 0) {
+                vm.noResults = true;
+            }
+        }
+
+        function resetSearch() {
+            vm.donationActivity = [];
+            vm.noResults = false;
+        }
+        // #endregion
 
         $scope.$on("reloadAddDonations", setDefaults);
     }

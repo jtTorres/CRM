@@ -1,14 +1,26 @@
 ﻿<page-header page-title="Donations Search"></page-header>
 
-<div ng-controller="donationController as dc">
-    <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-AD"></span>
-    <donation-activity get-donation-activity="dc.getDonationActivity(donationActivityType)"
-                       donation-activity-type="{{dc.activityType.All}}"
-                       panel-settings="dc.donationActivityPanelSettings"
-                       donation-activity="dc.donationActivity"
-                       open-edit-modal="dc.openEditDonationModal(donation, index)"
-                       open-delete-modal="dc.openDeleteDonationModal(donationId)"
-                       include-date-column="true"
-                       show-edit-delete="true">
-    </donation-activity>
+<div class="row">
+    <div class="col-md-12">
+        <div ng-controller="donationController as dc">
+            <reporting-tabs report-type="Donation" go-button="dc.getDonationActivitySearch(searchType, startDate, endDate, familyId, memberId)"
+                            no-results-found="dc.noResults" reset-tabs="dc.resetSearch()" selected-search-type="DonationDate">
+            </reporting-tabs>
+            <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-AD"></span>
+
+            <div style="padding-top: 1%">
+                <div ng-if="dc.donationActivity.length > 0">
+                    <donation-activity @*get-donation-activity="dc.getDonationActivity(donationActivityType)"*@
+                                       @*donation-activity-type="{{dc.activityType.All}}"*@
+                                       panel-settings="dc.donationActivityPanelSettings"
+                                       donation-activity="dc.donationActivity"
+                                       open-edit-modal="dc.openEditDonationModal(donation, index)"
+                                       open-delete-modal="dc.openDeleteDonationModal(donationId)"
+                                       include-date-column="true"
+                                       show-edit-delete="true">
+                    </donation-activity>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
