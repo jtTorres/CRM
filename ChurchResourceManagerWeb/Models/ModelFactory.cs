@@ -203,7 +203,9 @@ namespace ChurchResourceManagerWeb.Models
             {
                 TransactionId = transaction.TRANSACTION_ID,
                 TransactionTypeId = transaction.TRANSACTION_TYPE_ID,
+                TransactionType = transaction.TRANSACTION_TYPES.DESCRIPTION,
                 PaymentAccountId = transaction.PAYMENT_ACCOUNT_ID,
+                PaymentAccount = transaction.PAYMENT_ACCOUNTS.PAYMENT_ACCOUNT,
                 TransactionDateTime = transaction.TRANSACTION_DATE,
                 TransactionAmount = transaction.TRANSACTION_AMOUNT,
                 CheckNumber = transaction.CHECK_NUMBER,
@@ -418,18 +420,21 @@ namespace ChurchResourceManagerWeb.Models
 
         public IEnumerable<TransactionsViewModel> CreateTransactionsViewModelList(IQueryable<TRANSACTIONS> transaction)
         {
-            return transaction.Include(tt => tt.TRANSACTION_TYPES.DESCRIPTION).Select(t => new TransactionsViewModel
-            {
-                TransactionId = t.TRANSACTION_ID,
-                TransactionType = t.TRANSACTION_TYPES.DESCRIPTION,
-                TransactionTypeId = t.TRANSACTION_TYPE_ID,
-                TransactionDateTime = t.TRANSACTION_DATE,
-                TransactionAmount = t.TRANSACTION_AMOUNT,
-                CheckNumber = t.CHECK_NUMBER,
-                BankPostedDateTime = t.BANK_POSTED_DATE,
-                IsDebit = t.IS_DEBIT,
-                Comments = t.COMMENTS
-            }).ToList();
+            return transaction.Include(tt => tt.TRANSACTION_TYPES.DESCRIPTION).Include(pa => pa.PAYMENT_ACCOUNTS.PAYMENT_ACCOUNT)
+                .Select(t => new TransactionsViewModel
+                {
+                    TransactionId = t.TRANSACTION_ID,
+                    TransactionTypeId = t.TRANSACTION_TYPE_ID,
+                    TransactionType = t.TRANSACTION_TYPES.DESCRIPTION,
+                    PaymentAccountId = t.PAYMENT_ACCOUNT_ID,
+                    PaymentAccount = t.PAYMENT_ACCOUNTS.PAYMENT_ACCOUNT,
+                    TransactionDateTime = t.TRANSACTION_DATE,
+                    TransactionAmount = t.TRANSACTION_AMOUNT,
+                    CheckNumber = t.CHECK_NUMBER,
+                    BankPostedDateTime = t.BANK_POSTED_DATE,
+                    IsDebit = t.IS_DEBIT,
+                    Comments = t.COMMENTS
+                }).ToList();
         }
 
         public IEnumerable<PaymentAccountsViewModel> CreatePaymentAccountsViewModelList(IQueryable<PAYMENT_ACCOUNTS> paymentAccounts)

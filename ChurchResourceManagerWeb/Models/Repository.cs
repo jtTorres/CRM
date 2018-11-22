@@ -271,7 +271,7 @@ namespace ChurchResourceManagerWeb.Models
         {
             db.Entry(GetTransactionById(transaction.TransactionId)).CurrentValues.SetValues(ModelFactory.CreateTransaction(transaction));
             SaveAll();
-            return transaction;
+            return GetTransactionByIdViewModel(transaction.TransactionId);
         }
 
         public DonationsViewModel UpdateDonation(DonationsViewModel donation)
@@ -594,7 +594,8 @@ namespace ChurchResourceManagerWeb.Models
 
         public TransactionsViewModel GetTransactionByIdViewModel(int transactionId)
         {
-            return ModelFactory.CreateTransactionsViewModel(db.TRANSACTIONS.Find(transactionId));
+            return ModelFactory.CreateTransactionsViewModel(db.TRANSACTIONS.Include(tt => tt.TRANSACTION_TYPES).Include(pa => pa.PAYMENT_ACCOUNTS).Single(x => x.TRANSACTION_ID == transactionId));
+            //return ModelFactory.CreateTransactionsViewModel(db.TRANSACTIONS.Find(transactionId));
         }
 
         public TRANSACTIONS GetTransactionById(int transactionId)
@@ -619,7 +620,8 @@ namespace ChurchResourceManagerWeb.Models
 
         public DonationsViewModel GetDonationsByIdViewModel(int donationId)
         {
-            return ModelFactory.CreateDonationsViewModel(db.DONATIONS.Find(donationId));
+            return ModelFactory.CreateDonationsViewModel(db.DONATIONS.Include(dt => dt.DONATION_TYPES).Include(m => m.MEMBERSHIP)
+                .Single(x => x.DONATION_ID == donationId));
         }
 
         public int GetMemberCounts()
