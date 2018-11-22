@@ -13,8 +13,10 @@
         vm.doSave = doSave;
         vm.enums = {};
         vm.getTransactions = getTransactions;
+        vm.getTransactionsSearch = getTransactionsSearch;
         vm.openDeleteTransactionModal = openDeleteTransactionModal;
         vm.openEditTransactionModal = openEditTransactionModal;
+        vm.resetSearch = resetSearch;
         vm.transaction = {};
         /////////////////////////
 
@@ -183,6 +185,38 @@
             if (utilityService.isUndefinedOrNull(vm.transactions)) return;
             utilityService.updateObjectArray(action, transactionRecord, vm.transactions, "TransactionId");
         }
+
+        // #region Transactions Search
+        function getTransactionsSearch(searchType, startDate, endDate, familyId, memberId) {
+            usSpinnerService.spin("spinner-ST");
+            switch (searchType) {
+                case "TransactionDate":
+                    transactionsDataService.getTransactionsByTransactionDate(startDate, endDate)
+                        .then(searchComplete);
+                    break;
+                case "BankPostedDate":
+                    transactionsDataService.getTransactionsByBankPostedDate(startDate, endDate)
+                        .then(searchComplete);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        function searchComplete(response) {
+            usSpinnerService.stop("spinner-ST");
+            vm.noResults = false;
+            vm.transactions = response.data;
+            if (response.data.length === 0) {
+                vm.noResults = true;
+            }
+        }
+
+        function resetSearch() {
+            vm.transactions = [];
+            vm.noResults = false;
+        }
+        // #endregion
 
         //$scope.$on("reloadSubmitTransactions", doClearForm);
 

@@ -1,6 +1,35 @@
 ﻿<page-header page-title="Transactions Search"></page-header>
 
-<div ng-controller="transactionsController as tc">
-    <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-4"></span>
-    <transactions-grid transactions="tc.transactions" get-transactions="tc.getTransactions()" open-edit-modal="tc.openEditTransactionModal(transaction)" open-delete-modal="tc.openDeleteTransactionModal(transactionId)" show-edit-delete="true"></transactions-grid>
+@*<div ng-controller="transactionsController as tc">
+        <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-4"></span>
+        <transactions-grid transactions="tc.transactions"
+                           get-transactions="tc.getTransactions()"
+                           open-edit-modal="tc.openEditTransactionModal(transaction)"
+                           open-delete-modal="tc.openDeleteTransactionModal(transactionId)"
+                           show-edit-delete="true">
+
+        </transactions-grid>
+    </div>*@
+
+<div class="row">
+    <div class="col-xs-12">
+        <div ng-controller="transactionsController as tc">
+            <div class="col-xs-12">
+                <reporting-tabs report-type="Transaction" go-button="tc.getTransactionsSearch(searchType, startDate, endDate, familyId, memberId)"
+                                no-results-found="tc.noResults" reset-tabs="tc.resetSearch()" selected-search-type="TransactionDate">
+                </reporting-tabs>
+            </div>
+            <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-ST"></span>
+            <div ng-if="tc.transactions.length > 0">
+                <transactions-grid transactions="tc.transactions"
+                                   @*get-transactions="tc.getTransactions()"*@
+                                   open-edit-modal="tc.openEditTransactionModal(transaction)"
+                                   open-delete-modal="tc.openDeleteTransactionModal(transactionId)"
+                                   show-edit-delete="true">
+
+                </transactions-grid>
+            </div>
+
+        </div>
+    </div>
 </div>
