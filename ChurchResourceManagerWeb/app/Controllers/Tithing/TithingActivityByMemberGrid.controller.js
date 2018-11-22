@@ -5,9 +5,9 @@
     angular.module("app")
         .controller("tithingActivityByMemberGridController", tithingActivityByMemberGridController);
 
-    tithingActivityByMemberGridController.$inject = ["titheVars"];
+    tithingActivityByMemberGridController.$inject = ["titheVars", "$filter"];
 
-    function tithingActivityByMemberGridController(titheVars) {
+    function tithingActivityByMemberGridController(titheVars, $filter) {
         var vm = this;
 
         // #region bindable members
@@ -17,8 +17,6 @@
         // #endregion
 
         /////////////////////////////////////////////
-
-
 
         function editTithe(tithe, index, grid) {
             vm.openEditModal({ tithe: tithe, index: index, grid: grid });

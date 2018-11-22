@@ -170,7 +170,7 @@ namespace ChurchResourceManagerWeb.Models
         {
             db.Entry(GetTitheById(tithe.TitheId)).CurrentValues.SetValues(ModelFactory.CreateTithe(tithe));
             SaveAll();
-            return tithe;
+            return GetMemberTitheByTitheId(tithe.TitheId);
         }
 
         public OfferingsViewModel UpdateOffering(OfferingsViewModel offering)

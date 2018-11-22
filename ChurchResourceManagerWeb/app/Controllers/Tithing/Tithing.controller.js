@@ -5,9 +5,9 @@
     angular.module("app")
         .controller("tithingController", tithingController);
 
-    tithingController.$inject = ["tithingDataService", "$uibModal", "titheVars", "utilityService", "operationFlowService", "$scope", "usSpinnerService"];
+    tithingController.$inject = ["tithingDataService", "$uibModal", "titheVars", "utilityService", "operationFlowService", "$scope", "usSpinnerService", "$filter"];
 
-    function tithingController(tithingDataService, $uibModal, titheVars, utilityService, operationFlowService, $scope, usSpinnerService) {
+    function tithingController(tithingDataService, $uibModal, titheVars, utilityService, operationFlowService, $scope, usSpinnerService, $filter) {
 
         var vm = this;
 
@@ -71,6 +71,7 @@
             tithingDataService.getMemberTithes(memberId, new Date())
                 .then(function (response) {
                     titheVars.tithingActivity.data = response.data;
+                    titheVars.tithingActivity.data = $filter("limitTo")(titheVars.tithingActivity.data, 10, 0);
                     vm.activityByMemberPanelSettings.isOpen = true;
                 })
                 .catch(function (reason) {
