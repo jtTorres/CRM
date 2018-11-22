@@ -17,9 +17,11 @@
         vm.doSaveOffering = doSaveOffering;
         vm.enums = {};
         vm.getOfferingActivity = getOfferingActivity;
+        vm.getOfferingActivitySearch = getOfferingActivitySearch;
         vm.getOfferingRunningTotal = getOfferingRunningTotal;
         vm.openDeleteOfferingModal = openDeleteOfferingModal;
         vm.openEditOfferingModal = openEditOfferingModal;
+        vm.resetSearch = resetSearch;
         /////////////////////////////
 
         var updateType = "";
@@ -216,6 +218,34 @@
             vm.offeringActivityPanelSettings.isOpen = vm.offeringActivity.length > 0 ? true : false;
         }
 
+        // #region Offerings Search
+        function getOfferingActivitySearch(searchType, startDate, endDate, familyId, memberId) {
+            usSpinnerService.spin("spinner-OR");
+            switch (searchType) {
+                case "DateRange":
+                    offeringDataService.getOfferingActivityByDateRange(startDate, endDate)
+                        .then(searchComplete);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        function searchComplete(response) {
+            vm.noResults = false;
+            vm.offeringActivity = response.data;
+            usSpinnerService.stop("spinner-OR");
+            setOfferingActivityPanelDefaults("2", response.data.length);
+            if (response.data.length === 0) {
+                vm.noResults = true;
+            }
+        }
+
+        function resetSearch() {
+            vm.noResults = false;
+            vm.offeringActivity = [];
+        }
+        // #endregion
 
         $scope.$on("reloadAddOfferings", setDefaults);
     }
