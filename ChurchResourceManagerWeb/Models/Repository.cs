@@ -177,7 +177,7 @@ namespace ChurchResourceManagerWeb.Models
         {
             db.Entry(GetOfferingById(offering.OfferingId)).CurrentValues.SetValues(ModelFactory.CreateOffering(offering));
             SaveAll();
-            return offering;
+            return GetOfferingsViewModelById(offering.OfferingId);
         }
 
         public bool UpdateMembershipPreferredContactMethod(ContactInfoViewModel[] contactInfo)
