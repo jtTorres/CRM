@@ -116,7 +116,7 @@
         function openEditDonationModal(donation) {
             getDonationToEdit(donation.DonationId)
                 .then(function () {
-                    vm.donationToEdit.selectedMember = vm.donation.MemberKey;
+                    vm.donationToEdit.selectedMember = vm.donationToEdit.MemberKey;
                     var modalInstance = $uibModal.open({
                         animation: true,
                         component: "editDonationModal",

@@ -220,6 +220,7 @@ namespace ChurchResourceManagerWeb.Models
                 DonationId = donation.DONATION_ID,
                 DonationDateTime = donation.DONATION_DATE,
                 DonationTypeId = donation.DONATION_TYPE_ID,
+                DonationType = donation.DONATION_TYPES.DESCRIPTION,
                 MemberId = donation.MEMBER_ID,
                 FirstName = donation.MEMBERSHIP?.FIRST_NAME,
                 LastName = donation.MEMBERSHIP?.LAST_NAME,

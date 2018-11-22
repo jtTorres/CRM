@@ -279,7 +279,7 @@ namespace ChurchResourceManagerWeb.Models
             db.Entry(GetDonationById(donation.DonationId)).CurrentValues.SetValues(ModelFactory.CreateDonation(donation));
             SaveAll();
 
-            return donation;
+            return GetDonationsByIdViewModel(donation.DonationId);
         }
 
         #endregion
