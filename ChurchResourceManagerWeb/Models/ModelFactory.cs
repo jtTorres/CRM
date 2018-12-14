@@ -63,6 +63,7 @@ namespace ChurchResourceManagerWeb.Models
                 MARITAL_STATUS_ID = membership.MaritalStatusId,
                 GROUP_ID = membership.GroupId,
                 PREFERRERD_CONTACT_METHOD = membership.PreferredContactMethod,
+                EFFECTIVE_DATE = membership.EffectiveDateTime,
                 EXIT_DATE = membership.ExitDateTime,
                 MEMBERSHIP_STATUS_ID = membership.MembershipStatusId,
                 LAST_MODIFIED_DATE = DateTime.Now,

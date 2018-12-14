@@ -4,7 +4,7 @@
     <div ng-controller="membershipReportingController as mrc">
         <reporting-tabs report-type="Membership" go-button="mrc.getMembership(searchType, startDate, endDate, familyId, memberId)" no-results-found="mrc.noResults" reset-tabs="mrc.reset()" invalid-report-type="mrc.invalidReportType"></reporting-tabs>
         
-        <members-grid open-edit-modal="mc.openEditMembershipModal(member)" get-member-search-data="mc.getMemberSearch()" members="mrc.members" show-edit-delete="true"></members-grid>
+        <members-grid open-edit-modal="mc.openEditMembershipModal(member, membership)" get-member-search-data="mc.getMemberSearch()" members="mrc.members" show-edit-delete="true"></members-grid>
     </div>
 </div>
 

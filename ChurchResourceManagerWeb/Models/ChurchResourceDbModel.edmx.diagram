@@ -41,6 +41,7 @@
         <AssociationConnector Association="ChurchResourceDbModel.fk_DONATIONS_to_DONATION_TYPES_DONATION_TYPE_ID" />
         <AssociationConnector Association="ChurchResourceDbModel.fk_DONATIONS_to_MEMBERSHIP_MEMBER_ID" />
         <AssociationConnector Association="ChurchResourceDbModel.fk_OFFERINGS_to_DONATION_TYPES_DONATION_TYPE_ID" />
+        <AssociationConnector Association="ChurchResourceDbModel.fk_MEMBERSHIP_to_RELATIONSHIP_TYPES_RELATIONSHIP_TYPE_ID1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

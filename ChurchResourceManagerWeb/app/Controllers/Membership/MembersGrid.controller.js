@@ -5,9 +5,9 @@
     angular.module("app")
         .controller("membersGridController", membersGridController);
 
-    membersGridController.$inject = ["membershipDataService"];
+    membersGridController.$inject = [];
 
-    function membersGridController(membershipDataService) {
+    function membersGridController() {
         var vm = this;
 
         vm.edit = edit;
@@ -16,11 +16,12 @@
         activate();
 
         function activate() {
-            vm.getMemberSearchData();
+
         }
 
         function edit(member) {
-            vm.openEditModal({ member: member });
+            var membership = vm.members;
+            vm.openEditModal({ member: member, membership: membership });
         }
 
     }

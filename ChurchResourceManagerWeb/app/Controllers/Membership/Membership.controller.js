@@ -11,12 +11,7 @@
         vm.addRelative = addRelative;
         vm.Address = {};
         vm.activeTab = 0;
-        vm.beingEdited = {
-            familyForm: true,
-            personalInfoForm: true,
-            addressInfoForm: true,
-            contactInfoForm: true
-        };
+        resetBeingEdited();
         vm.contactInfo = [];
         vm.disableTabs = true;
         vm.doEdit = doEdit;
@@ -374,14 +369,16 @@
         }
         // #endregion
 
-
-
         // #region Edit Membership Modal Component
 
-        function openEditMembershipModal(member) {
+        function openEditMembershipModal(member, membership) {
+
+
+
 
             getMemberToEdit(member.FamilyId)
                 .then(function () {
+                    resetBeingEdited();
                     var memberToEdit = angular.copy(member);
 
                     var modalInstance = $uibModal.open({
@@ -420,21 +417,19 @@
                                 addRelative: function () {
                                     return addRelative();
                                 }
+                            },
+                            memberGrid: function () {
+                                return membership;
                             }
                         }
                     });
 
                     modalInstance.result
                         .then(function (editedMembers) {
-                            // TODO: When editing is done, find the one that is being edited in vm.members and replace it with the one coming from the result
 
                             angular.forEach(editedMembers, function (member, key, obj) {
                                 utilityService.updateArray(vm.members, member, "MemberId");
                             });
-
-
-
-                            getMemberSearch();
                         })
                         .catch(function (reason) { //this will run if the user clicks out of the modal without click x button
                             getMemberSearch();
@@ -475,6 +470,15 @@
                 });
         }
         // #endregion
+
+        function resetBeingEdited() {
+            vm.beingEdited = {
+                familyForm: true,
+                personalInfoForm: true,
+                addressInfoForm: true,
+                contactInfoForm: true
+            };
+        }
 
     }
 

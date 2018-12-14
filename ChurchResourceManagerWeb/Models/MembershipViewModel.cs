@@ -29,6 +29,13 @@ namespace ChurchResourceManagerWeb.Models
         public byte? MaritalStatusId { get; set; }
         public byte? GroupId { get; set; }
         public byte? PreferredContactMethod { get; set; }
+        public DateTime EffectiveDateTime { get; set; } = DateTime.Now;
+
+        public string EffectiveDate
+        {
+            get => EffectiveDateTime.ToString("MM/dd/yyyy");
+            set => EffectiveDateTime = Convert.ToDateTime(string.IsNullOrEmpty(value) ? new DateTime().ToString(CultureInfo.InvariantCulture) : value);
+        }
         public DateTime? ExitDateTime { get; set; }
 
         public string ExitDate

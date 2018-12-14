@@ -53,5 +53,6 @@ namespace ChurchResourceManagerWeb.Models
         public virtual MEMBERSHIP_STATUS MEMBERSHIP_STATUS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DONATIONS> DONATIONS { get; set; }
+        public virtual RELATIONSHIP_TYPES RELATIONSHIP_TYPES { get; set; }
     }
 }
