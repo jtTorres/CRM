@@ -9,10 +9,12 @@
     function memberInformationController($scope, enumsDataService, operationFlowService) {
         var vm = this;
 
+        vm.dateFormat = "MM/dd/yyyy";
         vm.edit = edit;
         vm.followLastCurrentActiveIndex = followLastCurrentActiveIndex;
         vm.doAddRelative = doAddRelative;
         vm.onRemoveRelative = onRemoveRelative;
+        vm.openDob = openDob;
         vm.submit = submit;
         /////////////////////////
 
@@ -50,6 +52,10 @@
         function submit(memberInfo, form) {
             if (!operationFlowService.isFormValid(form)) return;
             vm.onSubmit({ memberInfo: memberInfo });
+        }
+
+        function openDob() {
+            vm.isOpenDob = true;
         }
     }
 

@@ -161,7 +161,7 @@
                 return membershipDataService.addContactInfo(contactInfo)
                     .then(function (response) {
                         vm.beingEdited.contactInfoForm = false;
-                        vm.processFlow = operationFlowService.operationCompletion("Saved Successfully!", true);
+                        //vm.processFlow = operationFlowService.operationCompletion("Saved Successfully!", true);
                         vm.disableTabs = false;
                         memberEntryCompleteModal();
                     })

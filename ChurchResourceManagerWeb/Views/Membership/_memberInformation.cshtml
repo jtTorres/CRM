@@ -56,12 +56,18 @@
                                                             <div ng-messages-include="message-template"></div>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group" ng-class="{'has-error' : memberInfoForm.dobTxtBx.$invalid && memberInfoForm.dobTxtBx.$touched}">
+                                                    <div class="form-group">
                                                         <label for="dobTxtBx">Date of Birth</label>
-                                                        <input id="dobTxtBx" name="dobTxtBx" class="form-control" type="text" ng-model="mic.memberInfoArray[$index].Dob"
-                                                               ui-mask="99/99/9999"
-                                                               ui-mask-placeholder
-                                                               model-view-value="true" />
+                                                        <p class="input-group">
+                                                            <input id="dobTxtBx" name="dobTxtBx" type="text" class="form-control" ng-model="mic.memberInfoArray[$index].Dob" uib-datepicker-popup="{{mic.dateFormat}}" is-open="mic.isOpenDob" ui-mask="99/99/9999" ui-mask-placeholder
+                                                                   model-view-value="true" placeholder="Date (mm/dd/yyyy)" required />
+                                                            <span class="input-group-btn">
+                                                                <button type="button" class="btn btn-default" ng-click="mic.openDob()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                                            </span>
+                                                        </p>
+                                                        <div class="help-block-error" ng-messages="memberInfoForm.dobTxtBx.$error" ng-if="memberInfoForm.dobTxtBx.$touched || memberInfoForm.$submitted">
+                                                            <div ng-messages-include="message-template"></div>
+                                                        </div>
                                                     </div>
                                                     <div class="form-group" ng-class="{'has-error' : memberInfoForm.ddlGender.$invalid && memberInfoForm.ddlGender.$touched}">
                                                         <label for="ddlGender">Gender</label>
@@ -84,6 +90,8 @@
                                                             <div ng-messages-include="message-template"></div>
                                                         </div>
                                                     </div>
+                                                    <br />
+                                                    <br />
                                                 </div>
                                             </div>
                                         </div>
@@ -99,7 +107,7 @@
                                 </div>
                             </uib-accordion>
                             <div style="padding-top: 1%; padding-left: .5%;" ng-if="mic.followLastCurrentActiveIndex($index, mic.memberInfoArray.length)">
-                                <button id="submitFamilyBtn" name="submitFamilyBtn" class="btn btn-default" type="submit" ng-disabled="!mic.beingEdited">
+                                <button id="submitFamilyBtn" name="submitFamilyBtn" class="btn btn-primary" type="submit" ng-disabled="!mic.beingEdited">
                                     <span class="glyphicon glyphicon-check"></span> Save
                                 </button>
                             </div>
