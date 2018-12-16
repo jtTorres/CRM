@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using ChurchResourceManagerWeb.Models;
+using log4net;
+using log4net.Config;
+using System.Reflection;
 using System.Web.Mvc;
-using ChurchResourceManagerWeb.Models;
-using Newtonsoft.Json;
 
 namespace ChurchResourceManagerWeb.Controllers
 {
@@ -9,11 +10,13 @@ namespace ChurchResourceManagerWeb.Controllers
     {
         protected ChurchResourceDbEntities Db;
         protected Repository Repo;
+        protected ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         protected BaseController()
         {
             Db = new ChurchResourceDbEntities();
             Repo = new Repository();
+            XmlConfigurator.Configure();
         }
     }
 }

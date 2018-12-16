@@ -55,7 +55,7 @@ namespace ChurchResourceManagerWeb.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                Log.Error(ex.Message);
                 throw;
             }
         }
@@ -69,7 +69,7 @@ namespace ChurchResourceManagerWeb.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                Log.Error(ex.Message);
                 throw;
             }
         }
@@ -83,7 +83,7 @@ namespace ChurchResourceManagerWeb.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                Log.Error(ex.Message);
                 throw;
             }
         }
@@ -97,7 +97,7 @@ namespace ChurchResourceManagerWeb.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                Log.Error(ex.Message);
                 throw;
             }
         }
@@ -111,7 +111,7 @@ namespace ChurchResourceManagerWeb.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                Log.Error(ex.Message);
                 throw;
             }
         }
@@ -125,7 +125,7 @@ namespace ChurchResourceManagerWeb.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                Log.Error(ex.Message);
                 throw;
             }
         }
@@ -139,7 +139,7 @@ namespace ChurchResourceManagerWeb.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                Log.Error(ex.Message);
                 throw;
             }
         }

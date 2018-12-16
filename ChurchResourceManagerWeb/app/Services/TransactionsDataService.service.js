@@ -4,9 +4,9 @@
     angular.module("app")
         .factory("transactionsDataService", transactionsDataService);
 
-    transactionsDataService.$inject = ["$http", "$q", "utilityService"];
+    transactionsDataService.$inject = ["$http", "$q", "utilityService", "operationFlowService"];
 
-    function transactionsDataService($http, $q, utilityService) {
+    function transactionsDataService($http, $q, utilityService, operationFlowService) {
         return {
             submitTransaction: submitTransaction,
             getTransactions: getTransactions,
@@ -134,6 +134,7 @@
         }
 
         function onGetExpensesRunningTotalError(reason) {
+            operationFlowService.operationCompletion("Error Getting Expenses", false);
             return $q.reject(utilityService.httpError(reason, "Error Getting Expenses"));
         }
 

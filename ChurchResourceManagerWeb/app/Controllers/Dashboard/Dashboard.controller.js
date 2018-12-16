@@ -4,9 +4,9 @@
     angular.module("app")
         .controller("dashboardController", dashboardController);
 
-    dashboardController.$inject = ["membershipDataService", "tithingDataService", "offeringDataService", "entitySelectorService", "transactionsDataService", "enumsDataService"];
+    dashboardController.$inject = ["membershipDataService", "tithingDataService", "offeringDataService", "entitySelectorService", "transactionsDataService", "enumsDataService", "operationFlowService"];
 
-    function dashboardController(membershipDataService, tithingDataService, offeringDataService, entitySelectorService, transactionsDataService, enumsDataService) {
+    function dashboardController(membershipDataService, tithingDataService, offeringDataService, entitySelectorService, transactionsDataService, enumsDataService, operationFlowService) {
         var vm = this;
 
         //////////////////////

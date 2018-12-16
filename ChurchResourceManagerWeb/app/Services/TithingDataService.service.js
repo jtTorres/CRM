@@ -5,10 +5,10 @@
         //register the service with angular
         .factory("tithingDataService", tithingDataService);
 
-    tithingDataService.$inject = ["$q", "$http", "utilityService", "titheVars", "$filter"];
+    tithingDataService.$inject = ["$q", "$http", "utilityService", "titheVars", "$filter", "operationFlowService"];
 
     //define service
-    function tithingDataService($q, $http, utilityService, titheVars, $filter) {
+    function tithingDataService($q, $http, utilityService, titheVars, $filter, operationFlowService) {
 
         return {
             addTithe: addTithe,
@@ -157,6 +157,7 @@
 
         // get error response
         function onGetTithesRunningTotalError(reason) {
+            operationFlowService.operationCompletion("Error Getting Tithes Running Total", false);
             return $q.reject(utilityService.httpError(reason, "Error Getting Tithes Running Total"));
         }
 

@@ -3,9 +3,9 @@
     angular.module("app")
         .factory("membershipDataService", membershipDataService);
 
-    membershipDataService.$inject = ["$http", "$q", "utilityService", "stateList"];
+    membershipDataService.$inject = ["$http", "$q", "utilityService", "stateList", "operationFlowService"];
 
-    function membershipDataService($http, $q, utilityService, stateList) {
+    function membershipDataService($http, $q, utilityService, stateList, operationFlowService) {
 
         var allMembership = {
             data: {}
@@ -284,6 +284,7 @@
         }
 
         function onGetMemberError(reason) {
+            operationFlowService.operationCompletion("Error Getting Member Counts", false);
             return $q.reject(utilityService.httpError(reason, "Error Getting Member Counts"));
         }
 

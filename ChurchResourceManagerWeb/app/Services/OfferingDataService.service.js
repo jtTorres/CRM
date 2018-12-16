@@ -4,9 +4,9 @@
     angular.module("app")
         .factory("offeringDataService", offeringDataService);
 
-    offeringDataService.$inject = ["$http", "$q", "utilityService"];
+    offeringDataService.$inject = ["$http", "$q", "utilityService", "operationFlowService"];
 
-    function offeringDataService($http, $q, utilityService) {
+    function offeringDataService($http, $q, utilityService, operationFlowService) {
         return {
             addOffering: addOffering,
             updateOffering: updateOffering,
@@ -90,6 +90,7 @@
         }
 
         function onRunningTotalsError(reason) {
+            operationFlowService.operationCompletion("Error Getting Running Totals", false);
             return $q.reject(utilityService.httpError(reason, "Error Getting Running Totals"));
         }
 
