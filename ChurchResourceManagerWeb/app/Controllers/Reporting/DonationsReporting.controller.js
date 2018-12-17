@@ -47,16 +47,7 @@
             if (response.data.length === 0) {
                 vm.noResults = true;
             }
-            //calculateTransactionStats(vm.transactions);
         }
-
-        //function calculateTransactionStats(transactions) {
-        //    var totals = 0;
-        //    angular.forEach(transactions, function (record, key, obj) {
-        //        totals = record.TransactionAmount + totals;
-        //    });
-        //    vm.runningTotal.data = totals;
-        //}
 
         function reset() {
             vm.donationActivity = [];

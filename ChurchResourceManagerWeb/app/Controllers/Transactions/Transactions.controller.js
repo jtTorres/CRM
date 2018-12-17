@@ -35,7 +35,6 @@
         }
 
         function onSaveError(reason) {
-            vm.processFlow = operationFlowService.operationCompletion(reason.message, false);
             usSpinnerService.stop();
             return;
         }
@@ -175,7 +174,6 @@
                 })
                 .catch(function (reason) {
                     usSpinnerService.stop();
-                    vm.processFlow = operationFlowService.operationCompletion(reason.message, false);
                 });
         }
 

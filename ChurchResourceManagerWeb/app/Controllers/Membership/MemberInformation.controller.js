@@ -32,13 +32,11 @@
         }
 
         function followLastCurrentActiveIndex(currentIndex, arrayCount) {
-            //return currentIndex === relativesCount;
             return vm.onFindActiveIndex({ currentIndex: currentIndex, arrayCount: arrayCount });
         }
 
         function doAddRelative() {
             $scope.$emit("memberInfoAddRelative");
-            //vm.onAddRelative();
         }
 
         function onRemoveRelative(index) {

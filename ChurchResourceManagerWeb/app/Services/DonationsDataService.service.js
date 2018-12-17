@@ -4,9 +4,9 @@
     angular.module("app")
         .factory("donationsDataService", donationsDataService);
 
-    donationsDataService.$inject = ["$http", "$q", "utilityService"];
+    donationsDataService.$inject = ["$http", "$q", "utilityService", "operationFlowService"];
 
-    function donationsDataService($http, $q, utilityService) {
+    function donationsDataService($http, $q, utilityService, operationFlowService) {
         return {
             addDonation: addDonation,
             updateDonation: updateDonation,
@@ -35,6 +35,7 @@
         }
 
         function onAddDonationError(reason) {
+            operationFlowService.displayErrorBanner("Error Adding Donation");
             return $q.reject(utilityService.httpError(reason, "Error Adding Donation"));
         }
 
@@ -53,6 +54,7 @@
         }
 
         function onUpdateDonationError(reason) {
+            operationFlowService.displayErrorBanner("Error Updating Donation");
             return $q.reject(utilityService.httpError(reason, "Error Updating Donation"));
         }
 
@@ -71,6 +73,7 @@
         }
 
         function onDeleteDonationError(reason) {
+            operationFlowService.displayErrorBanner("Error Delete Donation");
             return $q.reject(utilityService.httpError(reason, "Error Delete Donation"));
         }
 
@@ -88,6 +91,7 @@
         }
 
         function onGetActivityError(reason) {
+            operationFlowService.displayErrorBanner("Error Getting Activity");
             return $q.reject(utilityService.httpError(reason, "Error Getting Activity"));
         }
 
@@ -108,6 +112,7 @@
         }
 
         function onGetDonationError(reason) {
+            operationFlowService.displayErrorBanner("Error Getting Donation");
             return $q.reject(utilityService.httpError(reason, "Error Getting Donation"));
         }
 
@@ -125,6 +130,7 @@
         }
 
         function onGetDonationsError(reason) {
+            operationFlowService.displayErrorBanner("Error Getting Donation");
             return $q.reject(utilityService.httpError(reason, "Error Getting Donation"));
         }
 
@@ -146,6 +152,7 @@
         }
 
         function onGetDonationsByDonationDateError(reason) {
+            operationFlowService.displayErrorBanner("Error Getting Donation");
             return $q.reject(utilityService.httpError(reason, "Error Getting Donation"));
         }
 
@@ -166,6 +173,7 @@
         }
 
         function onGetDonationsByMemberIdError(reason) {
+            operationFlowService.displayErrorBanner("Error Getting Donation");
             return $q.reject(utilityService.httpError(reason, "Error Getting Donation"));
         }
 
@@ -202,6 +210,7 @@
         }
 
         function onRunningTotalsByDateRangeError(reason) {
+            operationFlowService.displayErrorBanner("Error Getting Running Totals");
             return $q.reject(utilityService.httpError(reason, "Error Getting Running Totals"));
         }
 

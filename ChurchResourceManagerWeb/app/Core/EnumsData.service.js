@@ -4,9 +4,9 @@
     angular.module("app")
         .factory("enumsDataService", enumsDataService);
 
-    enumsDataService.$inject = ["$http", "$q", "utilityService"];
+    enumsDataService.$inject = ["$http", "$q", "utilityService", "operationFlowService"];
 
-    function enumsDataService($http, $q, utilityService) {
+    function enumsDataService($http, $q, utilityService, operationFlowService) {
 
         var enums = {
             contactMethods: {},
@@ -47,6 +47,7 @@
         }
 
         function onFailure(reason) {
+            operationFlowService.displayErrorBanner("Error Getting Enum");
             return $q.reject(utilityService.httpError(reason, "Error Getting Enum"));
         }
 

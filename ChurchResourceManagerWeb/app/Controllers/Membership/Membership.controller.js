@@ -65,15 +65,13 @@
                                 vm.processFlow = operationFlowService.operationCompletion("Saved Successfully!", true);
                             }
                         }
-                    })
-                    .catch(onSaveError);
+                    });
             } else {
                 return membershipDataService.updateFamily(family)
                     .then(function () {
                         vm.beingEdited.familyForm = false;
                         onSaveSuccess();
-                    })
-                    .catch(onSaveError);
+                    });
             }
         }
 
@@ -97,15 +95,13 @@
                                 vm.processFlow = operationFlowService.operationCompletion("Saved Successfully!", true);
                             }
                         }
-                    })
-                    .catch(onSaveError);
+                    });
             } else {
                 return membershipDataService.updateAddress(addressInfo)
                     .then(function () {
                         vm.beingEdited.addressInfoForm = false;
                         onSaveSuccess();
-                    })
-                    .catch(onSaveError);
+                    });
             }
         }
         // #endregion
@@ -130,24 +126,18 @@
                                 vm.processFlow = operationFlowService.operationCompletion("Saved Successfully!", true);
                             }
                         }
-                    })
-                    .catch(onSaveError);
+                    });
             } else {
                 return membershipDataService.updateMembership(memberInfo)
                     .then(function () {
                         vm.beingEdited.personalInfoForm = false;
                         onSaveSuccess();
-                    })
-                    .catch(onSaveError);
+                    });
             }
         }
 
         function onSaveSuccess(response) {
             vm.processFlow = operationFlowService.operationCompletion("Saved Successfully!", true);
-        }
-
-        function onSaveError(reason) {
-            vm.processFlow = operationFlowService.operationCompletion(reason.message, false);
         }
 
         // #endregion
@@ -164,16 +154,14 @@
                         //vm.processFlow = operationFlowService.operationCompletion("Saved Successfully!", true);
                         vm.disableTabs = false;
                         memberEntryCompleteModal();
-                    })
-                    .catch(onSaveError);
+                    });
             } else {
                 return membershipDataService.updateContactInfo(contactInfo)
                     .then(function () {
                         vm.beingEdited.contactInfoForm = false;
                         onSaveSuccess();
                         memberEntryCompleteModal();
-                    })
-                    .catch(onSaveError);
+                    });
             }
         }
 
@@ -188,9 +176,6 @@
                     vm.emptyContactInfo = angular.copy(response.data.contactInfo);
                     vm.memberInfoArray.push(response.data.memberInfo);
                     vm.contactInfo.push(response.data.contactInfo);
-                })
-                .catch(function (reason) {
-                    vm.processFlow = operationFlowService.operationCompletion(reason.message, false);
                 });
         }
 
@@ -257,8 +242,7 @@
             return membershipDataService.editMembership(familyId)
                 .then(function (response) {
                     vm.membershipToEdit = response.data;
-                })
-                .catch(onSaveError);
+                });
         }
         // #endregion
 
@@ -464,9 +448,6 @@
             membershipDataService.getMemberSearch()
                 .then(function (response) {
                     vm.members = response.data;
-                })
-                .catch(function (reason) {
-                    vm.processFlow = operationFlowService.operationCompletion(reason.message, false);
                 });
         }
         // #endregion

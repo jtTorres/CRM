@@ -33,12 +33,12 @@
 
         function onSaveSuccess(response) {
             updateDonationActivityGrid(updateType, response.data);
-            vm.processFlow = operationFlowService.operationCompletion("Donation Saved Successfully!", true);
+            operationFlowService.operationCompletion("Donation Saved Successfully!", true);
             usSpinnerService.stop();
         }
 
         function onSaveError(reason) {
-            vm.processFlow = operationFlowService.operationCompletion(reason.message, false);
+            operationFlowService.operationCompletion(reason.message, false);
             usSpinnerService.stop();
         }
 
@@ -170,17 +170,16 @@
         }
 
         function deleteDonation(donationId) {
-            //TODO: ADD RETURN TO THIS
             usSpinnerService.spin();
             updateType = "Delete";
             return donationsDataService.deleteDonation(donationId)
                 .then(function (response) {
                     updateDonationActivityGrid(updateType, response.data);
-                    vm.processFlow = operationFlowService.operationCompletion("Donation Deleted Successfully", true);
+                    operationFlowService.operationCompletion("Donation Deleted Successfully", true);
                     usSpinnerService.stop();
                 })
                 .catch(function (reason) {
-                    vm.processFlow = operationFlowService.operationCompletion(reason.message, false);
+                    operationFlowService.operationCompletion(reason.message, false);
                 });
         }
 

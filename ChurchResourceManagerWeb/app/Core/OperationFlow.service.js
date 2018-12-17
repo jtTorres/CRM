@@ -16,7 +16,8 @@
             setupDefaults: setupDefaults,
             isFormValid: isFormValid,
             resetForm: resetForm,
-            locationCheck: locationCheck
+            locationCheck: locationCheck,
+            displayErrorBanner: displayErrorBanner
         };
 
         function setupDefaults() {
@@ -52,6 +53,10 @@
         function locationCheck(path, broadcast) {
             if (location.pathname === path)
                 $rootScope.$broadcast(broadcast);
+        }
+
+        function displayErrorBanner(message) {
+            operationCompletion(message, false);
         }
     }
 

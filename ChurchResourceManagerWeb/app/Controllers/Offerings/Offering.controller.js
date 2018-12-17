@@ -71,7 +71,6 @@
 
         function onSaveError(reason) {
             usSpinnerService.stop("spinner-AO");
-            vm.processFlow = operationFlowService.operationCompletion(reason.message, false);
         }
 
         function getDropdownSelection(offering) {
@@ -199,9 +198,6 @@
                     vm.processFlow = operationFlowService.operationCompletion("Offering Deleted Successfully", true);
                     updateOfferingActivityGrid(updateType, response.data);
                     usSpinnerService.stop("spinner-AO");
-                })
-                .catch(function (reason) {
-                    vm.processFlow = operationFlowService.operationCompletion(reason.message, false);
                 });
         }
 

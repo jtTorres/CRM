@@ -32,6 +32,7 @@
         }
 
         function onAddTitheError(reason) {
+            operationFlowService.displayErrorBanner("Error Adding Offering");
             return $q.reject(utilityService.httpError(reason, "Error Adding Offering"));
         }
 
@@ -50,6 +51,7 @@
         }
 
         function onUpdateOfferingError(reason) {
+            operationFlowService.displayErrorBanner("Error Updating Offering");
             return $q.reject(utilityService.httpError(reason, "Error Updating Offering"));
         }
 
@@ -68,6 +70,7 @@
         }
 
         function onDeleteOfferingError(reason) {
+            operationFlowService.displayErrorBanner("Error Deleting Offering");
             return $q.reject(utilityService.httpError(reason, "Error Deleting Offering"));
         }
 
@@ -90,7 +93,7 @@
         }
 
         function onRunningTotalsError(reason) {
-            operationFlowService.operationCompletion("Error Getting Running Totals", false);
+            operationFlowService.displayErrorBanner("Error Getting Running Totals");
             return $q.reject(utilityService.httpError(reason, "Error Getting Running Totals"));
         }
 
@@ -113,6 +116,7 @@
         }
 
         function onRunningTotalsByDateRangeError(reason) {
+            operationFlowService.displayErrorBanner("Error Getting Running Totals");
             return $q.reject(utilityService.httpError(reason, "Error Getting Running Totals"));
         }
 
@@ -134,6 +138,7 @@
         }
 
         function onGetTodaysActivityError(reason) {
+            operationFlowService.displayErrorBanner("Error Getting Activity");
             return $q.reject(utilityService.httpError(reason, "Error Getting Activity"));
         }
 
@@ -156,6 +161,7 @@
         }
 
         function onGetOfferingActivityByDateRangeError(reason) {
+            operationFlowService.displayErrorBanner("Error Getting Activity");
             return $q.reject(utilityService.httpError(reason, "Error Getting Activity"));
         }
     }

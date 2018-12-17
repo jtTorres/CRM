@@ -73,9 +73,6 @@
                     titheVars.tithingActivity.data = response.data;
                     titheVars.tithingActivity.data = $filter("limitTo")(titheVars.tithingActivity.data, 10, 0);
                     vm.activityByMemberPanelSettings.isOpen = true;
-                })
-                .catch(function (reason) {
-                    console.log("Error retrieving Member Tithes");
                 });
         }
 
@@ -84,13 +81,11 @@
             if (utilityService.isUndefinedOrNull(titheRecord.TitheId)) {
                 updateType = "Insert";
                 return tithingDataService.addTithe(titheRecord)
-                    .then(onAddTitheSuccess)
-                    .catch(onAddTitheError);
+                    .then(onAddTitheSuccess);
             } else {
                 updateType = "Update";
                 return tithingDataService.updateTithe(titheRecord)
-                    .then(onAddTitheSuccess)
-                    .catch(onAddTitheError);
+                    .then(onAddTitheSuccess);
             }
         }
 
@@ -99,10 +94,6 @@
             getTithesRunningTotal();
             updateTithingActivityGrid(updateType, response.data);
             vm.processFlow = operationFlowService.operationCompletion("Tithe Saved Successfully!", true);
-        }
-
-        function onAddTitheError(reason) {
-            vm.processFlow = operationFlowService.operationCompletion(reason.message, false);
         }
 
         function clearActivity() {
@@ -130,9 +121,6 @@
                 .then(function (response) {
                     titheVars.tithesRunningTotal.data = response.data;
                     vm.tithesRunningTotal = titheVars.tithesRunningTotal;
-                })
-                .catch(function (reason) {
-                    console.log("Error getting Tithes Running Total");
                 });
         }
 
@@ -166,9 +154,6 @@
                     getMemberTithes(titheVars.titheToDelete.MemberId);
                     updateTithingActivityGrid(updateType, response.data);
                     vm.processFlow = operationFlowService.operationCompletion("Tithe Deleted Successfully", true);
-                })
-                .catch(function (reason) {
-                    vm.processFlow = operationFlowService.operationCompletion(reason.message, false);
                 });
         }
 
@@ -185,9 +170,6 @@
                     usSpinnerService.stop("spinner-1");
                     vm.tithingActivity = response.data;
                     updateTithingActivityPanelHeader(tithingActivityType, response.data.length);
-                })
-                .catch(function (reason) {
-                    vm.processFlow = utilityService.processCompletion(vm.processFlow, reason.message, false);
                 });
         }
 

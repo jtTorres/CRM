@@ -35,6 +35,7 @@
         }
 
         function onSubmitTransactionError(reason) {
+            operationFlowService.displayErrorBanner("Error Submitting Transaction");
             return $q.reject(utilityService.httpError(reason, "Error Submitting Transaction"));
         }
 
@@ -52,6 +53,7 @@
         }
 
         function onGetTransactionsError(reason) {
+            operationFlowService.displayErrorBanner("Error Getting Transactions");
             return $q.reject(utilityService.httpError(reason, "Error Getting Transactions"));
         }
 
@@ -72,6 +74,7 @@
         }
 
         function onGetTransactionError(reason) {
+            operationFlowService.displayErrorBanner("Error Getting Transaction");
             return $q.reject(utilityService.httpError(reason, "Error Getting Transaction"));
         }
 
@@ -92,6 +95,7 @@
         }
 
         function onUpdateTransactionError(reason) {
+            operationFlowService.displayErrorBanner("Error Updating Transaction");
             return $q.reject(utilityService.httpError(reason, "Error Updating Transaction"));
         }
 
@@ -112,6 +116,7 @@
         }
 
         function onDeleteTransactionError(reason) {
+            operationFlowService.displayErrorBanner("Error Deleting Transaction");
             return $q.reject(utilityService.httpError(reason, "Error Deleting Transaction"));
         }
 
@@ -134,7 +139,7 @@
         }
 
         function onGetExpensesRunningTotalError(reason) {
-            operationFlowService.operationCompletion("Error Getting Expenses", false);
+            operationFlowService.displayErrorBanner("Error Getting Expenses");
             return $q.reject(utilityService.httpError(reason, "Error Getting Expenses"));
         }
 
@@ -156,6 +161,7 @@
         }
 
         function onGetTransactionsByTransactionDateError(reason) {
+            operationFlowService.displayErrorBanner("Error Getting Transactions");
             return $q.reject(utilityService.httpError(reason, "Error Getting Transactions"));
         }
 
@@ -177,6 +183,7 @@
         }
 
         function onGetTransactionsByBankPostedDateError(reason) {
+            operationFlowService.displayErrorBanner("Error Getting Transactions");
             return $q.reject(utilityService.httpError(reason, "Error Getting Transactions"));
         }
 

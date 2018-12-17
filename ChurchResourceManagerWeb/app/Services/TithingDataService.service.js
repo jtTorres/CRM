@@ -53,6 +53,7 @@
 
         //get error reason
         function onAddTitheRecordError(reason) {
+            operationFlowService.displayErrorBanner("Error Adding Tithe Record");
             return $q.reject(utilityService.httpError(reason, "Error Adding Tithe Record"));
         }
 
@@ -78,7 +79,7 @@
 
         //get error response
         function onGetMemberTithesError(reason) {
-            console.log(reason.data);
+            operationFlowService.displayErrorBanner("Error Getting Member Tithes");
             return $q.reject(utilityService.httpError(reason, "Error Getting Member Tithes"));
         }
 
@@ -114,6 +115,7 @@
 
         //get error response
         function onUpdateTitheError(reason) {
+            operationFlowService.displayErrorBanner("Error Updating Tithes");
             return $q.reject(utilityService.httpError(reason, "Error Updating Tithes"));
         }
 
@@ -135,6 +137,7 @@
 
         //get error response
         function onDeleteTitheError(reason) {
+            operationFlowService.displayErrorBanner("Error Deleting Tithes");
             return $q.reject(utilityService.httpError(reason, "Error Deleting Tithes"));
         }
 
@@ -157,7 +160,7 @@
 
         // get error response
         function onGetTithesRunningTotalError(reason) {
-            operationFlowService.operationCompletion("Error Getting Tithes Running Total", false);
+            operationFlowService.displayErrorBanner("Error Getting Tithes Running Total");
             return $q.reject(utilityService.httpError(reason, "Error Getting Tithes Running Total"));
         }
 
@@ -178,6 +181,7 @@
 
         // get error response
         function onGetTithesRunningTotalByDateRangeError(reason) {
+            operationFlowService.displayErrorBanner("Error Getting Tithes Running Total");
             return $q.reject(utilityService.httpError(reason, "Error Getting Tithes Running Total"));
         }
 
@@ -195,6 +199,7 @@
         }
 
         function onGetTodaysTithingActivityError(reason) {
+            operationFlowService.displayErrorBanner("Error Getting Today's Tithing Activity");
             return $q.reject(utilityService.httpError(reason, "Error Getting Today's Tithing Activity"));
         }
 
@@ -212,6 +217,7 @@
         }
 
         function onGetTithingActivityError(reason) {
+            operationFlowService.displayErrorBanner("Error Getting Tithing Activity");
             return $q.reject(utilityService.httpError(reason, "Error Getting Tithing Activity"));
         }
 
@@ -308,6 +314,7 @@
         }
 
         function onGetTithingTotalsByDateRangeError(reason) {
+            operationFlowService.displayErrorBanner("Error Getting Tithing Activity");
             return $q.reject(utilityService.httpError(reason, "Error Getting Tithing Activity"));
         }
 
@@ -329,6 +336,7 @@
         }
 
         function onGetTithingActivityByDateRangeError(reason) {
+            operationFlowService.displayErrorBanner("Error Getting Tithing Activity");
             return $q.reject(utilityService.httpError(reason, "Error Getting Tithing Activity"));
         }
 
@@ -349,6 +357,7 @@
         }
 
         function onGetTithingActivityByFamilyIdError(reason) {
+            operationFlowService.displayErrorBanner("Error Getting Tithing Activity");
             return $q.reject(utilityService.httpError(reason, "Error Getting Tithing Activity"));
         }
 
