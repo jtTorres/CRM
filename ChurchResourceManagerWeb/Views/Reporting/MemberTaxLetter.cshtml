@@ -1,7 +1,7 @@
 ﻿<page-header page-title="Donations Letter"></page-header>
 
 
-<div ng-controller="donationsLetterController as dlc" ng-show="dlc.showLetters">
+<div ng-controller="memberTaxLetterController as mtlc" ng-show="mtlc.showLetters">
     <div class="col-md-8 col-md-push-2">
         <div class="panel panel-default">
             <div class="panel-body">
@@ -21,21 +21,21 @@
                     </div>
                 </div>
                 <div class="row ">
-                    <div class="col-md-10">{{dlc.letterDate | date: 'MM/dd/yyyy'}}<br /><br /></div>
+                    <div class="col-md-10">{{mtlc.letterDate | date: 'MM/dd/yyyy'}}<br /><br /></div>
 
                     <div class="col-md-10">
-                        Dear {{dlc.memberInfo.MemberName}}, <br /><br />
-                        We thank God for you! Your gifts to Iglesia de Dios Agua en el Desierto throughout {{dlc.year}} are gratefully acknowledged. <br /><br />
+                        Dear {{mtlc.memberInfo.MemberName}}, <br /><br />
+                        We thank God for you! Your gifts to Iglesia de Dios Agua en el Desierto throughout {{mtlc.year}} are gratefully acknowledged. <br /><br />
                         Because of your contributions, our congregation has been able to support the work of Jesus Christ locally, regionally, and around the world. <br /><br />
 
-                        Attached is an itemized statement of your contributions for {{dlc.year}}, according to our records. <br /><br />
+                        Attached is an itemized statement of your contributions for {{mtlc.year}}, according to our records. <br /><br />
 
                         If you have any concerns about the accuracy of this information, please let us know. For income
                         tax purposes, it's important for us to state here that you did not receive any goods or services in
                         return for any of these contributions other than intangible religious benefits. You made these
                         gifts out of your own generosity and commitment to Jesus Christ. <br /><br />
 
-                        Our records show that your total contributions for the year of {{dlc.year}} are {{dlc.totalTithes | currency}}. <br /><br />
+                        Our records show that your total contributions for the year of {{mtlc.year}} are {{mtlc.totalTithes | currency}}. <br /><br />
 
                         Once again, thank you for your generous commitment to the work of Jesus Christ through this church. <br /><br />
 
@@ -56,7 +56,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="text-left" ng-repeat="tithe in dlc.memberTithes">
+                            <tr class="text-left" ng-repeat="tithe in mtlc.memberTithes">
                                 <td>{{tithe.TitheDate}}</td>
                                 <td>{{tithe.TitheAmount | currency }}</td>
                                 <td>{{tithe.IsCheck ? tithe.CheckNumber : ""}}</td>

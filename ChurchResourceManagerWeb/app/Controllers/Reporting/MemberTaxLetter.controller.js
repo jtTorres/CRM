@@ -3,11 +3,11 @@
     "use strict";
 
     angular.module("app")
-        .controller("donationsLetterController", donationsLetterController);
+        .controller("memberTaxLetterController", memberTaxLetterController);
 
-    donationsLetterController.$inject = ["tithingDataService"];
+    memberTaxLetterController.$inject = ["tithingDataService"];
 
-    function donationsLetterController(tithingDataService) {
+    function memberTaxLetterController(tithingDataService) {
         var vm = this;
 
         vm.getMemberTithesLetter = getMemberTithesLetter;

@@ -36,7 +36,7 @@ namespace ChurchResourceManagerWeb.Controllers
             return View();
         }
 
-        public ActionResult DonationsLetter()
+        public ActionResult MemberTaxLetter()
         {
             return View();
         }
