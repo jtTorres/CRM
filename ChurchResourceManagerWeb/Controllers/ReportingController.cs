@@ -36,6 +36,11 @@ namespace ChurchResourceManagerWeb.Controllers
             return View();
         }
 
+        public ActionResult DonationsLetter()
+        {
+            return View();
+        }
+
         #region PartialViews for Components
 
         public ActionResult ReportingTabs()

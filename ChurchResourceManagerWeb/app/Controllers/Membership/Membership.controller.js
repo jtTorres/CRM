@@ -235,7 +235,7 @@
         }
 
         function enableDisableTab(index) {
-            return (vm.activeTab !== index && vm.disableTabs) || vm.disableTabs;
+            return vm.activeTab !== index && vm.disableTabs || vm.disableTabs;
         }
 
         function getMemberToEdit(familyId) {
