@@ -55,6 +55,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.xmlworker, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itextsharp.xmlworker.5.5.13\lib\itextsharp.xmlworker.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
@@ -295,6 +301,7 @@
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Repository.cs" />
+    <Compile Include="Models\TaxLetterViewModel.cs" />
     <Compile Include="Models\TITHES.cs">
       <DependentUpon>ChurchResourceDbModel.tt</DependentUpon>
     </Compile>
@@ -413,6 +420,7 @@
     <Content Include="app\Services\DonationsDataService.service.js" />
     <Content Include="app\Services\OfferingDataService.service.js" />
     <Content Include="app\Services\OfferingDataService.service.spec.js" />
+    <Content Include="app\Services\TaxLetterDataService.service.js" />
     <Content Include="app\Services\TitheVars.service.js" />
     <Content Include="app\Controllers\Tithing\Tithing.controller.js" />
     <Content Include="app\Controllers\Tithing\Tithing.controller.spec.js" />
@@ -490,6 +498,8 @@
     <Content Include="Scripts\angular-cookies.js" />
     <Content Include="Scripts\angular-cookies.min.js" />
     <Content Include="Scripts\angular-csp.css" />
+    <Content Include="Scripts\angular-file-saver.bundle.js" />
+    <Content Include="Scripts\angular-file-saver.bundle.min.js" />
     <Content Include="Scripts\angular-loader.js" />
     <Content Include="Scripts\angular-loader.min.js" />
     <Content Include="Scripts\angular-message-format.js" />
@@ -534,6 +544,7 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
+    <Content Include="Scripts\html2canvas.min.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-et.js" />
@@ -1317,6 +1328,8 @@
     <Content Include="Scripts\mg\packages\angular-ui\mask.js" />
     <Content Include="Scripts\mg\packages\angular-ui\mask.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\pdfmake\pdfmake.min.js" />
+    <Content Include="Scripts\pdfmake\vfs_fonts.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />

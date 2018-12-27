@@ -7,6 +7,8 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+    <script src="/Scripts/pdfmake/vfs_fonts.js"></script>
     <script type="text/ng-template" id="message-template">
         <div ng-message="minlength">Message must be over 10 characters</div>
         <span ng-message="required">This is required!</span>
@@ -40,6 +42,7 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/ChurchResourceManagerApp")
     @Scripts.Render("~/bundles/notifications")
+    @*@Scripts.Render("~/bundles/JavaScriptUtilities")*@
     @RenderSection("scripts", required: false)
 </body>
 </html>

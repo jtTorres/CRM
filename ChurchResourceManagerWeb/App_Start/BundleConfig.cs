@@ -21,7 +21,8 @@ namespace ChurchResourceManagerWeb
                 "~/Scripts/mg/packages/angular-ui/mask.min.js",
                 "~/Scripts/angular-animate.min.js",
                 "~/Scripts/angular-cookies.min.js",
-                "~/Scripts/angular-spinner.min.js"
+                "~/Scripts/angular-spinner.min.js",
+                "~/Scripts/angular-file-saver.bundle.min.js"
                 ));
 
 
@@ -66,6 +67,11 @@ namespace ChurchResourceManagerWeb
             bundles.Add(new ScriptBundle("~/bundles/notifications").Include(
                 "~/Scripts/toastr.js"
                 ));
+
+            bundles.Add(new ScriptBundle("~/bundles/JavaScriptUtilities").Include(
+                "~/Scripts/pdfmake/pdfmake.min.js",
+                "~/Scripts/pdfmake/vfs_fonts.js",
+                "~/Scripts/html2canvas.min.js"));
         }
     }
 }

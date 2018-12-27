@@ -13,6 +13,8 @@ namespace ChurchResourceManagerWeb.Models
         }
         public byte DonationTypeId { get; set; }
         public string DonationType { get; set; }
+        public bool IsCheck { get; set; }
+        public short CheckNumber { get; set; }
         public int? MemberId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

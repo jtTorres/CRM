@@ -493,6 +493,34 @@ namespace ChurchResourceManagerWeb.Models
             }).ToList();
         }
 
+        public IEnumerable<TaxLetterViewModel> CreateTaxLetterViewModelList(IEnumerable<TithesViewModel> memberTithes, IEnumerable<DonationsViewModel> memberDonations)
+        {
+            var titheDonation = memberTithes.Select(t => new DonationsViewModel
+            {
+                DonationDateTime = t.TitheDateDateTime,
+                DonationTypeId = t.DonationType,
+                MemberId = t.MemberId,
+                FirstName = t.FirstName,
+                LastName = t.LastName,
+                DonationAmount = t.TitheAmount,
+                IsCheck = t.IsCheck,
+                CheckNumber = t.CheckNumber,
+                Comments = t.Comments
+            });
+
+            var donations = titheDonation.Union(memberDonations).ToList();
+            var memberIds = donations.Select(x => new { x.MemberId }).Distinct();
+
+            var result = memberIds.Select(x => new TaxLetterViewModel
+            {
+                MemberGiving = donations.Where(d => d.MemberId == x.MemberId),
+                TotalAmount = donations.Where(d => d.MemberId == x.MemberId).Sum(t => t.DonationAmount),
+                MemberName = donations.Where(d => d.MemberId == x.MemberId).Select(f => $"{f.FirstName} {f.LastName}").FirstOrDefault()
+            });
+
+            return result;
+
+        }
         #endregion
 
 

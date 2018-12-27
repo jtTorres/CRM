@@ -647,6 +647,13 @@ namespace ChurchResourceManagerWeb.Models
             return amount.Any() ? amount.Sum(a => a.TRANSACTION_AMOUNT).ToString(CultureInfo.CurrentCulture) : "0";
         }
 
+        public IEnumerable<TaxLetterViewModel> GetMemberGiving(int memberId, DateTime startDate, DateTime endDate)
+        {
+            var memberTithes = memberId == 0 ? GetTithingActivityByDateRange(startDate, endDate) : GetMemberTithesWithDateRange(memberId, startDate, endDate).ToList();
+            var memberDonations = memberId == 0 ? GetDonationsByDateRange(startDate, endDate) : GetDonationsByMemberIdWithDateRange(memberId, startDate, endDate).ToList();
+
+            return ModelFactory.CreateTaxLetterViewModelList(memberTithes, memberDonations);
+        }
         #endregion
 
         #region switches
