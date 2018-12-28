@@ -14,7 +14,8 @@
                     noResultsFound: "<",
                     resetTabs: "&",
                     invalidReportType: "<",
-                    selectedSearchType: "@"
+                    selectedSearchType: "@",
+                    activeTab: "<"
                 }
             });
 

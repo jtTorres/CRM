@@ -1,7 +1,7 @@
 ﻿
 <div class="row">
-    <uib-tabset active="0">
-        <uib-tab index="0" heading="Date Range" ng-click="rtc.onResetTabs()">
+    <uib-tabset active="rtc.activeTab">
+        <uib-tab index="0" heading="Date Range" ng-click="rtc.onResetTabs()" ng-if="rtc.reportType !== 'TaxLetters'">
             <div class="row">
                 <div class="col-xs-6" style="padding-bottom: 1%;">
                     <div class="btn-group">
@@ -138,6 +138,43 @@
             <div class="row">
                 <div class="col-xs-1">
                     <button class="btn btn-default" ng-click="rtc.onGoButton('Member', rtc.fromDate, rtc.toDate, null, rtc.SelectedMember.MemberId)">Go!</button>
+                </div>
+            </div>
+        </uib-tab>
+        <uib-tab index="3" heading="Tax Year" ng-click="rtc.onResetTabs()" ng-if="rtc.reportType === 'TaxLetters'">
+            <div class="row">
+                <div class="col-xs-3">
+                    <p class="input-group">
+                        <input id="txtToDt" name="txtToDt" type="text" class="form-control" ng-model="rtc.taxYear" uib-datepicker-popup="{{rtc.yearFormat}}" datepicker-options="rtc.taxLetterDatePickerOptions" is-open="rtc.isOpenToDate" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="rtc.openToDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+                <!--isAddMember-->
+                <div class="form-group">
+                    <button id="addMemberCkBx" name="addMemberCkBx" type="button" class="btn btn-default" ng-class="{'btn-info': rtc.isAddMember}" ng-model="rtc.isAddMember"
+                            uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false" ng-click="rtc.onResetTabs()">
+                        Add Member <i ng-class="{'glyphicon glyphicon-check': rtc.isAddMember}"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row" ng-show="rtc.isAddMember">
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <input id="txtMemberName"
+                               name="txtMemberName"
+                               type="text"
+                               class="form-control"
+                               ng-model="rtc.SelectedMember"
+                               placeholder="Member Name"
+                               uib-typeahead="member as member.MemberKey for member in rtc.allMembership | filter: {MemberKey:$viewValue} | limitTo: 8" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-1">
+                    <button class="btn btn-default" ng-click="rtc.onGoButton('TaxLetters', null, rtc.taxYear, null, rtc.SelectedMember.MemberId)">Go!</button>
                 </div>
             </div>
         </uib-tab>

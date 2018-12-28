@@ -4,7 +4,7 @@
     <div class="col-md-12">
         <div ng-controller="offeringController as oc">
             <div class="col-md-12">
-                <reporting-tabs report-type="Offering" go-button="oc.getOfferingActivitySearch(searchType, startDate, endDate, familyId, memberId)" no-results-found="oc.noResults" reset-tabs="oc.resetSearch()"></reporting-tabs>
+                <reporting-tabs report-type="Offering" go-button="oc.getOfferingActivitySearch(searchType, startDate, endDate, familyId, memberId)" no-results-found="oc.noResults" reset-tabs="oc.resetSearch()" active-tab="0"></reporting-tabs>
             </div>
             <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-AO"></span>
             <div ng-if="oc.offeringActivity.length > 0">

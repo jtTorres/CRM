@@ -4,7 +4,7 @@
     <div class="col-md-12">
         <div ng-controller="donationController as dc">
             <reporting-tabs report-type="Donation" go-button="dc.getDonationActivitySearch(searchType, startDate, endDate, familyId, memberId)"
-                            no-results-found="dc.noResults" reset-tabs="dc.resetSearch()" selected-search-type="DonationDate">
+                            no-results-found="dc.noResults" reset-tabs="dc.resetSearch()" selected-search-type="DonationDate" active-tab="0">
             </reporting-tabs>
             <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-AD"></span>
 

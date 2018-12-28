@@ -18,6 +18,12 @@
         vm.isDateRange = false;
         vm.openFromDate = openFromDate;
         vm.openToDate = openToDate;
+        vm.yearFormat = "yyyy";
+        vm.taxLetterDatePickerOptions = {
+            formatYear: "yyyy",
+            startingDay: 1,
+            minMode: "year"
+        };
         //////////////////
 
         activate();
@@ -38,7 +44,7 @@
         }
 
         function onGoButton(searchType, startDate, endDate, familyId, memberId) {
-            if (searchType === "DateRange")
+            if (searchType === "DateRange" || searchType === "TaxLetters")
                 vm.isDateRange = true;
 
             searchType = getAdditionalDateRangeOptions(searchType);
@@ -71,6 +77,7 @@
         function checkDate(date) {
             if (!vm.isDateRange)
                 return null;
+
             return utilityService.isUndefinedOrNull(date) ? new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()) : date;
         }
 

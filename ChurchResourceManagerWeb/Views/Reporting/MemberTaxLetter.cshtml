@@ -2,77 +2,86 @@
 
 
 <div ng-controller="memberTaxLetterController as mtlc">
-    <button class="btn btn-primary" ng-click="mtlc.generateTaxLetters()">Generate Letters</button>
-    <div id="taxLetter" name="taxLetter" ng-if="false">
-        <div ng-repeat="letter in mtlc.letterData">
-            <div class="col-md-8 col-md-push-2">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div>
-                            <div class="row">
+    @*<button class="btn btn-primary" ng-click="mtlc.generateTaxLetters()">Generate Letters</button>*@
+    <reporting-tabs report-type="TaxLetters" go-button="mtlc.getMemberTithesLetter(searchType, startDate, endDate, familyId, memberId)"
+                    no-results-found="mtlc.noResults" reset-tabs="mtlc.resetSearch()" selected-search-type="DonationDate" active-tab="3">
+    </reporting-tabs>
 
-                                <div class="col-md-3 col-md-push-9">
-                                    <p>
-                                        Iglesia de Dios Agua en el Desierto
-                                        5401 W Burnham Street
-                                        Milwaukee, WI 53219
-                                    </p>
+</div>
+
+
+@*<div ng-controller="memberTaxLetterController as mtlc">
+        <button class="btn btn-primary" ng-click="mtlc.generateTaxLetters()">Generate Letters</button>
+        <div id="taxLetter" name="taxLetter" ng-if="false">
+            <div ng-repeat="letter in mtlc.letterData">
+                <div class="col-md-8 col-md-push-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div>
+                                <div class="row">
+
+                                    <div class="col-md-3 col-md-push-9">
+                                        <p>
+                                            Iglesia de Dios Agua en el Desierto
+                                            5401 W Burnham Street
+                                            Milwaukee, WI 53219
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="text-center">
-                                    <h3>Iglesia de Dios Agua en el Desierto</h3> <br /><br />
+                                <div class="row">
+                                    <div class="text-center">
+                                        <h3>Iglesia de Dios Agua en el Desierto</h3> <br /><br />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row ">
-                                <div class="col-md-10">{{mtlc.letterDate | date: 'MM/dd/yyyy'}}<br /><br /></div>
+                                <div class="row ">
+                                    <div class="col-md-10">{{mtlc.letterDate | date: 'MM/dd/yyyy'}}<br /><br /></div>
 
-                                <div class="col-md-10">
-                                    Dear {{letter.MemberName}}, <br /><br />
-                                    We thank God for you! Your gifts to Iglesia de Dios Agua en el Desierto throughout {{mtlc.year}} are gratefully acknowledged. <br /><br />
-                                    Because of your contributions, our congregation has been able to support the work of Jesus Christ locally, regionally, and around the world. <br /><br />
+                                    <div class="col-md-10">
+                                        Dear {{letter.MemberName}}, <br /><br />
+                                        We thank God for you! Your gifts to Iglesia de Dios Agua en el Desierto throughout {{mtlc.year}} are gratefully acknowledged. <br /><br />
+                                        Because of your contributions, our congregation has been able to support the work of Jesus Christ locally, regionally, and around the world. <br /><br />
 
-                                    Attached is an itemized statement of your contributions for {{mtlc.year}}, according to our records. <br /><br />
+                                        Attached is an itemized statement of your contributions for {{mtlc.year}}, according to our records. <br /><br />
 
-                                    If you have any concerns about the accuracy of this information, please let us know. For income
-                                    tax purposes, it's important for us to state here that you did not receive any goods or services in
-                                    return for any of these contributions other than intangible religious benefits. You made these
-                                    gifts out of your own generosity and commitment to Jesus Christ. <br /><br />
+                                        If you have any concerns about the accuracy of this information, please let us know. For income
+                                        tax purposes, it's important for us to state here that you did not receive any goods or services in
+                                        return for any of these contributions other than intangible religious benefits. You made these
+                                        gifts out of your own generosity and commitment to Jesus Christ. <br /><br />
 
-                                    Our records show that your total contributions for the year of {{mtlc.year}} are {{letter.TotalAmount | currency}}. <br /><br />
+                                        Our records show that your total contributions for the year of {{mtlc.year}} are {{letter.TotalAmount | currency}}. <br /><br />
 
-                                    Once again, thank you for your generous commitment to the work of Jesus Christ through this church. <br /><br />
+                                        Once again, thank you for your generous commitment to the work of Jesus Christ through this church. <br /><br />
 
-                                    Sincerely, <br /><br /><br /><br />
+                                        Sincerely, <br /><br /><br /><br />
 
-                                    Rev. Efrain Rodriguez Jr.<br /><br /><br /><br />
+                                        Rev. Efrain Rodriguez Jr.<br /><br /><br /><br />
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="table-responsive">
-                                <table class="table table-striped table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Date</th>
-                                            <th>Amount</th>
-                                            <th>Check Number</th>
-                                            <th>Comments</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="text-left" ng-repeat="donation in letter.MemberGiving">
-                                            <td>{{donation.DonationDate}}</td>
-                                            <td>{{donation.DonationAmount | currency }}</td>
-                                            <td>{{donation.IsCheck ? donation.CheckNumber : ""}}</td>
-                                            <td>{{donation.Comments}}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Amount</th>
+                                                <th>Check Number</th>
+                                                <th>Comments</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="text-left" ng-repeat="donation in letter.MemberGiving">
+                                                <td>{{donation.DonationDate}}</td>
+                                                <td>{{donation.DonationAmount | currency }}</td>
+                                                <td>{{donation.IsCheck ? donation.CheckNumber : ""}}</td>
+                                                <td>{{donation.Comments}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </div>*@

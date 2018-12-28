@@ -18,28 +18,21 @@
         vm.totalTithes = 0;
 
         ////////////////////
-        getMemberTithesLetter(0, 2018);
-        function getMemberTithesLetter(memberId, year) {
+        function getMemberTithesLetter(searchType, startDate, endDate, familyId, memberId) {
+            var year = $filter("date")(endDate, "yyyy");
+            if (memberId === undefined)
+                memberId = 0;
+
             taxLetterDataService.getMemberGiving(memberId, `1/1/${year}`, `12/31/${year}`)
                 .then(function (response) {
                     vm.letterData = response.data;
                     vm.year = year;
                     vm.letterDate = new Date();
+                    generateTaxLetters();
                 });
         }
 
         function generateTaxLetters() {
-            //var html = angular.element(document.querySelector("#taxLetter"))[0].innerHTML;
-            //taxLetterDataService.generateTaxLetters(html)
-            //    .then(function (response) {
-            //        var file = new Blob([response.data], { type: "application/pdf" });
-            //        FileSaver.saveAs(file, "test.pdf");
-            //    });
-
-
-
-
-
             var dd = {
                 content: [],
                 styles: {

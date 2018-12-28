@@ -4,7 +4,8 @@
     <div class="col-md-12">
         <div ng-controller="tithingController as tc">
             <div class="col-md-12">
-                <reporting-tabs report-type="Tithing" go-button="tc.getTithingActivitySearch(searchType, startDate, endDate, familyId, memberId)" no-results-found="tc.noResults" reset-tabs="tc.resetSearch()"></reporting-tabs>
+                <reporting-tabs report-type="Tithing" go-button="tc.getTithingActivitySearch(searchType, startDate, endDate, familyId, memberId)" no-results-found="tc.noResults" reset-tabs="tc.resetSearch()"active-tab="0">
+                </reporting-tabs>
             </div>
             <span us-spinner="{radius:30, width:8, length: 16}" spinner-key="spinner-TR"></span>
             <div style="padding-top: 1%">
