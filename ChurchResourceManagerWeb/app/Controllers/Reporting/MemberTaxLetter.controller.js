@@ -16,6 +16,7 @@
         vm.memberInfo = {};
         vm.showLetters = false;
         vm.totalTithes = 0;
+        vm.noResults = false;
 
         ////////////////////
         function getMemberTithesLetter(searchType, startDate, endDate, familyId, memberId) {
@@ -25,7 +26,11 @@
 
             taxLetterDataService.getMemberGiving(memberId, `1/1/${year}`, `12/31/${year}`)
                 .then(function (response) {
+                    vm.noResults = false;
                     vm.letterData = response.data;
+                    if (vm.letterData.length === 0)
+                        vm.noResults = true;
+
                     vm.year = year;
                     vm.letterDate = new Date();
                     generateTaxLetters();
