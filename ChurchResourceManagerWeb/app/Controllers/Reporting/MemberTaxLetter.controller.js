@@ -5,9 +5,9 @@
     angular.module("app")
         .controller("memberTaxLetterController", memberTaxLetterController);
 
-    memberTaxLetterController.$inject = ["taxLetterDataService", "$filter"];
+    memberTaxLetterController.$inject = ["taxLetterDataService", "$filter", "usSpinnerService"];
 
-    function memberTaxLetterController(taxLetterDataService, $filter) {
+    function memberTaxLetterController(taxLetterDataService, $filter, usSpinnerService) {
         var vm = this;
 
         vm.generateTaxLetters = generateTaxLetters;
@@ -20,6 +20,7 @@
 
         ////////////////////
         function getMemberTithesLetter(searchType, startDate, endDate, familyId, memberId) {
+            usSpinnerService.spin("spinner-1");
             var year = $filter("date")(endDate, "yyyy");
             if (memberId === undefined)
                 memberId = 0;
@@ -34,10 +35,12 @@
                     vm.year = year;
                     vm.letterDate = new Date();
                     generateTaxLetters();
+                    usSpinnerService.stop("spinner-1");
                 });
         }
 
         function generateTaxLetters() {
+
             var dd = {
                 content: [],
                 styles: {
