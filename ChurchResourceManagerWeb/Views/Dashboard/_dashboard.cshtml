@@ -15,7 +15,14 @@
                     </div>
                     <div class="col-xs-9 text-right">
                         <div>Members</div>
-                        <div class="huge">{{dc.memberCounts}}</div>
+                        <div class="huge">
+                            <div ng-show="dc.showMemberCounts">
+                                {{dc.memberCounts}}
+                            </div>
+                            <div ng-hide="dc.showMemberCounts">
+                                <span><i class="fas fa-spinner"></i></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -39,7 +46,14 @@
                     </div>
                     <div class="col-xs-9 text-right">
                         <div>Total Tithes Today</div>
-                        <div class="huge">{{dc.tithesSum | currency}}</div>
+                        <div class="huge">
+                            <div ng-show="dc.showTithesRunningTotals">
+                                {{dc.tithesSum | currency}}
+                            </div>
+                            <div ng-hide="dc.showTithesRunningTotals">
+                                <span><i class="fas fa-spinner"></i></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -63,7 +77,14 @@
                     </div>
                     <div class="col-xs-9 text-right">
                         <div>Total Offerings Today</div>
-                        <div class="huge">{{dc.offeringsSum | currency}}</div>
+                        <div class="huge">
+                            <div ng-show="dc.showOfferingsRunningTotals">
+                                {{dc.offeringsSum | currency}}
+                            </div>
+                            <div ng-hide="dc.showOfferingsRunningTotals">
+                                <span><i class="fas fa-spinner"></i></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -86,7 +107,14 @@
                     </div>
                     <div class="col-xs-9 text-right">
                         <div>Expenses Today</div>
-                        <div class="huge">{{dc.expensesSum | currency}}</div>
+                        <div class="huge">
+                            <div ng-show="dc.showExpensesRunningTotals">
+                                {{dc.expensesSum | currency}}
+                            </div>
+                            <div ng-hide="dc.showExpensesRunningTotals">
+                                <span><i class="fas fa-spinner"></i></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

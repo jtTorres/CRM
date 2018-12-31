@@ -8,6 +8,10 @@
 
     function dashboardController(membershipDataService, tithingDataService, offeringDataService, entitySelectorService, transactionsDataService, enumsDataService) {
         var vm = this;
+        vm.showExpensesRunningTotals = false;
+        vm.showMemberCounts = false;
+        vm.showOfferingsRunningTotals = false;
+        vm.showTithesRunningTotals = false;
 
         //////////////////////
 
@@ -23,6 +27,7 @@
             membershipDataService.getMemberCount()
                 .then(function (response) {
                     vm.memberCounts = response.data.MemberCount;
+                    vm.showMemberCounts = true;
                 });
         }
 
@@ -30,6 +35,7 @@
             tithingDataService.getTithesRunningTotal()
                 .then(function (response) {
                     vm.tithesSum = response.data;
+                    vm.showTithesRunningTotals = true;
                 });
         }
 
@@ -37,6 +43,7 @@
             offeringDataService.getRunningTotals(null, entitySelectorService.entityType.Offering)
                 .then(function (response) {
                     vm.offeringsSum = response.data;
+                    vm.showOfferingsRunningTotals = true;
                 });
         }
 
@@ -44,6 +51,7 @@
             transactionsDataService.getExpensesRunningTotal(null, enumsDataService.transactionInquiryTypes.Expenses)
                 .then(function (response) {
                     vm.expensesSum = response.data;
+                    vm.showExpensesRunningTotals = true;
                 });
         }
 
